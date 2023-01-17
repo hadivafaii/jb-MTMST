@@ -327,8 +327,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation-math">
-   Simulation math
+  <a class="reference internal nav-link" href="#setup">
+   Setup
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -369,7 +369,7 @@
                 
   <section id="simulation">
 <h1>(16) Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h1>
-<p><strong>Motivation</strong>: Simulate optical flow patterns <br></p>
+<p><strong>Motivation</strong>: Simulate optical flow patterns due to self-motion. <br></p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
@@ -527,8 +527,8 @@
 </div>
 </div>
 </div>
-<section id="simulation-math">
-<h2>Simulation math<a class="headerlink" href="#simulation-math" title="Permalink to this headline">¶</a></h2>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <p>Imagine an observer that is moving in a <span class="math notranslate nohighlight">\(3D\)</span> space, while maintaining fixation. There is a solid background at the <span class="math notranslate nohighlight">\(z=0\)</span> plane, and the fixation point is situated somewhere on this plane. The goal is to compute optical flow patterns perceived by this observer. Here is the setup:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\vec{F} = (x_0, y_0, 0)\)</span>, the fixation point.</p></li>
@@ -538,23 +538,31 @@
 </ul>
 <p>For simplicity we use <span class="math notranslate nohighlight">\(z \equiv z_s\)</span>, therefore <span class="math notranslate nohighlight">\(\vec{O} = (x_s, y_s, z)\)</span>. The relationship between background points observer’s FOV is given by</p>
 <p>\begin{equation}
-\tan\alpha_x = \tan(\rho \cos\phi) = \frac{z(x - x_0)}{z^2 + (x - x_s)(x_0 - x_s)},\
+\tan\alpha_x = \tan(\rho \cos\phi) = \frac{z(x - x_0)}{z^2 + (x - x_s)(x_0 - x_s)},
+\end{equation}
+\begin{equation}
 \tan\alpha_y = \tan(\rho \sin\phi) = \frac{z(y - y_0)}{z^2 + (y - y_s)(y_0 - y_s)},
 \end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\alpha_x = \rho \cos\phi\)</span> and <span class="math notranslate nohighlight">\(\alpha_y = \rho \sin\phi\)</span> are the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> components of point <span class="math notranslate nohighlight">\(\vec{P}\)</span> projected onto the observers FOV (<span class="math notranslate nohighlight">\(\alpha_x\)</span> and <span class="math notranslate nohighlight">\(\alpha_y\)</span> are measured in radians). See below for an illustration of the setup:</p>
 <hr class="docutils" />
-<img src="../../_extras/Self-motion.png" title="Simulation setup" alt="null" width="600"/>
+<img src="../../_extras/Self-motion.png" title="Simulation setup" alt="null" width="500" class="center"/>
 <hr class="docutils" />
 <p>Differentiate the equations to get</p>
 <p>\begin{equation}
-(1 + \tan^2\alpha_x) , \dot{\alpha}_x = (x - x_0) , . \frac{\big[(x - x_s)(x_0 - x_s) - z^2\big] v_z + z(x + x_0 - 2x_s)v_x}{\big[z^2 + (x - x_s)(x_0 - x_s)\big]^2},\
-(1 + \tan^2\alpha_y) , \dot{\alpha}_y = (y - y_0) , . \frac{\big[(y - y_s)(y_0 - y_s) - z^2\big] v_z + z(y + y_0 - 2y_s) v_y}{\big[z^2 + (y - y_s)(y_0 - y_s)\big]^2},
+(1 + \tan^2\alpha_x) \dot{\alpha}_x = (x - x_0) \frac{\big[(x - x_s)(x_0 - x_s) - z^2\big] v_z + z(x + x_0 - 2x_s)v_x}{\big[z^2 + (x - x_s)(x_0 - x_s)\big]^2},
+\end{equation}
+\begin{equation}
+(1 + \tan^2\alpha_y) \dot{\alpha}_y = (y - y_0) \frac{\big[(y - y_s)(y_0 - y_s) - z^2\big] v_z + z(y + y_0 - 2y_s) v_y}{\big[z^2 + (y - y_s)(y_0 - y_s)\big]^2},
 \end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\vec{v} = (v_x, v_y, v_z)\)</span> is the observer’s <span class="math notranslate nohighlight">\(3D\)</span> self-motion velocity vector. Simplifying these euqtions yields</p>
 <p>\begin{equation}
 \boxed{
-\dot{\alpha}_x = (x - x_0) , . \frac{\big[(x - x_s)(x_0 - x_s) - z^2\big] v_z + z(x + x_0 - 2x_s)v_x}{\big[z^2 + (x - x_s)(x_0 - x_s)\big]^2 + z^2(x - x_0)^2}\
-\dot{\alpha}_y = (y - y_0) , . \frac{\big[(y - y_s)(y_0 - y_s) - z^2\big] v_z + z(y + y_0 - 2y_s) v_y}{\big[z^2 + (y - y_s)(y_0 - y_s)\big]^2 + z^2(y - y_0)^2}
+\dot{\alpha}_x = (x - x_0) \frac{\big[(x - x_s)(x_0 - x_s) - z^2\big] v_z + z(x + x_0 - 2x_s)v_x}{\big[z^2 + (x - x_s)(x_0 - x_s)\big]^2 + z^2(x - x_0)^2}
+}
+\end{equation}
+\begin{equation}
+\boxed{
+\dot{\alpha}_y = (y - y_0) \frac{\big[(y - y_s)(y_0 - y_s) - z^2\big] v_z + z(y + y_0 - 2y_s) v_y}{\big[z^2 + (y - y_s)(y_0 - y_s)\big]^2 + z^2(y - y_0)^2}
 }
 \end{equation}</p>
 <p>Thus, we obtained angular velocity of a background point <span class="math notranslate nohighlight">\(\dot{\vec{\alpha}} = (\dot{\alpha}_x, \dot{\alpha}_y)\)</span> as a function of self-motion <span class="math notranslate nohighlight">\(\vec{v}\)</span>. Note that the velocity at the fixation point is always zero because <span class="math notranslate nohighlight">\(x = x_0\)</span> and <span class="math notranslate nohighlight">\(y = y_0\)</span> implies <span class="math notranslate nohighlight">\(\dot{\vec{\alpha}} = \vec{0}\)</span> (as expected). Finally, the polar velocity components <span class="math notranslate nohighlight">\(\dot{\rho}\)</span> and <span class="math notranslate nohighlight">\(\dot{\phi}\)</span> can be obtained from <span class="math notranslate nohighlight">\(\dot{\vec{\alpha}}\)</span> as follows</p>
