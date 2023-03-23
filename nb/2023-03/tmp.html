@@ -1,0 +1,2713 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>(??) Dataloder – &amp; Dataset &#8212; MT/MST project</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MT/MST project</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  January 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2022-01.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2022-01_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-01/jan-23-2022.html">
+     Jan 23rd, 2022 (jb tutorial)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  October 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2022-10.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2022-10_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-01-2022.html">
+     Oct 1st, 2022 (Load Wild Data)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-06-2022.html">
+     Oct 6th, 2022 (Python processed)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-07-2022.html">
+     Oct 7th, 2022 (Linear: STA – draft)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-08-2022.html">
+     Oct 8th, 2022 (Linear: STA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-09-2022.html">
+     Oct 9th, 2022 (Opticflow stats)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-11-2022.html">
+     Oct 11th, 2022 (Rot Conv verify)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-16-2022.html">
+     Oct 16th, 2022 (Linear: GLM – spatial)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  January 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-01.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-01_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/08_wild.html">
+     (08) Wild play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/10_nardin.html">
+     (10) Nardin play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/15_sim-draft.html">
+     (15) Simulation – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
+     (16) Simulation – wrong
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/21_sim-explore.html">
+     (21) Simulation – explore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
+     (23) Simulation – self-motion aspect [draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
+     (24) Simulation – self [still draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/28_sim-self.html">
+     (28) Simulation – self [velocity: new way]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
+     (29) Simulation – full [draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
+     (30) Simulation – full [final]
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  February 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-02.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-02_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/01_play-nvae.html">
+     (01) NVAE – play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
+     (02) VAE2D – play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/09_rot-conv.html">
+     (09) RotConv2d – verified
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/23_sim-gen.html">
+     (23) Simulation – generate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
+     (24) Simulation – generate (fix &amp; obj uncoupled)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
+     (24) Simulation – generate (save)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  March 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-03.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-03_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17_sim-new-draft.html">
+     (17) Sim New – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_sim-new-draft.html">
+     (22) Sim New – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="23_sim-new.html">
+     (23) Sim New – visualize
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nb/2023-03/tmp.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-03/tmp.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-03/tmp.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trainer">
+   Trainer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-train-options">
+   Review train options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train">
+   Train
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="dataloder-dataset">
+<h1>(??) Dataloder – &amp; Dataset<a class="headerlink" href="#dataloder-dataset" title="Permalink to this headline">¶</a></h1>
+<p><strong>Motivation</strong>: Create dataloaders, next I will be ready to fit. <br></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span> <span class="k">as</span> <span class="n">dc</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># GitHub</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">model.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">soft_clamp</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">tanh_</span><span class="p">()</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">13</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span> <span class="o">*</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/tmp_5_1.png" src="../../_images/tmp_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">soft_clamp</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/tmp_6_1.png" src="../../_images/tmp_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22026.465794806714
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.539992976248485e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1096.6331584284585
+</pre></div>
+</div>
+</div>
+</div>
+<section id="trainer">
+<h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">model.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span>
+<span class="kn">from</span> <span class="nn">model.train</span> <span class="kn">import</span> <span class="n">TrainerVAE</span>
+<span class="kn">from</span> <span class="nn">model.configuration</span> <span class="kn">import</span> <span class="n">ConfigVAE</span><span class="p">,</span> <span class="n">ConfigTrain</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="n">show_opticflow</span><span class="p">,</span> <span class="n">show_opticflow_full</span>
+<span class="kn">from</span> <span class="nn">model.common</span> <span class="kn">import</span> <span class="n">endpoint_error</span><span class="p">,</span> <span class="n">DeConv2D</span><span class="p">,</span> <span class="n">Conv2D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">beta_anneal_linear</span><span class="p">(</span>
+		<span class="n">n_iters</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+		<span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="n">anneal_portion</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+		<span class="n">constant_portion</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-2</span><span class="p">,</span>
+		<span class="n">min_beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="p">):</span>
+	<span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span> <span class="o">*</span> <span class="n">beta</span>
+	<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">constant_portion</span> <span class="o">*</span> <span class="n">n_iters</span><span class="p">))</span>
+	<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">constant_portion</span> <span class="o">+</span> <span class="n">anneal_portion</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_iters</span><span class="p">))</span>
+	<span class="n">betas</span><span class="p">[:</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_beta</span>
+	<span class="n">betas</span><span class="p">[</span><span class="n">a</span><span class="p">:</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_beta</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">betas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">beta_anneal_linear</span><span class="p">(</span><span class="mi">12000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">25e-7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">betas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5ec9f98910&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_18_1.png" src="../../_images/tmp_18_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.5e-06, 2.5e-06, 2.5e-06, ..., 1.0e+01, 1.0e+01, 1.0e+01])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;/home/hadi/Desktop/sub-SLC04_ses-1_run-7_task-rest_space-CCF2d_desc-preproc_ca2.npy&#39;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(540, 5999)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5eca1e12e0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_25_1.png" src="../../_images/tmp_25_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="n">kl_coeff</span><span class="p">(</span>
+    <span class="n">step</span><span class="o">=</span><span class="n">gstep</span><span class="p">,</span>
+    <span class="n">total_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">kl_anneal_portion</span> <span class="o">*</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;n_iters_tot&#39;</span><span class="p">],</span>
+    <span class="n">constant_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">kl_const_portion</span> <span class="o">*</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;n_iters_tot&#39;</span><span class="p">],</span>
+    <span class="n">min_kl_coeff</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">kl_const_coeff</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kl_coeff</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">total_step</span><span class="p">,</span> <span class="n">constant_step</span><span class="p">,</span> <span class="n">min_kl_coeff</span><span class="p">):</span>
+	<span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">((</span><span class="n">step</span> <span class="o">-</span> <span class="n">constant_step</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_step</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">min_kl_coeff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_iters</span> <span class="o">=</span> <span class="mi">120000</span>
+<span class="n">rrr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">gstep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+    <span class="n">rrr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kl_coeff</span><span class="p">(</span><span class="n">gstep</span><span class="p">,</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">n_iters</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">n_iters</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rrr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb5ba6f9640&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_32_1.png" src="../../_images/tmp_32_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bbb</span> <span class="o">=</span> <span class="n">beta_anneal</span><span class="p">(</span><span class="n">n_iters</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bbb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb5b962d5e0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_34_1.png" src="../../_images/tmp_34_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">19</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">19</span><span class="p">))</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([425.6809, 441.2263, 470.1122, 458.8769, 467.1743, 454.2744, 450.2484,
+        442.3687, 451.3485, 472.5881, 467.1559, 460.9863, 459.0367, 454.2975,
+        455.9691, 482.7391, 453.0619, 470.9553, 445.0170, 438.6615, 438.9612,
+        436.8954, 457.9799, 442.1515, 449.8611, 431.0654, 449.2562, 442.6693,
+        443.5562, 457.8253, 449.5399, 424.6128, 427.4868, 439.3514, 472.6831,
+        456.6191, 452.1575, 451.0710, 463.9073, 423.3181, 445.8593, 446.9283,
+        460.7754, 456.8409, 442.0953, 451.1641, 437.1913, 455.8188, 456.3357,
+        440.3274, 439.5856, 452.8519, 458.6751, 437.0970, 460.5370, 437.4661,
+        446.1432, 459.3324, 454.8264, 452.4272, 437.9156, 443.3121, 456.5600,
+        457.0146, 456.4915, 450.8528, 455.5231, 446.6976, 442.8574, 446.8372,
+        462.8190, 470.3230, 447.0914, 451.3150, 426.6937, 461.3628, 472.3909,
+        438.2449, 450.2120, 433.0136, 455.0769, 450.7665, 456.1589, 457.1379,
+        439.0401, 458.6666, 466.7363, 447.4090, 451.8221, 430.8813, 462.1412,
+        467.2277, 450.1268, 467.3381, 448.1693, 457.2852, 469.7567, 433.7646,
+        425.1219, 452.0803, 446.6965, 459.5611, 451.3807, 428.9433, 425.6804,
+        445.8446, 462.4013, 471.0189, 452.9240, 460.2980, 444.7698, 448.9221,
+        464.1235, 452.5719, 458.2549, 449.0256, 439.9512, 454.6683, 451.2202,
+        469.0052, 437.1390, 462.1879, 447.7461, 457.4216, 472.1663, 442.4991,
+        457.2306, 460.4860])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([425.6809, 441.2263, 470.1122, 458.8769, 467.1743, 454.2744, 450.2484,
+        442.3687, 451.3485, 472.5881, 467.1559, 460.9863, 459.0367, 454.2975,
+        455.9691, 482.7391, 453.0620, 470.9553, 445.0170, 438.6615, 438.9613,
+        436.8954, 457.9799, 442.1514, 449.8611, 431.0654, 449.2562, 442.6693,
+        443.5562, 457.8253, 449.5400, 424.6128, 427.4868, 439.3514, 472.6831,
+        456.6191, 452.1575, 451.0710, 463.9073, 423.3181, 445.8593, 446.9284,
+        460.7754, 456.8408, 442.0953, 451.1640, 437.1913, 455.8188, 456.3357,
+        440.3274, 439.5856, 452.8519, 458.6751, 437.0970, 460.5369, 437.4661,
+        446.1433, 459.3324, 454.8264, 452.4272, 437.9156, 443.3120, 456.5600,
+        457.0147, 456.4914, 450.8528, 455.5231, 446.6976, 442.8574, 446.8373,
+        462.8190, 470.3230, 447.0915, 451.3150, 426.6937, 461.3627, 472.3909,
+        438.2449, 450.2119, 433.0137, 455.0768, 450.7665, 456.1589, 457.1379,
+        439.0401, 458.6666, 466.7363, 447.4090, 451.8221, 430.8813, 462.1412,
+        467.2277, 450.1268, 467.3381, 448.1693, 457.2852, 469.7567, 433.7646,
+        425.1219, 452.0803, 446.6964, 459.5611, 451.3807, 428.9433, 425.6803,
+        445.8446, 462.4014, 471.0189, 452.9240, 460.2981, 444.7698, 448.9221,
+        464.1235, 452.5719, 458.2549, 449.0256, 439.9512, 454.6682, 451.2202,
+        469.0052, 437.1391, 462.1879, 447.7461, 457.4215, 472.1662, 442.4991,
+        457.2305, 460.4861])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">ConfigVAE</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.0000, 1.4142, 1.4142, 2.0000, 2.0000, 2.0000, 2.0000])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fun</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;square&#39;</span><span class="p">]:</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">kl_balancer_coeff</span><span class="p">(</span>
+        <span class="n">groups</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span>
+        <span class="c1"># device=self.device,</span>
+        <span class="n">fun</span><span class="o">=</span><span class="n">fun</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">equal <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">])</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">linear <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>.<span style="font-weight: bold">])</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">sqrt <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0000</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4142</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4142</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0000</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0000</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0000</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0000</span><span style="font-weight: bold">])</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">square <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>., <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>.<span style="font-weight: bold">])</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">beta_cycle_cosine</span><span class="p">(</span>
+	<span class="n">n_iters</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+	<span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+	<span class="n">stop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+	<span class="n">n_cycles</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+	<span class="n">ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">):</span>
+	<span class="n">period</span> <span class="o">=</span> <span class="n">n_iters</span> <span class="o">/</span> <span class="n">n_cycles</span>
+	<span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">stop</span><span class="o">-</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">period</span><span class="o">*</span><span class="n">ratio</span><span class="p">)</span>
+	<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
+		<span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">,</span> <span class="mi">0</span>
+		<span class="k">while</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">stop</span><span class="p">:</span>
+			<span class="n">idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">period</span><span class="p">)</span>
+			<span class="n">val</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+			<span class="n">beta</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+			<span class="n">v</span> <span class="o">+=</span> <span class="n">step</span>
+			<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+	<span class="k">return</span> <span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="n">frange_cycle_cosine</span><span class="p">(</span><span class="mi">120000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">beta</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_50_0.png" src="../../_images/tmp_50_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta_cycle_cosine</span><span class="p">(</span>
+    <span class="n">n_iters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">epochs</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">),</span>
+    <span class="n">n_cycles</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epe</span> <span class="o">=</span> <span class="n">endpoint_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epe</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(639.8550)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l2_loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">l2_loss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(1447.9489)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">vector_norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([747.6130, 733.6996, 740.8716, 821.3914, 702.4655, 705.5377, 723.1444,
+        742.3929, 658.3102, 703.7510, 732.7523, 736.1699, 809.8279, 682.5543,
+        743.1721, 660.1917, 782.0334, 698.3531, 739.7576, 722.3749, 771.1991,
+        684.5679, 741.9361, 675.1664, 732.5316, 721.4393, 732.4322, 749.3489,
+        721.2635, 672.3697, 752.2667, 737.1213, 717.1757, 747.0151, 714.4672,
+        714.2298, 665.7264, 777.5353, 796.2147, 738.8734, 628.1160, 725.2769,
+        750.9717, 778.9816, 699.5958, 781.1461, 793.3771, 723.9106, 704.1640,
+        683.0518, 729.7271, 769.2794, 669.2621, 750.7228, 677.2388, 732.4048,
+        691.7855, 690.3859, 745.3564, 646.2433, 729.8783, 718.5549, 646.8780,
+        701.3270, 678.5840, 711.5289, 648.5648, 717.2763, 695.7993, 751.0055,
+        722.3929, 734.4705, 712.4592, 716.6702, 803.1783, 642.2767, 770.4636,
+        688.1237, 694.9170, 679.9206, 670.6030, 688.1810, 700.1636, 778.9955,
+        743.0467, 766.1550, 727.5212, 797.4037, 782.4201, 774.1647, 674.7035,
+        713.1019, 775.7910, 671.4973, 737.4803, 754.2997, 746.4054, 691.6188,
+        723.6050, 664.3172, 725.8360, 675.2359, 739.5496, 710.3251, 701.6516,
+        726.2786, 766.2867, 708.5235, 790.4835, 702.7948, 764.7110, 763.9603,
+        791.8420, 701.0726, 736.9999, 697.5307, 752.4047, 668.8565, 723.0826,
+        802.7336, 735.0280, 737.1362, 764.4604, 756.4349, 664.6785, 667.6396,
+        703.7636, 687.4910])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l2_loss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([747.6130, 733.6997, 740.8716, 821.3914, 702.4656, 705.5378, 723.1444,
+        742.3928, 658.3101, 703.7509, 732.7522, 736.1699, 809.8279, 682.5544,
+        743.1719, 660.1917, 782.0335, 698.3530, 739.7574, 722.3749, 771.1990,
+        684.5677, 741.9362, 675.1664, 732.5316, 721.4393, 732.4323, 749.3489,
+        721.2634, 672.3696, 752.2667, 737.1215, 717.1755, 747.0151, 714.4672,
+        714.2299, 665.7263, 777.5354, 796.2147, 738.8735, 628.1161, 725.2769,
+        750.9717, 778.9814, 699.5960, 781.1461, 793.3770, 723.9105, 704.1642,
+        683.0518, 729.7271, 769.2794, 669.2621, 750.7227, 677.2388, 732.4048,
+        691.7855, 690.3858, 745.3563, 646.2433, 729.8783, 718.5550, 646.8779,
+        701.3271, 678.5840, 711.5290, 648.5649, 717.2763, 695.7993, 751.0054,
+        722.3928, 734.4705, 712.4592, 716.6702, 803.1784, 642.2767, 770.4633,
+        688.1238, 694.9171, 679.9205, 670.6030, 688.1810, 700.1637, 778.9957,
+        743.0468, 766.1551, 727.5214, 797.4037, 782.4200, 774.1648, 674.7034,
+        713.1019, 775.7910, 671.4974, 737.4803, 754.2998, 746.4054, 691.6189,
+        723.6050, 664.3171, 725.8359, 675.2360, 739.5497, 710.3253, 701.6516,
+        726.2786, 766.2867, 708.5236, 790.4835, 702.7948, 764.7111, 763.9603,
+        791.8418, 701.0727, 736.9999, 697.5307, 752.4047, 668.8566, 723.0826,
+        802.7336, 735.0280, 737.1361, 764.4604, 756.4348, 664.6786, 667.6395,
+        703.7637, 687.4910])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([629.6990, 653.1978, 628.2412, 641.8640, 655.3443, 642.1229, 652.9913,
+        622.5256, 621.0876, 615.0323, 644.8344, 626.6290, 689.1006, 623.5077,
+        656.3489, 661.4698, 628.4563, 615.3880, 650.4142, 630.4352, 653.6823,
+        608.5909, 644.6091, 609.4150, 632.9284, 638.7201, 648.2064, 644.2236,
+        643.3927, 607.4060, 649.6266, 635.3988, 621.8128, 649.2741, 640.6860,
+        657.6784, 630.2331, 638.2609, 664.0980, 660.4385, 623.5651, 630.1866,
+        656.7003, 678.3939, 629.5043, 636.9385, 667.6707, 614.3516, 626.7168,
+        640.0151, 641.6725, 670.6664, 606.5636, 663.6094, 617.7531, 622.8126,
+        636.7740, 638.4486, 650.4564, 632.2997, 649.5842, 671.8973, 646.3324,
+        641.7571, 629.8871, 659.0804, 614.2552, 643.0939, 652.9941, 643.0642,
+        621.7007, 655.7653, 626.8777, 658.2568, 630.8110, 617.2177, 634.2674,
+        627.7083, 627.6661, 613.2363, 641.1849, 612.5842, 631.1185, 640.7504,
+        638.0543, 661.9254, 614.7608, 662.5044, 667.1885, 637.8638, 596.9714,
+        637.7505, 644.5696, 644.1669, 637.9060, 635.4471, 672.5569, 636.0541,
+        673.1387, 615.7268, 639.2231, 617.7130, 628.0447, 628.7131, 646.4386,
+        638.4188, 670.7252, 643.9096, 628.8650, 635.2859, 643.0599, 658.5889,
+        654.1650, 629.9670, 654.2025, 631.9529, 646.2441, 605.1293, 647.6232,
+        661.0311, 666.1155, 682.5157, 685.8283, 646.4060, 602.3131, 610.8771,
+        666.1954, 611.7472])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(tensor([[ 0.1122,  0.5129, -0.4425, -2.1769, -0.8268,  0.1424,  1.5048, -1.4076],
+         [ 1.0724,  1.6425, -0.2142,  0.1953, -0.5890, -0.9897,  0.7150, -0.4424],
+         [-0.9415, -0.6545,  1.9329,  0.4982, -1.1759, -0.1427,  1.0383,  1.5114]]),
+ tensor([[-0.4936, -0.5728,  0.6749, -0.6792, -1.3159,  0.4215, -0.8694,  0.4871],
+         [ 0.2969, -0.7648,  0.4516, -0.1732,  1.0126,  0.8496, -0.5250,  0.8572],
+         [ 2.3984, -0.8545, -0.1391,  0.1293, -0.5360, -0.8622,  1.4206, -0.5930]]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">normal_</span><span class="p">()</span>
+<span class="n">eps</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 0.6877, -0.1969,  0.7380, -0.2097, -0.2244,  0.0326, -0.9199, -0.0609],
+        [-1.0349, -0.9747, -2.1280, -0.3248,  1.0452,  0.3964,  1.4942, -0.8744],
+        [-0.4584,  0.2539, -0.8111, -0.4586,  1.4671, -1.1485, -0.1303, -1.5311]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">normal_</span><span class="p">()</span><span class="o">.</span><span class="n">mul_</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">eps</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-0.0821, -0.6124,  1.0330, -2.2054, -0.1948,  0.6712,  1.1051, -1.5058],
+        [ 1.1065,  1.7642, -0.7957,  0.2995,  0.3203, -1.0855,  0.8040,  0.8167],
+        [ 1.9699, -1.7382,  1.9173,  0.6727, -1.1518,  1.6261,  0.1960,  1.7798]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-0.1943, -1.1253,  1.4755, -0.0286,  0.6320,  0.5287, -0.3997, -0.0982],
+        [ 0.0341,  0.1217, -0.5815,  0.1042,  0.9094, -0.0957,  0.0889,  1.2591],
+        [ 2.9114, -1.0838, -0.0157,  0.1744,  0.0242,  1.7688, -0.8423,  0.2685]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kl_coeff</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">total_step</span><span class="p">,</span> <span class="n">constant_step</span><span class="p">,</span> <span class="n">min_kl_coeff</span><span class="p">):</span>
+	<span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">((</span><span class="n">step</span> <span class="o">-</span> <span class="n">constant_step</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_step</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">min_kl_coeff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">12000</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">kl_coeff</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="mi">12000</span><span class="p">,</span> <span class="mi">12000</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f95cb174100&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_85_1.png" src="../../_images/tmp_85_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span> <span class="o">=</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span><span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span> <span class="n">ConfigTrain</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">beta_cycle_cosine</span><span class="p">(</span>
+		<span class="n">n_iters</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+		<span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+		<span class="n">stop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+		<span class="n">n_cycles</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+		<span class="n">ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+		<span class="n">min_beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="p">):</span>
+	<span class="n">period</span> <span class="o">=</span> <span class="n">n_iters</span> <span class="o">/</span> <span class="n">n_cycles</span>
+	<span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">stop</span><span class="o">-</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">period</span><span class="o">*</span><span class="n">ratio</span><span class="p">)</span>
+	<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
+		<span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">,</span> <span class="mi">0</span>
+		<span class="k">while</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">stop</span><span class="p">:</span>
+			<span class="n">idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">period</span><span class="p">)</span>
+			<span class="n">val</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+			<span class="n">beta</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+			<span class="n">v</span> <span class="o">+=</span> <span class="n">step</span>
+			<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+	<span class="n">beta</span><span class="p">[</span><span class="n">beta</span> <span class="o">&lt;</span> <span class="n">min_beta</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_beta</span>
+	<span class="k">return</span> <span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta_cycle_cosine</span><span class="p">(</span>
+    <span class="n">n_iters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">epochs</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">),</span>
+    <span class="n">n_cycles</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff4bbef1370&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_90_1.png" src="../../_images/tmp_90_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">epochs</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">)):</span>
+        <span class="n">gstep</span> <span class="o">=</span> <span class="n">epoch</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">[</span><span class="n">gstep</span><span class="p">]</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "dcc9112335fe408ab99612ee2e797bfe", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gstep</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0001
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff4c4391820&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_97_1.png" src="../../_images/tmp_97_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff4c42afca0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_99_1.png" src="../../_images/tmp_99_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalized_samples</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_p</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">normalized_samples</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-2.3694, -1.8308, -0.7791,  1.5293, -1.2713, -0.9764, -5.1608, -1.4846],
+        [-1.5922, -2.3925, -2.3156, -1.7605, -0.2739, -1.1759, -0.9048, -0.9694],
+        [-2.7857, -0.4068, -0.0667, -1.5675, -0.3610, -1.2282, -0.7611, -2.7479],
+        [ 0.0368, -1.9140, -1.3561, -0.4028, -0.9015, -1.4530, -0.2992, -2.1914],
+        [-0.6287, -1.6673, -1.4189, -1.7333, -0.7851, -3.1374, -1.7657, -0.5307],
+        [-4.8624,  0.9339, -0.2831, -1.4632, -3.4493, -2.6331,  1.9343, -2.3632],
+        [-0.0230, -1.1072, -0.4629, -2.0903, -0.8332, -1.1019,  0.3970, -0.8058],
+        [-0.0238, -3.4209, -3.4497,  0.5201, -3.4146, -2.5076,  1.1838, -2.0311],
+        [-2.7138, -1.5885, -1.0503,  0.0257, -2.6728, -1.8120, -3.0322, -0.1518],
+        [-2.5873, -0.6933, -1.4812, -2.1539, -2.0399, -2.7781, -0.8052, -2.7126],
+        [-0.3526, -1.4791, -0.6418, -0.8165,  0.3287, -2.3885, -0.9162, -0.9316],
+        [-0.7125, -3.2995, -1.5600, -1.3643, -1.4540, -2.0953, -1.3327, -2.2483],
+        [-1.0298, -2.8014, -1.5791, -3.4768, -0.3710, -2.0971, -0.3657, -2.4331]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 0.3591,     nan, -0.9571, -1.5177,     nan, -1.6382,     nan,  0.7242],
+        [    nan,     nan,     nan,     nan,     nan,     nan,     nan,     nan],
+        [-1.1607,  0.9695, -0.2184,     nan, -0.3224,  1.0160,     nan,     nan],
+        [ 0.0538, -1.8930,  0.2184,     nan,  0.0590,     nan,     nan,     nan],
+        [ 0.5252,     nan,     nan,     nan,  0.7673,     nan, -1.3828,     nan],
+        [ 1.0148, -0.9996,     nan, -0.2135,     nan,     nan,     nan, -0.2802],
+        [    nan,     nan, -6.1357,  0.8372,     nan,     nan, -0.2296, -0.7223],
+        [-0.4775, -1.4117,     nan,     nan, -3.3619,     nan,     nan, -4.3732],
+        [ 0.5700,     nan,     nan, -0.7747,     nan,     nan,     nan,     nan],
+        [    nan,     nan,  0.2162,     nan,     nan,     nan,     nan,  0.2508],
+        [    nan, -1.1528,     nan, -1.0758,  0.5026,     nan,     nan, -1.9246],
+        [-3.1981, -1.7408,     nan,     nan,  0.4714,     nan,     nan,     nan],
+        [    nan,     nan, -0.0857,     nan, -1.0891, -0.6045,     nan,     nan]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">Normal</span>
+<span class="kn">from</span> <span class="nn">torch.distributions.kl</span> <span class="kn">import</span> <span class="n">kl_divergence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kl_true</span> <span class="o">=</span> <span class="n">kl_divergence</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">kl_true</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.4999,  1.4784, 75.8491,  0.1995],
+        [ 8.5944, 67.7283,  1.8588,  0.3194],
+        [ 4.4265, 12.1696,  2.1257,  1.4096]], grad_fn=&lt;MulBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-1.8109, -9.1943, -1.4652, -1.8974],
+        [-1.9089, -2.0395, -3.1550, -3.9428],
+        [-5.3129, -2.1137, -0.5710, -6.5973]], grad_fn=&lt;SubBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="o">.</span><span class="n">rsample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.9614, -0.2400,  1.9580,  1.4346],
+        [ 2.3863,  2.5389,  0.5869,  1.3907],
+        [ 1.2806,  2.2005, -0.4789,  0.4627]], grad_fn=&lt;AddBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qq</span> <span class="o">=</span> <span class="n">Normal2</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">variance</span><span class="o">.</span><span class="n">log</span><span class="p">())</span>
+<span class="n">pp</span> <span class="o">=</span> <span class="n">Normal2</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">variance</span><span class="o">.</span><span class="n">log</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qq</span><span class="o">.</span><span class="n">kl</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[9.7541e+00, 3.4058e+00, 8.8346e+03, 4.2316e-01],
+        [1.3991e+02, 3.6020e+03, 2.6195e+00, 5.0918e-01],
+        [3.0792e+00, 4.0543e+02, 4.0167e+00, 2.6629e+00]],
+       grad_fn=&lt;SubBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qq</span><span class="o">.</span><span class="n">kl_hadi</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.4995,  1.4760, 75.2751,  0.1994],
+        [ 8.5855, 67.5560,  1.8583,  0.3192],
+        [ 4.4225, 12.1520,  2.1221,  1.4085]], grad_fn=&lt;MulBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Normal2</span><span class="p">:</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+			<span class="bp">self</span><span class="p">,</span>
+			<span class="n">mu</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+			<span class="n">logsigma</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+			<span class="n">temp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+			<span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+	<span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">soft_clamp</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+		<span class="n">logsigma</span> <span class="o">=</span> <span class="n">soft_clamp</span><span class="p">(</span><span class="n">logsigma</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logsigma</span><span class="p">)</span>  <span class="c1"># + 1e-2</span>
+		<span class="c1"># we don&#39;t need above after soft clamp (?)</span>
+		<span class="k">if</span> <span class="n">temp</span> <span class="o">!=</span> <span class="mf">1.0</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">*=</span> <span class="n">temp</span>
+		<span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">()</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="kc">None</span>
+
+	<span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="n">sample_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">log_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+		<span class="n">normalized_samples</span> <span class="o">=</span> <span class="p">(</span><span class="n">samples</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span>
+		<span class="n">log_p</span> <span class="o">=</span> <span class="p">(</span>
+			<span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">normalized_samples</span> <span class="o">**</span> <span class="mi">2</span>
+			<span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+			<span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+		<span class="p">)</span>
+		<span class="k">return</span> <span class="n">log_p</span>
+
+	<span class="k">def</span> <span class="nf">kl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">normal_dist</span><span class="p">):</span>
+		<span class="n">term1</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">-</span> <span class="n">normal_dist</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">normal_dist</span><span class="o">.</span><span class="n">sigma</span>
+		<span class="n">term2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">/</span> <span class="n">normal_dist</span><span class="o">.</span><span class="n">sigma</span>
+		<span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">term1</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">term2</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">kl_hadi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+		<span class="n">delta_mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">mu</span>
+		<span class="n">delta_sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">sigma</span>
+		<span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+			<span class="n">delta_sigma</span> <span class="o">-</span>
+			<span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">delta_sigma</span><span class="p">)</span> <span class="o">+</span>
+			<span class="n">delta_mu</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">sigma</span> <span class="o">-</span>
+			<span class="mi">1</span>
+		<span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">soft_clamp</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">50.0</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">tanh_</span><span class="p">()</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span> <span class="o">=</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span><span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">()),</span> <span class="n">ConfigTrain</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">))</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">to</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">log_q</span><span class="p">,</span> <span class="n">log_p</span><span class="p">,</span> <span class="n">kl_all</span><span class="p">,</span> <span class="n">kl_diag</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">loss_recon</span> <span class="o">=</span> <span class="n">endpoint_error</span><span class="p">(</span>
+    <span class="n">true</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_recon</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 45.4377, 205.4288,  46.5688,  59.2610,  49.0402,  71.2847,  73.4616,
+         61.2706,  54.1703, 102.6177,  64.6650,  49.5783,  56.0723,  55.1371,
+         74.4011, 175.9845,  49.9946,  53.6751,  59.3473,  66.1611,  49.1458,
+         63.2466,  57.1993,  55.0466,  58.2670,  52.8819,  53.5533,  58.4538,
+        143.5602,  74.1172, 102.1183,  71.7040,  64.8274,  57.0710,  55.0423,
+         50.3285, 282.2430,  61.9622,  97.2113,  65.9979,  49.9359,  76.7833,
+         52.9420,  64.0103,  60.7069,  46.8805,  50.1055, 180.3509,  50.5020,
+        110.2339,  65.4224, 106.2291,  67.5172,  53.7452,  48.5706,  83.1084,
+         60.4647,  50.1841,  60.6372,  50.0537,  56.9153,  47.4792,  52.3995,
+         48.9703, 153.9743,  58.5689,  50.9976,  63.0951,  50.6682,  55.6268,
+         46.0520,  76.8719,  48.9700,  49.2673,  49.3223,  67.7599,  85.2331,
+         49.7888,  53.9074,  74.2478,  55.2077,  49.4101, 447.6043,  73.3690,
+         60.8083,  50.5836,  47.3349,  45.3234,  51.6444,  45.2281,  50.4865,
+         54.5259,  75.4010,  57.7934,  42.5107,  49.9706,  53.0802,  86.5955,
+         48.5104,  47.6407,  55.0177,  50.2107,  66.7259,  47.1115,  98.3715,
+         53.5539,  59.0969,  63.4661,  49.4213,  85.3337,  56.8748,  57.1412,
+         53.8689,  56.5536,  51.6285,  53.5528,  49.9825,  55.2285,  51.9671,
+         49.9400,  55.7655, 186.2380, 169.9028,  47.5370,  57.6568,  61.6357,
+        313.1137,  48.3932], grad_fn=&lt;DivBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gstep</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">kl_balancer_coeff</span><span class="p">(</span>
+    <span class="n">groups</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+    <span class="n">fun</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1., 2., 2., 4., 4., 4., 4.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="n">kl_coeff</span><span class="p">(</span>
+    <span class="n">step</span><span class="o">=</span><span class="n">gstep</span><span class="p">,</span>
+    <span class="n">total_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">kl_anneal_portion</span> <span class="o">*</span> <span class="mi">500</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">),</span>
+    <span class="n">constant_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">kl_const_portion</span> <span class="o">*</span> <span class="mi">500</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">),</span>
+    <span class="n">min_kl_coeff</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">kl_const_coeff</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">balanced_kl</span><span class="p">,</span> <span class="n">kl_coeffs</span><span class="p">,</span> <span class="n">kl_vals</span> <span class="o">=</span> <span class="n">kl_balancer</span><span class="p">(</span>
+    <span class="n">kl_all</span><span class="o">=</span><span class="n">kl_all</span><span class="p">,</span> <span class="n">coeff</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balanced_kl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.0031, 0.0007, 0.0015, 0.0008, 0.0024, 0.0007, 0.0011, 0.0009, 0.0009,
+        0.0017, 0.0008, 0.0012, 0.0016, 0.0010, 0.0008, 0.0007, 0.0009, 0.0030,
+        0.0010, 0.0008, 0.0023, 0.0008, 0.0009, 0.0036, 0.0011, 0.0011, 0.0023,
+        0.0015, 0.0008, 0.0007, 0.0009, 0.0008, 0.0010, 0.0020, 0.0012, 0.0010,
+        0.0007, 0.0025, 0.0008, 0.0008, 0.0009, 0.0007, 0.0009, 0.0011, 0.0009,
+        0.0009, 0.0010, 0.0011, 0.0012, 0.0007, 0.0011, 0.0008, 0.0008, 0.0009,
+        0.0010, 0.0007, 0.0036, 0.0057, 0.0010, 0.0013, 0.0008, 0.0072, 0.0007,
+        0.0009, 0.0008, 0.0011, 0.0009, 0.0007, 0.0010, 0.0010, 0.0013, 0.0009,
+        0.0011, 0.0011, 0.0012, 0.0023, 0.0006, 0.0011, 0.0017, 0.0008, 0.0012,
+        0.0013, 0.0007, 0.0013, 0.0008, 0.0008, 0.0016, 0.0016, 0.0011, 0.0010,
+        0.0014, 0.0018, 0.0007, 0.0010, 0.0015, 0.0010, 0.0010, 0.0008, 0.0013,
+        0.0011, 0.0009, 0.0030, 0.0007, 0.0020, 0.0008, 0.0009, 0.0014, 0.0011,
+        0.0015, 0.0017, 0.0009, 0.0008, 0.0008, 0.0009, 0.0018, 0.0022, 0.0018,
+        0.0024, 0.0010, 0.0015, 0.0008, 0.0008, 0.0008, 0.0019, 0.0008, 0.0008,
+        0.0009, 0.0020], grad_fn=&lt;MulBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">kl_all</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf5af40550&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_140_1.png" src="../../_images/tmp_140_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">balanced_kl</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf5aef2310&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/tmp_141_1.png" src="../../_images/tmp_141_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nelbo_batch</span> <span class="o">=</span> <span class="n">loss_recon</span> <span class="o">+</span> <span class="n">balanced_kl</span>
+<span class="n">nelbo_batch</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 45.4408, 205.4296,  46.5703,  59.2619,  49.0426,  71.2854,  73.4627,
+         61.2715,  54.1712, 102.6193,  64.6658,  49.5795,  56.0738,  55.1382,
+         74.4020, 175.9852,  49.9955,  53.6781,  59.3482,  66.1618,  49.1480,
+         63.2473,  57.2003,  55.0502,  58.2681,  52.8830,  53.5556,  58.4553,
+        143.5609,  74.1179, 102.1192,  71.7048,  64.8285,  57.0730,  55.0434,
+         50.3296, 282.2437,  61.9647,  97.2121,  65.9987,  49.9368,  76.7840,
+         52.9429,  64.0114,  60.7078,  46.8815,  50.1065, 180.3520,  50.5032,
+        110.2346,  65.4235, 106.2299,  67.5181,  53.7461,  48.5716,  83.1091,
+         60.4683,  50.1898,  60.6383,  50.0550,  56.9161,  47.4864,  52.4002,
+         48.9713, 153.9751,  58.5700,  50.9985,  63.0958,  50.6692,  55.6278,
+         46.0533,  76.8728,  48.9712,  49.2684,  49.3235,  67.7621,  85.2338,
+         49.7899,  53.9092,  74.2486,  55.2089,  49.4114, 447.6050,  73.3703,
+         60.8091,  50.5844,  47.3365,  45.3251,  51.6455,  45.2290,  50.4879,
+         54.5276,  75.4016,  57.7944,  42.5123,  49.9715,  53.0812,  86.5963,
+         48.5118,  47.6418,  55.0186,  50.2137,  66.7266,  47.1135,  98.3723,
+         53.5548,  59.0984,  63.4673,  49.4228,  85.3354,  56.8757,  57.1420,
+         53.8697,  56.5546,  51.6303,  53.5550,  49.9842,  55.2309,  51.9681,
+         49.9415,  55.7663, 186.2387, 169.9036,  47.5389,  57.6576,  61.6365,
+        313.1146,  48.3952], grad_fn=&lt;AddBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nelbo_batch</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(72.4572, grad_fn=&lt;MeanBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nelbo_batch</span> <span class="o">=</span> <span class="n">loss_recon</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">balanced_kl</span>
+<span class="n">nelbo_batch</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([9274.3564, 9274.3545, 9274.3555, 9274.3545, 9274.3555, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3555, 9274.3545, 9274.3545,
+        9274.3555, 9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3564,
+        9274.3545, 9274.3545, 9274.3555, 9274.3545, 9274.3545, 9274.3574,
+        9274.3545, 9274.3545, 9274.3555, 9274.3555, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3555, 9274.3545, 9274.3545,
+        9274.3545, 9274.3564, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3574, 9274.3594, 9274.3545, 9274.3545,
+        9274.3545, 9274.3604, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3555, 9274.3545, 9274.3545,
+        9274.3555, 9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3545, 9274.3545, 9274.3555, 9274.3555, 9274.3545, 9274.3545,
+        9274.3545, 9274.3555, 9274.3545, 9274.3545, 9274.3555, 9274.3545,
+        9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3545, 9274.3564,
+        9274.3545, 9274.3555, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3555, 9274.3555, 9274.3545, 9274.3545, 9274.3545, 9274.3545,
+        9274.3555, 9274.3555, 9274.3555, 9274.3555, 9274.3545, 9274.3555,
+        9274.3545, 9274.3545, 9274.3545, 9274.3555, 9274.3545, 9274.3545,
+        9274.3545, 9274.3555], grad_fn=&lt;AddBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nelbo_batch</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(9274.3555, grad_fn=&lt;MeanBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">epochs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">eval_freq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epoch</span> <span class="o">=</span> <span class="mi">123</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_iters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">global_step</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38688
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_vld</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err</span> <span class="o">=</span> <span class="n">endpoint_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">err</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([128])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([132.5975,  53.5925,  72.4799, 145.3036,  85.0255,  84.6349,  96.5781,
+         86.5584, 144.9209,  20.2190,  13.6957,  65.5549,  84.1360,  23.9441,
+         49.3298,  14.5331, 127.2233,  87.9757,  68.8804, 108.8885,  79.6087,
+         98.4160, 105.2094,  37.8709, 264.2548, 132.5681, 119.2118,  73.0115,
+        150.9497,  25.5428,  19.6858,   8.9699, 136.4348,  36.9607,  40.8509,
+        138.7265,  94.4150, 106.9915, 110.2774,  59.0889, 124.1433, 146.8308,
+        153.7984,  66.0192,   1.7087,  59.2007, 139.8999, 152.8509, 127.4156,
+         75.5292,  21.4601, 125.9101, 101.0888, 110.9665,  73.3013, 105.1366,
+        151.7934,  49.2825, 104.6970,  69.5208,  87.4045, 142.3419,  19.5908,
+         20.4876,  20.6781,  43.9582, 104.0770,  67.6602, 106.2190, 127.8443,
+         98.9768, 154.5563,  38.7343, 115.4509,  76.6932,  72.1344,  66.3664,
+         88.6815,  52.6462,  38.5949,  17.4678, 116.8431,  82.2381, 131.3993,
+         57.6906, 133.3196,  53.7212, 124.5322,  95.5550,  52.3498,  36.9263,
+         31.7852,  97.1418,  60.9655,  86.7127, 114.0238,  87.7237,  22.7698,
+         27.0477,  59.2489,  87.5168,  33.6770,  89.6450,  32.1166,  11.9542,
+         93.6231, 145.4872,  76.8097,  86.5020,  82.7848,  64.2317, 108.0897,
+        126.6873,  76.0455,  62.2337, 154.4279,  86.8769,  93.7090, 160.1859,
+         32.2572,  65.2180,  70.7143,  87.0055,  18.2286,  48.6891, 120.1660,
+        136.0816, 130.8057], dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([132.5975,  53.5925,  72.4799, 145.3036,  85.0255,  84.6349,  96.5781,
+         86.5584, 144.9209,  20.2190,  13.6957,  65.5549,  84.1360,  23.9441,
+         49.3298,  14.5331, 127.2233,  87.9757,  68.8804, 108.8885,  79.6087,
+         98.4160, 105.2094,  37.8709, 264.2548, 132.5681, 119.2118,  73.0115,
+        150.9497,  25.5428,  19.6858,   8.9699, 136.4348,  36.9607,  40.8509,
+        138.7265,  94.4150, 106.9915, 110.2774,  59.0889, 124.1433, 146.8308,
+        153.7984,  66.0192,   1.7087,  59.2007, 139.8999, 152.8509, 127.4156,
+         75.5292,  21.4601, 125.9101, 101.0888, 110.9665,  73.3013, 105.1366,
+        151.7934,  49.2825, 104.6970,  69.5208,  87.4045, 142.3419,  19.5908,
+         20.4876,  20.6781,  43.9582, 104.0770,  67.6602, 106.2190, 127.8443,
+         98.9768, 154.5563,  38.7343, 115.4509,  76.6932,  72.1344,  66.3664,
+         88.6815,  52.6462,  38.5949,  17.4678, 116.8431,  82.2381, 131.3993,
+         57.6906, 133.3196,  53.7212, 124.5322,  95.5550,  52.3498,  36.9263,
+         31.7852,  97.1418,  60.9655,  86.7127, 114.0238,  87.7237,  22.7698,
+         27.0477,  59.2489,  87.5168,  33.6770,  89.6450,  32.1166,  11.9542,
+         93.6231, 145.4872,  76.8097,  86.5020,  82.7848,  64.2317, 108.0897,
+        126.6873,  76.0455,  62.2337, 154.4279,  86.8769,  93.7090, 160.1859,
+         32.2572,  65.2180,  70.7143,  87.0055,  18.2286,  48.6891, 120.1660,
+        136.0816, 130.8057], dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endpoint_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473,
+        44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473, 44.0473],
+       dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">endpoint_error</span><span class="p">(</span>
+        <span class="n">true</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">pred</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">w</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="p">):</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">true</span> <span class="o">-</span> <span class="n">pred</span>
+    <span class="k">if</span> <span class="n">batch_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">true</span><span class="p">))</span>
+            <span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+                <span class="n">delta</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)],</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span>
+            <span class="p">))</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">error</span> <span class="o">*</span> <span class="n">w</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">norm</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">norm</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 0.3322,  0.8219,  0.6077,  0.3031,  0.5180,  0.5204,  0.4561,  0.5089,
+         0.3039,  2.1785,  3.2161,  0.6719,  0.5235,  1.8396,  0.8929,  3.0308,
+         0.3462,  0.5007,  0.6395,  0.4045,  0.5533,  0.4476,  0.4187,  1.1631,
+         0.1667,  0.3323,  0.3695,  0.6033,  0.2918,  1.7244,  2.2375,  4.9106,
+         0.3228,  1.1917,  1.0782,  0.3175,  0.4665,  0.4117,  0.3994,  0.7454,
+         0.3548,  0.3000,  0.2864,  0.6672, 25.7780,  0.7440,  0.3148,  0.2882,
+         0.3457,  0.5832,  2.0525,  0.3498,  0.4357,  0.3969,  0.6009,  0.4190,
+         0.2902,  0.8938,  0.4207,  0.6336,  0.5039,  0.3094,  2.2484,  2.1499,
+         2.1301,  1.0020,  0.4232,  0.6510,  0.4147,  0.3445,  0.4450,  0.2850,
+         1.1372,  0.3815,  0.5743,  0.6106,  0.6637,  0.4967,  0.8367,  1.1413,
+         2.5216,  0.3770,  0.5356,  0.3352,  0.7635,  0.3304,  0.8199,  0.3537,
+         0.4610,  0.8414,  1.1928,  1.3858,  0.4534,  0.7225,  0.5080,  0.3863,
+         0.5021,  1.9345,  1.6285,  0.7434,  0.5033,  1.3079,  0.4914,  1.3715,
+         3.6847,  0.4705,  0.3028,  0.5735,  0.5092,  0.5321,  0.6858,  0.4075,
+         0.3477,  0.5792,  0.7078,  0.2852,  0.5070,  0.4700,  0.2750,  1.3655,
+         0.6754,  0.6229,  0.5063,  2.4164,  0.9047,  0.3666,  0.3237,  0.3367],
+       dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">DeConv2D</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">normalize_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">m</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([13, 5, 8, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([5, 1, 8, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">log_weight_norm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter containing:
+tensor([0.2400], requires_grad=True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([5, 1, 8, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">())</span>
+<span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span><span class="n">vae</span><span class="p">,</span> <span class="n">ConfigTrain</span><span class="p">(),</span> <span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_kers&#39;: 4,
+ &#39;n_rots&#39;: 8,
+ &#39;ker_sz&#39;: 4,
+ &#39;input_sz&#39;: 19,
+ &#39;n_pre_cells&#39;: 3,
+ &#39;n_pre_blocks&#39;: 0,
+ &#39;n_post_cells&#39;: 3,
+ &#39;n_post_blocks&#39;: 1,
+ &#39;n_latent_scales&#39;: 3,
+ &#39;n_groups_per_scale&#39;: 4,
+ &#39;n_latent_per_group&#39;: 5,
+ &#39;n_cells_per_cond&#39;: 2,
+ &#39;spectral_norm&#39;: True,
+ &#39;rot_equiv&#39;: False,
+ &#39;compress&#39;: True,
+ &#39;use_bn&#39;: False,
+ &#39;groups&#39;: [4, 2, 1],
+ &#39;base_dir&#39;: &#39;/home/hadi/Documents/MTMST&#39;,
+ &#39;results_dir&#39;: &#39;/home/hadi/Documents/MTMST/results&#39;,
+ &#39;runs_dir&#39;: &#39;/home/hadi/Documents/MTMST/runs/k-32_z-5x[4,2,1]_post-1x3_cmprs&#39;,
+ &#39;save_dir&#39;: &#39;/home/hadi/Documents/MTMST/models/k-32_z-5x[4,2,1]_post-1x3_cmprs&#39;,
+ &#39;data_dir&#39;: &#39;/home/hadi/Documents/MTMST/data&#39;,
+ &#39;h_file&#39;: &#39;/home/hadi/Documents/MTMST/data/MTLFP_tres25.h5&#39;,
+ &#39;h_pre&#39;: &#39;/home/hadi/Documents/MTMST/data/simulation_dim-19_5e+04.h5&#39;,
+ &#39;seed&#39;: 0,
+ &#39;activation_fn&#39;: &#39;swish&#39;,
+ &#39;n_power_iter&#39;: 5,
+ &#39;residual_kl&#39;: True,
+ &#39;ada_groups&#39;: True,
+ &#39;use_se&#39;: True}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;lr&#39;: 0.1,
+ &#39;epochs&#39;: 1000,
+ &#39;batch_size&#39;: 512,
+ &#39;warmup_portion&#39;: 0.1,
+ &#39;lambda_init&#39;: 10,
+ &#39;lambda_norm&#39;: 0.01,
+ &#39;lambda_anneal&#39;: False,
+ &#39;kl_const_coeff&#39;: 0.0001,
+ &#39;kl_const_portion&#39;: 0.0001,
+ &#39;kl_anneal_portion&#39;: 0.3,
+ &#39;optimizer&#39;: &#39;adamax&#39;,
+ &#39;optimizer_kws&#39;: {&#39;betas&#39;: (0.9, 0.999),
+  &#39;weight_decay&#39;: 0.0003,
+  &#39;eps&#39;: 1e-08},
+ &#39;scheduler_type&#39;: &#39;cosine&#39;,
+ &#39;scheduler_kws&#39;: {&#39;T_max&#39;: 899.0, &#39;eta_min&#39;: 0.0001},
+ &#39;balanced_recon&#39;: True,
+ &#39;spectral_reg&#39;: False,
+ &#39;clip_grad&#39;: None,
+ &#39;chkpt_freq&#39;: 10,
+ &#39;eval_freq&#39;: 5,
+ &#39;log_freq&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<span class="n">vae</span><span class="o">.</span><span class="n">scales</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">+-------------+------------+
+| Module Name | Num Params |
++-------------+------------+
+|     VAE     |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.6</span> Mil   |
+|     ---     |    ---     |
+|     stem    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.1</span> K    |
+|     pre     |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|  enc_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+| enc_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">430.5</span> K   |
+| dec_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">409.9</span> K   |
+|    expand   |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.9</span> K    |
+|  dec_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">361.9</span> K   |
+|     post    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.3</span> K   |
+|     out     |    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">290</span>     |
++-------------+------------+ 
+
+
+</pre>
+</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16, 8, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">all_conv_layers</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(94, 94)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_norm</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">)</span>
+<span class="n">all_norm</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">all_norm</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">all_norm</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_188_0.png" src="../../_images/tmp_188_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4199
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_cond</span><span class="p">(</span><span class="n">global_step</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">,</span> <span class="n">freq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">):</span>
+	<span class="n">a</span> <span class="o">=</span> <span class="n">global_step</span> <span class="o">//</span> <span class="n">freq</span>
+	<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">global_step</span> <span class="o">-</span> <span class="n">n_iter</span><span class="p">)</span> <span class="o">//</span> <span class="n">freq</span>
+	<span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">global_step</span> <span class="o">=</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_iters</span>
+    <span class="k">if</span> <span class="n">_cond</span><span class="p">(</span><span class="n">global_step</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">global_step</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4056</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8034</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12012</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16068</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20046</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24024</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">28002</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">32058</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">36036</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40014</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">44070</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48048</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52026</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56004</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60060</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64038</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68016</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">72072</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">76050</span>
+</pre>
+</div></div>
+</div>
+</section>
+<section id="review-train-options">
+<h2>Review train options<a class="headerlink" href="#review-train-options" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;lr&#39;: 0.1,
+ &#39;epochs&#39;: 5000,
+ &#39;batch_size&#39;: 512,
+ &#39;warmup_epochs&#39;: 500,
+ &#39;lambda_init&#39;: 10,
+ &#39;lambda_norm&#39;: 0.01,
+ &#39;lambda_anneal&#39;: False,
+ &#39;kl_const_coeff&#39;: 0.0001,
+ &#39;kl_const_portion&#39;: 0.0001,
+ &#39;kl_anneal_portion&#39;: 0.3,
+ &#39;optimizer&#39;: &#39;adamax&#39;,
+ &#39;optimizer_kws&#39;: {&#39;betas&#39;: (0.9, 0.999),
+  &#39;weight_decay&#39;: 0.0003,
+  &#39;eps&#39;: 1e-08},
+ &#39;scheduler_type&#39;: &#39;cosine&#39;,
+ &#39;scheduler_kws&#39;: {&#39;T_max&#39;: 4499.0, &#39;eta_min&#39;: 0.0001},
+ &#39;balanced_recon&#39;: True,
+ &#39;clip_grad&#39;: None,
+ &#39;chkpt_freq&#39;: 10,
+ &#39;eval_freq&#39;: 5,
+ &#39;log_freq&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="train">
+<h2>Train<a class="headerlink" href="#train" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">comment</span><span class="o">=</span><span class="s1">&#39;b512-lr0.1_spectral:reg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch # 5000, avg loss: 0.662515: 100%|██████████| 5000/5000 [5:18:23&lt;00:00,  3.82s/it]  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_norm</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">vae</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">]</span>
+<span class="n">all_norm</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">all_norm</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">all_norm</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">101</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_205_0.png" src="../../_images/tmp_205_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">all_norm</span><span class="p">),</span> <span class="p">(</span><span class="n">all_norm</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(66.75848, 0.08049965301873699)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">eval</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_vld</span><span class="p">))</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">to</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">log_p</span><span class="p">,</span> <span class="n">log_q</span><span class="p">,</span> <span class="n">kl_all</span><span class="p">,</span> <span class="n">kl_diag</span> <span class="o">=</span> <span class="n">vae</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_211_0.png" src="../../_images/tmp_211_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_212_0.png" src="../../_images/tmp_212_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_214_0.png" src="../../_images/tmp_214_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_215_0.png" src="../../_images/tmp_215_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">dl_vld</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_218_0.png" src="../../_images/tmp_218_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ff</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">h_pre</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ff</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">][</span><span class="s1">&#39;x&#39;</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_220_0.png" src="../../_images/tmp_220_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ff</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">][</span><span class="s1">&#39;fix&#39;</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.1983603 ,  0.77034186])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ff</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">][</span><span class="s1">&#39;vel_slf&#39;</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ff</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">][</span><span class="s1">&#39;vel_obj&#39;</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ff</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">][</span><span class="s1">&#39;pos_obj&#39;</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-0.29326528,  0.38819782,  0.44032602]),
+ array([-0.58997992, -1.05976248,  0.47420269]),
+ array([-1.06814914,  1.62296915,  0.84527033]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">y_sample</span><span class="p">,</span> <span class="n">z_sample</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">y_sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_226_0.png" src="../../_images/tmp_226_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_sample</span> <span class="o">=</span> <span class="n">sp_lin</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">y_sample</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">norm_sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_228_0.png" src="../../_images/tmp_228_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">to_np</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">vector_norm</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.9960772 , 0.99464476, 0.9761043 , 0.98463345], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 2, 4, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">tick_spacing</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_232_0.png" src="../../_images/tmp_232_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">tick_spacing</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/tmp_233_0.png" src="../../_images/tmp_233_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">enc0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sequential(
+  (0): ELU(alpha=1.0, inplace=True)
+  (1): ParametrizedConv2D(
+    128, 128, kernel_size=(1, 1), stride=(1, 1)
+    (parametrizations): ModuleDict(
+      (weight): ParametrizationList(
+        (0): _SpectralNorm()
+      )
+    )
+  )
+  (2): ELU(alpha=1.0, inplace=True)
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">enc_sampler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModuleList(
+  (0): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=2048, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (1): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=4096, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (2): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=4096, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (3): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (4): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (5): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (6): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">dec_sampler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModuleList(
+  (0): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): ParametrizedLinear(
+      in_features=4096, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (1): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): ParametrizedLinear(
+      in_features=4096, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (2): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (3): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (4): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+  (5): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): ParametrizedLinear(
+      in_features=8192, out_features=20, bias=True
+      (parametrizations): ModuleDict(
+        (weight): ParametrizationList(
+          (0): _SpectralNorm()
+        )
+      )
+    )
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nb/2023-03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hadi Vafaii<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
