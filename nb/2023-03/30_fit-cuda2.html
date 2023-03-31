@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>(30) Fit – cuda2 &#8212; MT/MST project</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MT/MST project</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  January 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2022-01.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2022-01_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-01/jan-23-2022.html">
+     Jan 23rd, 2022 (jb tutorial)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  October 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2022-10.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2022-10_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-01-2022.html">
+     Oct 1st, 2022 (Load Wild Data)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-06-2022.html">
+     Oct 6th, 2022 (Python processed)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-07-2022.html">
+     Oct 7th, 2022 (Linear: STA – draft)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-08-2022.html">
+     Oct 8th, 2022 (Linear: STA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-09-2022.html">
+     Oct 9th, 2022 (Opticflow stats)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-11-2022.html">
+     Oct 11th, 2022 (Rot Conv verify)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-16-2022.html">
+     Oct 16th, 2022 (Linear: GLM – spatial)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  January 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-01.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-01_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/08_wild.html">
+     (08) Wild play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/10_nardin.html">
+     (10) Nardin play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/15_sim-draft.html">
+     (15) Simulation – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
+     (16) Simulation – wrong
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/21_sim-explore.html">
+     (21) Simulation – explore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
+     (23) Simulation – self-motion aspect [draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
+     (24) Simulation – self [still draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/28_sim-self.html">
+     (28) Simulation – self [velocity: new way]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
+     (29) Simulation – full [draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
+     (30) Simulation – full [final]
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  February 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-02.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-02_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/01_play-nvae.html">
+     (01) NVAE – play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
+     (02) VAE2D – play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/09_rot-conv.html">
+     (09) RotConv2d – verified
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/23_sim-gen.html">
+     (23) Simulation – generate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
+     (24) Simulation – generate (fix &amp; obj uncoupled)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
+     (24) Simulation – generate (save)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
+     (25) Fit – cuda (gaban)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
+     (25) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
+     (25) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
+     (25) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
+     (30) KL Balancer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  March 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-03.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-03_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17_sim-new-draft.html">
+     (17) Sim New – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_sim-new-draft.html">
+     (22) Sim New – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="23_sim-new.html">
+     (23) Sim New – visualize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="30_sim-terrain.html">
+     (30) Sim – added
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       terrain
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nb/2023-03/30_fit-cuda2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-03/30_fit-cuda2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-03/30_fit-cuda2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trainer">
+   Trainer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-train-options">
+   Review train options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train">
+   Train
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#also-was-non-smooth-l1">
+     Also: was non smooth L1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="fit-cuda2">
+<h1>(30) Fit – cuda2<a class="headerlink" href="#fit-cuda2" title="Permalink to this headline">¶</a></h1>
+<p><strong>Motivation</strong>: Fitting notebook, cuda2 <br></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># GitHub</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">model.train_vae</span> <span class="kn">import</span> <span class="n">TrainerVAE</span><span class="p">,</span> <span class="n">ConfigTrain</span>
+<span class="kn">from</span> <span class="nn">model.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span><span class="p">,</span> <span class="n">ConfigVAE</span>
+<span class="kn">from</span> <span class="nn">analysis.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="trainer">
+<h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
+    <span class="n">n_latent_scales</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_groups_per_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_latent_per_group</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">scale_init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">residual_kl</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ada_groups</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">))</span>
+<span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">vae</span><span class="p">,</span>
+    <span class="n">cfg</span><span class="o">=</span><span class="n">ConfigTrain</span><span class="p">(</span>
+        <span class="n">lr</span><span class="o">=</span><span class="mf">0.003</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">grad_clip</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">lambda_anneal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lambda_init</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span> <span class="n">lambda_norm</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+        <span class="n">kl_beta</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">kl_anneal_cycles</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">scheduler_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;T_max&#39;</span><span class="p">:</span> <span class="mf">660.0</span><span class="p">,</span> <span class="s1">&#39;eta_min&#39;</span><span class="p">:</span> <span class="mf">1e-05</span><span class="p">},</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adamax_fast&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:2&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">total_latents</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>210
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<span class="n">vae</span><span class="o">.</span><span class="n">scales</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">+-------------+------------+
+| Module Name | Num Params |
++-------------+------------+
+|     VAE     |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17.0</span> Mil  |
+|     ---     |    ---     |
+|     stem    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.1</span> K    |
+|     pre     |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">96.0</span> K   |
+|  enc_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9.4</span> Mil   |
+|     enc0    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16.6</span> K   |
+| enc_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+| dec_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+|    expand   |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.0</span> K   |
+|  dec_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.5</span> Mil   |
+|     post    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.0</span> K   |
+|     out     |    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">578</span>     |
++-------------+------------+ 
+
+
+</pre>
+</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">all_conv_layers</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(291, 228)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;lr&#39;: 0.003,
+ &#39;epochs&#39;: 2000,
+ &#39;batch_size&#39;: 512,
+ &#39;warmup_portion&#39;: 0.02,
+ &#39;lambda_anneal&#39;: True,
+ &#39;lambda_init&#39;: 1e-07,
+ &#39;lambda_norm&#39;: 0.001,
+ &#39;kl_beta&#39;: 0.25,
+ &#39;kl_beta_min&#39;: 0.0001,
+ &#39;kl_balancer&#39;: &#39;equal&#39;,
+ &#39;kl_anneal_cycles&#39;: 1,
+ &#39;kl_anneal_portion&#39;: 0.3,
+ &#39;kl_const_portion&#39;: 0.001,
+ &#39;optimizer&#39;: &#39;adamax_fast&#39;,
+ &#39;optimizer_kws&#39;: {&#39;betas&#39;: (0.9, 0.999),
+  &#39;weight_decay&#39;: 0.0001,
+  &#39;eps&#39;: 1e-08},
+ &#39;scheduler_type&#39;: &#39;cosine&#39;,
+ &#39;scheduler_kws&#39;: {&#39;T_max&#39;: 660.0, &#39;eta_min&#39;: 1e-05},
+ &#39;spectral_reg&#39;: False,
+ &#39;ema_rate&#39;: 0.999,
+ &#39;grad_clip&#39;: 1000,
+ &#39;chkpt_freq&#39;: 50,
+ &#39;eval_freq&#39;: 5,
+ &#39;log_freq&#39;: 30,
+ &#39;use_amp&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">optim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adamax (
+Parameter Group 0
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    initial_lr: 0.003
+    lr: 0.003
+    weight_decay: 0.0001
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="review-train-options">
+<h2>Review train options<a class="headerlink" href="#review-train-options" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">k-32_z-7x<span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>,<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span><span style="font-weight: bold">]</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">_enc</span><span style="font-weight: bold">(</span>2x2<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">dec</span><span style="font-weight: bold">(</span>2x1<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">pre</span><span style="font-weight: bold">(</span>1x3<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">post</span><span style="font-weight: bold">(</span>1x3<span style="font-weight: bold">)</span>
+ep2000-b512-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">lr</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.003</span><span style="font-weight: bold">)</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">_beta</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.25</span><span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">anneal</span><span style="font-weight: bold">(</span>1x0.<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span><span style="font-weight: bold">)</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">_lambda</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span><span style="font-weight: bold">)</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">_grad</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1000</span><span style="font-weight: bold">)</span>
+</pre>
+</div></div>
+</div>
+</section>
+<section id="train">
+<h2>Train<a class="headerlink" href="#train" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comment</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ClipVal:500_AdamaxFast(eps:1e-8)_</span><span class="si">{</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">tr</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch # 1390, avg loss: 15.067790:  70%|██████▉   | 1390/2000 [22:28:01&lt;9:18:11, 54.90s/it]   
+</pre></div>
+</div>
+</div>
+</div>
+<section id="also-was-non-smooth-l1">
+<h3>Also: was non smooth L1<a class="headerlink" href="#also-was-non-smooth-l1" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nb/2023-03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hadi Vafaii<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -303,6 +303,31 @@
      (24) Simulation – generate (save)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
+     (25) Fit – cuda (gaban)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
+     (25) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
+     (25) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
+     (25) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
+     (30) KL Balancer
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -340,6 +365,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="23_sim-new.html">
      (23) Sim New – visualize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="30_sim-terrain.html">
+     (30) Sim – added
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       terrain
+      </span>
+     </code>
     </a>
    </li>
   </ul>
@@ -989,7 +1024,7 @@ Wall time: 38.2 s
 <span class="bp">self</span> <span class="o">=</span> <span class="n">of</span> <span class="o">=</span> <span class="n">OpticFlow</span><span class="p">(</span>
     <span class="n">category</span><span class="o">=</span><span class="s1">&#39;pursuit&#39;</span><span class="p">,</span>
     <span class="n">num</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="n">n_obj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">n_obj</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">vlim_slf</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
     <span class="n">vlim_obj</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
     <span class="n">fov</span><span class="o">=</span><span class="n">fov</span><span class="p">,</span>
@@ -1529,142 +1564,408 @@ Wall time: 11.1 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fov</span> <span class="o">=</span> <span class="mi">45</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
+<span class="n">kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">terrain_phi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+    <span class="n">terrain_fix</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+<span class="p">)</span>
+
 <span class="bp">self</span> <span class="o">=</span> <span class="n">of</span> <span class="o">=</span> <span class="n">OpticFlow</span><span class="p">(</span>
-    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span>
     <span class="n">num</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="n">n_obj</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">n_obj</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="n">vlim_slf</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
     <span class="n">vlim_obj</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
     <span class="n">fov</span><span class="o">=</span><span class="n">fov</span><span class="p">,</span>
-    <span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kws</span><span class="p">,</span>
 <span class="p">)</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">()</span>
-<span class="n">of</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">x_env</span><span class="p">,</span> <span class="n">v_tr</span><span class="p">,</span> <span class="n">v_rot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.9 s, sys: 1.07 s, total: 17 s
-Wall time: 17 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(65, 65, 2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 16.4 s, sys: 707 ms, total: 17.1 s
+Wall time: 17.1 s
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">fix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accepted</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">accepted</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.27392337, -0.46042657,  1.        ],
-       [ 0.21327155,  0.45899312,  1.        ],
-       [ 0.08724998,  0.87014485,  1.        ],
-       ...,
-       [-0.33171479,  0.58736205,  1.        ],
-       [-0.78013898, -0.18938395,  1.        ],
-       [ 0.2002712 ,  0.31791632,  1.        ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3027
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sample_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flat_criterion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="n">bound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj_bound</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fov</span>
-    <span class="k">if</span> <span class="n">flat_criterion</span><span class="p">:</span>
-        <span class="n">bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">bound</span><span class="p">))</span>
-    <span class="n">pos</span> <span class="o">=</span> <span class="n">np_nans</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">):</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">flat_criterion</span><span class="p">:</span>
-                <span class="n">_</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">ph</span> <span class="o">=</span> <span class="n">cart2polar</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-                <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">th</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ph</span><span class="p">)</span>
-                <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">th</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ph</span><span class="p">)</span>
-                <span class="n">cond</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">bound</span> <span class="ow">and</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">bound</span>
-                <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">c</span> <span class="o">=</span> <span class="n">sp_dist</span><span class="o">.</span><span class="n">cosine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fix</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">u</span><span class="p">)</span>
-                <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">c</span><span class="p">))</span>
-                <span class="n">cond</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">bound</span>
-            <span class="k">if</span> <span class="n">cond</span><span class="p">:</span>
-                <span class="k">break</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">ph</span> <span class="o">=</span> <span class="n">cart2polar</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span>
-            <span class="n">low</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obj_zlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obj_zlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">polar2cart</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">z</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">th</span><span class="p">),</span> <span class="n">th</span><span class="p">,</span> <span class="n">ph</span><span class="p">]</span>
-        <span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">pos</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_Obj</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
-	<span class="n">typename</span><span class="o">=</span><span class="s1">&#39;Object&#39;</span><span class="p">,</span>
-	<span class="n">field_names</span><span class="o">=</span><span class="p">[</span>
-		<span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span>      <span class="c1"># coordinate system: real</span>
-		<span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>  <span class="c1"># coordinate system: self</span>
-		<span class="s1">&#39;size&#39;</span><span class="p">],</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_masks</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">obj_i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_obj</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="s1">&#39;pursuit&#39;</span> <span class="ow">and</span> <span class="n">obj_i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fix</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">pos</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span>
-            <span class="n">low</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obj_zlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obj_zlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_pos</span><span class="p">(</span><span class="n">flat_criterion</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">pos_self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_rot</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_obj_mask</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-    <span class="n">kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span>
-        <span class="n">v</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_vel</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">vlim_obj</span><span class="p">),</span>
-        <span class="n">alpha</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">pos_self</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos_self</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]),</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">pos_self</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">pos_self</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]),</span>
-        <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-        <span class="n">r</span><span class="o">=</span><span class="n">cart2polar</span><span class="p">(</span><span class="n">pos_self</span><span class="p">),</span>
-        <span class="n">size</span><span class="o">=</span><span class="n">mask</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="n">obj_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_Obj</span><span class="p">(</span><span class="o">**</span><span class="n">kws</span><span class="p">)</span>
-    <span class="n">obj_masks</span><span class="p">[</span><span class="n">obj_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bound</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fov</span><span class="p">))</span>
+<span class="n">bound</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "bd61d889fe3142b0984267cbed8258be", "version_major": 2, "version_minor": 0}
-</script></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000002
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">obj_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">obj_masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span>
-    <span class="n">obj_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">obj_masks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="p">)</span> 
-<span class="n">mask</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">of</span><span class="o">.</span><span class="n">fix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">of</span><span class="o">.</span><span class="n">fix</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">ax</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22_sim-new-draft_114_0.png" src="../../_images/22_sim-new-draft_114_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accepted</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22_sim-new-draft_116_0.png" src="../../_images/22_sim-new-draft_116_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accepted</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22_sim-new-draft_119_0.png" src="../../_images/22_sim-new-draft_119_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accepted</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3027, 19, 19, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">test</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   6,    7,   13,   17,   23,   29,   37,   44,   45,   48,   51,
+         54,   65,   74,   78,   83,   88,   91,   92,   94,   96,  100,
+        104,  111,  113,  115,  117,  118,  121,  123,  129,  135,  143,
+        145,  149,  158,  161,  165,  170,  171,  172,  175,  192,  193,
+        199,  200,  203,  214,  216,  223,  228,  233,  236,  237,  238,
+        242,  244,  247,  248,  252,  253,  254,  257,  258,  259,  261,
+        262,  269,  271,  274,  276,  278,  280,  285,  286,  298,  299,
+        300,  304,  308,  309,  310,  311,  314,  315,  316,  322,  324,
+        329,  330,  336,  337,  339,  346,  347,  352,  354,  358,  359,
+        360,  364,  373,  374,  375,  380,  381,  382,  384,  386,  389,
+        393,  394,  396,  397,  407,  408,  410,  416,  417,  424,  428,
+        432,  434,  441,  443,  445,  449,  452,  453,  456,  461,  462,
+        467,  468,  471,  482,  489,  495,  507,  510,  512,  514,  515,
+        518,  519,  524,  529,  533,  537,  541,  545,  547,  548,  551,
+        554,  556,  558,  559,  560,  562,  563,  565,  566,  567,  568,
+        572,  573,  583,  585,  587,  591,  597,  599,  600,  604,  607,
+        608,  609,  611,  612,  614,  615,  620,  624,  629,  630,  631,
+        637,  639,  646,  648,  652,  653,  669,  670,  672,  677,  679,
+        683,  684,  685,  688,  690,  696,  698,  699,  701,  703,  705,
+        707,  714,  719,  724,  726,  727,  728,  730,  734,  743,  745,
+        748,  749,  752,  754,  762,  766,  767,  774,  776,  782,  789,
+        793,  796,  797,  801,  805,  809,  814,  815,  821,  823,  825,
+        827,  831,  842,  853,  854,  865,  867,  871,  877,  883,  895,
+        900,  901,  902,  903,  905,  910,  911,  912,  915,  916,  918,
+        924,  925,  928,  930,  939,  943,  945,  948,  950,  952,  960,
+        962,  965,  967,  971,  976,  978,  979,  980,  981,  984,  986,
+        987,  989,  995, 1006, 1015, 1017, 1023, 1025, 1028, 1029, 1032,
+       1034, 1035, 1045, 1048, 1049, 1050, 1054, 1055, 1056, 1057, 1058,
+       1059, 1064, 1065, 1067, 1070, 1071, 1077, 1079, 1081, 1088, 1091,
+       1092, 1094, 1099, 1100, 1102, 1103, 1105, 1112, 1115, 1116, 1123,
+       1127, 1130, 1137, 1142, 1144, 1145, 1150, 1151, 1152, 1158, 1165,
+       1167, 1172, 1181, 1183, 1188, 1190, 1192, 1194, 1195, 1198, 1199,
+       1200, 1209, 1210, 1216, 1218, 1221, 1226, 1227, 1236, 1238, 1243,
+       1247, 1249, 1251, 1254, 1261, 1264, 1275, 1277, 1279, 1281, 1283,
+       1286, 1295, 1298, 1301, 1302, 1306, 1307, 1310, 1312, 1315, 1321,
+       1323, 1325, 1329, 1330, 1334, 1336, 1341, 1343, 1344, 1350, 1352,
+       1355, 1360, 1364, 1367, 1373, 1374, 1379, 1388, 1393, 1395, 1399,
+       1400, 1401, 1402, 1403, 1405, 1406, 1409, 1413, 1415, 1416, 1417,
+       1419, 1420, 1424, 1427, 1429, 1430, 1432, 1435, 1436, 1438, 1441,
+       1445, 1446, 1448, 1455, 1457, 1458, 1459, 1461, 1463, 1466, 1470,
+       1471, 1472, 1473, 1477, 1478, 1479, 1484, 1485, 1486, 1487, 1490,
+       1494, 1500, 1501, 1505, 1510, 1517, 1524, 1526, 1531, 1532, 1533,
+       1539, 1544, 1551, 1552, 1553, 1558, 1564, 1565, 1571, 1574, 1575,
+       1576, 1577, 1578, 1579, 1580, 1584, 1592, 1593, 1601, 1605, 1607,
+       1609, 1611, 1615, 1618, 1619, 1623, 1627, 1636, 1638, 1650, 1652,
+       1662, 1663, 1664, 1667, 1672, 1674, 1676, 1677, 1680, 1681, 1683,
+       1689, 1692, 1701, 1707, 1709, 1711, 1712, 1713, 1714, 1715, 1721,
+       1726, 1729, 1730, 1735, 1737, 1746, 1752, 1761, 1764, 1765, 1770,
+       1772, 1778, 1788, 1791, 1796, 1798, 1801, 1802, 1805, 1809, 1810,
+       1811, 1813, 1814, 1817, 1818, 1823, 1828, 1829, 1831, 1833, 1835,
+       1840, 1845, 1846, 1847, 1849, 1850, 1852, 1856, 1857, 1860, 1862,
+       1870, 1872, 1873, 1874, 1876, 1879, 1881, 1884, 1886, 1888, 1890,
+       1891, 1894, 1897, 1898, 1899, 1906, 1910, 1912, 1914, 1919, 1920,
+       1922, 1925, 1930, 1931, 1932, 1934, 1935, 1936, 1941, 1942, 1946,
+       1947, 1948, 1952, 1955, 1956, 1958, 1960, 1963, 1971, 1973, 1982,
+       1986, 1987, 1988, 1990, 2008, 2009, 2010, 2011, 2021, 2022, 2024,
+       2027, 2029, 2030, 2034, 2035, 2037, 2044, 2046, 2055, 2056, 2068,
+       2069, 2073, 2083, 2084, 2086, 2095, 2101, 2107, 2113, 2115, 2118,
+       2120, 2121, 2127, 2128, 2129, 2135, 2140, 2141, 2142, 2143, 2144,
+       2149, 2154, 2156, 2159, 2162, 2165, 2167, 2169, 2176, 2177, 2188,
+       2189, 2191, 2194, 2199, 2202, 2213, 2216, 2220, 2222, 2224, 2227,
+       2228, 2229, 2231, 2233, 2234, 2235, 2236, 2237, 2239, 2242, 2248,
+       2253, 2257, 2260, 2261, 2262, 2271, 2278, 2279, 2281, 2284, 2286,
+       2292, 2308, 2319, 2322, 2327, 2333, 2337, 2339, 2342, 2344, 2346,
+       2347, 2348, 2352, 2357, 2360, 2365, 2368, 2370, 2376, 2378, 2382,
+       2383, 2384, 2398, 2403, 2404, 2411, 2417, 2418, 2421, 2423, 2425,
+       2428, 2429, 2430, 2431, 2433, 2438, 2444, 2461, 2462, 2467, 2468,
+       2473, 2474, 2477, 2486, 2491, 2494, 2495, 2497, 2498, 2501, 2506,
+       2508, 2514, 2520, 2521, 2522, 2535, 2541, 2543, 2547, 2552, 2559,
+       2560, 2561, 2562, 2568, 2569, 2571, 2572, 2579, 2586, 2589, 2599,
+       2607, 2609, 2622, 2623, 2624, 2626, 2633, 2637, 2647, 2648, 2649,
+       2655, 2660, 2661, 2664, 2665, 2668, 2673, 2675, 2677, 2685, 2686,
+       2698, 2700, 2709, 2711, 2713, 2715, 2718, 2719, 2728, 2732, 2735,
+       2736, 2737, 2741, 2746, 2748, 2749, 2753, 2758, 2759, 2766, 2773,
+       2776, 2777, 2778, 2780, 2783, 2788, 2790, 2793, 2795, 2800, 2802,
+       2808, 2810, 2811, 2814, 2815, 2820, 2826, 2840, 2845, 2846, 2848,
+       2849, 2855, 2857, 2859, 2860, 2861, 2865, 2868, 2873, 2882, 2884,
+       2888, 2891, 2896, 2897, 2898, 2899, 2900, 2902, 2904, 2905, 2906,
+       2910, 2911, 2914, 2915, 2916, 2919, 2921, 2923, 2928, 2937, 2942,
+       2944, 2945, 2947, 2954, 2955, 2964, 2967, 2969, 2972, 2975, 2978,
+       2980, 2982, 2984, 2986, 2994, 2997, 3002, 3003, 3009, 3011, 3013,
+       3016, 3022, 3023, 3025])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">2713</span>
+<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.01421958, -0.01554415])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22_sim-new-draft_124_0.png" src="../../_images/22_sim-new-draft_124_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">z_env</span><span class="p">[</span><span class="n">accepted</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6011252544169596
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">accepted</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.55711251, -0.10317361,  0.60112525])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">fix</span><span class="p">[</span><span class="n">accepted</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.77388125, -0.0501422 ,  1.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">z_env</span><span class="p">[</span><span class="n">accepted</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7ff1786ca520&gt;
+</pre></div>
+</div>
+<img alt="../../_images/22_sim-new-draft_130_1.png" src="../../_images/22_sim-new-draft_130_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">z_env</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.        , 1.        , 0.73433256, ..., 1.        , 1.        ,
+       1.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">fix</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., ..., 1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">of</span><span class="o">.</span><span class="n">v_slf</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10000, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">v_slf</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., ..., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">v_slf</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/22_sim-new-draft_142_1.png" src="../../_images/22_sim-new-draft_142_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">cart2polar</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">v_slf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">r</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cart2polar</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">fix</span><span class="p">)[:,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.5156740969411244, 0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">delta_phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">delta_phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sp_dist</span><span class="o">.</span><span class="n">cosine</span><span class="p">(</span>
+        <span class="n">of</span><span class="o">.</span><span class="n">v_slf</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">of</span><span class="o">.</span><span class="n">fix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">delta_phi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/22_sim-new-draft_146_1.png" src="../../_images/22_sim-new-draft_146_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8217581431999998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22_sim-new-draft_151_0.png" src="../../_images/22_sim-new-draft_151_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">z_env</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1676,29 +1977,13 @@ Wall time: 17 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_bg</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">):</span>
-    <span class="n">obj_z</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">obj_i</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="k">for</span>
-        <span class="n">obj_i</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="p">}</span>
-    <span class="n">order</span><span class="p">,</span> <span class="n">obj_z</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">sorted</span><span class="p">(</span>
-        <span class="n">obj_z</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
-        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">))</span>
-    <span class="k">for</span> <span class="n">obj_i</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">obj_z</span><span class="p">):</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">obj_masks</span><span class="p">[</span><span class="n">obj_i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">x_obj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_env</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_rot</span><span class="p">(</span><span class="n">x_obj</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22_sim-new-draft_154_0.png" src="../../_images/22_sim-new-draft_154_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1713,7 +1998,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7ff732a28c10&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_117_1.png" src="../../_images/22_sim-new-draft_117_1.png" />
+<img alt="../../_images/22_sim-new-draft_160_1.png" src="../../_images/22_sim-new-draft_160_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1727,7 +2012,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7ff7329674f0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_118_1.png" src="../../_images/22_sim-new-draft_118_1.png" />
+<img alt="../../_images/22_sim-new-draft_161_1.png" src="../../_images/22_sim-new-draft_161_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1751,7 +2036,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_122_0.png" src="../../_images/22_sim-new-draft_122_0.png" />
+<img alt="../../_images/22_sim-new-draft_165_0.png" src="../../_images/22_sim-new-draft_165_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1789,7 +2074,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_126_0.png" src="../../_images/22_sim-new-draft_126_0.png" />
+<img alt="../../_images/22_sim-new-draft_169_0.png" src="../../_images/22_sim-new-draft_169_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1800,7 +2085,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_127_0.png" src="../../_images/22_sim-new-draft_127_0.png" />
+<img alt="../../_images/22_sim-new-draft_170_0.png" src="../../_images/22_sim-new-draft_170_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1820,7 +2105,75 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_129_1.png" src="../../_images/22_sim-new-draft_129_1.png" />
+<img alt="../../_images/22_sim-new-draft_172_1.png" src="../../_images/22_sim-new-draft_172_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phi</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">costheta</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">arccos</span><span class="p">(</span> <span class="n">costheta</span> <span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">R</span> <span class="o">*</span> <span class="n">cuberoot</span><span class="p">(</span> <span class="n">u</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phi_0</span> <span class="o">=</span> <span class="mi">80</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span>
+    <span class="n">low</span><span class="o">=-</span><span class="n">bound</span><span class="p">,</span>
+    <span class="n">high</span><span class="o">=</span><span class="n">bound</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">,</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/22_sim-new-draft_177_1.png" src="../../_images/22_sim-new-draft_177_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">sample_vel</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">vlim_slf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.13567946,  0.08883991,  0.04297474],
+       [ 0.92708618,  0.08684659, -0.30172977],
+       [-0.1780309 , -0.66065427, -0.67785797],
+       ...,
+       [-0.51780294, -0.11384867,  0.00465851],
+       [ 0.05520517, -0.08746331, -0.0832857 ],
+       [-0.2453287 ,  0.0230093 ,  0.16933763]])
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1849,7 +2202,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_132_1.png" src="../../_images/22_sim-new-draft_132_1.png" />
+<img alt="../../_images/22_sim-new-draft_190_1.png" src="../../_images/22_sim-new-draft_190_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1875,7 +2228,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_134_1.png" src="../../_images/22_sim-new-draft_134_1.png" />
+<img alt="../../_images/22_sim-new-draft_192_1.png" src="../../_images/22_sim-new-draft_192_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1886,7 +2239,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_136_0.png" src="../../_images/22_sim-new-draft_136_0.png" />
+<img alt="../../_images/22_sim-new-draft_194_0.png" src="../../_images/22_sim-new-draft_194_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2039,7 +2392,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_147_0.png" src="../../_images/22_sim-new-draft_147_0.png" />
+<img alt="../../_images/22_sim-new-draft_205_0.png" src="../../_images/22_sim-new-draft_205_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2050,7 +2403,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_148_0.png" src="../../_images/22_sim-new-draft_148_0.png" />
+<img alt="../../_images/22_sim-new-draft_206_0.png" src="../../_images/22_sim-new-draft_206_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2063,7 +2416,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_149_1.png" src="../../_images/22_sim-new-draft_149_1.png" />
+<img alt="../../_images/22_sim-new-draft_207_1.png" src="../../_images/22_sim-new-draft_207_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2119,7 +2472,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb6f087e1c0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_157_1.png" src="../../_images/22_sim-new-draft_157_1.png" />
+<img alt="../../_images/22_sim-new-draft_215_1.png" src="../../_images/22_sim-new-draft_215_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2132,7 +2485,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb6f0850880&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_158_1.png" src="../../_images/22_sim-new-draft_158_1.png" />
+<img alt="../../_images/22_sim-new-draft_216_1.png" src="../../_images/22_sim-new-draft_216_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2152,7 +2505,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_161_1.png" src="../../_images/22_sim-new-draft_161_1.png" />
+<img alt="../../_images/22_sim-new-draft_219_1.png" src="../../_images/22_sim-new-draft_219_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2185,7 +2538,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb6f074c790&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_165_1.png" src="../../_images/22_sim-new-draft_165_1.png" />
+<img alt="../../_images/22_sim-new-draft_223_1.png" src="../../_images/22_sim-new-draft_223_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2262,7 +2615,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_172_1.png" src="../../_images/22_sim-new-draft_172_1.png" />
+<img alt="../../_images/22_sim-new-draft_230_1.png" src="../../_images/22_sim-new-draft_230_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2283,7 +2636,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_174_0.png" src="../../_images/22_sim-new-draft_174_0.png" />
+<img alt="../../_images/22_sim-new-draft_232_0.png" src="../../_images/22_sim-new-draft_232_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2294,7 +2647,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_175_0.png" src="../../_images/22_sim-new-draft_175_0.png" />
+<img alt="../../_images/22_sim-new-draft_233_0.png" src="../../_images/22_sim-new-draft_233_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2314,7 +2667,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb6f21e27f0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_178_1.png" src="../../_images/22_sim-new-draft_178_1.png" />
+<img alt="../../_images/22_sim-new-draft_236_1.png" src="../../_images/22_sim-new-draft_236_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2324,7 +2677,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_179_0.png" src="../../_images/22_sim-new-draft_179_0.png" />
+<img alt="../../_images/22_sim-new-draft_237_0.png" src="../../_images/22_sim-new-draft_237_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2401,7 +2754,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_195_0.png" src="../../_images/22_sim-new-draft_195_0.png" />
+<img alt="../../_images/22_sim-new-draft_253_0.png" src="../../_images/22_sim-new-draft_253_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2412,7 +2765,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_196_0.png" src="../../_images/22_sim-new-draft_196_0.png" />
+<img alt="../../_images/22_sim-new-draft_254_0.png" src="../../_images/22_sim-new-draft_254_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2423,7 +2776,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_197_0.png" src="../../_images/22_sim-new-draft_197_0.png" />
+<img alt="../../_images/22_sim-new-draft_255_0.png" src="../../_images/22_sim-new-draft_255_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2447,7 +2800,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_201_0.png" src="../../_images/22_sim-new-draft_201_0.png" />
+<img alt="../../_images/22_sim-new-draft_259_0.png" src="../../_images/22_sim-new-draft_259_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2507,7 +2860,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_204_0.png" src="../../_images/22_sim-new-draft_204_0.png" />
+<img alt="../../_images/22_sim-new-draft_262_0.png" src="../../_images/22_sim-new-draft_262_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2612,7 +2965,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_223_0.png" src="../../_images/22_sim-new-draft_223_0.png" />
+<img alt="../../_images/22_sim-new-draft_281_0.png" src="../../_images/22_sim-new-draft_281_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2628,7 +2981,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_225_0.png" src="../../_images/22_sim-new-draft_225_0.png" />
+<img alt="../../_images/22_sim-new-draft_283_0.png" src="../../_images/22_sim-new-draft_283_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2672,7 +3025,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_230_0.png" src="../../_images/22_sim-new-draft_230_0.png" />
+<img alt="../../_images/22_sim-new-draft_288_0.png" src="../../_images/22_sim-new-draft_288_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2702,7 +3055,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_234_0.png" src="../../_images/22_sim-new-draft_234_0.png" />
+<img alt="../../_images/22_sim-new-draft_292_0.png" src="../../_images/22_sim-new-draft_292_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2758,7 +3111,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_238_0.png" src="../../_images/22_sim-new-draft_238_0.png" />
+<img alt="../../_images/22_sim-new-draft_296_0.png" src="../../_images/22_sim-new-draft_296_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2775,7 +3128,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_239_0.png" src="../../_images/22_sim-new-draft_239_0.png" />
+<img alt="../../_images/22_sim-new-draft_297_0.png" src="../../_images/22_sim-new-draft_297_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2788,7 +3141,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_240_0.png" src="../../_images/22_sim-new-draft_240_0.png" />
+<img alt="../../_images/22_sim-new-draft_298_0.png" src="../../_images/22_sim-new-draft_298_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2905,7 +3258,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_252_0.png" src="../../_images/22_sim-new-draft_252_0.png" />
+<img alt="../../_images/22_sim-new-draft_310_0.png" src="../../_images/22_sim-new-draft_310_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2972,7 +3325,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_259_0.png" src="../../_images/22_sim-new-draft_259_0.png" />
+<img alt="../../_images/22_sim-new-draft_317_0.png" src="../../_images/22_sim-new-draft_317_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3011,7 +3364,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_265_0.png" src="../../_images/22_sim-new-draft_265_0.png" />
+<img alt="../../_images/22_sim-new-draft_323_0.png" src="../../_images/22_sim-new-draft_323_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3075,7 +3428,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f3db2f561c0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_288_1.png" src="../../_images/22_sim-new-draft_288_1.png" />
+<img alt="../../_images/22_sim-new-draft_346_1.png" src="../../_images/22_sim-new-draft_346_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3143,7 +3496,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f3db1511f10&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_298_1.png" src="../../_images/22_sim-new-draft_298_1.png" />
+<img alt="../../_images/22_sim-new-draft_356_1.png" src="../../_images/22_sim-new-draft_356_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3180,7 +3533,7 @@ Wall time: 17 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22_sim-new-draft_304_1.png" src="../../_images/22_sim-new-draft_304_1.png" />
+<img alt="../../_images/22_sim-new-draft_362_1.png" src="../../_images/22_sim-new-draft_362_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3203,7 +3556,7 @@ Wall time: 17 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22_sim-new-draft_307_0.png" src="../../_images/22_sim-new-draft_307_0.png" />
+<img alt="../../_images/22_sim-new-draft_365_0.png" src="../../_images/22_sim-new-draft_365_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
