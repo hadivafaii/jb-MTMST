@@ -368,13 +368,158 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_sim-terrain.html">
+    <a class="reference internal" href="../2023-03/30_fit-cuda.html">
+     (30) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda0.html">
+     (30) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
+     (30) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda2.html">
+     (30) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_sim-final.html">
      (30) Sim – added
      <code class="docutils literal notranslate">
       <span class="pre">
        terrain
       </span>
      </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/31_sim-factors.html">
+     (31) Sim – true generative factors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  April 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-04.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-04_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/02_fit-lin.html">
+     (02) Fit neurons – Linear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/03_fit-glm.html">
+     (03) Fit neurons – GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/03_loop-glm.html">
+     (03) Fit neurons – GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/03_loop-ridge.html">
+     (03) Fit neurons – Ridge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/04_dan.html">
+     (04) Dan notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/04_profiler.html">
+     (04) PyTorch profiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/06_sim-kNN.html">
+     (06) Sim – kNN analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/07_readout-3d.html">
+     (07) Readout: 3D conv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/07_readout-sep.html">
+     (07) Readout: Separable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/08_GLM-clu090.html">
+     (08) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/08_GLM-clu096.html">
+     (08) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/08_sim-accept-filter.html">
+     (08) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/09_sim-final-save.html">
+     (09) Sim – generate &amp; save
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/10_GLM-clu090.html">
+     (10) Reservoir + GLM
     </a>
    </li>
   </ul>
@@ -520,6 +665,8 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
 <span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">analysis.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">model.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span><span class="p">,</span> <span class="n">ConfigVAE</span>
+<span class="kn">from</span> <span class="nn">model.train_vae</span> <span class="kn">import</span> <span class="n">TrainerVAE</span><span class="p">,</span> <span class="n">ConfigTrain</span>
 
 <span class="c1"># warnings, tqdm, &amp; style</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
@@ -535,10 +682,7 @@
 <h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">model.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span>
-<span class="kn">from</span> <span class="nn">model.train_vae</span> <span class="kn">import</span> <span class="n">TrainerVAE</span>
-
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">_dynamo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">_dynamo</span>
 <span class="n">_dynamo</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cache_size_limit</span> <span class="o">=</span> <span class="mi">1024</span>
 </pre></div>
 </div>
@@ -549,7 +693,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
     <span class="n">n_kers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="n">n_latent_scales</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_groups_per_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_latent_per_group</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">scale_init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ada_groups</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual_kl</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">scale_init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ada_groups</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual_kl</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">separable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">))</span>
 <span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span>
     <span class="c1"># model=torch.compile(vae),</span>
@@ -572,12 +716,81 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">+--------------+------------+
+| Module Name  | Num Params |
++--------------+------------+
+|     VAE      |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14.4</span> Mil  |
+|     ---      |    ---     |
+|     stem     |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.1</span> K    |
+| pre_process  |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">96.0</span> K   |
+|  enc_tower   |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9.4</span> Mil   |
+|     enc0     |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16.6</span> K   |
+| enc_sampler  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">133.7</span> K   |
+| dec_sampler  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">130.1</span> K   |
+|    expand    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">36.3</span> K   |
+|  dec_tower   |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.5</span> Mil   |
+| post_process |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.0</span> K   |
+|     out      |    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">578</span>     |
++--------------+------------+ 
+
+
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">total_latents</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>150
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">enc0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">enc0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">apply_norm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span><span class="o">.</span><span class="n">enc_sampler</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampler(
+  (conv): Sequential(
+    (0): Conv2D(64, 64, kernel_size=(8, 8), stride=(1, 1), groups=64)
+    (1): Conv2D(64, 10, kernel_size=(1, 1), stride=(1, 1))
+  )
+)
 </pre></div>
 </div>
 </div>
@@ -816,7 +1029,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fac38820850&gt;
 </pre></div>
 </div>
-<img alt="../../_images/30_kl-balancer-debug_24_1.png" src="../../_images/30_kl-balancer-debug_24_1.png" />
+<img alt="../../_images/30_kl-balancer-debug_30_1.png" src="../../_images/30_kl-balancer-debug_30_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -831,7 +1044,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fac385244f0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/30_kl-balancer-debug_26_1.png" src="../../_images/30_kl-balancer-debug_26_1.png" />
+<img alt="../../_images/30_kl-balancer-debug_32_1.png" src="../../_images/30_kl-balancer-debug_32_1.png" />
 </div>
 </div>
 <div class="cell docutils container">

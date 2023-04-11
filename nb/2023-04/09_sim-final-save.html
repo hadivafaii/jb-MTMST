@@ -1,0 +1,1490 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>(09) Sim – generate &amp; save dim=65 &#8212; MT/MST project</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="(10) Reservoir + GLM" href="10_GLM-clu090.html" />
+    <link rel="prev" title="(08) Sim – behavior of filter() when dim=65" href="08_sim-accept-filter.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MT/MST project</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  January 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2022-01.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2022-01_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-01/jan-23-2022.html">
+     Jan 23rd, 2022 (jb tutorial)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  October 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2022-10.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2022-10_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-01-2022.html">
+     Oct 1st, 2022 (Load Wild Data)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-06-2022.html">
+     Oct 6th, 2022 (Python processed)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-07-2022.html">
+     Oct 7th, 2022 (Linear: STA – draft)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-08-2022.html">
+     Oct 8th, 2022 (Linear: STA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-09-2022.html">
+     Oct 9th, 2022 (Opticflow stats)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-11-2022.html">
+     Oct 11th, 2022 (Rot Conv verify)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2022-10/oct-16-2022.html">
+     Oct 16th, 2022 (Linear: GLM – spatial)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  January 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-01.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-01_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/08_wild.html">
+     (08) Wild play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/10_nardin.html">
+     (10) Nardin play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/15_sim-draft.html">
+     (15) Simulation – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
+     (16) Simulation – wrong
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/21_sim-explore.html">
+     (21) Simulation – explore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
+     (23) Simulation – self-motion aspect [draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
+     (24) Simulation – self [still draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/28_sim-self.html">
+     (28) Simulation – self [velocity: new way]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
+     (29) Simulation – full [draft]
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
+     (30) Simulation – full [final]
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  February 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-02.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-02_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/01_play-nvae.html">
+     (01) NVAE – play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
+     (02) VAE2D – play
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/09_rot-conv.html">
+     (09) RotConv2d – verified
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/23_sim-gen.html">
+     (23) Simulation – generate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
+     (24) Simulation – generate (fix &amp; obj uncoupled)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
+     (24) Simulation – generate (save)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
+     (25) Fit – cuda (gaban)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
+     (25) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
+     (25) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
+     (25) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
+     (30) KL Balancer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  March 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-03.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../md/2023-03_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/17_sim-new-draft.html">
+     (17) Sim New – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/22_sim-new-draft.html">
+     (22) Sim New – draft
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/23_sim-new.html">
+     (23) Sim New – visualize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda.html">
+     (30) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda0.html">
+     (30) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
+     (30) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_fit-cuda2.html">
+     (30) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/30_sim-final.html">
+     (30) Sim – added
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       terrain
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-03/31_sim-factors.html">
+     (31) Sim – true generative factors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  April 2023
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../md/2023-04.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../md/2023-04_updates.html">
+   Updates
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_fit-lin.html">
+     (02) Fit neurons – Linear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_fit-glm.html">
+     (03) Fit neurons – GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_loop-glm.html">
+     (03) Fit neurons – GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_loop-ridge.html">
+     (03) Fit neurons – Ridge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_dan.html">
+     (04) Dan notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_profiler.html">
+     (04) PyTorch profiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_sim-kNN.html">
+     (06) Sim – kNN analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_readout-3d.html">
+     (07) Readout: 3D conv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_readout-sep.html">
+     (07) Readout: Separable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_GLM-clu090.html">
+     (08) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_GLM-clu096.html">
+     (08) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sim-accept-filter.html">
+     (08) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     (09) Sim – generate &amp; save
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_GLM-clu090.html">
+     (10) Reservoir + GLM
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nb/2023-04/09_sim-final-save.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/09_sim-final-save.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-04/09_sim-final-save.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare">
+   Prepare
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate">
+   Generate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-if-properly-saved">
+   Test if properly saved
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#print-generative-factors">
+   Print generative factors
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="sim-generate-save-dim-65">
+<h1>(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code><a class="headerlink" href="#sim-generate-save-dim-65" title="Permalink to this headline">¶</a></h1>
+<p><strong>Motivation</strong>: Generate and save <span class="math notranslate nohighlight">\(n=750 k\)</span> frames per condition. <br></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># GitHub</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">analysis.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="prepare">
+<h2>Prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span>
+    <span class="n">dim</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span>
+    <span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+    <span class="n">obj_r</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">obj_bound</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span>
+    <span class="n">obj_zlim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">vlim_obj</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+    <span class="n">vlim_slf</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+    <span class="n">residual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">z_bg</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kws</span><span class="p">)</span>
+
+<span class="n">min_obj_size</span> <span class="o">=</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008000; text-decoration-color: #008000">'n'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10000</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'dim'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'fov'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">45.0</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_r'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_bound'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.97</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_zlim'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.5</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vlim_obj'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vlim_slf'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'residual'</span>: <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'z_bg'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'seed'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;transl&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;transl&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;transl&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">combos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'fixate'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'fixate'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'fixate'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'fixate'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'fixate'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'obj'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'obj'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'obj'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'obj'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'terrain'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'terrain'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'terrain'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'transl'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'transl'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'transl'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span><span style="font-weight: bold">)</span>
+<span style="font-weight: bold">]</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accept_n</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accept_n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>: <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>: <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span><span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+</section>
+<section id="generate">
+<h2>Generate<a class="headerlink" href="#generate" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils.process</span> <span class="kn">import</span> <span class="n">generate_simulation</span><span class="p">,</span> <span class="n">save_simulation</span>
+<span class="n">save_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/hadi/Documents/MTMST/data&#39;</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">750e3</span><span class="p">)</span>
+<span class="n">total</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>750000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">n_obj</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">combos</span><span class="p">):</span>
+    <span class="n">alpha_dot</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">g_aux</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">generate_simulation</span><span class="p">(</span>
+        <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span>
+        <span class="n">n_obj</span><span class="o">=</span><span class="n">n_obj</span><span class="p">,</span>
+        <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span>
+        <span class="n">kwargs</span><span class="o">=</span><span class="n">kws</span><span class="p">,</span>
+        <span class="n">accept_n</span><span class="o">=</span><span class="n">accept_n</span><span class="p">,</span>
+        <span class="n">min_obj_size</span><span class="o">=</span><span class="n">min_obj_size</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">save_simulation</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">alpha_dot</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">g_aux</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/15 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixate0_dim-65_n-750k   saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 1/15 [53:42&lt;12:31:55, 3222.56s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixate1_dim-65_n-750k   saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 2/15 [2:51:55&lt;19:51:32, 5499.39s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixate2_dim-65_n-750k   saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 3/15 [5:08:07&lt;22:23:55, 6719.66s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixate4_dim-65_n-750k   saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 4/15 [7:40:50&lt;23:28:48, 7684.43s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixate8_dim-65_n-750k   saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 5/15 [11:03:22&lt;25:49:12, 9295.22s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">obj1_dim-65_n-750k      saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 6/15 [12:31:39&lt;19:50:22, 7935.82s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">obj2_dim-65_n-750k      saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 7/15 [14:18:38&lt;16:32:00, 7440.11s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">obj4_dim-65_n-750k      saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 8/15 [16:39:15&lt;15:05:01, 7757.31s/it]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">obj8_dim-65_n-750k      saved at        
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 9/15 [19:43:05&lt;14:38:02, 8780.44s/it]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="test-if-properly-saved">
+<h2>Test if properly saved<a class="headerlink" href="#test-if-properly-saved" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">base.dataset</span> <span class="kn">import</span> <span class="n">ROFL</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;terrain8_dim-65_n-1k&#39;</span><span class="p">),</span> <span class="s1">&#39;tst&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008000; text-decoration-color: #008000">'category'</span>: <span style="color: #008000; text-decoration-color: #008000">'terrain'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'n_obj'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'dim'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'fov'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">45.0</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'res'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.40625</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'z_bg'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_r'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_bound'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.97</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_zlim'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.5</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vlim_obj'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vlim_slf'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'residual'</span>: <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'seeds'</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">range</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">22</span><span style="font-weight: bold">)</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">g_aux</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((100, 29), (100, 83), (100, 2, 65, 65))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>
+    <span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj4_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj5_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj6_distance'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_x'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_y'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj7_distance'</span>
+<span style="font-weight: bold">]</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/hadi/Documents/MTMST/data&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">alpha_dot</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.52e-07
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">z_env</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.36e-07
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">g_aux</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.2e-07, 1.2e-07)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="print-generative-factors">
+<h2>Print generative factors<a class="headerlink" href="#print-generative-factors" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">n_obj</span> <span class="ow">in</span> <span class="n">combos</span><span class="p">:</span>
+    <span class="n">kws</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">category</span>
+    <span class="n">kws</span><span class="p">[</span><span class="s1">&#39;n_obj&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_obj</span>
+    <span class="n">of</span> <span class="o">=</span> <span class="n">OpticFlow</span><span class="p">(</span><span class="o">**</span><span class="n">kws</span><span class="p">)</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">()</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f_aux</span><span class="p">,</span> <span class="n">g_aux</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">groundtruth_factors</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">category: </span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">, n_obj = </span><span class="si">{</span><span class="n">n_obj</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;factors:</span><span class="se">\n</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;factors_aux:</span><span class="se">\n</span><span class="si">{</span><span class="n">f_aux</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;~&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: fixate, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: fixate, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dv_phi'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: fixate, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_phi'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: fixate, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_phi'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: fixate, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj4_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj5_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj6_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj7_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dv_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dv_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dv_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dv_phi'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: obj, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: obj, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: obj, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj2_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj3_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_z'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: obj, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj2_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj3_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj4_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj5_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj6_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_norm'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj7_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_v_z'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: terrain, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: terrain, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_distance'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dz'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dz'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: terrain, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_distance'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj9_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj10_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_alpha_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj12_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_distance'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj14_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_alpha_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj15_distance'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj4_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj4_dz'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj5_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj5_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj6_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj6_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_size'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj7_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj7_dz'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj8_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj8_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj8_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj9_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj9_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj10_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_dx'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj10_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj10_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj11_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj11_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj12_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_dx'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj12_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj12_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj13_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj13_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj14_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_dx'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj14_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj14_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj15_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj15_dz'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: transl, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: transl, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_phi'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">-------------------------------------------------------------------------------- 
+category: transl, n_obj = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'fix_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'fix_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_alpha_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj1_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj2_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_alpha_y'</span>,
+<span style="color: #008000; text-decoration-color: #008000">'obj3_distance'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_phi'</span><span style="font-weight: bold">]</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">factors_aux:
+<span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'slf_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'slf_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_phi'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_v_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj0_dv_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj0_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_y'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj1_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj1_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_size_eff'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dy'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_z'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj2_dv_norm'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj2_dv_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size_eff'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_size'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_theta'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_phi'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dx'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dy'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dz'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_x'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_v_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_v_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_x'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_y'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_z'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_norm'</span>, 
+<span style="color: #008000; text-decoration-color: #008000">'obj3_dv_theta'</span>, <span style="color: #008000; text-decoration-color: #008000">'obj3_dv_phi'</span><span style="font-weight: bold">]</span>
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">g_aux</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((100, 29), (100, 79))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nb/2023-04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="08_sim-accept-filter.html" title="previous page">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a>
+    <a class='right-next' id="next-link" href="10_GLM-clu090.html" title="next page">(10) Reservoir + GLM</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hadi Vafaii<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
