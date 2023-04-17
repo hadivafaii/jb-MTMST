@@ -377,7 +377,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda2
+     (30) Fit – cuda1
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,16 +480,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="08_sim-accept-filter.html">
      (08) Sim – behavior of
      <code class="docutils literal notranslate">
@@ -498,6 +488,16 @@
       </span>
      </code>
      when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
      <code class="docutils literal notranslate">
       <span class="pre">
        dim=65
@@ -518,6 +518,77 @@
    <li class="toctree-l2">
     <a class="reference internal" href="10_GLM-clu090.html">
      (10) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_GLM-pix.html">
+     (12) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-accept-filter.html">
+     (13) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-dists.html">
+     (13) Sim – dists for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda.html">
+     (13) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda0.html">
+     (13) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda1.html">
+     (13) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda2.html">
+     (13) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_GLM-loop.html">
+     (14) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_GLM-loop.html">
+     (15) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_GLM-save.html">
+     (16) Reservoir + GLM + Save
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17_Neurons.html">
+     (17) Neurons: how many, how good?
     </a>
    </li>
   </ul>
@@ -772,16 +843,486 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
-    <span class="n">n_kers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">sim</span><span class="o">=</span><span class="s1">&#39;fixate1&#39;</span><span class="p">,</span>
     <span class="n">n_latent_scales</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_groups_per_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_latent_per_group</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
     <span class="n">scale_init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">residual_kl</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ada_groups</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
 <span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">vae</span><span class="p">,</span> <span class="n">cfg</span><span class="o">=</span><span class="n">ConfigTrainVAE</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:1&#39;</span><span class="p">)</span>
 <span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">total_latents</span><span class="p">()</span>
 
 <span class="n">n_ftrs_enc</span><span class="p">,</span> <span class="n">n_ftrs_dec</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">ftr_sizes</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 17.6 s, sys: 1.85 s, total: 19.5 s
+Wall time: 5.51 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_trn</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">norm</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/??_fit-neurons-ftr_5_1.png" src="../../_images/??_fit-neurons-ftr_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_trn</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">norm</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.400104
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;obj4_dim-17_n-750k&#39;,
+ &#39;transl4_dim-17_n-750k&#39;,
+ &#39;fixate0_dim-17_n-750k&#39;,
+ &#39;fixate8_dim-17_n-750k&#39;,
+ &#39;obj1_dim-17_n-750k&#39;,
+ &#39;transl0_dim-17_n-750k&#39;,
+ &#39;transl2_dim-17_n-750k&#39;,
+ &#39;fixate4_dim-17_n-750k&#39;,
+ &#39;obj8_dim-17_n-750k&#39;,
+ &#39;terrain4_dim-17_n-750k&#39;,
+ &#39;obj2_dim-17_n-750k&#39;,
+ &#39;fixate2_dim-17_n-750k&#39;,
+ &#39;MTLFP_tres25.h5&#39;,
+ &#39;terrain8_dim-17_n-750k&#39;,
+ &#39;NARDIN_tres25.h5&#39;,
+ &#39;fixate1_dim-17_n-750k&#39;,
+ &#39;terrain16_dim-17_n-750k&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">data_dir</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;**/x.npy&#39;</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sp_lin</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">save_obj</span><span class="p">(</span>
+        <span class="n">obj</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
+        <span class="n">save_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">parent</span><span class="p">),</span>
+        <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;npy&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">cnt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain16_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain16_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain16_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/terrain8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate2_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/fixate1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj8_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl0_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/obj1_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tst</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">vld</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'norm.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/data/transl4_dim-65_n-750k/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">trn</span>
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 39s, sys: 23min 57s, total: 28min 37s
+Wall time: 34min 24s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generative factors, data, &amp; norm</span>
+<span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;g_aux&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;norm&#39;</span><span class="p">]:</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">),</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;g.npy&#39;</span><span class="p">),</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(600000, 2, 65, 65)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sp_lin</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 16.5 s, sys: 1min 24s, total: 1min 40s
+Wall time: 1min 41s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/hadi/Documents/MTMST/data/transl4_dim-65_n-750k/trn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PosixPath(&#39;/home/hadi/Documents/MTMST/data/transl4_dim-65_n-750k/trn/x.npy&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">norm</span> <span class="o">/</span> <span class="mi">65</span> <span class="o">/</span> <span class="mi">65</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/??_fit-neurons-ftr_20_0.png" src="../../_images/??_fit-neurons-ftr_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">min</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span> <span class="o">/</span> <span class="mi">65</span> <span class="o">/</span> <span class="mi">65</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span> <span class="o">/</span> <span class="mi">65</span> <span class="o">/</span> <span class="mi">65</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.02334452792737611, 6.900160872781066)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">norm</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/??_fit-neurons-ftr_22_0.png" src="../../_images/??_fit-neurons-ftr_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">norm</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.4301574e-05, 0.010138839)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">norm</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/??_fit-neurons-ftr_24_0.png" src="../../_images/??_fit-neurons-ftr_24_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;tst&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.98 s, sys: 3.92 s, total: 5.9 s
+Wall time: 5.91 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;vld&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.46 s, sys: 4.03 s, total: 6.49 s
+Wall time: 8.94 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;trn&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 18.4 s, sys: 1min, total: 1min 19s
+Wall time: 1min 21s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>176
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">norm_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sp_lin</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 17.1 s, sys: 29.3 s, total: 46.4 s
+Wall time: 47.4 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">norm_x</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.400104
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(600000,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">norm_x</span> <span class="o">/</span> <span class="mi">65</span> <span class="o">/</span> <span class="mi">65</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 495 ms, sys: 34 ms, total: 529 ms
+Wall time: 527 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/??_fit-neurons-ftr_33_2.png" src="../../_images/??_fit-neurons-ftr_33_2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -891,7 +1432,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21,)
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_16_1.png" src="../../_images/??_fit-neurons-ftr_16_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_47_1.png" src="../../_images/??_fit-neurons-ftr_47_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -932,7 +1473,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1020,)
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_19_1.png" src="../../_images/??_fit-neurons-ftr_19_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_50_1.png" src="../../_images/??_fit-neurons-ftr_50_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -960,7 +1501,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1000)
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_21_1.png" src="../../_images/??_fit-neurons-ftr_21_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_52_1.png" src="../../_images/??_fit-neurons-ftr_52_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1378,7 +1919,7 @@ Wall time: 12min 57s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_55_0.png" src="../../_images/??_fit-neurons-ftr_55_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_86_0.png" src="../../_images/??_fit-neurons-ftr_86_0.png" />
 </div>
 </div>
 </section>
@@ -1490,26 +2031,26 @@ Wall time: 48.1 s
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_64_1.png" src="../../_images/??_fit-neurons-ftr_64_1.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_95_1.png" src="../../_images/??_fit-neurons-ftr_95_1.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_64_3.png" src="../../_images/??_fit-neurons-ftr_64_3.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_95_3.png" src="../../_images/??_fit-neurons-ftr_95_3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_64_6.png" src="../../_images/??_fit-neurons-ftr_64_6.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_95_6.png" src="../../_images/??_fit-neurons-ftr_95_6.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_64_8.png" src="../../_images/??_fit-neurons-ftr_64_8.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_95_8.png" src="../../_images/??_fit-neurons-ftr_95_8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_64_11.png" src="../../_images/??_fit-neurons-ftr_64_11.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_95_11.png" src="../../_images/??_fit-neurons-ftr_95_11.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_64_13.png" src="../../_images/??_fit-neurons-ftr_64_13.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_95_13.png" src="../../_images/??_fit-neurons-ftr_95_13.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div></div>
@@ -1669,7 +2210,7 @@ Wall time: 23min 44s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_74_0.png" src="../../_images/??_fit-neurons-ftr_74_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_105_0.png" src="../../_images/??_fit-neurons-ftr_105_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1679,7 +2220,7 @@ Wall time: 23min 44s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_75_0.png" src="../../_images/??_fit-neurons-ftr_75_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_106_0.png" src="../../_images/??_fit-neurons-ftr_106_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1937,7 +2478,7 @@ Wall time: 23 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_100_0.png" src="../../_images/??_fit-neurons-ftr_100_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_131_0.png" src="../../_images/??_fit-neurons-ftr_131_0.png" />
 </div>
 </div>
 <section id="glm-to-reservoir">
@@ -2028,7 +2569,7 @@ Wall time: 6min 53s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6167de4f70&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_104_1.png" src="../../_images/??_fit-neurons-ftr_104_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_135_1.png" src="../../_images/??_fit-neurons-ftr_135_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2096,7 +2637,7 @@ Wall time: 2min 26s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_109_0.png" src="../../_images/??_fit-neurons-ftr_109_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_140_0.png" src="../../_images/??_fit-neurons-ftr_140_0.png" />
 </div>
 </div>
 </section>
@@ -2197,7 +2738,7 @@ Wall time: 12.2 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_118_0.png" src="../../_images/??_fit-neurons-ftr_118_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_149_0.png" src="../../_images/??_fit-neurons-ftr_149_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2209,7 +2750,7 @@ Wall time: 12.2 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_119_0.png" src="../../_images/??_fit-neurons-ftr_119_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_150_0.png" src="../../_images/??_fit-neurons-ftr_150_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2393,7 +2934,7 @@ Wall time: 8.98 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_136_0.png" src="../../_images/??_fit-neurons-ftr_136_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_167_0.png" src="../../_images/??_fit-neurons-ftr_167_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2403,7 +2944,7 @@ Wall time: 8.98 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_137_0.png" src="../../_images/??_fit-neurons-ftr_137_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_168_0.png" src="../../_images/??_fit-neurons-ftr_168_0.png" />
 </div>
 </div>
 </section>
@@ -2584,7 +3125,7 @@ Wall time: 1min 14s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_152_0.png" src="../../_images/??_fit-neurons-ftr_152_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_183_0.png" src="../../_images/??_fit-neurons-ftr_183_0.png" />
 </div>
 </div>
 </section>
@@ -2701,7 +3242,7 @@ Wall time: 12min 38s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_160_0.png" src="../../_images/??_fit-neurons-ftr_160_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_191_0.png" src="../../_images/??_fit-neurons-ftr_191_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2778,7 +3319,7 @@ Wall time: 12min 38s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_180_0.png" src="../../_images/??_fit-neurons-ftr_180_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_211_0.png" src="../../_images/??_fit-neurons-ftr_211_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2838,7 +3379,7 @@ Wall time: 12min 38s
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu044,  good: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">81.5</span> %
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_181_1.png" src="../../_images/??_fit-neurons-ftr_181_1.png" />
+</div><img alt="../../_images/??_fit-neurons-ftr_212_1.png" src="../../_images/??_fit-neurons-ftr_212_1.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -2933,7 +3474,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_189_0.png" src="../../_images/??_fit-neurons-ftr_189_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_220_0.png" src="../../_images/??_fit-neurons-ftr_220_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2956,7 +3497,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_191_0.png" src="../../_images/??_fit-neurons-ftr_191_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_222_0.png" src="../../_images/??_fit-neurons-ftr_222_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2967,7 +3508,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_192_0.png" src="../../_images/??_fit-neurons-ftr_192_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_223_0.png" src="../../_images/??_fit-neurons-ftr_223_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2977,7 +3518,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_193_0.png" src="../../_images/??_fit-neurons-ftr_193_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_224_0.png" src="../../_images/??_fit-neurons-ftr_224_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2999,7 +3540,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_197_0.png" src="../../_images/??_fit-neurons-ftr_197_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_228_0.png" src="../../_images/??_fit-neurons-ftr_228_0.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 864x432 with 6 Axes&gt;,
  array([[&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;],
         [&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;]],
@@ -3015,7 +3556,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_198_0.png" src="../../_images/??_fit-neurons-ftr_198_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_229_0.png" src="../../_images/??_fit-neurons-ftr_229_0.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 864x432 with 6 Axes&gt;,
  array([[&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;],
         [&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;]],
@@ -3031,7 +3572,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_200_0.png" src="../../_images/??_fit-neurons-ftr_200_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_231_0.png" src="../../_images/??_fit-neurons-ftr_231_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3041,7 +3582,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_203_0.png" src="../../_images/??_fit-neurons-ftr_203_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_234_0.png" src="../../_images/??_fit-neurons-ftr_234_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3051,7 +3592,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_204_0.png" src="../../_images/??_fit-neurons-ftr_204_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_235_0.png" src="../../_images/??_fit-neurons-ftr_235_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3065,7 +3606,7 @@ Wall time: 10.5 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_206_1.png" src="../../_images/??_fit-neurons-ftr_206_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_237_1.png" src="../../_images/??_fit-neurons-ftr_237_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3155,8 +3696,8 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_211_0.png" src="../../_images/??_fit-neurons-ftr_211_0.png" />
-<img alt="../../_images/??_fit-neurons-ftr_211_1.png" src="../../_images/??_fit-neurons-ftr_211_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_242_0.png" src="../../_images/??_fit-neurons-ftr_242_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_242_1.png" src="../../_images/??_fit-neurons-ftr_242_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3172,7 +3713,7 @@ Wall time: 10.5 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((72000, 15, 15, 2), (72000, 19, 19, 2))
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_213_1.png" src="../../_images/??_fit-neurons-ftr_213_1.png" />
+<img alt="../../_images/??_fit-neurons-ftr_244_1.png" src="../../_images/??_fit-neurons-ftr_244_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3263,7 +3804,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_223_0.png" src="../../_images/??_fit-neurons-ftr_223_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_254_0.png" src="../../_images/??_fit-neurons-ftr_254_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3273,7 +3814,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_225_0.png" src="../../_images/??_fit-neurons-ftr_225_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_256_0.png" src="../../_images/??_fit-neurons-ftr_256_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3378,7 +3919,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_236_0.png" src="../../_images/??_fit-neurons-ftr_236_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_267_0.png" src="../../_images/??_fit-neurons-ftr_267_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3388,7 +3929,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_237_0.png" src="../../_images/??_fit-neurons-ftr_237_0.png" />
+<img alt="../../_images/??_fit-neurons-ftr_268_0.png" src="../../_images/??_fit-neurons-ftr_268_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4348,7 +4889,7 @@ Wall time: 34min 21s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f45b3f90e80&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_251_2.png" src="../../_images/??_fit-neurons-ftr_251_2.png" />
+<img alt="../../_images/??_fit-neurons-ftr_282_2.png" src="../../_images/??_fit-neurons-ftr_282_2.png" />
 </div>
 </div>
 <div class="cell docutils container">

@@ -379,7 +379,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda2
+     (30) Fit – cuda1
     </a>
    </li>
    <li class="toctree-l2">
@@ -482,16 +482,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="08_sim-accept-filter.html">
      (08) Sim – behavior of
      <code class="docutils literal notranslate">
@@ -500,6 +490,16 @@
       </span>
      </code>
      when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
      <code class="docutils literal notranslate">
       <span class="pre">
        dim=65
@@ -520,6 +520,77 @@
    <li class="toctree-l2">
     <a class="reference internal" href="10_GLM-clu090.html">
      (10) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_GLM-pix.html">
+     (12) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-accept-filter.html">
+     (13) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-dists.html">
+     (13) Sim – dists for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda.html">
+     (13) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda0.html">
+     (13) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda1.html">
+     (13) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda2.html">
+     (13) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_GLM-loop.html">
+     (14) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_GLM-loop.html">
+     (15) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_GLM-save.html">
+     (16) Reservoir + GLM + Save
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17_Neurons.html">
+     (17) Neurons: how many, how good?
     </a>
    </li>
   </ul>
@@ -628,54 +699,49 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   (04) Dan notebook
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-data">
    Load data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#create-stimulus-form-8-hyperflow-params">
      Create stimulus form 8 hyperflow params
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#show-a-few-frames-from-the-stimulus">
      Show a few frames from the stimulus
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#load-spikes">
      Load spikes
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fit-glm">
-     Fit GLM
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-glm">
+   Fit GLM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-time-embed">
+     Prepare (time embed)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#prepare-time-embed">
-       Prepare (time embed)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Fit GLM
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ridge-regression">
-     Ridge regression
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Fit GLM
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ridge-regression">
+   Ridge regression
+  </a>
  </li>
 </ul>
 
@@ -727,9 +793,8 @@
 </div>
 </div>
 </div>
-</section>
 <section id="load-data">
-<h1>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h1>
+<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
 <p>We will work with one of the experiments: <code class="docutils literal notranslate"><span class="pre">expt='clu099'</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -743,7 +808,7 @@
 </div>
 </div>
 <section id="create-stimulus-form-8-hyperflow-params">
-<h2>Create stimulus form 8 hyperflow params<a class="headerlink" href="#create-stimulus-form-8-hyperflow-params" title="Permalink to this headline">¶</a></h2>
+<h3>Create stimulus form 8 hyperflow params<a class="headerlink" href="#create-stimulus-form-8-hyperflow-params" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_kws</span> <span class="o">=</span> <span class="p">{</span>
@@ -768,7 +833,7 @@
 </div>
 </section>
 <section id="show-a-few-frames-from-the-stimulus">
-<h2>Show a few frames from the stimulus<a class="headerlink" href="#show-a-few-frames-from-the-stimulus" title="Permalink to this headline">¶</a></h2>
+<h3>Show a few frames from the stimulus<a class="headerlink" href="#show-a-few-frames-from-the-stimulus" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow</span><span class="p">(</span><span class="n">stim</span><span class="p">);</span>
@@ -791,7 +856,7 @@
 </div>
 </section>
 <section id="load-spikes">
-<h2>Load spikes<a class="headerlink" href="#load-spikes" title="Permalink to this headline">¶</a></h2>
+<h3>Load spikes<a class="headerlink" href="#load-spikes" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;spks&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -807,6 +872,7 @@
 </pre>
 </div></div>
 </div>
+</section>
 </section>
 <section id="fit-glm">
 <h2>Fit GLM<a class="headerlink" href="#fit-glm" title="Permalink to this headline">¶</a></h2>

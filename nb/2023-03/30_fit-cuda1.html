@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>(30) Fit – cuda2 &#8212; MT/MST project</title>
+    <title>(30) Fit – cuda1 &#8212; MT/MST project</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -379,7 +379,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     (30) Fit – cuda2
+     (30) Fit – cuda1
     </a>
    </li>
    <li class="toctree-l2">
@@ -482,16 +482,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../2023-04/08_sim-accept-filter.html">
      (08) Sim – behavior of
      <code class="docutils literal notranslate">
@@ -500,6 +490,16 @@
       </span>
      </code>
      when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
      <code class="docutils literal notranslate">
       <span class="pre">
        dim=65
@@ -520,6 +520,77 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../2023-04/10_GLM-clu090.html">
      (10) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/12_GLM-pix.html">
+     (12) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">
+     (13) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/13_dim17-dists.html">
+     (13) Sim – dists for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/13_fit-cuda.html">
+     (13) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/13_fit-cuda0.html">
+     (13) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/13_fit-cuda1.html">
+     (13) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/13_fit-cuda2.html">
+     (13) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/14_GLM-loop.html">
+     (14) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/15_GLM-loop.html">
+     (15) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/16_GLM-save.html">
+     (16) Reservoir + GLM + Save
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2023-04/17_Neurons.html">
+     (17) Neurons: how many, how good?
     </a>
    </li>
   </ul>
@@ -659,9 +730,9 @@
         
               <div>
                 
-  <section id="fit-cuda2">
-<h1>(30) Fit – cuda2<a class="headerlink" href="#fit-cuda2" title="Permalink to this headline">¶</a></h1>
-<p><strong>Motivation</strong>: Fitting notebook, cuda2 <br></p>
+  <section id="fit-cuda1">
+<h1>(30) Fit – cuda1<a class="headerlink" href="#fit-cuda1" title="Permalink to this headline">¶</a></h1>
+<p><strong>Motivation</strong>: Fitting notebook, cuda1 <br></p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
@@ -710,7 +781,7 @@
         <span class="n">kl_beta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">kl_anneal_cycles</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kl_anneal_portion</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">kl_const_portion</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
         <span class="n">scheduler_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;T_max&#39;</span><span class="p">:</span> <span class="mf">650.0</span><span class="p">,</span> <span class="s1">&#39;eta_min&#39;</span><span class="p">:</span> <span class="mf">1e-05</span><span class="p">},</span>
     <span class="p">),</span>
-    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:2&#39;</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:1&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">total_latents</span><span class="p">()</span>
 </pre></div>

@@ -377,7 +377,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda2
+     (30) Fit – cuda1
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,16 +480,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="08_sim-accept-filter.html">
      (08) Sim – behavior of
      <code class="docutils literal notranslate">
@@ -498,6 +488,16 @@
       </span>
      </code>
      when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
      <code class="docutils literal notranslate">
       <span class="pre">
        dim=65
@@ -518,6 +518,77 @@
    <li class="toctree-l2">
     <a class="reference internal" href="10_GLM-clu090.html">
      (10) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_GLM-pix.html">
+     (12) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-accept-filter.html">
+     (13) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-dists.html">
+     (13) Sim – dists for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda.html">
+     (13) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda0.html">
+     (13) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda1.html">
+     (13) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda2.html">
+     (13) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_GLM-loop.html">
+     (14) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_GLM-loop.html">
+     (15) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_GLM-save.html">
+     (16) Reservoir + GLM + Save
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17_Neurons.html">
+     (17) Neurons: how many, how good?
     </a>
    </li>
   </ul>
@@ -686,6 +757,18 @@
 <span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01])
 </pre></div>
 </div>
 </div>
@@ -991,7 +1074,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/tmp_44_1.png" src="../../_images/tmp_44_1.png" />
+<img alt="../../_images/tmp_47_1.png" src="../../_images/tmp_47_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1004,7 +1087,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/tmp_45_1.png" src="../../_images/tmp_45_1.png" />
+<img alt="../../_images/tmp_48_1.png" src="../../_images/tmp_48_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1074,7 +1157,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5ec9f98910&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_55_1.png" src="../../_images/tmp_55_1.png" />
+<img alt="../../_images/tmp_58_1.png" src="../../_images/tmp_58_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1119,7 +1202,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5eca1e12e0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_62_1.png" src="../../_images/tmp_62_1.png" />
+<img alt="../../_images/tmp_65_1.png" src="../../_images/tmp_65_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1162,7 +1245,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb5ba6f9640&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_69_1.png" src="../../_images/tmp_69_1.png" />
+<img alt="../../_images/tmp_72_1.png" src="../../_images/tmp_72_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1176,7 +1259,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb5b962d5e0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_71_1.png" src="../../_images/tmp_71_1.png" />
+<img alt="../../_images/tmp_74_1.png" src="../../_images/tmp_74_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1325,7 +1408,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_87_0.png" src="../../_images/tmp_87_0.png" />
+<img alt="../../_images/tmp_90_0.png" src="../../_images/tmp_90_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1578,7 +1661,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f95cb174100&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_122_1.png" src="../../_images/tmp_122_1.png" />
+<img alt="../../_images/tmp_125_1.png" src="../../_images/tmp_125_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1634,7 +1717,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff4bbef1370&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_127_1.png" src="../../_images/tmp_127_1.png" />
+<img alt="../../_images/tmp_130_1.png" src="../../_images/tmp_130_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1699,7 +1782,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff4c4391820&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_134_1.png" src="../../_images/tmp_134_1.png" />
+<img alt="../../_images/tmp_137_1.png" src="../../_images/tmp_137_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1712,7 +1795,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff4c42afca0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_136_1.png" src="../../_images/tmp_136_1.png" />
+<img alt="../../_images/tmp_139_1.png" src="../../_images/tmp_139_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2061,7 +2144,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf5af40550&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_177_1.png" src="../../_images/tmp_177_1.png" />
+<img alt="../../_images/tmp_180_1.png" src="../../_images/tmp_180_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2074,7 +2157,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf5aef2310&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/tmp_178_1.png" src="../../_images/tmp_178_1.png" />
+<img alt="../../_images/tmp_181_1.png" src="../../_images/tmp_181_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2568,7 +2651,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_225_0.png" src="../../_images/tmp_225_0.png" />
+<img alt="../../_images/tmp_228_0.png" src="../../_images/tmp_228_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2702,7 +2785,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_242_0.png" src="../../_images/tmp_242_0.png" />
+<img alt="../../_images/tmp_245_0.png" src="../../_images/tmp_245_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2747,7 +2830,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_248_0.png" src="../../_images/tmp_248_0.png" />
+<img alt="../../_images/tmp_251_0.png" src="../../_images/tmp_251_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2757,7 +2840,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_249_0.png" src="../../_images/tmp_249_0.png" />
+<img alt="../../_images/tmp_252_0.png" src="../../_images/tmp_252_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2767,7 +2850,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_251_0.png" src="../../_images/tmp_251_0.png" />
+<img alt="../../_images/tmp_254_0.png" src="../../_images/tmp_254_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2777,7 +2860,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_252_0.png" src="../../_images/tmp_252_0.png" />
+<img alt="../../_images/tmp_255_0.png" src="../../_images/tmp_255_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2788,7 +2871,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_255_0.png" src="../../_images/tmp_255_0.png" />
+<img alt="../../_images/tmp_258_0.png" src="../../_images/tmp_258_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2806,7 +2889,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_257_0.png" src="../../_images/tmp_257_0.png" />
+<img alt="../../_images/tmp_260_0.png" src="../../_images/tmp_260_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2850,7 +2933,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_263_0.png" src="../../_images/tmp_263_0.png" />
+<img alt="../../_images/tmp_266_0.png" src="../../_images/tmp_266_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2861,7 +2944,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_265_0.png" src="../../_images/tmp_265_0.png" />
+<img alt="../../_images/tmp_268_0.png" src="../../_images/tmp_268_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2896,7 +2979,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_269_0.png" src="../../_images/tmp_269_0.png" />
+<img alt="../../_images/tmp_272_0.png" src="../../_images/tmp_272_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2906,7 +2989,7 @@ tensor([0.2400], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tmp_270_0.png" src="../../_images/tmp_270_0.png" />
+<img alt="../../_images/tmp_273_0.png" src="../../_images/tmp_273_0.png" />
 </div>
 </div>
 <div class="cell docutils container">

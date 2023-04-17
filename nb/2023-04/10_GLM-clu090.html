@@ -54,6 +54,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="(12) Reservoir + GLM" href="12_GLM-pix.html" />
     <link rel="prev" title="(09) Sim – generate &amp; save dim=65" href="09_sim-final-save.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -380,7 +381,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda2
+     (30) Fit – cuda1
     </a>
    </li>
    <li class="toctree-l2">
@@ -483,16 +484,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="08_sim-accept-filter.html">
      (08) Sim – behavior of
      <code class="docutils literal notranslate">
@@ -501,6 +492,16 @@
       </span>
      </code>
      when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=65
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
+     (08) Sim – many seeds
      <code class="docutils literal notranslate">
       <span class="pre">
        dim=65
@@ -521,6 +522,77 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      (10) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_GLM-pix.html">
+     (12) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-accept-filter.html">
+     (13) Sim – behavior of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       filter()
+      </span>
+     </code>
+     when
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_dim17-dists.html">
+     (13) Sim – dists for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dim=17
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda.html">
+     (13) Fit – cuda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda0.html">
+     (13) Fit – cuda0
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda1.html">
+     (13) Fit – cuda1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_fit-cuda2.html">
+     (13) Fit – cuda2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_GLM-loop.html">
+     (14) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_GLM-loop.html">
+     (15) Reservoir + GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_GLM-save.html">
+     (16) Reservoir + GLM + Save
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17_Neurons.html">
+     (17) Neurons: how many, how good?
     </a>
    </li>
   </ul>
@@ -640,13 +712,23 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-neuron">
-   Load neuron
+  <a class="reference internal nav-link" href="#readoutglm">
+   ReadoutGLM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#old-approach-looping-over-pixels">
+   Old approach (looping over pixels)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#extract-ftrs">
    Extract ftrs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-if-i-reduce-the-number-of-lags">
+   What if I reduce the number of lags?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -735,24 +817,12 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-
-<span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="n">prepare_data</span><span class="p">,</span> <span class="n">extract_features</span>
-<span class="kn">from</span> <span class="nn">analysis.linear</span> <span class="kn">import</span> <span class="n">LinearModel</span><span class="p">,</span> <span class="n">flatten_stim</span><span class="p">,</span> <span class="n">compute_sta</span>
-<span class="kn">from</span> <span class="nn">base.dataset</span> <span class="kn">import</span> <span class="n">setup_supervised_data</span><span class="p">,</span> <span class="n">setup_repeat_data</span><span class="p">,</span> <span class="n">time_embed</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="create-reservoir">
 <h2>Create reservoir<a class="headerlink" href="#create-reservoir" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span><span class="s1">&#39;fixate1_dim-65_n-10k&#39;</span><span class="p">,</span> <span class="n">ker_sz</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_sz</span><span class="o">=</span><span class="mi">19</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span><span class="s1">&#39;fixate1&#39;</span><span class="p">,</span> <span class="n">ker_sz</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_sz</span><span class="o">=</span><span class="mi">19</span><span class="p">))</span>
 <span class="n">tr</span> <span class="o">=</span> <span class="n">TrainerVAE</span><span class="p">(</span><span class="n">vae</span><span class="p">,</span> <span class="n">ConfigTrainVAE</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
 <span class="n">vae</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
@@ -780,7 +850,7 @@
 
 
 </pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">k-32_z-7x<span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>,<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span><span style="font-weight: bold">]</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">_enc</span><span style="font-weight: bold">(</span>2x2<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">dec</span><span style="font-weight: bold">(</span>2x1<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">pre</span><span style="font-weight: bold">(</span>1x3<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">post</span><span style="font-weight: bold">(</span>1x3<span style="font-weight: bold">)</span>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixate1_k-32_z-7x<span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>,<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span><span style="font-weight: bold">]</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">_enc</span><span style="font-weight: bold">(</span>2x2<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">dec</span><span style="font-weight: bold">(</span>2x1<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">pre</span><span style="font-weight: bold">(</span>1x3<span style="font-weight: bold">)</span>-<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">post</span><span style="font-weight: bold">(</span>1x3<span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([8, 4], 210)
 </pre></div>
@@ -788,8 +858,384 @@
 </div>
 </div>
 </section>
-<section id="load-neuron">
-<h2>Load neuron<a class="headerlink" href="#load-neuron" title="Permalink to this headline">¶</a></h2>
+<section id="readoutglm">
+<h2>ReadoutGLM<a class="headerlink" href="#readoutglm" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="n">ReadoutGLM</span>
+<span class="kn">from</span> <span class="nn">analysis.linear</span> <span class="kn">import</span> <span class="n">LinearModel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">ro</span> <span class="o">=</span> <span class="n">ReadoutGLM</span><span class="p">(</span><span class="s1">&#39;clu090&#39;</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> neural data loaded
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████| 144/144 [00:52&lt;00:00,  2.74it/s]
+100%|█████████████████████████████████████████████| 2/2 [00:00&lt;00:00,  3.71it/s]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> features extracted
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████| 54386/54386 [04:53&lt;00:00, 185.36it/s]
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> sta computed
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> best lag estimated
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> fitting PCA done
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 12min 50s, sys: 45.5 s, total: 13min 35s
+Wall time: 6min 53s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_GLM-clu090_7_0.png" src="../../_images/10_GLM-clu090_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">n_lags</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">temporal</span><span class="p">)</span>
+<span class="n">worst</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">n_lags</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">temporal</span><span class="p">)</span>
+<span class="n">best</span><span class="p">,</span> <span class="n">worst</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">best_pix_all</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">best</span><span class="p">],</span> <span class="n">ro</span><span class="o">.</span><span class="n">best_pix_all</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">worst</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1, 2]), array([2, 3]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">([</span>
+    <span class="nb">tuple</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">best_pix_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">])</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[((2, 3), 10), ((1, 2), 8), ((2, 2), 2)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">([</span>
+    <span class="nb">tuple</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">best_pix_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(1, 2), (2, 2), (2, 3)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span> <span class="o">=</span> <span class="n">sk_decomp</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">enc</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">enc</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">x_r</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">enc_r</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">enc_r</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x_r</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((72000, 500), (613, 500))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_data</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">best_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">inds</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">good</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">inds</span> <span class="o">=</span> <span class="n">inds</span><span class="p">[</span><span class="n">inds</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">glm_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">inds</span> <span class="o">-</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">x_tst</span><span class="o">=</span><span class="n">x_r</span><span class="p">[</span><span class="n">ro</span><span class="o">.</span><span class="n">good_r</span> <span class="o">-</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
+    <span class="n">y_tst</span><span class="o">=</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">],</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;PoissonRegressor&#39;</span><span class="p">,</span>
+    <span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">9e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="n">glm</span> <span class="o">=</span> <span class="n">LinearModel</span><span class="p">(</span><span class="o">**</span><span class="n">glm_kws</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">fit_df</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">glm</span><span class="o">.</span><span class="n">r2_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.81718323972716</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.32657916003596</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.31369712833258</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.126811847539564</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.256836843683196</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.24438029553087</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.4456586506567</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 13min 45s, sys: 42.2 s, total: 14min 27s
+Wall time: 1min 23s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">inds</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">good</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">inds</span> <span class="o">=</span> <span class="n">inds</span><span class="p">[</span><span class="n">inds</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">glm_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">inds</span> <span class="o">-</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">x_tst</span><span class="o">=</span><span class="n">x_r</span><span class="p">[</span><span class="n">ro</span><span class="o">.</span><span class="n">good_r</span> <span class="o">-</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
+    <span class="n">y_tst</span><span class="o">=</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">],</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;PoissonRegressor&#39;</span><span class="p">,</span>
+    <span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="n">glm</span> <span class="o">=</span> <span class="n">LinearModel</span><span class="p">(</span><span class="o">**</span><span class="n">glm_kws</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">fit_df</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">glm</span><span class="o">.</span><span class="n">r2_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.490361199940715</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.60049497112618</span><span style="font-weight: bold">}</span>
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2min 1s, sys: 6.57 s, total: 2min 8s
+Wall time: 12.8 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="bp">self</span><span class="o">=</span> <span class="n">ro</span>
+<span class="n">best</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">lag</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sta</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">n_lags</span> <span class="o">-</span> <span class="n">lag</span><span class="p">]</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">norm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm</span><span class="p">),</span> <span class="n">norm</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">best</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">best</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[((2, 3), 10), ((1, 2), 8), ((2, 2), 2)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3),
+ (2, 3)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">sta</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 20, 5312, 4, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">sta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">spatial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">norm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">dims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">spatial</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/10_GLM-clu090_33_1.png" src="../../_images/10_GLM-clu090_33_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">pcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">explained_variance_</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_GLM-clu090_36_0.png" src="../../_images/10_GLM-clu090_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">glm_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">ro</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;PoissonRegressor&#39;</span><span class="p">,</span>
+    <span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">9e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="n">glm</span> <span class="o">=</span> <span class="n">LinearModel</span><span class="p">(</span><span class="o">**</span><span class="n">glm_kws</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">fit_df</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">glm</span><span class="o">.</span><span class="n">r2_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.498639016050106</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.81936195797998</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.850880160036056</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.42106521458003</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57.844973258492494</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.16515083931511</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.82579256648093</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 57s, sys: 74.6 ms, total: 4min 58s
+Wall time: 11.6 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glm</span><span class="o">.</span><span class="n">show_pred</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_GLM-clu090_39_0.png" src="../../_images/10_GLM-clu090_39_0.png" />
+</div>
+</div>
+</section>
+<section id="old-approach-looping-over-pixels">
+<h2>Old approach (looping over pixels)<a class="headerlink" href="#old-approach-looping-over-pixels" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="n">prepare_data</span><span class="p">,</span> <span class="n">push</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expt</span> <span class="o">=</span> <span class="s1">&#39;clu090&#39;</span>
@@ -812,15 +1258,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws_process</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">act_fn</span><span class="o">=</span><span class="s1">&#39;swish&#39;</span><span class="p">)</span>
-<span class="n">enc</span><span class="p">,</span> <span class="n">enc_r</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">stim</span><span class="p">,</span> <span class="n">stim_r</span><span class="p">,</span> <span class="n">kws_process</span><span class="p">)</span>
+
+<span class="n">enc</span> <span class="o">=</span> <span class="n">push</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">stim</span><span class="p">,</span> <span class="n">kws_process</span><span class="p">)</span>
+<span class="n">enc_r</span> <span class="o">=</span> <span class="n">push</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">stim_r</span><span class="p">,</span> <span class="n">kws_process</span><span class="p">)</span>
 <span class="n">enc</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">enc_r</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████| 360/360 [01:31&lt;00:00,  3.93it/s]
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((72000, 5312, 4, 4), (613, 5312, 4, 4))
 </pre></div>
 </div>
@@ -844,36 +1289,337 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># was use_ema=True, and float32</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">enc</span><span class="p">),</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">x_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">enc_r</span><span class="p">),</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)):</span>
+    <span class="n">pc</span> <span class="o">=</span> <span class="n">sk_decomp</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+    <span class="n">x_r</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">enc_r</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span>before<span style="font-weight: bold">)</span> - - -   mu: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.026397444307804108</span>, sd: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.12137231230735779</span>
-</pre>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1h 49min 20s, sys: 4min 5s, total: 1h 53min 25s
+Wall time: 6min 41s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># was use_ema=True, and float</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">neuron_i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">lag</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">best_lags</span><span class="p">[</span><span class="n">neuron_i</span><span class="p">]</span>
+<span class="n">inds</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">good</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">inds</span> <span class="o">=</span> <span class="n">inds</span><span class="p">[</span><span class="n">inds</span> <span class="o">&gt;</span> <span class="n">lag</span><span class="p">]</span>
+
+<span class="n">glm_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;PoissonRegressor&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">ro</span><span class="o">.</span><span class="n">spks</span><span class="p">[</span><span class="n">inds</span><span class="p">,</span> <span class="n">neuron_i</span><span class="p">],</span>
+    <span class="n">y_tst</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">spks_r</span><span class="p">[</span><span class="n">neuron_i</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">9e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)):</span>
+    <span class="n">glm_kws</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">inds</span> <span class="o">-</span> <span class="n">lag</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+    <span class="n">glm_kws</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_r</span><span class="p">[</span><span class="n">ro</span><span class="o">.</span><span class="n">good_r</span> <span class="o">-</span> <span class="n">lag</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        <span class="n">glm</span> <span class="o">=</span> <span class="n">LinearModel</span><span class="p">(</span><span class="o">**</span><span class="n">glm_kws</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+            <span class="n">fit_df</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">glm</span><span class="o">.</span><span class="n">r2_tst</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(i, j) = (</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">), r2:</span><span class="se">\n</span><span class="si">{</span><span class="n">glm</span><span class="o">.</span><span class="n">r2_tst</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">glm</span><span class="o">.</span><span class="n">show_pred</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;~&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span>before<span style="font-weight: bold">)</span> - - -   mu: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.026398077516967346</span>, sd: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.12137023252225511</span>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">33.71971015159151</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">36.633552475976984</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.17995183459001</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48.992568200724484</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.00993164855434</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.65623263913517</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">34.00000197567766</span><span style="font-weight: bold">}</span>
 </pre>
-</div></div>
+</div><img alt="../../_images/10_GLM-clu090_52_1.png" src="../../_images/10_GLM-clu090_52_1.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.40940599941074</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.85325829729133</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.09518014113951</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.89558546722867</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.48212589911202</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.47955803612921</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.61921869171064</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_5.png" src="../../_images/10_GLM-clu090_52_5.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">47.68527316457395</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.22642103325392</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">54.54893499228635</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.99763257811976</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.967706913357354</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.0006352205612</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.58700460939522</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_9.png" src="../../_images/10_GLM-clu090_52_9.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">69.96344294653639</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.49468651945998</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.88972395042423</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.87575127428347</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.16477048996899</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.80421959316536</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.75387115400637</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_13.png" src="../../_images/10_GLM-clu090_52_13.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.81231639759124</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.37192365613505</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.403318523497134</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.08304256418699</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57.00714292214622</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.344239805073215</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46.16294235896389</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_17.png" src="../../_images/10_GLM-clu090_52_17.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.17753138069872</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.8129576380744</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.8863773779709</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.41953315241156</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.60947757565566</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.9588553876784</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.15120080198811</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_21.png" src="../../_images/10_GLM-clu090_52_21.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.498639016050106</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.81936195797998</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.850880160036056</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.42106521458003</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57.844973258492494</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.16515083931511</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.82579256648093</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_25.png" src="../../_images/10_GLM-clu090_52_25.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.08069706312504</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.66915583355197</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.887121680131955</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.39467637064706</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.87881334500482</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.25019014045885</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.35950436339295</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_29.png" src="../../_images/10_GLM-clu090_52_29.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.721281425740145</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">36.69249316163244</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.77395104319328</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39.849845607099034</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41.79279995787526</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43.90669128037808</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39.602418839242674</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_33.png" src="../../_images/10_GLM-clu090_52_33.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.4717086478926</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.0571776168735</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.41935926951619</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.06067418237258</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.18080976434922</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.1302224965944</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.346417201584885</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_37.png" src="../../_images/10_GLM-clu090_52_37.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.776633440045714</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.702601516138024</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.90273658245131</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.98943983836838</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.3692367731364</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.5439329229617</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.57525495389356</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_41.png" src="../../_images/10_GLM-clu090_52_41.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.00339682681474</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.25099242388694</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.88164953637882</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">72.02709335918784</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.80693910862614</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.21239130831177</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.87759377600238</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_45.png" src="../../_images/10_GLM-clu090_52_45.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.11294032266142</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.7804444232776</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.07454724273395</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.96049817856805</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.98807996795796</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.05838045778695</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">32.16698262280756</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_49.png" src="../../_images/10_GLM-clu090_52_49.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.669683616689554</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.660527303261595</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.41791152702702</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.2434361413548</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.252099950934124</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.611213408447206</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41.857848763887986</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_53.png" src="../../_images/10_GLM-clu090_52_53.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.64911120765804</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.20967917016846</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.041515302357354</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.912589817993144</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.33202569893874</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.29125869117187</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.08704851166572</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_57.png" src="../../_images/10_GLM-clu090_52_57.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+<span style="font-weight: bold">(</span>i, j<span style="font-weight: bold">)</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span><span style="font-weight: bold">)</span>, r2:
+<span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.135605082285814</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.6728306132285</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.31545668372189</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.322674459256376</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.68358450426927</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.11133822793478</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46.61281107416579</span><span style="font-weight: bold">}</span>
+</pre>
+</div><img alt="../../_images/10_GLM-clu090_52_61.png" src="../../_images/10_GLM-clu090_52_61.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1h 15min 53s, sys: 993 ms, total: 1h 15min 54s
+Wall time: 3min 4s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># was use_ema=False</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span>before<span style="font-weight: bold">)</span> - - -   mu: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.029923408880239543</span>, sd: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1049725525820159</span>
+<img alt="../../_images/10_GLM-clu090_54_0.png" src="../../_images/10_GLM-clu090_54_0.png" />
+</div>
+</div>
+<p>We see that indeed pixel (2, 3) is best.</p>
+</section>
+<section id="what-if-i-reduce-the-number-of-lags">
+<h2>What if I reduce the number of lags?<a class="headerlink" href="#what-if-i-reduce-the-number-of-lags" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">ro</span> <span class="o">=</span> <span class="n">ReadoutGLM</span><span class="p">(</span><span class="s1">&#39;clu090&#39;</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">n_lags</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10min 35s, sys: 44.8 s, total: 11min 20s
+Wall time: 4min 36s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_GLM-clu090_59_0.png" src="../../_images/10_GLM-clu090_59_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">glm_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">ro</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;PoissonRegressor&#39;</span><span class="p">,</span>
+    <span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">9e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="n">glm</span> <span class="o">=</span> <span class="n">LinearModel</span><span class="p">(</span><span class="o">**</span><span class="n">glm_kws</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">fit_df</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">glm</span><span class="o">.</span><span class="n">r2_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.776633440045714</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.702601516138024</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.90273658245131</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.98943983836838</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.3692367731364</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.5439329229617</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.57525495389356</span>
+<span style="font-weight: bold">}</span>
 </pre>
-</div></div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 49s, sys: 79.4 ms, total: 4min 49s
+Wall time: 11.3 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glm</span><span class="o">.</span><span class="n">show_pred</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_GLM-clu090_61_0.png" src="../../_images/10_GLM-clu090_61_0.png" />
+</div>
 </div>
 </section>
 <section id="sta">
@@ -916,6 +1662,16 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_best_lag</span><span class="p">(</span><span class="n">sta</span><span class="p">):</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sta</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">dims</span><span class="p">)</span>
+    <span class="n">best_lags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm</span><span class="p">[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sta</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">dims</span><span class="p">)</span>
 <span class="n">best_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm</span><span class="p">[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -927,20 +1683,6 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 20)
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">lags</span> <span class="o">-</span> <span class="n">best_lag</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="n">lags</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_18_0.png" src="../../_images/10_GLM-clu090_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -971,7 +1713,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_22_0.png" src="../../_images/10_GLM-clu090_22_0.png" />
+<img alt="../../_images/10_GLM-clu090_75_0.png" src="../../_images/10_GLM-clu090_75_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1022,7 +1764,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_27_0.png" src="../../_images/10_GLM-clu090_27_0.png" />
+<img alt="../../_images/10_GLM-clu090_79_0.png" src="../../_images/10_GLM-clu090_79_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1032,7 +1774,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_28_0.png" src="../../_images/10_GLM-clu090_28_0.png" />
+<img alt="../../_images/10_GLM-clu090_80_0.png" src="../../_images/10_GLM-clu090_80_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1104,7 +1846,7 @@ Wall time: 3min 16s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_33_0.png" src="../../_images/10_GLM-clu090_33_0.png" />
+<img alt="../../_images/10_GLM-clu090_85_0.png" src="../../_images/10_GLM-clu090_85_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1154,7 +1896,7 @@ Wall time: 6min 2s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_36_0.png" src="../../_images/10_GLM-clu090_36_0.png" />
+<img alt="../../_images/10_GLM-clu090_88_0.png" src="../../_images/10_GLM-clu090_88_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1193,7 +1935,7 @@ Wall time: 6min 2s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f90bc8a9430&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/10_GLM-clu090_42_1.png" src="../../_images/10_GLM-clu090_42_1.png" />
+<img alt="../../_images/10_GLM-clu090_94_1.png" src="../../_images/10_GLM-clu090_94_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1272,7 +2014,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_53_0.png" src="../../_images/10_GLM-clu090_53_0.png" />
+<img alt="../../_images/10_GLM-clu090_105_0.png" src="../../_images/10_GLM-clu090_105_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1349,7 +2091,7 @@ Wall time: 35min 19s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_58_0.png" src="../../_images/10_GLM-clu090_58_0.png" />
+<img alt="../../_images/10_GLM-clu090_110_0.png" src="../../_images/10_GLM-clu090_110_0.png" />
 </div>
 </div>
 </section>
@@ -1378,7 +2120,7 @@ Wall time: 35min 19s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_64_0.png" src="../../_images/10_GLM-clu090_64_0.png" />
+<img alt="../../_images/10_GLM-clu090_116_0.png" src="../../_images/10_GLM-clu090_116_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1449,7 +2191,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.992996729038351</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_2.png" src="../../_images/10_GLM-clu090_67_2.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_2.png" src="../../_images/10_GLM-clu090_119_2.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1472,7 +2214,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14.964383607771282</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_5.png" src="../../_images/10_GLM-clu090_67_5.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_5.png" src="../../_images/10_GLM-clu090_119_5.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1501,7 +2243,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">34.82751974238298</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_8.png" src="../../_images/10_GLM-clu090_67_8.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_8.png" src="../../_images/10_GLM-clu090_119_8.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1530,7 +2272,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">45.866078671280206</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_11.png" src="../../_images/10_GLM-clu090_67_11.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_11.png" src="../../_images/10_GLM-clu090_119_11.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1559,7 +2301,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.0711998582472</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_14.png" src="../../_images/10_GLM-clu090_67_14.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_14.png" src="../../_images/10_GLM-clu090_119_14.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1588,7 +2330,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.72751291463764</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_17.png" src="../../_images/10_GLM-clu090_67_17.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_17.png" src="../../_images/10_GLM-clu090_119_17.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1617,7 +2359,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.12565579044078</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_20.png" src="../../_images/10_GLM-clu090_67_20.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_20.png" src="../../_images/10_GLM-clu090_119_20.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1652,7 +2394,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.85791762791176</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_23.png" src="../../_images/10_GLM-clu090_67_23.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_23.png" src="../../_images/10_GLM-clu090_119_23.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1687,7 +2429,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.35269475616163</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_26.png" src="../../_images/10_GLM-clu090_67_26.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_26.png" src="../../_images/10_GLM-clu090_119_26.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1722,7 +2464,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.85388720904478</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_29.png" src="../../_images/10_GLM-clu090_67_29.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_29.png" src="../../_images/10_GLM-clu090_119_29.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -1757,7 +2499,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.86583810280146</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_67_32.png" src="../../_images/10_GLM-clu090_67_32.png" />
+</div><img alt="../../_images/10_GLM-clu090_119_32.png" src="../../_images/10_GLM-clu090_119_32.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3h 31min 54s, sys: 19min 19s, total: 3h 51min 14s
 Wall time: 1h 9min 54s
 </pre></div>
@@ -1793,7 +2535,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_71_0.png" src="../../_images/10_GLM-clu090_71_0.png" />
+<img alt="../../_images/10_GLM-clu090_123_0.png" src="../../_images/10_GLM-clu090_123_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1824,7 +2566,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_75_0.png" src="../../_images/10_GLM-clu090_75_0.png" />
+<img alt="../../_images/10_GLM-clu090_127_0.png" src="../../_images/10_GLM-clu090_127_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1864,7 +2606,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_79_0.png" src="../../_images/10_GLM-clu090_79_0.png" />
+<img alt="../../_images/10_GLM-clu090_131_0.png" src="../../_images/10_GLM-clu090_131_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2010,7 +2752,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_91_0.png" src="../../_images/10_GLM-clu090_91_0.png" />
+<img alt="../../_images/10_GLM-clu090_143_0.png" src="../../_images/10_GLM-clu090_143_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2020,7 +2762,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_92_0.png" src="../../_images/10_GLM-clu090_92_0.png" />
+<img alt="../../_images/10_GLM-clu090_144_0.png" src="../../_images/10_GLM-clu090_144_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2062,7 +2804,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_105_0.png" src="../../_images/10_GLM-clu090_105_0.png" />
+<img alt="../../_images/10_GLM-clu090_157_0.png" src="../../_images/10_GLM-clu090_157_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2072,7 +2814,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_106_0.png" src="../../_images/10_GLM-clu090_106_0.png" />
+<img alt="../../_images/10_GLM-clu090_158_0.png" src="../../_images/10_GLM-clu090_158_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2082,7 +2824,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_107_0.png" src="../../_images/10_GLM-clu090_107_0.png" />
+<img alt="../../_images/10_GLM-clu090_159_0.png" src="../../_images/10_GLM-clu090_159_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2129,7 +2871,7 @@ Wall time: 12.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_109_0.png" src="../../_images/10_GLM-clu090_109_0.png" />
+<img alt="../../_images/10_GLM-clu090_161_0.png" src="../../_images/10_GLM-clu090_161_0.png" />
 </div>
 </div>
 </section>
@@ -2188,7 +2930,7 @@ Wall time: 7.55 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_114_0.png" src="../../_images/10_GLM-clu090_114_0.png" />
+<img alt="../../_images/10_GLM-clu090_166_0.png" src="../../_images/10_GLM-clu090_166_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2222,7 +2964,7 @@ Wall time: 7.55 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f90a70c82b0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/10_GLM-clu090_118_1.png" src="../../_images/10_GLM-clu090_118_1.png" />
+<img alt="../../_images/10_GLM-clu090_170_1.png" src="../../_images/10_GLM-clu090_170_1.png" />
 </div>
 </div>
 </section>
@@ -2255,6 +2997,7 @@ Wall time: 7.55 s
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="09_sim-final-save.html" title="previous page">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a>
+    <a class='right-next' id="next-link" href="12_GLM-pix.html" title="next page">(12) Reservoir + GLM</a>
 
         </div>
         
