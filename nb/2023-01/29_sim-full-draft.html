@@ -1,400 +1,493 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(29) Simulation – full [draft] &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-01/29_sim-full-draft';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="(30) Simulation – full [final]" href="30_sim-full-final.html" />
     <link rel="prev" title="(28) Simulation – self [velocity: new way]" href="28_sim-self.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="28_sim-self.html">
-     (28) Simulation – self [velocity: new way]
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (29) Simulation – full [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="30_sim-full-final.html">
-     (30) Simulation – full [final]
-    </a>
-   </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-01/29_sim-full-draft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-01/29_sim-full-draft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  
 </div>
-
 </div>
+              
+              
 
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(29) Simulation – full [draft]</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-01/29_sim-full-draft.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-01/29_sim-full-draft.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-01/29_sim-full-draft.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test">
-   Test
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#start">
-   START
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#end">
-   END
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo">
-   TODO
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#before-object-adding">
-   Before object adding
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test">Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start">START</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end">END</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-object-adding">Before object adding</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="simulation-full-draft">
-<h1>(29) Simulation – full [draft]<a class="headerlink" href="#simulation-full-draft" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="simulation-full-draft">
+<h1>(29) Simulation – full [draft]<a class="headerlink" href="#simulation-full-draft" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Added the object, finalized the code. <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -424,8 +517,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -593,9 +692,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="test">
-<h2>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h2>
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
@@ -653,7 +753,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_7_0.png" src="../../_images/29_sim-full-draft_7_0.png" />
+<img alt="../../_images/3b4624ece6af937d3d99f77d691463a12d95577ac21436fe3ff73509574b4ee4.png" src="../../_images/3b4624ece6af937d3d99f77d691463a12d95577ac21436fe3ff73509574b4ee4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -669,8 +769,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_9_0.png" src="../../_images/29_sim-full-draft_9_0.png" />
-<img alt="../../_images/29_sim-full-draft_9_1.png" src="../../_images/29_sim-full-draft_9_1.png" />
+<img alt="../../_images/adc14520c7f36f9d8c488a2fa7890e1fa33e5bda01eac639e25d52a135485de0.png" src="../../_images/adc14520c7f36f9d8c488a2fa7890e1fa33e5bda01eac639e25d52a135485de0.png" />
+<img alt="../../_images/c1193dd7638aa846ddef643c3908f550533788cb880131ff4583567ac0a85a9d.png" src="../../_images/c1193dd7638aa846ddef643c3908f550533788cb880131ff4583567ac0a85a9d.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.3, 0. ])
 </pre></div>
 </div>
@@ -686,7 +786,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f268db81460&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/29_sim-full-draft_11_1.png" src="../../_images/29_sim-full-draft_11_1.png" />
+<img alt="../../_images/c06d45e54f98b79e823ae912c6977f8f5130f7e764d6229b5ae25e6e2c906ebc.png" src="../../_images/c06d45e54f98b79e823ae912c6977f8f5130f7e764d6229b5ae25e6e2c906ebc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -716,7 +816,7 @@
 </section>
 <hr class="docutils" />
 <section id="start">
-<h2>START<a class="headerlink" href="#start" title="Permalink to this headline">¶</a></h2>
+<h2>START<a class="headerlink" href="#start" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -814,8 +914,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_21_0.png" src="../../_images/29_sim-full-draft_21_0.png" />
-<img alt="../../_images/29_sim-full-draft_21_1.png" src="../../_images/29_sim-full-draft_21_1.png" />
+<img alt="../../_images/87a106c353f4205c653e6b1618d7645e71008ebd6327c79ff06595bb93b878a8.png" src="../../_images/87a106c353f4205c653e6b1618d7645e71008ebd6327c79ff06595bb93b878a8.png" />
+<img alt="../../_images/a17c280bebebc672f1b420bd4e14acc5cfc915f73c2422aa94a037ea6b93b60a.png" src="../../_images/a17c280bebebc672f1b420bd4e14acc5cfc915f73c2422aa94a037ea6b93b60a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -827,8 +927,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_22_0.png" src="../../_images/29_sim-full-draft_22_0.png" />
-<img alt="../../_images/29_sim-full-draft_22_1.png" src="../../_images/29_sim-full-draft_22_1.png" />
+<img alt="../../_images/f04796b0568c310ecc8a34547dbb8722235fc6312ce0f59d98910a25253df312.png" src="../../_images/f04796b0568c310ecc8a34547dbb8722235fc6312ce0f59d98910a25253df312.png" />
+<img alt="../../_images/288b01dfab7622f23e0387f1394b0b48187bc8c37d22e6d940e8bbdf5561d322.png" src="../../_images/288b01dfab7622f23e0387f1394b0b48187bc8c37d22e6d940e8bbdf5561d322.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -838,8 +938,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_24_0.png" src="../../_images/29_sim-full-draft_24_0.png" />
-<img alt="../../_images/29_sim-full-draft_24_1.png" src="../../_images/29_sim-full-draft_24_1.png" />
+<img alt="../../_images/4de2e2f54f007da413da8dfe71b84b26c1dcdd7e1dac5255c6f1237af9710fe8.png" src="../../_images/4de2e2f54f007da413da8dfe71b84b26c1dcdd7e1dac5255c6f1237af9710fe8.png" />
+<img alt="../../_images/0ddf43f9725bd333329a608a4df48744b96c1a67e215319659a3346f6bbcfc03.png" src="../../_images/0ddf43f9725bd333329a608a4df48744b96c1a67e215319659a3346f6bbcfc03.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -851,8 +951,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_25_0.png" src="../../_images/29_sim-full-draft_25_0.png" />
-<img alt="../../_images/29_sim-full-draft_25_1.png" src="../../_images/29_sim-full-draft_25_1.png" />
+<img alt="../../_images/0e8b534e69e43a59c2b08eb64a3ae0b5ee64a915b32f312f7c7fd5ef9f3d9d73.png" src="../../_images/0e8b534e69e43a59c2b08eb64a3ae0b5ee64a915b32f312f7c7fd5ef9f3d9d73.png" />
+<img alt="../../_images/33a17a96e7ceb043bb3d5f5822adade8d784a9869199ef33b94d97401652aa33.png" src="../../_images/33a17a96e7ceb043bb3d5f5822adade8d784a9869199ef33b94d97401652aa33.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -862,8 +962,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_27_0.png" src="../../_images/29_sim-full-draft_27_0.png" />
-<img alt="../../_images/29_sim-full-draft_27_1.png" src="../../_images/29_sim-full-draft_27_1.png" />
+<img alt="../../_images/9eda834491698782b7400254c979016f004fae94d3f90629f1b5be1b38c24f24.png" src="../../_images/9eda834491698782b7400254c979016f004fae94d3f90629f1b5be1b38c24f24.png" />
+<img alt="../../_images/1de99ab8c5b16fa615c1b362be32e4a234ca5131c6e31e94f8b1edd83cca157b.png" src="../../_images/1de99ab8c5b16fa615c1b362be32e4a234ca5131c6e31e94f8b1edd83cca157b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -875,8 +975,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_28_0.png" src="../../_images/29_sim-full-draft_28_0.png" />
-<img alt="../../_images/29_sim-full-draft_28_1.png" src="../../_images/29_sim-full-draft_28_1.png" />
+<img alt="../../_images/09c456245458ccdbfe65260dd2199b5fba074059251c942463c970f532a48457.png" src="../../_images/09c456245458ccdbfe65260dd2199b5fba074059251c942463c970f532a48457.png" />
+<img alt="../../_images/637eb3179bb9337f6f85c11969ccd5ccebf796d6fd7979bb95a05bf90382a93e.png" src="../../_images/637eb3179bb9337f6f85c11969ccd5ccebf796d6fd7979bb95a05bf90382a93e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -888,8 +988,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_31_0.png" src="../../_images/29_sim-full-draft_31_0.png" />
-<img alt="../../_images/29_sim-full-draft_31_1.png" src="../../_images/29_sim-full-draft_31_1.png" />
+<img alt="../../_images/67ac8b54b7220be127db7e806972e94f7f012c78781b17d6e484d002b5ef06f3.png" src="../../_images/67ac8b54b7220be127db7e806972e94f7f012c78781b17d6e484d002b5ef06f3.png" />
+<img alt="../../_images/733d1deba43f17e92d0c13236b4ae345d8a48248ff717c390f83a6fffead8572.png" src="../../_images/733d1deba43f17e92d0c13236b4ae345d8a48248ff717c390f83a6fffead8572.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -901,8 +1001,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_32_0.png" src="../../_images/29_sim-full-draft_32_0.png" />
-<img alt="../../_images/29_sim-full-draft_32_1.png" src="../../_images/29_sim-full-draft_32_1.png" />
+<img alt="../../_images/5dd2c83fc2bbd6f6776df13737ac39895465f8faae0076f113b8065aed6d1de4.png" src="../../_images/5dd2c83fc2bbd6f6776df13737ac39895465f8faae0076f113b8065aed6d1de4.png" />
+<img alt="../../_images/e38f3950f84e1f587b89e1d9cfe6674710bb2038d47ace368c0dd215b1e84789.png" src="../../_images/e38f3950f84e1f587b89e1d9cfe6674710bb2038d47ace368c0dd215b1e84789.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -928,8 +1028,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_35_0.png" src="../../_images/29_sim-full-draft_35_0.png" />
-<img alt="../../_images/29_sim-full-draft_35_1.png" src="../../_images/29_sim-full-draft_35_1.png" />
+<img alt="../../_images/98bf0a87540b549e537ca86b07f64835700ea0585848d64ff98fdba801bfa7b2.png" src="../../_images/98bf0a87540b549e537ca86b07f64835700ea0585848d64ff98fdba801bfa7b2.png" />
+<img alt="../../_images/22c867fae2643792767d47de61eaf77a791bb2074e5654f477cf1d38c5b1aba3.png" src="../../_images/22c867fae2643792767d47de61eaf77a791bb2074e5654f477cf1d38c5b1aba3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -943,8 +1043,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_38_0.png" src="../../_images/29_sim-full-draft_38_0.png" />
-<img alt="../../_images/29_sim-full-draft_38_1.png" src="../../_images/29_sim-full-draft_38_1.png" />
+<img alt="../../_images/f442c682bee596ae71b971c90be2be1ef517e025a3536fb5a2d536cd14bc2812.png" src="../../_images/f442c682bee596ae71b971c90be2be1ef517e025a3536fb5a2d536cd14bc2812.png" />
+<img alt="../../_images/9b2fd8f78b6d1e4617a99e76bbf0dfc29b8e7d7fa30213e5edd72da7e8717427.png" src="../../_images/9b2fd8f78b6d1e4617a99e76bbf0dfc29b8e7d7fa30213e5edd72da7e8717427.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -990,8 +1090,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_42_0.png" src="../../_images/29_sim-full-draft_42_0.png" />
-<img alt="../../_images/29_sim-full-draft_42_1.png" src="../../_images/29_sim-full-draft_42_1.png" />
+<img alt="../../_images/754a2627bb3c6e2b0470c78b764174127dd8ad3b18c7c94b1afd801670377eb7.png" src="../../_images/754a2627bb3c6e2b0470c78b764174127dd8ad3b18c7c94b1afd801670377eb7.png" />
+<img alt="../../_images/eb7d60cee95d148c4fcc7d66cdab0f0b333f61be06dd57aebfe5be04513d6d38.png" src="../../_images/eb7d60cee95d148c4fcc7d66cdab0f0b333f61be06dd57aebfe5be04513d6d38.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1002,12 +1102,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_44_0.png" src="../../_images/29_sim-full-draft_44_0.png" />
+<img alt="../../_images/ce362843234d519a2169be466884cbe68072fe91c7f5ee11cd13cd177b6c40ff.png" src="../../_images/ce362843234d519a2169be466884cbe68072fe91c7f5ee11cd13cd177b6c40ff.png" />
 </div>
 </div>
 </section>
 <section id="end">
-<h2>END<a class="headerlink" href="#end" title="Permalink to this headline">¶</a></h2>
+<h2>END<a class="headerlink" href="#end" title="Permalink to this headline">#</a></h2>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1031,8 +1131,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_48_0.png" src="../../_images/29_sim-full-draft_48_0.png" />
-<img alt="../../_images/29_sim-full-draft_48_1.png" src="../../_images/29_sim-full-draft_48_1.png" />
+<img alt="../../_images/eebec1f8a76e9038ae832ff4dc37a58d1807c95040eeb8ef0fefacb647605279.png" src="../../_images/eebec1f8a76e9038ae832ff4dc37a58d1807c95040eeb8ef0fefacb647605279.png" />
+<img alt="../../_images/75d71cf4fc2f400a939e9e50f2e802fb55fa3f3983b107412d50a51c3824199c.png" src="../../_images/75d71cf4fc2f400a939e9e50f2e802fb55fa3f3983b107412d50a51c3824199c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1140,7 +1240,7 @@ Wall time: 74.8 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f923c3a4fd0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/29_sim-full-draft_55_1.png" src="../../_images/29_sim-full-draft_55_1.png" />
+<img alt="../../_images/32a7d6516ac59dc1cf3a6df8ba0dfcb4a2f13d63b478cae37ed8b05869e32263.png" src="../../_images/32a7d6516ac59dc1cf3a6df8ba0dfcb4a2f13d63b478cae37ed8b05869e32263.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1152,8 +1252,8 @@ Wall time: 74.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_56_0.png" src="../../_images/29_sim-full-draft_56_0.png" />
-<img alt="../../_images/29_sim-full-draft_56_1.png" src="../../_images/29_sim-full-draft_56_1.png" />
+<img alt="../../_images/6266028d484af95cf4321deead4d55502e98e2739a14d15722d7887317b8d5d4.png" src="../../_images/6266028d484af95cf4321deead4d55502e98e2739a14d15722d7887317b8d5d4.png" />
+<img alt="../../_images/81e6ff56eb18f9449f93c763f4dac0a2a6742960b73eb29299a0d1313d3637e4.png" src="../../_images/81e6ff56eb18f9449f93c763f4dac0a2a6742960b73eb29299a0d1313d3637e4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1237,8 +1337,8 @@ Wall time: 74.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_69_0.png" src="../../_images/29_sim-full-draft_69_0.png" />
-<img alt="../../_images/29_sim-full-draft_69_1.png" src="../../_images/29_sim-full-draft_69_1.png" />
+<img alt="../../_images/edb6aa0ab718b26212da29da45c857da503aa4bfd624bf674f4ded76c75c704f.png" src="../../_images/edb6aa0ab718b26212da29da45c857da503aa4bfd624bf674f4ded76c75c704f.png" />
+<img alt="../../_images/66307ffea7d187faec7c06514e31fe88072f066e8e752fdc2ab93692fbef03bd.png" src="../../_images/66307ffea7d187faec7c06514e31fe88072f066e8e752fdc2ab93692fbef03bd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1321,7 +1421,7 @@ Wall time: 74.8 ms
 </div>
 </section>
 <section id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">#</a></h2>
 <p>When computing object velocity, make sure to use the mask to provide correct x,y,z…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1344,8 +1444,8 @@ Wall time: 74.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_86_0.png" src="../../_images/29_sim-full-draft_86_0.png" />
-<img alt="../../_images/29_sim-full-draft_86_1.png" src="../../_images/29_sim-full-draft_86_1.png" />
+<img alt="../../_images/c52d7273f83ffeff16e2dc5b17b0b2e923d9bd2410ef27db20e3fed705e9e929.png" src="../../_images/c52d7273f83ffeff16e2dc5b17b0b2e923d9bd2410ef27db20e3fed705e9e929.png" />
+<img alt="../../_images/3758edcf82431b6bdd7e533e434424bf072347ebca22fa5110aaca15193fd5ce.png" src="../../_images/3758edcf82431b6bdd7e533e434424bf072347ebca22fa5110aaca15193fd5ce.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1357,8 +1457,8 @@ Wall time: 74.8 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29_sim-full-draft_87_0.png" src="../../_images/29_sim-full-draft_87_0.png" />
-<img alt="../../_images/29_sim-full-draft_87_1.png" src="../../_images/29_sim-full-draft_87_1.png" />
+<img alt="../../_images/6c80fff37b5885eec35c8515b5e1f2714db003368a62e6b4909f484d4af57e92.png" src="../../_images/6c80fff37b5885eec35c8515b5e1f2714db003368a62e6b4909f484d4af57e92.png" />
+<img alt="../../_images/6c243bea4b8637d8a4ad031d58cd7e60ac874bf1d49d58b5451ed202b64b5426.png" src="../../_images/6c243bea4b8637d8a4ad031d58cd7e60ac874bf1d49d58b5451ed202b64b5426.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1422,7 +1522,7 @@ Wall time: 74.8 ms
 </div>
 </section>
 <section id="before-object-adding">
-<h2>Before object adding<a class="headerlink" href="#before-object-adding" title="Permalink to this headline">¶</a></h2>
+<h2>Before object adding<a class="headerlink" href="#before-object-adding" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">fix</span><span class="p">)):</span>
@@ -1449,20 +1549,20 @@ Wall time: 74.8 ms
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_1.png" src="../../_images/29_sim-full-draft_95_1.png" />
+</div><img alt="../../_images/8f0f92df9a1eaf05692a547c7c7de9d64d5a843e4e66b5c0fb4a289ce16ac05e.png" src="../../_images/8f0f92df9a1eaf05692a547c7c7de9d64d5a843e4e66b5c0fb4a289ce16ac05e.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/matplotlib/quiver.py:686: RuntimeWarning: divide by zero encountered in double_scalars
   length = a * (widthu_per_lenu / (self.scale * self.width))
 /home/hadi/anaconda3/lib/python3.8/site-packages/matplotlib/quiver.py:686: RuntimeWarning: invalid value encountered in multiply
   length = a * (widthu_per_lenu / (self.scale * self.width))
 </pre></div>
 </div>
-<img alt="../../_images/29_sim-full-draft_95_3.png" src="../../_images/29_sim-full-draft_95_3.png" />
+<img alt="../../_images/bd1c16afb5d292a654144120372597ebbcb23e89b463c190302e6f77eeba74eb.png" src="../../_images/bd1c16afb5d292a654144120372597ebbcb23e89b463c190302e6f77eeba74eb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_5.png" src="../../_images/29_sim-full-draft_95_5.png" />
-<img alt="../../_images/29_sim-full-draft_95_6.png" src="../../_images/29_sim-full-draft_95_6.png" />
+</div><img alt="../../_images/41e2b555d1e693321062bb732d28ab5822dee6a71624132b9f69509cda3771ee.png" src="../../_images/41e2b555d1e693321062bb732d28ab5822dee6a71624132b9f69509cda3771ee.png" />
+<img alt="../../_images/5bc9cdf15cf50a77521ea2aedb6740f505a4a17bacef430e588bc0b9afe6d573.png" src="../../_images/5bc9cdf15cf50a77521ea2aedb6740f505a4a17bacef430e588bc0b9afe6d573.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1473,14 +1573,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_10.png" src="../../_images/29_sim-full-draft_95_10.png" />
-<img alt="../../_images/29_sim-full-draft_95_11.png" src="../../_images/29_sim-full-draft_95_11.png" />
+</div><img alt="../../_images/8f0f92df9a1eaf05692a547c7c7de9d64d5a843e4e66b5c0fb4a289ce16ac05e.png" src="../../_images/8f0f92df9a1eaf05692a547c7c7de9d64d5a843e4e66b5c0fb4a289ce16ac05e.png" />
+<img alt="../../_images/bd1c16afb5d292a654144120372597ebbcb23e89b463c190302e6f77eeba74eb.png" src="../../_images/bd1c16afb5d292a654144120372597ebbcb23e89b463c190302e6f77eeba74eb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_13.png" src="../../_images/29_sim-full-draft_95_13.png" />
-<img alt="../../_images/29_sim-full-draft_95_14.png" src="../../_images/29_sim-full-draft_95_14.png" />
+</div><img alt="../../_images/01f0961358e28404f3504b144236fd6abe2a7d7e484d3a34f365b5e7603d86df.png" src="../../_images/01f0961358e28404f3504b144236fd6abe2a7d7e484d3a34f365b5e7603d86df.png" />
+<img alt="../../_images/1897a4fe37ceaa436bd32b1c18b056deb56a5d26a3d9db121dfeefc97af8e06b.png" src="../../_images/1897a4fe37ceaa436bd32b1c18b056deb56a5d26a3d9db121dfeefc97af8e06b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1491,14 +1591,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_18.png" src="../../_images/29_sim-full-draft_95_18.png" />
-<img alt="../../_images/29_sim-full-draft_95_19.png" src="../../_images/29_sim-full-draft_95_19.png" />
+</div><img alt="../../_images/6c4e9aaa0829ee054781e2e4d3e52cb0959b282c6d7b436075f73ba75e605f93.png" src="../../_images/6c4e9aaa0829ee054781e2e4d3e52cb0959b282c6d7b436075f73ba75e605f93.png" />
+<img alt="../../_images/7414c4ed3330742015bfce1e24d53b522fa58b13c95fa9422d10a921a86c20aa.png" src="../../_images/7414c4ed3330742015bfce1e24d53b522fa58b13c95fa9422d10a921a86c20aa.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_21.png" src="../../_images/29_sim-full-draft_95_21.png" />
-<img alt="../../_images/29_sim-full-draft_95_22.png" src="../../_images/29_sim-full-draft_95_22.png" />
+</div><img alt="../../_images/77dccd0d9b4032143194b27dd74efd5e7de80993958ae4f5f8a0aaf7e9cf230d.png" src="../../_images/77dccd0d9b4032143194b27dd74efd5e7de80993958ae4f5f8a0aaf7e9cf230d.png" />
+<img alt="../../_images/0687cc396d6a43e8268408549a9fb219efed2b61d16768106069ff2157a51990.png" src="../../_images/0687cc396d6a43e8268408549a9fb219efed2b61d16768106069ff2157a51990.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1509,14 +1609,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_26.png" src="../../_images/29_sim-full-draft_95_26.png" />
-<img alt="../../_images/29_sim-full-draft_95_27.png" src="../../_images/29_sim-full-draft_95_27.png" />
+</div><img alt="../../_images/1fdf3e2fe7e2cdc7aef3393181e3540016ecc557ebb248c89d93416555150ee0.png" src="../../_images/1fdf3e2fe7e2cdc7aef3393181e3540016ecc557ebb248c89d93416555150ee0.png" />
+<img alt="../../_images/bcfefc55e641453fcaf492418621a55614737796601d0f454168c3d3a4f533a8.png" src="../../_images/bcfefc55e641453fcaf492418621a55614737796601d0f454168c3d3a4f533a8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_29.png" src="../../_images/29_sim-full-draft_95_29.png" />
-<img alt="../../_images/29_sim-full-draft_95_30.png" src="../../_images/29_sim-full-draft_95_30.png" />
+</div><img alt="../../_images/6cef0e2acc1243bb9c3f05bf08ab89897c9a3d6014f0e3cd97e68d45de6c3dee.png" src="../../_images/6cef0e2acc1243bb9c3f05bf08ab89897c9a3d6014f0e3cd97e68d45de6c3dee.png" />
+<img alt="../../_images/3e578af1ebe831a0f75cbb1d485c0ee51fd64e67daf09b013ecc3372c0bcd4d9.png" src="../../_images/3e578af1ebe831a0f75cbb1d485c0ee51fd64e67daf09b013ecc3372c0bcd4d9.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1527,14 +1627,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_34.png" src="../../_images/29_sim-full-draft_95_34.png" />
-<img alt="../../_images/29_sim-full-draft_95_35.png" src="../../_images/29_sim-full-draft_95_35.png" />
+</div><img alt="../../_images/427cc90843bd3d2b6013751cd1eff112ecbcf39f51d2e9fa23b7c06fbe2c67d9.png" src="../../_images/427cc90843bd3d2b6013751cd1eff112ecbcf39f51d2e9fa23b7c06fbe2c67d9.png" />
+<img alt="../../_images/40c11fbd584258e1c5f2a31b6785852db9eb3e44548c21d37c4906d32ae7b57f.png" src="../../_images/40c11fbd584258e1c5f2a31b6785852db9eb3e44548c21d37c4906d32ae7b57f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_37.png" src="../../_images/29_sim-full-draft_95_37.png" />
-<img alt="../../_images/29_sim-full-draft_95_38.png" src="../../_images/29_sim-full-draft_95_38.png" />
+</div><img alt="../../_images/9862443bc2d288baa156f8243ba8e33331117ce20c87f7fb145f5bde7cc3c576.png" src="../../_images/9862443bc2d288baa156f8243ba8e33331117ce20c87f7fb145f5bde7cc3c576.png" />
+<img alt="../../_images/828c1bad24d2634c8a5fbbaddefe83763316adc431fb6a18df6d7b8b98557eae.png" src="../../_images/828c1bad24d2634c8a5fbbaddefe83763316adc431fb6a18df6d7b8b98557eae.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1545,14 +1645,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_42.png" src="../../_images/29_sim-full-draft_95_42.png" />
-<img alt="../../_images/29_sim-full-draft_95_43.png" src="../../_images/29_sim-full-draft_95_43.png" />
+</div><img alt="../../_images/fb02877a70be365d4d5aa8718d5b25480110eb2252c8b42fbafac3bbecd8cf7a.png" src="../../_images/fb02877a70be365d4d5aa8718d5b25480110eb2252c8b42fbafac3bbecd8cf7a.png" />
+<img alt="../../_images/7414c4ed3330742015bfce1e24d53b522fa58b13c95fa9422d10a921a86c20aa.png" src="../../_images/7414c4ed3330742015bfce1e24d53b522fa58b13c95fa9422d10a921a86c20aa.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_45.png" src="../../_images/29_sim-full-draft_95_45.png" />
-<img alt="../../_images/29_sim-full-draft_95_46.png" src="../../_images/29_sim-full-draft_95_46.png" />
+</div><img alt="../../_images/c2d092f8ae775ef3e14288c8351be25d6ec10c9d37ffd51b84f9c92d2720a397.png" src="../../_images/c2d092f8ae775ef3e14288c8351be25d6ec10c9d37ffd51b84f9c92d2720a397.png" />
+<img alt="../../_images/484356580a638491c921fbbc33d6c7ecfac51e1f66d59da2ce05fe17e1c30c02.png" src="../../_images/484356580a638491c921fbbc33d6c7ecfac51e1f66d59da2ce05fe17e1c30c02.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1563,14 +1663,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_50.png" src="../../_images/29_sim-full-draft_95_50.png" />
-<img alt="../../_images/29_sim-full-draft_95_51.png" src="../../_images/29_sim-full-draft_95_51.png" />
+</div><img alt="../../_images/b5ab29067c4220491fcf6d5dd57d65194e4426a1506fe0da559a36e140a5aa9a.png" src="../../_images/b5ab29067c4220491fcf6d5dd57d65194e4426a1506fe0da559a36e140a5aa9a.png" />
+<img alt="../../_images/b18fa10076a89876cef6a82b53a066cd22cba47a2157f9242db00ee8e225de24.png" src="../../_images/b18fa10076a89876cef6a82b53a066cd22cba47a2157f9242db00ee8e225de24.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_53.png" src="../../_images/29_sim-full-draft_95_53.png" />
-<img alt="../../_images/29_sim-full-draft_95_54.png" src="../../_images/29_sim-full-draft_95_54.png" />
+</div><img alt="../../_images/0ab5a2e84f3ee13cd006925298628459bebb3f1c3192bb391cd4a96f648372fb.png" src="../../_images/0ab5a2e84f3ee13cd006925298628459bebb3f1c3192bb391cd4a96f648372fb.png" />
+<img alt="../../_images/ee16b7f2e9e78c6546608fc1cdc21312dbb2f4c730384a1b7e0d0004f2499422.png" src="../../_images/ee16b7f2e9e78c6546608fc1cdc21312dbb2f4c730384a1b7e0d0004f2499422.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1581,14 +1681,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_58.png" src="../../_images/29_sim-full-draft_95_58.png" />
-<img alt="../../_images/29_sim-full-draft_95_59.png" src="../../_images/29_sim-full-draft_95_59.png" />
+</div><img alt="../../_images/b7fbdd0912d2e38b1b9754be4dbafd12a33bd7eecb5bbee0afbaa5be6ccd267e.png" src="../../_images/b7fbdd0912d2e38b1b9754be4dbafd12a33bd7eecb5bbee0afbaa5be6ccd267e.png" />
+<img alt="../../_images/b7ae6f252aff328c01a3b63b81af9af2f34efc723c7d76d7321c63c4031dc265.png" src="../../_images/b7ae6f252aff328c01a3b63b81af9af2f34efc723c7d76d7321c63c4031dc265.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_61.png" src="../../_images/29_sim-full-draft_95_61.png" />
-<img alt="../../_images/29_sim-full-draft_95_62.png" src="../../_images/29_sim-full-draft_95_62.png" />
+</div><img alt="../../_images/de7c09f9c8a08f2cecc82fd66da2e77c3b761d3c9b257f8bd68519425dd9f348.png" src="../../_images/de7c09f9c8a08f2cecc82fd66da2e77c3b761d3c9b257f8bd68519425dd9f348.png" />
+<img alt="../../_images/0968b1ad2bbbda77db55803de158de82f71b82f6498d2ea6ff5342f0691bc643.png" src="../../_images/0968b1ad2bbbda77db55803de158de82f71b82f6498d2ea6ff5342f0691bc643.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1599,14 +1699,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_66.png" src="../../_images/29_sim-full-draft_95_66.png" />
-<img alt="../../_images/29_sim-full-draft_95_67.png" src="../../_images/29_sim-full-draft_95_67.png" />
+</div><img alt="../../_images/fc8e8cbe459c069031cfe39a81b0543450b2e81f47fd457d510cb9ceaa394554.png" src="../../_images/fc8e8cbe459c069031cfe39a81b0543450b2e81f47fd457d510cb9ceaa394554.png" />
+<img alt="../../_images/3c4f81d3922ed50df4a5c5494e45838cd5d4b6519cc7695ebdbce7d856f8f7cb.png" src="../../_images/3c4f81d3922ed50df4a5c5494e45838cd5d4b6519cc7695ebdbce7d856f8f7cb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_69.png" src="../../_images/29_sim-full-draft_95_69.png" />
-<img alt="../../_images/29_sim-full-draft_95_70.png" src="../../_images/29_sim-full-draft_95_70.png" />
+</div><img alt="../../_images/761d114eff1782294e7a9691be57ccf3e9362ab41ebbcbb63c3c09a372129aa6.png" src="../../_images/761d114eff1782294e7a9691be57ccf3e9362ab41ebbcbb63c3c09a372129aa6.png" />
+<img alt="../../_images/66b14c15db242c40c17e6becbddbeb020a611e6fb3f405580c4edec0f3175a4b.png" src="../../_images/66b14c15db242c40c17e6becbddbeb020a611e6fb3f405580c4edec0f3175a4b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1617,14 +1717,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_74.png" src="../../_images/29_sim-full-draft_95_74.png" />
-<img alt="../../_images/29_sim-full-draft_95_75.png" src="../../_images/29_sim-full-draft_95_75.png" />
+</div><img alt="../../_images/5fe57ae563b939f3adc88871d95637b571d5482430461947785336f2c8d90703.png" src="../../_images/5fe57ae563b939f3adc88871d95637b571d5482430461947785336f2c8d90703.png" />
+<img alt="../../_images/2db7a47ce22526e6f070949298ecac7015e7fd95bc57614994aa54b6cb01e26b.png" src="../../_images/2db7a47ce22526e6f070949298ecac7015e7fd95bc57614994aa54b6cb01e26b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_77.png" src="../../_images/29_sim-full-draft_95_77.png" />
-<img alt="../../_images/29_sim-full-draft_95_78.png" src="../../_images/29_sim-full-draft_95_78.png" />
+</div><img alt="../../_images/8b5b2d0abb9e62d9cb51063d192ce047d046f19cc7606223e36092d2c1237506.png" src="../../_images/8b5b2d0abb9e62d9cb51063d192ce047d046f19cc7606223e36092d2c1237506.png" />
+<img alt="../../_images/5c8c6efdaa85db2a5bf9c99b12f6f64f458a9732a18a727c314c02ec66478e56.png" src="../../_images/5c8c6efdaa85db2a5bf9c99b12f6f64f458a9732a18a727c314c02ec66478e56.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1635,14 +1735,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_82.png" src="../../_images/29_sim-full-draft_95_82.png" />
-<img alt="../../_images/29_sim-full-draft_95_83.png" src="../../_images/29_sim-full-draft_95_83.png" />
+</div><img alt="../../_images/223cc8762153bd82a70f7672b295b9e3390b961719cbd3986cfd29538f14057c.png" src="../../_images/223cc8762153bd82a70f7672b295b9e3390b961719cbd3986cfd29538f14057c.png" />
+<img alt="../../_images/55bdcc80bf8650ea2b447ff29248e5df8d27c02cc6455b068a154ea1ffbc6fdd.png" src="../../_images/55bdcc80bf8650ea2b447ff29248e5df8d27c02cc6455b068a154ea1ffbc6fdd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_85.png" src="../../_images/29_sim-full-draft_95_85.png" />
-<img alt="../../_images/29_sim-full-draft_95_86.png" src="../../_images/29_sim-full-draft_95_86.png" />
+</div><img alt="../../_images/1fbdb7754a54cc4af600b60b2c2666ce5102c596e5b5b6e773e8c7f6952b4b85.png" src="../../_images/1fbdb7754a54cc4af600b60b2c2666ce5102c596e5b5b6e773e8c7f6952b4b85.png" />
+<img alt="../../_images/a24bb271293cb0caf6ba93b2d8fe05ef9aaa78c19d41c70c2eb2b3d8a6934922.png" src="../../_images/a24bb271293cb0caf6ba93b2d8fe05ef9aaa78c19d41c70c2eb2b3d8a6934922.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1653,14 +1753,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_90.png" src="../../_images/29_sim-full-draft_95_90.png" />
-<img alt="../../_images/29_sim-full-draft_95_91.png" src="../../_images/29_sim-full-draft_95_91.png" />
+</div><img alt="../../_images/8f0f92df9a1eaf05692a547c7c7de9d64d5a843e4e66b5c0fb4a289ce16ac05e.png" src="../../_images/8f0f92df9a1eaf05692a547c7c7de9d64d5a843e4e66b5c0fb4a289ce16ac05e.png" />
+<img alt="../../_images/bd1c16afb5d292a654144120372597ebbcb23e89b463c190302e6f77eeba74eb.png" src="../../_images/bd1c16afb5d292a654144120372597ebbcb23e89b463c190302e6f77eeba74eb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_93.png" src="../../_images/29_sim-full-draft_95_93.png" />
-<img alt="../../_images/29_sim-full-draft_95_94.png" src="../../_images/29_sim-full-draft_95_94.png" />
+</div><img alt="../../_images/ad1218cb6f2fbb07472bd535dfe8d3bf24bd4f51adf839de6309e85ceee6e307.png" src="../../_images/ad1218cb6f2fbb07472bd535dfe8d3bf24bd4f51adf839de6309e85ceee6e307.png" />
+<img alt="../../_images/5297e51226bb0a44b45077468b644bb12df69ad7f3ef77709e9d81826538aa43.png" src="../../_images/5297e51226bb0a44b45077468b644bb12df69ad7f3ef77709e9d81826538aa43.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1671,14 +1771,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_98.png" src="../../_images/29_sim-full-draft_95_98.png" />
-<img alt="../../_images/29_sim-full-draft_95_99.png" src="../../_images/29_sim-full-draft_95_99.png" />
+</div><img alt="../../_images/09eb1502df28b31f79096c4aa3eae36552437f4cf5543618709545b0bd2bf0d6.png" src="../../_images/09eb1502df28b31f79096c4aa3eae36552437f4cf5543618709545b0bd2bf0d6.png" />
+<img alt="../../_images/709dc0369f6bdaad69043f08dd141b6782050eebd22da0b04a233d7f325f0dfc.png" src="../../_images/709dc0369f6bdaad69043f08dd141b6782050eebd22da0b04a233d7f325f0dfc.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_101.png" src="../../_images/29_sim-full-draft_95_101.png" />
-<img alt="../../_images/29_sim-full-draft_95_102.png" src="../../_images/29_sim-full-draft_95_102.png" />
+</div><img alt="../../_images/d0cee754c79df81c516a29e8356ed12ab94fe81057d2555f67ff3b944ccaa2b3.png" src="../../_images/d0cee754c79df81c516a29e8356ed12ab94fe81057d2555f67ff3b944ccaa2b3.png" />
+<img alt="../../_images/8726a057eb1254d028a309986ebda78e36ec26fbc61c40d8b29b9b54b4426f11.png" src="../../_images/8726a057eb1254d028a309986ebda78e36ec26fbc61c40d8b29b9b54b4426f11.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1689,14 +1789,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_106.png" src="../../_images/29_sim-full-draft_95_106.png" />
-<img alt="../../_images/29_sim-full-draft_95_107.png" src="../../_images/29_sim-full-draft_95_107.png" />
+</div><img alt="../../_images/1a81cf9c1dfd71c601ecdd55aa4e74771dd702f9da5733c04dfaff0eb9b592df.png" src="../../_images/1a81cf9c1dfd71c601ecdd55aa4e74771dd702f9da5733c04dfaff0eb9b592df.png" />
+<img alt="../../_images/ecf594840ce9538a79f37ff99c10cf8a9866fa177321bdc8c0e37a333eb47977.png" src="../../_images/ecf594840ce9538a79f37ff99c10cf8a9866fa177321bdc8c0e37a333eb47977.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_109.png" src="../../_images/29_sim-full-draft_95_109.png" />
-<img alt="../../_images/29_sim-full-draft_95_110.png" src="../../_images/29_sim-full-draft_95_110.png" />
+</div><img alt="../../_images/aa06f00de46e416aec8f7e5ca1c2a6b5a95be9734302a88a6880e9364b5edcd9.png" src="../../_images/aa06f00de46e416aec8f7e5ca1c2a6b5a95be9734302a88a6880e9364b5edcd9.png" />
+<img alt="../../_images/7e9928aa521c82f3ad958e0bdc4771ba697ae3a85f1c2f9c26c3acfde2d48449.png" src="../../_images/7e9928aa521c82f3ad958e0bdc4771ba697ae3a85f1c2f9c26c3acfde2d48449.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1707,14 +1807,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_114.png" src="../../_images/29_sim-full-draft_95_114.png" />
-<img alt="../../_images/29_sim-full-draft_95_115.png" src="../../_images/29_sim-full-draft_95_115.png" />
+</div><img alt="../../_images/e2ec4abf23ba31f2d859f027a39211eee720737eacf8070f5bed1d8f3bad6fe7.png" src="../../_images/e2ec4abf23ba31f2d859f027a39211eee720737eacf8070f5bed1d8f3bad6fe7.png" />
+<img alt="../../_images/7be9596ec255b045e623aeda3217acb112a5ed5bcb14c7c445432b08f59d61b6.png" src="../../_images/7be9596ec255b045e623aeda3217acb112a5ed5bcb14c7c445432b08f59d61b6.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_117.png" src="../../_images/29_sim-full-draft_95_117.png" />
-<img alt="../../_images/29_sim-full-draft_95_118.png" src="../../_images/29_sim-full-draft_95_118.png" />
+</div><img alt="../../_images/5ce8bfae8fca10c3e539cca73541de2db2bb9ecfa6eedfcbb610b945c8d9dbbe.png" src="../../_images/5ce8bfae8fca10c3e539cca73541de2db2bb9ecfa6eedfcbb610b945c8d9dbbe.png" />
+<img alt="../../_images/1031a58430d8cf38fd7fd03371069397d5c1cc5896882f8da66966f716a73d65.png" src="../../_images/1031a58430d8cf38fd7fd03371069397d5c1cc5896882f8da66966f716a73d65.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1725,14 +1825,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_122.png" src="../../_images/29_sim-full-draft_95_122.png" />
-<img alt="../../_images/29_sim-full-draft_95_123.png" src="../../_images/29_sim-full-draft_95_123.png" />
+</div><img alt="../../_images/cb945c666dc44daadb458dd903f03ce556830322f2632dcca97976a3019fdc18.png" src="../../_images/cb945c666dc44daadb458dd903f03ce556830322f2632dcca97976a3019fdc18.png" />
+<img alt="../../_images/f9057c2ecde47a8be7b2bca38df638694ea7455711d6a8f99be14c343ca0a418.png" src="../../_images/f9057c2ecde47a8be7b2bca38df638694ea7455711d6a8f99be14c343ca0a418.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_125.png" src="../../_images/29_sim-full-draft_95_125.png" />
-<img alt="../../_images/29_sim-full-draft_95_126.png" src="../../_images/29_sim-full-draft_95_126.png" />
+</div><img alt="../../_images/ab6e5dcff9bda8a7cd4cc9a5dc7a47f99bb8d6ec027c7b5cdb828c3ac3149afe.png" src="../../_images/ab6e5dcff9bda8a7cd4cc9a5dc7a47f99bb8d6ec027c7b5cdb828c3ac3149afe.png" />
+<img alt="../../_images/21aedff821115d09b5ea040ce7822ecf7d92623ff5eaf0728a76037f75b0887e.png" src="../../_images/21aedff821115d09b5ea040ce7822ecf7d92623ff5eaf0728a76037f75b0887e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1743,14 +1843,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_130.png" src="../../_images/29_sim-full-draft_95_130.png" />
-<img alt="../../_images/29_sim-full-draft_95_131.png" src="../../_images/29_sim-full-draft_95_131.png" />
+</div><img alt="../../_images/94d2076e837021eac2bc68a244055e2ae64855ff65fda88a374f6ee3a9ead104.png" src="../../_images/94d2076e837021eac2bc68a244055e2ae64855ff65fda88a374f6ee3a9ead104.png" />
+<img alt="../../_images/a9332ecbcb3a3498ea342255090b4a71753b5186d2cfcbcca9aff56fea2a7668.png" src="../../_images/a9332ecbcb3a3498ea342255090b4a71753b5186d2cfcbcca9aff56fea2a7668.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_133.png" src="../../_images/29_sim-full-draft_95_133.png" />
-<img alt="../../_images/29_sim-full-draft_95_134.png" src="../../_images/29_sim-full-draft_95_134.png" />
+</div><img alt="../../_images/971bdba8999238be3d2a39945fad92bd2293752efc1da3ec8f7e2805d824bbb9.png" src="../../_images/971bdba8999238be3d2a39945fad92bd2293752efc1da3ec8f7e2805d824bbb9.png" />
+<img alt="../../_images/9531a1a517b7e01c149c9154a40fa157c83c85b04633ae3efefd86eae3a82fe0.png" src="../../_images/9531a1a517b7e01c149c9154a40fa157c83c85b04633ae3efefd86eae3a82fe0.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1761,14 +1861,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_138.png" src="../../_images/29_sim-full-draft_95_138.png" />
-<img alt="../../_images/29_sim-full-draft_95_139.png" src="../../_images/29_sim-full-draft_95_139.png" />
+</div><img alt="../../_images/efb3eab9f88f09a58897b14ff3e5d8ca3e6a503ed54f18c336b67bcb6cc1dfa2.png" src="../../_images/efb3eab9f88f09a58897b14ff3e5d8ca3e6a503ed54f18c336b67bcb6cc1dfa2.png" />
+<img alt="../../_images/cdbe7494c452816e86c97c8d0fd225089ce1aa7e3dab62aecf43eadd9c862f2b.png" src="../../_images/cdbe7494c452816e86c97c8d0fd225089ce1aa7e3dab62aecf43eadd9c862f2b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_141.png" src="../../_images/29_sim-full-draft_95_141.png" />
-<img alt="../../_images/29_sim-full-draft_95_142.png" src="../../_images/29_sim-full-draft_95_142.png" />
+</div><img alt="../../_images/e331fadd7e3cf2ae50e2e46d09f155a57c1409205eb5d5505cfbe4720b8f2dc3.png" src="../../_images/e331fadd7e3cf2ae50e2e46d09f155a57c1409205eb5d5505cfbe4720b8f2dc3.png" />
+<img alt="../../_images/96ed5836d7ea665d809f8fb76b2835e8ad30e8e7936c3819177ffd5125cc0f4e.png" src="../../_images/96ed5836d7ea665d809f8fb76b2835e8ad30e8e7936c3819177ffd5125cc0f4e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1779,14 +1879,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_146.png" src="../../_images/29_sim-full-draft_95_146.png" />
-<img alt="../../_images/29_sim-full-draft_95_147.png" src="../../_images/29_sim-full-draft_95_147.png" />
+</div><img alt="../../_images/4b7f46430cce2e48b76ec83b53bcc97593745a5910998d8b79dd2bc818a88645.png" src="../../_images/4b7f46430cce2e48b76ec83b53bcc97593745a5910998d8b79dd2bc818a88645.png" />
+<img alt="../../_images/4c49caaacc1fc8f108566afe09d00c43af89185d6752a5f05741b04d26773180.png" src="../../_images/4c49caaacc1fc8f108566afe09d00c43af89185d6752a5f05741b04d26773180.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_149.png" src="../../_images/29_sim-full-draft_95_149.png" />
-<img alt="../../_images/29_sim-full-draft_95_150.png" src="../../_images/29_sim-full-draft_95_150.png" />
+</div><img alt="../../_images/71037d96c380ddc7e50e75abe6b5013a38aecbc74726b30c0890ca5b87c5c941.png" src="../../_images/71037d96c380ddc7e50e75abe6b5013a38aecbc74726b30c0890ca5b87c5c941.png" />
+<img alt="../../_images/ce13601ed0169e8d23a710e5920163de5463096666acd4c4d20de37a55449c8d.png" src="../../_images/ce13601ed0169e8d23a710e5920163de5463096666acd4c4d20de37a55449c8d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1797,14 +1897,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_154.png" src="../../_images/29_sim-full-draft_95_154.png" />
-<img alt="../../_images/29_sim-full-draft_95_155.png" src="../../_images/29_sim-full-draft_95_155.png" />
+</div><img alt="../../_images/acc11fbd9db6ea9bb55d25f26538b9b218dab42ab682bca8a9f9709a4b065652.png" src="../../_images/acc11fbd9db6ea9bb55d25f26538b9b218dab42ab682bca8a9f9709a4b065652.png" />
+<img alt="../../_images/4b490305fa8da087ee1ee8bb1717aa6447df262af2bfb3dc5854008e9f20b52a.png" src="../../_images/4b490305fa8da087ee1ee8bb1717aa6447df262af2bfb3dc5854008e9f20b52a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_157.png" src="../../_images/29_sim-full-draft_95_157.png" />
-<img alt="../../_images/29_sim-full-draft_95_158.png" src="../../_images/29_sim-full-draft_95_158.png" />
+</div><img alt="../../_images/e77c52433bc04ebd907ff4c54b71c0184b3427123cbb6cab58f13f8f74348e70.png" src="../../_images/e77c52433bc04ebd907ff4c54b71c0184b3427123cbb6cab58f13f8f74348e70.png" />
+<img alt="../../_images/39e6056ee99e9ca8778b5e8135618cdb9f328e6a8bd3462ef6e3ff0e7143f3fb.png" src="../../_images/39e6056ee99e9ca8778b5e8135618cdb9f328e6a8bd3462ef6e3ff0e7143f3fb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1815,14 +1915,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_162.png" src="../../_images/29_sim-full-draft_95_162.png" />
-<img alt="../../_images/29_sim-full-draft_95_163.png" src="../../_images/29_sim-full-draft_95_163.png" />
+</div><img alt="../../_images/ffed190a200454703156f59cdd7bf6bb78a8d3e5c8700ec50eb440c59e53949a.png" src="../../_images/ffed190a200454703156f59cdd7bf6bb78a8d3e5c8700ec50eb440c59e53949a.png" />
+<img alt="../../_images/f8484a78f346d6136cfbf929cbe1436861dd98ce2c226378f808d7827c2be8e7.png" src="../../_images/f8484a78f346d6136cfbf929cbe1436861dd98ce2c226378f808d7827c2be8e7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_165.png" src="../../_images/29_sim-full-draft_95_165.png" />
-<img alt="../../_images/29_sim-full-draft_95_166.png" src="../../_images/29_sim-full-draft_95_166.png" />
+</div><img alt="../../_images/67fb8d319a20402994ecba011e9f146c7fdd5621650382831f18a16c167a3526.png" src="../../_images/67fb8d319a20402994ecba011e9f146c7fdd5621650382831f18a16c167a3526.png" />
+<img alt="../../_images/0151e11579f2dbb3efba1ace72022a64730c4b0604f14896e858796a25f7526b.png" src="../../_images/0151e11579f2dbb3efba1ace72022a64730c4b0604f14896e858796a25f7526b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1833,14 +1933,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_170.png" src="../../_images/29_sim-full-draft_95_170.png" />
-<img alt="../../_images/29_sim-full-draft_95_171.png" src="../../_images/29_sim-full-draft_95_171.png" />
+</div><img alt="../../_images/7078b338c0fdc7b5a903c0165c969bad08aab9f79b1cda1f8d049cc77c97ee3e.png" src="../../_images/7078b338c0fdc7b5a903c0165c969bad08aab9f79b1cda1f8d049cc77c97ee3e.png" />
+<img alt="../../_images/6f8242c2dd8b6474204a1d07c2c797cf1dca3aa3684cdb6a03ef6341637f45a7.png" src="../../_images/6f8242c2dd8b6474204a1d07c2c797cf1dca3aa3684cdb6a03ef6341637f45a7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_173.png" src="../../_images/29_sim-full-draft_95_173.png" />
-<img alt="../../_images/29_sim-full-draft_95_174.png" src="../../_images/29_sim-full-draft_95_174.png" />
+</div><img alt="../../_images/815af0f5f15ec37385d0c13192f5b28a108e028b3843d01f3478c8cb5f7f804a.png" src="../../_images/815af0f5f15ec37385d0c13192f5b28a108e028b3843d01f3478c8cb5f7f804a.png" />
+<img alt="../../_images/a063f333e398813cefc493ef9dcb571e0bfd3d3dc7290bf633e487daf6b9f588.png" src="../../_images/a063f333e398813cefc493ef9dcb571e0bfd3d3dc7290bf633e487daf6b9f588.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1851,14 +1951,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_178.png" src="../../_images/29_sim-full-draft_95_178.png" />
-<img alt="../../_images/29_sim-full-draft_95_179.png" src="../../_images/29_sim-full-draft_95_179.png" />
+</div><img alt="../../_images/749a104fcd83b5b718348ab4042a262936f0e57094e399bb341933d126000a6b.png" src="../../_images/749a104fcd83b5b718348ab4042a262936f0e57094e399bb341933d126000a6b.png" />
+<img alt="../../_images/185b9267295fc13c02bb58ff6143111d2edfc85d9e8266e292ff2b3cfcdcaac7.png" src="../../_images/185b9267295fc13c02bb58ff6143111d2edfc85d9e8266e292ff2b3cfcdcaac7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_181.png" src="../../_images/29_sim-full-draft_95_181.png" />
-<img alt="../../_images/29_sim-full-draft_95_182.png" src="../../_images/29_sim-full-draft_95_182.png" />
+</div><img alt="../../_images/43e69d5456b1155b77346c064942cfe75a358474c5a41afa9b3b8facf6f04c0c.png" src="../../_images/43e69d5456b1155b77346c064942cfe75a358474c5a41afa9b3b8facf6f04c0c.png" />
+<img alt="../../_images/8209f102dda033f99bca8abf8258e470117fd06be01d4f4b04862ca742fb9f1b.png" src="../../_images/8209f102dda033f99bca8abf8258e470117fd06be01d4f4b04862ca742fb9f1b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1869,14 +1969,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_186.png" src="../../_images/29_sim-full-draft_95_186.png" />
-<img alt="../../_images/29_sim-full-draft_95_187.png" src="../../_images/29_sim-full-draft_95_187.png" />
+</div><img alt="../../_images/4d2149c59d62384facfd7349490bbbb2ad5543af715844087d8f3e8faba7dd41.png" src="../../_images/4d2149c59d62384facfd7349490bbbb2ad5543af715844087d8f3e8faba7dd41.png" />
+<img alt="../../_images/185b9267295fc13c02bb58ff6143111d2edfc85d9e8266e292ff2b3cfcdcaac7.png" src="../../_images/185b9267295fc13c02bb58ff6143111d2edfc85d9e8266e292ff2b3cfcdcaac7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_189.png" src="../../_images/29_sim-full-draft_95_189.png" />
-<img alt="../../_images/29_sim-full-draft_95_190.png" src="../../_images/29_sim-full-draft_95_190.png" />
+</div><img alt="../../_images/070daa6caa8b7c87cc05503f0040b6a162bb5b7ce106d572fb4261872dc2f2bc.png" src="../../_images/070daa6caa8b7c87cc05503f0040b6a162bb5b7ce106d572fb4261872dc2f2bc.png" />
+<img alt="../../_images/bbf76a8e6afb7ce639e99287dc12f10c78afd14c376e389027140d0d2121309e.png" src="../../_images/bbf76a8e6afb7ce639e99287dc12f10c78afd14c376e389027140d0d2121309e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1887,14 +1987,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_194.png" src="../../_images/29_sim-full-draft_95_194.png" />
-<img alt="../../_images/29_sim-full-draft_95_195.png" src="../../_images/29_sim-full-draft_95_195.png" />
+</div><img alt="../../_images/594e73d5c9dc94eed069e82216bd3101aefc462cdb766369ee7d6a541c56d668.png" src="../../_images/594e73d5c9dc94eed069e82216bd3101aefc462cdb766369ee7d6a541c56d668.png" />
+<img alt="../../_images/53a2928c66da8884e6161feeb4a7b95ba2c096f1be502a30bc536ad0a172b78a.png" src="../../_images/53a2928c66da8884e6161feeb4a7b95ba2c096f1be502a30bc536ad0a172b78a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_197.png" src="../../_images/29_sim-full-draft_95_197.png" />
-<img alt="../../_images/29_sim-full-draft_95_198.png" src="../../_images/29_sim-full-draft_95_198.png" />
+</div><img alt="../../_images/385ba3803081ede263a31b9d8323cb21fa3bd7233739c9f7c3c01c4ce5085405.png" src="../../_images/385ba3803081ede263a31b9d8323cb21fa3bd7233739c9f7c3c01c4ce5085405.png" />
+<img alt="../../_images/326152b08b968b1bda3c5d81c2004c7273511267cdd0053f411c7cdfb08d1795.png" src="../../_images/326152b08b968b1bda3c5d81c2004c7273511267cdd0053f411c7cdfb08d1795.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1905,14 +2005,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_202.png" src="../../_images/29_sim-full-draft_95_202.png" />
-<img alt="../../_images/29_sim-full-draft_95_203.png" src="../../_images/29_sim-full-draft_95_203.png" />
+</div><img alt="../../_images/7de0c4add032af929fa20aaf262c993e82139255f8d987b950a2897d499b36ab.png" src="../../_images/7de0c4add032af929fa20aaf262c993e82139255f8d987b950a2897d499b36ab.png" />
+<img alt="../../_images/e1493d9b6894fc412a14e0c3dc6b1e52df646ade9a491aea15eeceb466842686.png" src="../../_images/e1493d9b6894fc412a14e0c3dc6b1e52df646ade9a491aea15eeceb466842686.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_205.png" src="../../_images/29_sim-full-draft_95_205.png" />
-<img alt="../../_images/29_sim-full-draft_95_206.png" src="../../_images/29_sim-full-draft_95_206.png" />
+</div><img alt="../../_images/62aeb3f45a94698ee55441bbbead4760311c6b1df24b614d57200d7e7542d6a0.png" src="../../_images/62aeb3f45a94698ee55441bbbead4760311c6b1df24b614d57200d7e7542d6a0.png" />
+<img alt="../../_images/1a4d0ef0c79ec189cb98d530577c2c98e26ab3984c32b0e8320f15b5b181aff3.png" src="../../_images/1a4d0ef0c79ec189cb98d530577c2c98e26ab3984c32b0e8320f15b5b181aff3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1923,14 +2023,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_210.png" src="../../_images/29_sim-full-draft_95_210.png" />
-<img alt="../../_images/29_sim-full-draft_95_211.png" src="../../_images/29_sim-full-draft_95_211.png" />
+</div><img alt="../../_images/b12e6a2b9d3d5e57a5ad1d7f04ad33e5ac5df87e4b9f4e330d849aa8b8d784e5.png" src="../../_images/b12e6a2b9d3d5e57a5ad1d7f04ad33e5ac5df87e4b9f4e330d849aa8b8d784e5.png" />
+<img alt="../../_images/185b9267295fc13c02bb58ff6143111d2edfc85d9e8266e292ff2b3cfcdcaac7.png" src="../../_images/185b9267295fc13c02bb58ff6143111d2edfc85d9e8266e292ff2b3cfcdcaac7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_213.png" src="../../_images/29_sim-full-draft_95_213.png" />
-<img alt="../../_images/29_sim-full-draft_95_214.png" src="../../_images/29_sim-full-draft_95_214.png" />
+</div><img alt="../../_images/a2f4e07e244b450193eb375887f620f43e1ba4122e2b1a44ec2e215e8cfe3261.png" src="../../_images/a2f4e07e244b450193eb375887f620f43e1ba4122e2b1a44ec2e215e8cfe3261.png" />
+<img alt="../../_images/89e86a6e2a71e6f1edd7d662e1781a291366f813600e3afb3d76347242f82f15.png" src="../../_images/89e86a6e2a71e6f1edd7d662e1781a291366f813600e3afb3d76347242f82f15.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1941,14 +2041,14 @@ Wall time: 74.8 ms
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="font-weight: bold">]</span>,   velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_218.png" src="../../_images/29_sim-full-draft_95_218.png" />
-<img alt="../../_images/29_sim-full-draft_95_219.png" src="../../_images/29_sim-full-draft_95_219.png" />
+</div><img alt="../../_images/e2e96a469bdcde42dde1e12e06fe117d545c92cd8f87da477f1692ea9ffcb856.png" src="../../_images/e2e96a469bdcde42dde1e12e06fe117d545c92cd8f87da477f1692ea9ffcb856.png" />
+<img alt="../../_images/ab26a5f89898807b341bcadb7e3b4bf5725941a44d3c18a2ddbeb7eb0d44717e.png" src="../../_images/ab26a5f89898807b341bcadb7e3b4bf5725941a44d3c18a2ddbeb7eb0d44717e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/29_sim-full-draft_95_221.png" src="../../_images/29_sim-full-draft_95_221.png" />
-<img alt="../../_images/29_sim-full-draft_95_222.png" src="../../_images/29_sim-full-draft_95_222.png" />
+</div><img alt="../../_images/8e047f299d3a6f787e907a7b0016145834ec6be89d4a240ecc48b0738bcc88cc.png" src="../../_images/8e047f299d3a6f787e907a7b0016145834ec6be89d4a240ecc48b0738bcc88cc.png" />
+<img alt="../../_images/5f30a83362dd571c5d8fc5c33c12059e4a516e8601cc5f09add5c02476563982.png" src="../../_images/5f30a83362dd571c5d8fc5c33c12059e4a516e8601cc5f09add5c02476563982.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1974,7 +2074,7 @@ Wall time: 74.8 ms
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-01"
         },
         predefinedOutput: true
@@ -1982,36 +2082,109 @@ Wall time: 74.8 ms
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="28_sim-self.html" title="previous page">(28) Simulation – self [velocity: new way]</a>
-    <a class='right-next' id="next-link" href="30_sim-full-final.html" title="next page">(30) Simulation – full [final]</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="28_sim-self.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(28) Simulation – self [velocity: new way]</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="30_sim-full-final.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(30) Simulation – full [final]</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test">Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start">START</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end">END</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-object-adding">Before object adding</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

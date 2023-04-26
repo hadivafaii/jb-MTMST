@@ -1,665 +1,493 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(04) PyTorch profiler &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-04/04_profiler';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="(06) Sim – kNN analysis" href="06_sim-kNN.html" />
     <link rel="prev" title="(04) Dan notebook" href="04_dan.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/28_sim-self.html">
-     (28) Simulation – self [velocity: new way]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
-     (29) Simulation – full [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
-     (30) Simulation – full [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  February 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-02.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-02_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/01_play-nvae.html">
-     (01) NVAE – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
-     (02) VAE2D – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/09_rot-conv.html">
-     (09) RotConv2d – verified
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/23_sim-gen.html">
-     (23) Simulation – generate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
-     (24) Simulation – generate (fix &amp; obj uncoupled)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
-     (24) Simulation – generate (save)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
-     (25) Fit – cuda (gaban)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
-     (25) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
-     (25) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
-     (25) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
-     (30) KL Balancer
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  March 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-03.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-03_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/17_sim-new-draft.html">
-     (17) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/22_sim-new-draft.html">
-     (22) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/23_sim-new.html">
-     (23) Sim New – visualize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda.html">
-     (30) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda0.html">
-     (30) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda2.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_sim-final.html">
-     (30) Sim – added
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       terrain
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/31_sim-factors.html">
-     (31) Sim – true generative factors
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  April 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-04.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-04_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="02_fit-lin.html">
-     (02) Fit neurons – Linear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_fit-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-ridge.html">
-     (03) Fit neurons – Ridge
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_dan.html">
-     (04) Dan notebook
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (04) PyTorch profiler
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06_sim-kNN.html">
-     (06) Sim – kNN analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-3d.html">
-     (07) Readout: 3D conv
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-sep.html">
-     (07) Readout: Separable
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu090.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu096.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-accept-filter.html">
-     (08) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_sim-final-save.html">
-     (09) Sim – generate &amp; save
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_GLM-clu090.html">
-     (10) Reservoir + GLM
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-04/04_profiler.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/04_profiler.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/04_profiler.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-04/04_profiler.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-04/04_profiler.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(04) PyTorch profiler</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#trainer">
-   Trainer
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#save-to-txt">
-     Save to txt?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#compile">
-   Compile
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trainer">Trainer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-txt">Save to txt?</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile">Compile</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="pytorch-profiler">
-<h1>(04) PyTorch profiler<a class="headerlink" href="#pytorch-profiler" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pytorch-profiler">
+<h1>(04) PyTorch profiler<a class="headerlink" href="#pytorch-profiler" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: &#64;torch.jit.script was slowing things down <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -689,9 +517,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="trainer">
-<h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">¶</a></h2>
+<h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
@@ -884,7 +713,8 @@ Wall time: 1min 3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/10 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  0%|          | 0/10 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 </div>
@@ -902,28 +732,28 @@ Wall time: 1min 3s
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gstep # 61, nelbo: 15.907, grad: 228.0:   0%|          | 0/10 [05:06&lt;?, ?it/s]      
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">File</span> <span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+KeyboardInterrupt                         Traceback (most recent call last)
+File &lt;timed exec&gt;:2, in &lt;module&gt;
 
-<span class="nn">File ~/Dropbox/git/_MTMST/model/train_vae.py:84,</span> in <span class="ni">TrainerVAE.iteration</span><span class="nt">(self, epoch, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="c1"># forward + loss</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">use_amp</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">84</span> 	<span class="n">y</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> 	<span class="n">epe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">loss_recon</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">norm</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span> 	<span class="n">kl_all</span><span class="p">,</span> <span class="n">kl_diag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">loss_kl</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+File ~/Dropbox/git/_MTMST/model/train_vae.py:84, in TrainerVAE.iteration(self, epoch, **kwargs)
+     82 # forward + loss
+     83 with torch.cuda.amp.autocast(enabled=self.cfg.use_amp):
+---&gt; 84 	y, _, q, p = self.model(x)
+     85 	epe = self.model.loss_recon(x=x, y=y, w=1/norm)
+     86 	kl_all, kl_diag = self.model.loss_kl(q, p)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/nn/modules/module.py:1501,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1496</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1497</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1501</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span> <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/nn/modules/module.py:1501, in Module._call_impl(self, *args, **kwargs)
+   1496 # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+   1497 # this function, and just call forward.
+   1498 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+   1499         or _global_backward_pre_hooks or _global_backward_hooks
+   1500         or _global_forward_hooks or _global_forward_pre_hooks):
+-&gt; 1501     return forward_call(*args, **kwargs)
+   1502 # Do not call functions when jit is used
+   1503 full_backward_hooks, non_full_backward_hooks = [], []
 
-<span class="ne">KeyboardInterrupt</span>: 
+KeyboardInterrupt: 
 </pre></div>
 </div>
 </div>
@@ -1157,7 +987,7 @@ Self CUDA time total: <span style="color: #008080; text-decoration-color: #00808
 </div></div>
 </div>
 <section id="save-to-txt">
-<h3>Save to txt?<a class="headerlink" href="#save-to-txt" title="Permalink to this headline">¶</a></h3>
+<h3>Save to txt?<a class="headerlink" href="#save-to-txt" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">key_averages</span><span class="p">(</span><span class="n">group_by_stack_n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">sort_by</span><span class="o">=</span><span class="s2">&quot;self_cuda_time_total&quot;</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1210,7 +1040,7 @@ Self CUDA time total: <span style="color: #008080; text-decoration-color: #00808
 </section>
 </section>
 <section id="compile">
-<h2>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h2>
+<h2>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
@@ -1251,378 +1081,376 @@ Self CUDA time total: <span style="color: #008080; text-decoration-color: #00808
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "2e51b5f6a2624475997333e7fe69fd90", "version_major": 2, "version_minor": 0}
-</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:670,</span> in <span class="ni">OutputGraph.call_user_compiler</span><span class="nt">(self, gm)</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">670</span>     <span class="n">compiled_fn</span> <span class="o">=</span> <span class="n">compiler_fn</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fake_example_inputs</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="n">_step_logger</span><span class="p">()(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;done compiler function </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2e51b5f6a2624475997333e7fe69fd90", "version_major": 2, "version_minor": 0}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:670, in OutputGraph.call_user_compiler(self, gm)
+    669 else:
+--&gt; 670     compiled_fn = compiler_fn(gm, self.fake_example_inputs())
+    671 _step_logger()(logging.INFO, f&quot;done compiler function {name}&quot;)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/debug_utils.py:1055,</span> in <span class="ni">wrap_backend_debug.&lt;locals&gt;.debug_wrapper</span><span class="nt">(gm, example_inputs, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1054</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1055</span>     <span class="n">compiled_gm</span> <span class="o">=</span> <span class="n">compiler_fn</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="n">example_inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1057</span> <span class="k">return</span> <span class="n">compiled_gm</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/debug_utils.py:1055, in wrap_backend_debug.&lt;locals&gt;.debug_wrapper(gm, example_inputs, **kwargs)
+   1054 else:
+-&gt; 1055     compiled_gm = compiler_fn(gm, example_inputs)
+   1057 return compiled_gm
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/__init__.py:1390,</span> in <span class="ni">_TorchCompileInductorWrapper.__call__</span><span class="nt">(self, model_, inputs_)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1388</span> <span class="kn">from</span> <span class="nn">torch._inductor.compile_fx</span> <span class="kn">import</span> <span class="n">compile_fx</span>
-<span class="ne">-&gt; </span><span class="mi">1390</span> <span class="k">return</span> <span class="n">compile_fx</span><span class="p">(</span><span class="n">model_</span><span class="p">,</span> <span class="n">inputs_</span><span class="p">,</span> <span class="n">config_patches</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/__init__.py:1390, in _TorchCompileInductorWrapper.__call__(self, model_, inputs_)
+   1388 from torch._inductor.compile_fx import compile_fx
+-&gt; 1390 return compile_fx(model_, inputs_, config_patches=self.config)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_inductor/compile_fx.py:455,</span> in <span class="ni">compile_fx</span><span class="nt">(model_, example_inputs_, inner_compile, config_patches)</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">with</span> <span class="n">overrides</span><span class="o">.</span><span class="n">patch_functions</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span> 
-<span class="g g-Whitespace">    </span><span class="mi">452</span>     <span class="c1"># TODO: can add logging before/after the call to create_aot_dispatcher_function</span>
-<span class="g g-Whitespace">    </span><span class="mi">453</span>     <span class="c1"># in torch._functorch/aot_autograd.py::aot_module_simplified::aot_function_simplified::new_func</span>
-<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="c1"># once torchdynamo is merged into pytorch</span>
-<span class="ne">--&gt; </span><span class="mi">455</span>     <span class="k">return</span> <span class="n">aot_autograd</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span>         <span class="n">fw_compiler</span><span class="o">=</span><span class="n">fw_compiler</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span>         <span class="n">bw_compiler</span><span class="o">=</span><span class="n">bw_compiler</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">458</span>         <span class="n">decompositions</span><span class="o">=</span><span class="n">select_decomp_table</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span>         <span class="n">partition_fn</span><span class="o">=</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span>             <span class="n">min_cut_rematerialization_partition</span><span class="p">,</span> <span class="n">compiler</span><span class="o">=</span><span class="s2">&quot;inductor&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span>         <span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="n">keep_inference_input_mutations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="p">)(</span><span class="n">model_</span><span class="p">,</span> <span class="n">example_inputs_</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_inductor/compile_fx.py:455, in compile_fx(model_, example_inputs_, inner_compile, config_patches)
+    450 with overrides.patch_functions():
+    451 
+    452     # TODO: can add logging before/after the call to create_aot_dispatcher_function
+    453     # in torch._functorch/aot_autograd.py::aot_module_simplified::aot_function_simplified::new_func
+    454     # once torchdynamo is merged into pytorch
+--&gt; 455     return aot_autograd(
+    456         fw_compiler=fw_compiler,
+    457         bw_compiler=bw_compiler,
+    458         decompositions=select_decomp_table(),
+    459         partition_fn=functools.partial(
+    460             min_cut_rematerialization_partition, compiler=&quot;inductor&quot;
+    461         ),
+    462         keep_inference_input_mutations=True,
+    463     )(model_, example_inputs_)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/backends/common.py:48,</span> in <span class="ni">aot_autograd.&lt;locals&gt;.compiler_fn</span><span class="nt">(gm, example_inputs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">with</span> <span class="n">enable_aot_logging</span><span class="p">():</span>
-<span class="ne">---&gt; </span><span class="mi">48</span>     <span class="n">cg</span> <span class="o">=</span> <span class="n">aot_module_simplified</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="n">example_inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>     <span class="n">counters</span><span class="p">[</span><span class="s2">&quot;aot_autograd&quot;</span><span class="p">][</span><span class="s2">&quot;ok&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/backends/common.py:48, in aot_autograd.&lt;locals&gt;.compiler_fn(gm, example_inputs)
+     47 with enable_aot_logging():
+---&gt; 48     cg = aot_module_simplified(gm, example_inputs, **kwargs)
+     49     counters[&quot;aot_autograd&quot;][&quot;ok&quot;] += 1
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:2805,</span> in <span class="ni">aot_module_simplified</span><span class="nt">(mod, args, fw_compiler, bw_compiler, partition_fn, decompositions, hasher_type, static_argnums, keep_inference_input_mutations)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2803</span> <span class="n">full_args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2805</span> <span class="n">compiled_fn</span> <span class="o">=</span> <span class="n">create_aot_dispatcher_function</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2806</span>     <span class="n">functional_call</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2807</span>     <span class="n">full_args</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2808</span>     <span class="n">aot_config</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2809</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2811</span> <span class="c1"># TODO: There is something deeply wrong here; compiled_fn running with</span>
-<span class="g g-Whitespace">   </span><span class="mi">2812</span> <span class="c1"># the boxed calling convention, but aot_module_simplified somehow</span>
-<span class="g g-Whitespace">   </span><span class="mi">2813</span> <span class="c1"># historically returned a function that was not the boxed calling</span>
-<span class="g g-Whitespace">   </span><span class="mi">2814</span> <span class="c1"># convention.  This should get fixed...</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:2805, in aot_module_simplified(mod, args, fw_compiler, bw_compiler, partition_fn, decompositions, hasher_type, static_argnums, keep_inference_input_mutations)
+   2803 full_args.extend(args)
+-&gt; 2805 compiled_fn = create_aot_dispatcher_function(
+   2806     functional_call,
+   2807     full_args,
+   2808     aot_config,
+   2809 )
+   2811 # TODO: There is something deeply wrong here; compiled_fn running with
+   2812 # the boxed calling convention, but aot_module_simplified somehow
+   2813 # historically returned a function that was not the boxed calling
+   2814 # convention.  This should get fixed...
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/utils.py:163,</span> in <span class="ni">dynamo_timed.&lt;locals&gt;.dynamo_timed_inner.&lt;locals&gt;.time_wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">163</span> <span class="n">r</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="n">time_spent</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/utils.py:163, in dynamo_timed.&lt;locals&gt;.dynamo_timed_inner.&lt;locals&gt;.time_wrapper(*args, **kwargs)
+    162 t0 = time.time()
+--&gt; 163 r = func(*args, **kwargs)
+    164 time_spent = time.time() - t0
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:2498,</span> in <span class="ni">create_aot_dispatcher_function</span><span class="nt">(flat_fn, flat_args, aot_config)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2496</span> <span class="c1"># You can put more passes here</span>
-<span class="ne">-&gt; </span><span class="mi">2498</span> <span class="n">compiled_fn</span> <span class="o">=</span> <span class="n">compiler_fn</span><span class="p">(</span><span class="n">flat_fn</span><span class="p">,</span> <span class="n">fake_flat_args</span><span class="p">,</span> <span class="n">aot_config</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2500</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">compiled_fn</span><span class="p">,</span> <span class="s2">&quot;_boxed_call&quot;</span><span class="p">):</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:2498, in create_aot_dispatcher_function(flat_fn, flat_args, aot_config)
+   2496 # You can put more passes here
+-&gt; 2498 compiled_fn = compiler_fn(flat_fn, fake_flat_args, aot_config)
+   2500 if not hasattr(compiled_fn, &quot;_boxed_call&quot;):
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1713,</span> in <span class="ni">aot_wrapper_dedupe</span><span class="nt">(flat_fn, flat_args, aot_config, compiler_fn)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1713</span>         <span class="k">return</span> <span class="n">compiler_fn</span><span class="p">(</span><span class="n">flat_fn</span><span class="p">,</span> <span class="n">leaf_flat_args</span><span class="p">,</span> <span class="n">aot_config</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="c1"># Strategy 2: Duplicate specialize.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="c1">#</span>
-<span class="g g-Whitespace">   </span><span class="mi">1717</span> <span class="c1"># In Haskell types, suppose you have:</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1749</span> <span class="c1">#   }</span>
-<span class="g g-Whitespace">   </span><span class="mi">1750</span> <span class="c1">#   keep_arg_mask = [True, True, False, True]</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1713, in aot_wrapper_dedupe(flat_fn, flat_args, aot_config, compiler_fn)
+   1712     if ok:
+-&gt; 1713         return compiler_fn(flat_fn, leaf_flat_args, aot_config)
+   1715 # Strategy 2: Duplicate specialize.
+   1716 #
+   1717 # In Haskell types, suppose you have:
+   (...)
+   1749 #   }
+   1750 #   keep_arg_mask = [True, True, False, True]
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:2087,</span> in <span class="ni">aot_dispatch_autograd</span><span class="nt">(flat_fn, flat_args, aot_config)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2086</span>     <span class="n">flattened_joints</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pytree</span><span class="o">.</span><span class="n">tree_flatten</span><span class="p">(</span><span class="n">joint_inputs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2087</span>     <span class="n">fx_g</span> <span class="o">=</span> <span class="n">make_fx</span><span class="p">(</span><span class="n">joint_forward_backward</span><span class="p">,</span> <span class="n">aot_config</span><span class="o">.</span><span class="n">decompositions</span><span class="p">)(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2088</span>         <span class="o">*</span><span class="n">joint_inputs</span>
-<span class="g g-Whitespace">   </span><span class="mi">2089</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2091</span> <span class="c1"># There should be *NO* mutating ops in the graph at this point.</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:2087, in aot_dispatch_autograd(flat_fn, flat_args, aot_config)
+   2086     flattened_joints, _ = pytree.tree_flatten(joint_inputs)
+-&gt; 2087     fx_g = make_fx(joint_forward_backward, aot_config.decompositions)(
+   2088         *joint_inputs
+   2089     )
+   2091 # There should be *NO* mutating ops in the graph at this point.
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/fx/experimental/proxy_tensor.py:714,</span> in <span class="ni">make_fx.&lt;locals&gt;.wrapped</span><span class="nt">(*args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">712</span> <span class="k">with</span> <span class="n">decompose</span><span class="p">(</span><span class="n">decomposition_table</span><span class="p">),</span> <span class="n">fake_tensor_mode</span><span class="p">,</span> <span class="n">python_dispatcher_mode</span><span class="p">,</span> \
-<span class="g g-Whitespace">    </span><span class="mi">713</span>      <span class="n">sym_mode</span><span class="p">,</span> <span class="n">proxy_mode</span><span class="p">,</span> <span class="n">disable_autocast_cache</span><span class="p">(),</span> <span class="n">disable_proxy_modes_tracing</span><span class="p">(</span><span class="n">enable_current</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">714</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">dispatch_trace</span><span class="p">(</span><span class="n">wrap_key</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">fx_tracer</span><span class="p">),</span> <span class="n">tracer</span><span class="o">=</span><span class="n">fx_tracer</span><span class="p">,</span> <span class="n">concrete_args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">phs</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">716</span> <span class="c1"># TODO: kind of a bad way to do it, should maybe figure out a better way</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/fx/experimental/proxy_tensor.py:714, in make_fx.&lt;locals&gt;.wrapped(*args)
+    712 with decompose(decomposition_table), fake_tensor_mode, python_dispatcher_mode, \
+    713      sym_mode, proxy_mode, disable_autocast_cache(), disable_proxy_modes_tracing(enable_current=True):
+--&gt; 714     t = dispatch_trace(wrap_key(func, args, fx_tracer), tracer=fx_tracer, concrete_args=tuple(phs))
+    716 # TODO: kind of a bad way to do it, should maybe figure out a better way
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:209,</span> in <span class="ni">_TorchDynamoContext.__call__.&lt;locals&gt;._fn</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>     <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="k">finally</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:209, in _TorchDynamoContext.__call__.&lt;locals&gt;._fn(*args, **kwargs)
+    208 try:
+--&gt; 209     return fn(*args, **kwargs)
+    210 finally:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/fx/experimental/proxy_tensor.py:443,</span> in <span class="ni">dispatch_trace</span><span class="nt">(root, tracer, concrete_args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span> <span class="k">def</span> <span class="nf">dispatch_trace</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span>         <span class="n">root</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">Callable</span><span class="p">],</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>         <span class="n">tracer</span><span class="p">:</span> <span class="n">Tracer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span>         <span class="n">concrete_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GraphModule</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">443</span>     <span class="n">graph</span> <span class="o">=</span> <span class="n">tracer</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">concrete_args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span>     <span class="n">name</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">)</span> <span class="k">else</span> <span class="n">root</span><span class="o">.</span><span class="vm">__name__</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/fx/experimental/proxy_tensor.py:443, in dispatch_trace(root, tracer, concrete_args)
+    438 def dispatch_trace(
+    439         root: Union[torch.nn.Module, Callable],
+    440         tracer: Tracer,
+    441         concrete_args: Optional[Tuple[Any, ...]] = None,
+    442 ) -&gt; GraphModule:
+--&gt; 443     graph = tracer.trace(root, concrete_args)
+    444     name = root.__class__.__name__ if isinstance(root, torch.nn.Module) else root.__name__
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:209,</span> in <span class="ni">_TorchDynamoContext.__call__.&lt;locals&gt;._fn</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>     <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="k">finally</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:209, in _TorchDynamoContext.__call__.&lt;locals&gt;._fn(*args, **kwargs)
+    208 try:
+--&gt; 209     return fn(*args, **kwargs)
+    210 finally:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py:778,</span> in <span class="ni">Tracer.trace</span><span class="nt">(self, root, concrete_args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">772</span>         <span class="n">_autowrap_check</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">773</span>             <span class="n">patcher</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autowrap_function_ids</span>
-<span class="g g-Whitespace">    </span><span class="mi">774</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">775</span>     <span class="bp">self</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span>         <span class="s2">&quot;output&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">777</span>         <span class="s2">&quot;output&quot;</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">778</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_arg</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)),),</span>
-<span class="g g-Whitespace">    </span><span class="mi">779</span>         <span class="p">{},</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span>         <span class="n">type_expr</span><span class="o">=</span><span class="n">fn</span><span class="o">.</span><span class="vm">__annotations__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span> <span class="bp">self</span><span class="o">.</span><span class="n">submodule_paths</span> <span class="o">=</span> <span class="kc">None</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py:778, in Tracer.trace(self, root, concrete_args)
+    772         _autowrap_check(
+    773             patcher, module.__dict__, self._autowrap_function_ids
+    774         )
+    775     self.create_node(
+    776         &quot;output&quot;,
+    777         &quot;output&quot;,
+--&gt; 778         (self.create_arg(fn(*args)),),
+    779         {},
+    780         type_expr=fn.__annotations__.get(&quot;return&quot;, None),
+    781     )
+    783 self.submodule_paths = None
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py:652,</span> in <span class="ni">Tracer.create_args_for_root.&lt;locals&gt;.flatten_fn</span><span class="nt">(*args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span> <span class="n">tree_args</span> <span class="o">=</span> <span class="n">pytree</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">in_spec</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">652</span> <span class="n">tree_out</span> <span class="o">=</span> <span class="n">root_fn</span><span class="p">(</span><span class="o">*</span><span class="n">tree_args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">653</span> <span class="n">out_args</span><span class="p">,</span> <span class="n">out_spec</span> <span class="o">=</span> <span class="n">pytree</span><span class="o">.</span><span class="n">tree_flatten</span><span class="p">(</span><span class="n">tree_out</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py:652, in Tracer.create_args_for_root.&lt;locals&gt;.flatten_fn(*args)
+    651 tree_args = pytree.tree_unflatten(list(args), in_spec)
+--&gt; 652 tree_out = root_fn(*tree_args)
+    653 out_args, out_spec = pytree.tree_flatten(tree_out)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/fx/experimental/proxy_tensor.py:459,</span> in <span class="ni">wrap_key.&lt;locals&gt;.wrapped</span><span class="nt">(*proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="n">track_tensor_tree</span><span class="p">(</span><span class="n">flat_tensors</span><span class="p">,</span> <span class="n">flat_proxies</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tracer</span><span class="o">=</span><span class="n">tracer</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">459</span> <span class="n">out</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">tensors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="n">out</span> <span class="o">=</span> <span class="n">pytree</span><span class="o">.</span><span class="n">tree_map_only</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span>     <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">get_proxy_slot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tracer</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">proxy</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="n">out</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/fx/experimental/proxy_tensor.py:459, in wrap_key.&lt;locals&gt;.wrapped(*proxies)
+    457     track_tensor_tree(flat_tensors, flat_proxies, constant=None, tracer=tracer)
+--&gt; 459 out = f(*tensors)
+    460 out = pytree.tree_map_only(
+    461     torch.Tensor,
+    462     lambda t: get_proxy_slot(t, tracer, t, lambda x: x.proxy),
+    463     out
+    464 )
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1156,</span> in <span class="ni">create_forward_or_joint_functionalized.&lt;locals&gt;.traced_joint</span><span class="nt">(primals, tangents)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1155</span> <span class="k">def</span> <span class="nf">traced_joint</span><span class="p">(</span><span class="n">primals</span><span class="p">,</span> <span class="n">tangents</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1156</span>     <span class="k">return</span> <span class="n">functionalized_f_helper</span><span class="p">(</span><span class="n">primals</span><span class="p">,</span> <span class="n">tangents</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1156, in create_forward_or_joint_functionalized.&lt;locals&gt;.traced_joint(primals, tangents)
+   1155 def traced_joint(primals, tangents):
+-&gt; 1156     return functionalized_f_helper(primals, tangents)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1108,</span> in <span class="ni">create_forward_or_joint_functionalized.&lt;locals&gt;.functionalized_f_helper</span><span class="nt">(primals, maybe_tangents)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1106</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1107</span>     <span class="c1"># Run the joint</span>
-<span class="ne">-&gt; </span><span class="mi">1108</span>     <span class="n">f_outs</span> <span class="o">=</span> <span class="n">flat_fn_no_input_mutations</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">f_primals</span><span class="p">,</span> <span class="n">f_tangents</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">keep_input_mutations</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1109</span> <span class="k">finally</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1108, in create_forward_or_joint_functionalized.&lt;locals&gt;.functionalized_f_helper(primals, maybe_tangents)
+   1106 try:
+   1107     # Run the joint
+-&gt; 1108     f_outs = flat_fn_no_input_mutations(fn, f_primals, f_tangents, meta, keep_input_mutations)
+   1109 finally:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1076,</span> in <span class="ni">flat_fn_no_input_mutations</span><span class="nt">(fn, primals, maybe_tangents, meta, keep_input_mutations)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1075</span>     <span class="n">primals_after_cloning</span> <span class="o">=</span> <span class="n">primals</span>
-<span class="ne">-&gt; </span><span class="mi">1076</span> <span class="n">outs</span> <span class="o">=</span> <span class="n">flat_fn_with_synthetic_bases_expanded</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">primals</span><span class="p">,</span> <span class="n">primals_after_cloning</span><span class="p">,</span> <span class="n">maybe_tangents</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">keep_input_mutations</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1077</span> <span class="k">return</span> <span class="n">outs</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1076, in flat_fn_no_input_mutations(fn, primals, maybe_tangents, meta, keep_input_mutations)
+   1075     primals_after_cloning = primals
+-&gt; 1076 outs = flat_fn_with_synthetic_bases_expanded(fn, primals, primals_after_cloning, maybe_tangents, meta, keep_input_mutations)
+   1077 return outs
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1048,</span> in <span class="ni">flat_fn_with_synthetic_bases_expanded</span><span class="nt">(fn, primals_before_cloning, primals_after_cloning, maybe_tangents, meta, keep_input_mutations)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1047</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">fw_metadata</span><span class="o">.</span><span class="n">input_info</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">primals</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1048</span> <span class="n">outs</span> <span class="o">=</span> <span class="n">forward_or_joint</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">primals_before_cloning</span><span class="p">,</span> <span class="n">primals</span><span class="p">,</span> <span class="n">maybe_tangents</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">keep_input_mutations</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span> <span class="k">return</span> <span class="n">outs</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1048, in flat_fn_with_synthetic_bases_expanded(fn, primals_before_cloning, primals_after_cloning, maybe_tangents, meta, keep_input_mutations)
+   1047 assert len(meta.fw_metadata.input_info) == len(primals)
+-&gt; 1048 outs = forward_or_joint(fn, primals_before_cloning, primals, maybe_tangents, meta, keep_input_mutations)
+   1049 return outs
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1017,</span> in <span class="ni">forward_or_joint</span><span class="nt">(fn, primals_before_cloning, primals_after_cloning, maybe_tangents, meta, keep_input_mutations)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1016</span>     <span class="k">with</span> <span class="n">fx_traceback</span><span class="o">.</span><span class="n">preserve_node_meta</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1017</span>         <span class="n">backward_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1018</span>             <span class="n">needed_outs</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1019</span>             <span class="n">grad_primals</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1020</span>             <span class="n">grad_outputs</span><span class="o">=</span><span class="n">needed_tangents</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1021</span>             <span class="n">allow_unused</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1022</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="n">backward_out_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">backward_out</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_functorch/aot_autograd.py:1017, in forward_or_joint(fn, primals_before_cloning, primals_after_cloning, maybe_tangents, meta, keep_input_mutations)
+   1016     with fx_traceback.preserve_node_meta():
+-&gt; 1017         backward_out = torch.autograd.grad(
+   1018             needed_outs,
+   1019             grad_primals,
+   1020             grad_outputs=needed_tangents,
+   1021             allow_unused=True,
+   1022         )
+   1023 backward_out_iter = iter(backward_out)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/autograd/__init__.py:269,</span> in <span class="ni">grad</span><span class="nt">(outputs, inputs, grad_outputs, retain_graph, create_graph, only_inputs, allow_unused, is_grads_batched)</span>
-<span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="k">if</span> <span class="n">has_torch_function</span><span class="p">(</span><span class="n">overridable_args</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">269</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span>         <span class="n">grad</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">271</span>         <span class="n">overridable_args</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">272</span>         <span class="n">t_outputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">273</span>         <span class="n">t_inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">274</span>         <span class="n">grad_outputs</span><span class="o">=</span><span class="n">grad_outputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="n">retain_graph</span><span class="o">=</span><span class="n">retain_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span>         <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">277</span>         <span class="n">only_inputs</span><span class="o">=</span><span class="n">only_inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="n">allow_unused</span><span class="o">=</span><span class="n">allow_unused</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">is_grads_batched</span><span class="o">=</span><span class="n">is_grads_batched</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">only_inputs</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/autograd/__init__.py:269, in grad(outputs, inputs, grad_outputs, retain_graph, create_graph, only_inputs, allow_unused, is_grads_batched)
+    268 if has_torch_function(overridable_args):
+--&gt; 269     return handle_torch_function(
+    270         grad,
+    271         overridable_args,
+    272         t_outputs,
+    273         t_inputs,
+    274         grad_outputs=grad_outputs,
+    275         retain_graph=retain_graph,
+    276         create_graph=create_graph,
+    277         only_inputs=only_inputs,
+    278         allow_unused=allow_unused,
+    279         is_grads_batched=is_grads_batched,
+    280     )
+    282 if not only_inputs:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/overrides.py:1534,</span> in <span class="ni">handle_torch_function</span><span class="nt">(public_api, relevant_args, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1533</span> <span class="k">with</span> <span class="n">_pop_mode_temporarily</span><span class="p">()</span> <span class="k">as</span> <span class="n">mode</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1534</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">mode</span><span class="o">.</span><span class="n">__torch_function__</span><span class="p">(</span><span class="n">public_api</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1535</span> <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">NotImplemented</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/overrides.py:1534, in handle_torch_function(public_api, relevant_args, *args, **kwargs)
+   1533 with _pop_mode_temporarily() as mode:
+-&gt; 1534     result = mode.__torch_function__(public_api, types, args, kwargs)
+   1535 if result is not NotImplemented:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_inductor/overrides.py:38,</span> in <span class="ni">AutogradMonkeypatch.__torch_function__</span><span class="nt">(self, func, types, args, kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">return</span> <span class="n">replacements</span><span class="p">[</span><span class="n">func</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">38</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_inductor/overrides.py:38, in AutogradMonkeypatch.__torch_function__(self, func, types, args, kwargs)
+     37     return replacements[func](*args, **kwargs)
+---&gt; 38 return func(*args, **kwargs)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/autograd/__init__.py:303,</span> in <span class="ni">grad</span><span class="nt">(outputs, inputs, grad_outputs, retain_graph, create_graph, only_inputs, allow_unused, is_grads_batched)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">303</span>     <span class="k">return</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="n">t_outputs</span><span class="p">,</span> <span class="n">grad_outputs_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">t_inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span>         <span class="n">allow_unused</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/autograd/__init__.py:303, in grad(outputs, inputs, grad_outputs, retain_graph, create_graph, only_inputs, allow_unused, is_grads_batched)
+    302 else:
+--&gt; 303     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+    304         t_outputs, grad_outputs_, retain_graph, create_graph, t_inputs,
+    305         allow_unused, accumulate_grad=False)
 
-<span class="ne">RuntimeError</span>: Function ConvolutionBackward0 returned an invalid gradient at index 1 - expected device cuda:1 but got cuda:0
+RuntimeError: Function ConvolutionBackward0 returned an invalid gradient at index 1 - expected device cuda:1 but got cuda:0
 
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+The above exception was the direct cause of the following exception:
 
-<span class="ne">BackendCompilerFailed</span><span class="g g-Whitespace">                     </span>Traceback (most recent call last)
-<span class="n">File</span> <span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+BackendCompilerFailed                     Traceback (most recent call last)
+File &lt;timed exec&gt;:5, in &lt;module&gt;
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/nn/modules/module.py:1501,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1496</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1497</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1501</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span> <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/nn/modules/module.py:1501, in Module._call_impl(self, *args, **kwargs)
+   1496 # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+   1497 # this function, and just call forward.
+   1498 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+   1499         or _global_backward_pre_hooks or _global_backward_hooks
+   1500         or _global_forward_hooks or _global_forward_pre_hooks):
+-&gt; 1501     return forward_call(*args, **kwargs)
+   1502 # Do not call functions when jit is used
+   1503 full_backward_hooks, non_full_backward_hooks = [], []
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:82,</span> in <span class="ni">OptimizedModule.forward</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">82</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamo_ctx</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_orig_mod</span><span class="o">.</span><span class="n">forward</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:82, in OptimizedModule.forward(self, *args, **kwargs)
+     81 def forward(self, *args, **kwargs):
+---&gt; 82     return self.dynamo_ctx(self._orig_mod.forward)(*args, **kwargs)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:209,</span> in <span class="ni">_TorchDynamoContext.__call__.&lt;locals&gt;._fn</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span> <span class="n">dynamic_ctx</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>     <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span>     <span class="n">set_eval_frame</span><span class="p">(</span><span class="n">prior</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:209, in _TorchDynamoContext.__call__.&lt;locals&gt;._fn(*args, **kwargs)
+    207 dynamic_ctx.__enter__()
+    208 try:
+--&gt; 209     return fn(*args, **kwargs)
+    210 finally:
+    211     set_eval_frame(prior)
 
-<span class="nn">File ~/Dropbox/git/_MTMST/model/vae2d.py:77,</span> in <span class="ni">VAE.forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span> 		<span class="n">latents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span> 	<span class="c1"># &#39;combiner_dec&#39;</span>
-<span class="ne">---&gt; </span><span class="mi">77</span> 	<span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand</span><span class="p">[</span><span class="n">idx</span><span class="p">](</span><span class="n">z</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> 	<span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span> <span class="k">else</span><span class="p">:</span>
+File ~/Dropbox/git/_MTMST/model/vae2d.py:77, in VAE.forward(self, x)
+     75 		latents.append(z)
+     76 	# &#39;combiner_dec&#39;
+---&gt; 77 	s = cell(s, self.expand[idx](z))
+     78 	idx += 1
+     79 else:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/nn/modules/module.py:1501,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1496</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1497</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1501</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span> <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/nn/modules/module.py:1501, in Module._call_impl(self, *args, **kwargs)
+   1496 # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+   1497 # this function, and just call forward.
+   1498 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+   1499         or _global_backward_pre_hooks or _global_backward_hooks
+   1500         or _global_forward_hooks or _global_forward_pre_hooks):
+-&gt; 1501     return forward_call(*args, **kwargs)
+   1502 # Do not call functions when jit is used
+   1503 full_backward_hooks, non_full_backward_hooks = [], []
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:337,</span> in <span class="ni">catch_errors_wrapper.&lt;locals&gt;.catch_errors</span><span class="nt">(frame, cache_size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span>             <span class="k">return</span> <span class="n">hijacked_callback</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cache_size</span><span class="p">,</span> <span class="n">hooks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">336</span> <span class="k">with</span> <span class="n">compile_lock</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">337</span>     <span class="k">return</span> <span class="n">callback</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cache_size</span><span class="p">,</span> <span class="n">hooks</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:337, in catch_errors_wrapper.&lt;locals&gt;.catch_errors(frame, cache_size)
+    334             return hijacked_callback(frame, cache_size, hooks)
+    336 with compile_lock:
+--&gt; 337     return callback(frame, cache_size, hooks)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:404,</span> in <span class="ni">convert_frame.&lt;locals&gt;._convert_frame</span><span class="nt">(frame, cache_size, hooks)</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="n">counters</span><span class="p">[</span><span class="s2">&quot;frames&quot;</span><span class="p">][</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">404</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">inner_convert</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cache_size</span><span class="p">,</span> <span class="n">hooks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">counters</span><span class="p">[</span><span class="s2">&quot;frames&quot;</span><span class="p">][</span><span class="s2">&quot;ok&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="k">return</span> <span class="n">result</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:404, in convert_frame.&lt;locals&gt;._convert_frame(frame, cache_size, hooks)
+    402 counters[&quot;frames&quot;][&quot;total&quot;] += 1
+    403 try:
+--&gt; 404     result = inner_convert(frame, cache_size, hooks)
+    405     counters[&quot;frames&quot;][&quot;ok&quot;] += 1
+    406     return result
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:104,</span> in <span class="ni">wrap_convert_context.&lt;locals&gt;._fn</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="n">torch</span><span class="o">.</span><span class="n">fx</span><span class="o">.</span><span class="n">graph_module</span><span class="o">.</span><span class="n">_forward_from_src</span> <span class="o">=</span> <span class="n">fx_forward_from_src_skip_result</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">104</span>     <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="n">torch</span><span class="o">.</span><span class="n">_C</span><span class="o">.</span><span class="n">_set_grad_enabled</span><span class="p">(</span><span class="n">prior_grad_mode</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:104, in wrap_convert_context.&lt;locals&gt;._fn(*args, **kwargs)
+    102 torch.fx.graph_module._forward_from_src = fx_forward_from_src_skip_result
+    103 try:
+--&gt; 104     return fn(*args, **kwargs)
+    105 finally:
+    106     torch._C._set_grad_enabled(prior_grad_mode)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:262,</span> in <span class="ni">convert_frame_assert.&lt;locals&gt;._convert_frame_assert</span><span class="nt">(frame, cache_size, hooks)</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span> <span class="k">global</span> <span class="n">initial_grad_state</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span> <span class="n">initial_grad_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_grad_enabled</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">262</span> <span class="k">return</span> <span class="n">_compile</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>     <span class="n">frame</span><span class="o">.</span><span class="n">f_code</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span>     <span class="n">frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span>     <span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span>     <span class="n">frame</span><span class="o">.</span><span class="n">f_builtins</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="n">compiler_fn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">268</span>     <span class="n">one_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">269</span>     <span class="n">export</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="n">hooks</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">271</span>     <span class="n">frame</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:262, in convert_frame_assert.&lt;locals&gt;._convert_frame_assert(frame, cache_size, hooks)
+    259 global initial_grad_state
+    260 initial_grad_state = torch.is_grad_enabled()
+--&gt; 262 return _compile(
+    263     frame.f_code,
+    264     frame.f_globals,
+    265     frame.f_locals,
+    266     frame.f_builtins,
+    267     compiler_fn,
+    268     one_graph,
+    269     export,
+    270     hooks,
+    271     frame,
+    272 )
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/utils.py:163,</span> in <span class="ni">dynamo_timed.&lt;locals&gt;.dynamo_timed_inner.&lt;locals&gt;.time_wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="n">compilation_metrics</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">163</span> <span class="n">r</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="n">time_spent</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="c1"># print(f&quot;Dynamo timer: key={key}, latency={latency:.2f} sec&quot;)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/utils.py:163, in dynamo_timed.&lt;locals&gt;.dynamo_timed_inner.&lt;locals&gt;.time_wrapper(*args, **kwargs)
+    161     compilation_metrics[key] = []
+    162 t0 = time.time()
+--&gt; 163 r = func(*args, **kwargs)
+    164 time_spent = time.time() - t0
+    165 # print(f&quot;Dynamo timer: key={key}, latency={latency:.2f} sec&quot;)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:324,</span> in <span class="ni">_compile</span><span class="nt">(code, globals, locals, builtins, compiler_fn, one_graph, export, hooks, frame)</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span> <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">324</span>         <span class="n">out_code</span> <span class="o">=</span> <span class="n">transform_code_object</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>         <span class="n">orig_code_map</span><span class="p">[</span><span class="n">out_code</span><span class="p">]</span> <span class="o">=</span> <span class="n">code</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span>         <span class="k">break</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:324, in _compile(code, globals, locals, builtins, compiler_fn, one_graph, export, hooks, frame)
+    322 for attempt in itertools.count():
+    323     try:
+--&gt; 324         out_code = transform_code_object(code, transform)
+    325         orig_code_map[out_code] = code
+    326         break
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/bytecode_transformation.py:445,</span> in <span class="ni">transform_code_object</span><span class="nt">(code, transformations, safe)</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span> <span class="n">instructions</span> <span class="o">=</span> <span class="n">cleaned_instructions</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">safe</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">443</span> <span class="n">propagate_line_nums</span><span class="p">(</span><span class="n">instructions</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">445</span> <span class="n">transformations</span><span class="p">(</span><span class="n">instructions</span><span class="p">,</span> <span class="n">code_options</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span> <span class="k">return</span> <span class="n">clean_and_assemble_instructions</span><span class="p">(</span><span class="n">instructions</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">code_options</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/bytecode_transformation.py:445, in transform_code_object(code, transformations, safe)
+    442 instructions = cleaned_instructions(code, safe)
+    443 propagate_line_nums(instructions)
+--&gt; 445 transformations(instructions, code_options)
+    446 return clean_and_assemble_instructions(instructions, keys, code_options)[1]
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:311,</span> in <span class="ni">_compile.&lt;locals&gt;.transform</span><span class="nt">(instructions, code_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span> <span class="k">nonlocal</span> <span class="n">output</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="n">tracer</span> <span class="o">=</span> <span class="n">InstructionTranslator</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="n">instructions</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="n">code</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">mutated_closure_cell_contents</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="n">tracer</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="n">output</span> <span class="o">=</span> <span class="n">tracer</span><span class="o">.</span><span class="n">output</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span> <span class="k">assert</span> <span class="n">output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/convert_frame.py:311, in _compile.&lt;locals&gt;.transform(instructions, code_options)
+    298 nonlocal output
+    299 tracer = InstructionTranslator(
+    300     instructions,
+    301     code,
+   (...)
+    309     mutated_closure_cell_contents,
+    310 )
+--&gt; 311 tracer.run()
+    312 output = tracer.output
+    313 assert output is not None
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:1726,</span> in <span class="ni">InstructionTranslator.run</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1724</span> <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1725</span>     <span class="n">_step_logger</span><span class="p">()(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;torchdynamo start tracing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1726</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:1726, in InstructionTranslator.run(self)
+   1724 def run(self):
+   1725     _step_logger()(logging.INFO, f&quot;torchdynamo start tracing {self.f_code.co_name}&quot;)
+-&gt; 1726     super().run()
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:576,</span> in <span class="ni">InstructionTranslatorBase.run</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span>     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">push_tx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span>     <span class="k">while</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span>         <span class="bp">self</span><span class="o">.</span><span class="n">instruction_pointer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">575</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">should_exit</span>
-<span class="ne">--&gt; </span><span class="mi">576</span>         <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span>     <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>         <span class="k">pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">579</span> <span class="k">except</span> <span class="n">BackendCompilerFailed</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:576, in InstructionTranslatorBase.run(self)
+    571 try:
+    572     self.output.push_tx(self)
+    573     while (
+    574         self.instruction_pointer is not None
+    575         and not self.output.should_exit
+--&gt; 576         and self.step()
+    577     ):
+    578         pass
+    579 except BackendCompilerFailed:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:540,</span> in <span class="ni">InstructionTranslatorBase.step</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="o">.</span><span class="n">opname</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span>         <span class="n">unimplemented</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;missing: </span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">opname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">540</span>     <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="o">.</span><span class="n">opname</span><span class="p">)(</span><span class="n">inst</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span>     <span class="k">return</span> <span class="n">inst</span><span class="o">.</span><span class="n">opname</span> <span class="o">!=</span> <span class="s2">&quot;RETURN_VALUE&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span> <span class="k">except</span> <span class="n">BackendCompilerFailed</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:540, in InstructionTranslatorBase.step(self)
+    538     if not hasattr(self, inst.opname):
+    539         unimplemented(f&quot;missing: {inst.opname}&quot;)
+--&gt; 540     getattr(self, inst.opname)(inst)
+    542     return inst.opname != &quot;RETURN_VALUE&quot;
+    543 except BackendCompilerFailed:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:1792,</span> in <span class="ni">InstructionTranslator.RETURN_VALUE</span><span class="nt">(self, inst)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1787</span> <span class="n">_step_logger</span><span class="p">()(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1788</span>     <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1789</span>     <span class="sa">f</span><span class="s2">&quot;torchdynamo done tracing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span><span class="si">}</span><span class="s2"> (RETURN_VALUE)&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1790</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1791</span> <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;RETURN_VALUE triggered compile&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1792</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">compile_subgraph</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1793</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="n">GraphCompileReason</span><span class="p">(</span><span class="s2">&quot;return_value&quot;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_summary</span><span class="p">()])</span>
-<span class="g g-Whitespace">   </span><span class="mi">1794</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1795</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">add_output_instructions</span><span class="p">([</span><span class="n">create_instruction</span><span class="p">(</span><span class="s2">&quot;RETURN_VALUE&quot;</span><span class="p">)])</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/symbolic_convert.py:1792, in InstructionTranslator.RETURN_VALUE(self, inst)
+   1787 _step_logger()(
+   1788     logging.INFO,
+   1789     f&quot;torchdynamo done tracing {self.f_code.co_name} (RETURN_VALUE)&quot;,
+   1790 )
+   1791 log.debug(&quot;RETURN_VALUE triggered compile&quot;)
+-&gt; 1792 self.output.compile_subgraph(
+   1793     self, reason=GraphCompileReason(&quot;return_value&quot;, [self.frame_summary()])
+   1794 )
+   1795 self.output.add_output_instructions([create_instruction(&quot;RETURN_VALUE&quot;)])
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:541,</span> in <span class="ni">OutputGraph.compile_subgraph</span><span class="nt">(self, tx, partial_convert, reason)</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span> <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span> <span class="k">if</span> <span class="n">count_calls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">pass2</span><span class="o">.</span><span class="n">graph_outputs</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span>     <span class="n">output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
-<span class="ne">--&gt; </span><span class="mi">541</span>         <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_call_fx_graph</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">pass2</span><span class="o">.</span><span class="n">graph_output_vars</span><span class="p">(),</span> <span class="n">root</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">544</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pass2</span><span class="o">.</span><span class="n">graph_outputs</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">545</span>         <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pass2</span><span class="o">.</span><span class="n">create_store</span><span class="p">(</span><span class="n">graph_output_var</span><span class="p">))</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:541, in OutputGraph.compile_subgraph(self, tx, partial_convert, reason)
+    538 output = []
+    539 if count_calls(self.graph) != 0 or len(pass2.graph_outputs) != 0:
+    540     output.extend(
+--&gt; 541         self.compile_and_call_fx_graph(tx, pass2.graph_output_vars(), root)
+    542     )
+    544     if len(pass2.graph_outputs) != 0:
+    545         output.append(pass2.create_store(graph_output_var))
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:588,</span> in <span class="ni">OutputGraph.compile_and_call_fx_graph</span><span class="nt">(self, tx, rv, root)</span>
-<span class="g g-Whitespace">    </span><span class="mi">586</span> <span class="n">assert_no_fake_params_or_buffers</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="k">with</span> <span class="n">tracing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracing_context</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">588</span>     <span class="n">compiled_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_user_compiler</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">589</span> <span class="n">compiled_fn</span> <span class="o">=</span> <span class="n">disable</span><span class="p">(</span><span class="n">compiled_fn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="n">counters</span><span class="p">[</span><span class="s2">&quot;stats&quot;</span><span class="p">][</span><span class="s2">&quot;unique_graphs&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:588, in OutputGraph.compile_and_call_fx_graph(self, tx, rv, root)
+    586 assert_no_fake_params_or_buffers(gm)
+    587 with tracing(self.tracing_context):
+--&gt; 588     compiled_fn = self.call_user_compiler(gm)
+    589 compiled_fn = disable(compiled_fn)
+    591 counters[&quot;stats&quot;][&quot;unique_graphs&quot;] += 1
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/utils.py:163,</span> in <span class="ni">dynamo_timed.&lt;locals&gt;.dynamo_timed_inner.&lt;locals&gt;.time_wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="n">compilation_metrics</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">163</span> <span class="n">r</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="n">time_spent</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="c1"># print(f&quot;Dynamo timer: key={key}, latency={latency:.2f} sec&quot;)</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/utils.py:163, in dynamo_timed.&lt;locals&gt;.dynamo_timed_inner.&lt;locals&gt;.time_wrapper(*args, **kwargs)
+    161     compilation_metrics[key] = []
+    162 t0 = time.time()
+--&gt; 163 r = func(*args, **kwargs)
+    164 time_spent = time.time() - t0
+    165 # print(f&quot;Dynamo timer: key={key}, latency={latency:.2f} sec&quot;)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:675,</span> in <span class="ni">OutputGraph.call_user_compiler</span><span class="nt">(self, gm)</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span>     <span class="n">compiled_fn</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">forward</span>
-<span class="ne">--&gt; </span><span class="mi">675</span>     <span class="k">raise</span> <span class="n">BackendCompilerFailed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler_fn</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span> <span class="k">return</span> <span class="n">compiled_fn</span>
+File ~/anaconda3/lib/python3.8/site-packages/torch/_dynamo/output_graph.py:675, in OutputGraph.call_user_compiler(self, gm)
+    673 except Exception as e:
+    674     compiled_fn = gm.forward
+--&gt; 675     raise BackendCompilerFailed(self.compiler_fn, e) from e
+    676 return compiled_fn
 
-<span class="ne">BackendCompilerFailed</span>: debug_wrapper raised RuntimeError: Function ConvolutionBackward0 returned an invalid gradient at index 1 - expected device cuda:1 but got cuda:0
+BackendCompilerFailed: debug_wrapper raised RuntimeError: Function ConvolutionBackward0 returned an invalid gradient at index 1 - expected device cuda:1 but got cuda:0
 
-<span class="n">Set</span> <span class="n">torch</span><span class="o">.</span><span class="n">_dynamo</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
+Set torch._dynamo.config.verbose=True for more information
 
 
-<span class="n">You</span> <span class="n">can</span> <span class="n">suppress</span> <span class="n">this</span> <span class="n">exception</span> <span class="ow">and</span> <span class="n">fall</span> <span class="n">back</span> <span class="n">to</span> <span class="n">eager</span> <span class="n">by</span> <span class="n">setting</span><span class="p">:</span>
-    <span class="n">torch</span><span class="o">.</span><span class="n">_dynamo</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">suppress_errors</span> <span class="o">=</span> <span class="kc">True</span>
+You can suppress this exception and fall back to eager by setting:
+    torch._dynamo.config.suppress_errors = True
 </pre></div>
 </div>
 </div>
@@ -1649,7 +1477,7 @@ Self CUDA time total: <span style="color: #008080; text-decoration-color: #00808
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-04"
         },
         predefinedOutput: true
@@ -1657,36 +1485,109 @@ Self CUDA time total: <span style="color: #008080; text-decoration-color: #00808
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="04_dan.html" title="previous page">(04) Dan notebook</a>
-    <a class='right-next' id="next-link" href="06_sim-kNN.html" title="next page">(06) Sim – kNN analysis</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_dan.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(04) Dan notebook</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="06_sim-kNN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(06) Sim – kNN analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trainer">Trainer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-txt">Save to txt?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile">Compile</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

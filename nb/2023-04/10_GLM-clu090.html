@@ -1,785 +1,501 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(10) Reservoir + GLM &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-04/10_GLM-clu090';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="(12) Reservoir + GLM" href="12_GLM-pix.html" />
     <link rel="prev" title="(09) Sim – generate &amp; save dim=65" href="09_sim-final-save.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/28_sim-self.html">
-     (28) Simulation – self [velocity: new way]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
-     (29) Simulation – full [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
-     (30) Simulation – full [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  February 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-02.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-02_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/01_play-nvae.html">
-     (01) NVAE – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
-     (02) VAE2D – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/09_rot-conv.html">
-     (09) RotConv2d – verified
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/23_sim-gen.html">
-     (23) Simulation – generate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
-     (24) Simulation – generate (fix &amp; obj uncoupled)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
-     (24) Simulation – generate (save)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
-     (25) Fit – cuda (gaban)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
-     (25) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
-     (25) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
-     (25) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
-     (30) KL Balancer
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  March 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-03.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-03_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/17_sim-new-draft.html">
-     (17) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/22_sim-new-draft.html">
-     (22) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/23_sim-new.html">
-     (23) Sim New – visualize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda.html">
-     (30) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda0.html">
-     (30) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda2.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_sim-final.html">
-     (30) Sim – added
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       terrain
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/31_sim-factors.html">
-     (31) Sim – true generative factors
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  April 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-04.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-04_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="02_fit-lin.html">
-     (02) Fit neurons – Linear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_fit-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-ridge.html">
-     (03) Fit neurons – Ridge
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_dan.html">
-     (04) Dan notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_profiler.html">
-     (04) PyTorch profiler
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06_sim-kNN.html">
-     (06) Sim – kNN analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-3d.html">
-     (07) Readout: 3D conv
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-sep.html">
-     (07) Readout: Separable
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu090.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu096.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-accept-filter.html">
-     (08) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_sim-final-save.html">
-     (09) Sim – generate &amp; save
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (10) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_GLM-pix.html">
-     (12) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_dim17-accept-filter.html">
-     (13) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=17
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_dim17-dists.html">
-     (13) Sim – dists for
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=17
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda.html">
-     (13) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda0.html">
-     (13) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda1.html">
-     (13) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda2.html">
-     (13) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14_GLM-loop.html">
-     (14) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="15_GLM-loop.html">
-     (15) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16_GLM-save.html">
-     (16) Reservoir + GLM + Save
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17_Neurons.html">
-     (17) Neurons: how many, how good?
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-04/10_GLM-clu090.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/10_GLM-clu090.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/10_GLM-clu090.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-04/10_GLM-clu090.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-04/10_GLM-clu090.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(10) Reservoir + GLM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#approach">
-   Approach:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-reservoir">
-   Create reservoir
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#readoutglm">
-   ReadoutGLM
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#old-approach-looping-over-pixels">
-   Old approach (looping over pixels)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extract-ftrs">
-   Extract ftrs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-if-i-reduce-the-number-of-lags">
-   What if I reduce the number of lags?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sta">
-   STA
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fit-using-10-lags">
-   Fit using 10 lags
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loop">
-   loop
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pca">
-   PCA
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-without-z-score">
-     PCA without z score
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-with-zscoring">
-     PCA with zscoring
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-reservoir">Create reservoir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readoutglm">ReadoutGLM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#old-approach-looping-over-pixels">Old approach (looping over pixels)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-ftrs">Extract ftrs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-i-reduce-the-number-of-lags">What if I reduce the number of lags?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sta">STA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-using-10-lags">Fit using 10 lags</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca">PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-without-z-score">PCA without z score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-with-zscoring">PCA with zscoring</a></li>
 </ul>
-
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="reservoir-glm">
-<h1>(10) Reservoir + GLM<a class="headerlink" href="#reservoir-glm" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="reservoir-glm">
+<h1>(10) Reservoir + GLM<a class="headerlink" href="#reservoir-glm" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Very competetive models with Resrvoir + GLM. This notebook: <code class="docutils literal notranslate"><span class="pre">expt=clu090</span></code>.</p>
 <section id="approach">
-<h2>Approach:<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+<h2>Approach:<a class="headerlink" href="#approach" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
 <li><p>STA</p></li>
 <li><p>find best_lag</p></li>
 <li><p>at best_lag, find best <span class="math notranslate nohighlight">\((i, j)\)</span></p></li>
@@ -788,6 +504,11 @@
 <br></p></li>
 </ol>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -816,10 +537,11 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="create-reservoir">
-<h2>Create reservoir<a class="headerlink" href="#create-reservoir" title="Permalink to this headline">¶</a></h2>
+<h2>Create reservoir<a class="headerlink" href="#create-reservoir" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span><span class="s1">&#39;fixate1&#39;</span><span class="p">,</span> <span class="n">ker_sz</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_sz</span><span class="o">=</span><span class="mi">19</span><span class="p">))</span>
@@ -859,7 +581,7 @@
 </div>
 </section>
 <section id="readoutglm">
-<h2>ReadoutGLM<a class="headerlink" href="#readoutglm" title="Permalink to this headline">¶</a></h2>
+<h2>ReadoutGLM<a class="headerlink" href="#readoutglm" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="n">ReadoutGLM</span>
@@ -907,7 +629,7 @@ Wall time: 6min 53s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_7_0.png" src="../../_images/10_GLM-clu090_7_0.png" />
+<img alt="../../_images/aae4041106b82ecbe1993f64335fc7b38b1adad5284e18e45c89bcca937a4ca5.png" src="../../_images/aae4041106b82ecbe1993f64335fc7b38b1adad5284e18e45c89bcca937a4ca5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1167,7 +889,7 @@ Wall time: 12.8 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
-<img alt="../../_images/10_GLM-clu090_33_1.png" src="../../_images/10_GLM-clu090_33_1.png" />
+<img alt="../../_images/808bea526173804c9e25af3387a70ef25290136f4bbbc583d914531c7419c2c2.png" src="../../_images/808bea526173804c9e25af3387a70ef25290136f4bbbc583d914531c7419c2c2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1179,7 +901,7 @@ Wall time: 12.8 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_36_0.png" src="../../_images/10_GLM-clu090_36_0.png" />
+<img alt="../../_images/a2dbcb75161b38ad6e944b5acd4b6d6c6258a156c2f26e35394baf8297d25f39.png" src="../../_images/a2dbcb75161b38ad6e944b5acd4b6d6c6258a156c2f26e35394baf8297d25f39.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1223,12 +945,12 @@ Wall time: 11.6 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_39_0.png" src="../../_images/10_GLM-clu090_39_0.png" />
+<img alt="../../_images/adadc4c400432f7e09de6649eaa1b1545ac374f3979e009765b324ef67384969.png" src="../../_images/adadc4c400432f7e09de6649eaa1b1545ac374f3979e009765b324ef67384969.png" />
 </div>
 </div>
 </section>
 <section id="old-approach-looping-over-pixels">
-<h2>Old approach (looping over pixels)<a class="headerlink" href="#old-approach-looping-over-pixels" title="Permalink to this headline">¶</a></h2>
+<h2>Old approach (looping over pixels)<a class="headerlink" href="#old-approach-looping-over-pixels" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="n">prepare_data</span><span class="p">,</span> <span class="n">push</span>
@@ -1254,7 +976,7 @@ Wall time: 11.6 s
 </div>
 </section>
 <section id="extract-ftrs">
-<h2>Extract ftrs<a class="headerlink" href="#extract-ftrs" title="Permalink to this headline">¶</a></h2>
+<h2>Extract ftrs<a class="headerlink" href="#extract-ftrs" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws_process</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">act_fn</span><span class="o">=</span><span class="s1">&#39;swish&#39;</span><span class="p">)</span>
@@ -1345,7 +1067,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">33.71971015159151</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">36.633552475976984</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.17995183459001</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48.992568200724484</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.00993164855434</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.65623263913517</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">34.00000197567766</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_1.png" src="../../_images/10_GLM-clu090_52_1.png" />
+</div><img alt="../../_images/310e7bf32b423ea2b10fe47a26c16e6b38388cdf652a9f2c50211815d8c88004.png" src="../../_images/310e7bf32b423ea2b10fe47a26c16e6b38388cdf652a9f2c50211815d8c88004.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1357,7 +1079,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.40940599941074</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.85325829729133</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.09518014113951</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.89558546722867</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.48212589911202</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.47955803612921</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.61921869171064</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_5.png" src="../../_images/10_GLM-clu090_52_5.png" />
+</div><img alt="../../_images/83f9898c1058f37f14e602a34932c698545c95c2961edda1d0964ea1f2b37cbd.png" src="../../_images/83f9898c1058f37f14e602a34932c698545c95c2961edda1d0964ea1f2b37cbd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1369,7 +1091,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">47.68527316457395</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.22642103325392</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">54.54893499228635</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.99763257811976</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.967706913357354</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.0006352205612</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.58700460939522</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_9.png" src="../../_images/10_GLM-clu090_52_9.png" />
+</div><img alt="../../_images/5b59f85556af09782ecc9209b7f6635ce959df30cf41d66b08a28b72421eb174.png" src="../../_images/5b59f85556af09782ecc9209b7f6635ce959df30cf41d66b08a28b72421eb174.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1381,7 +1103,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">69.96344294653639</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.49468651945998</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.88972395042423</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.87575127428347</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.16477048996899</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.80421959316536</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.75387115400637</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_13.png" src="../../_images/10_GLM-clu090_52_13.png" />
+</div><img alt="../../_images/1b87d3bc2e1e232a0f5699e277f792f68a4759e6b5c40c387178e0c5570ec16d.png" src="../../_images/1b87d3bc2e1e232a0f5699e277f792f68a4759e6b5c40c387178e0c5570ec16d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1393,7 +1115,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.81231639759124</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.37192365613505</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.403318523497134</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.08304256418699</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57.00714292214622</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.344239805073215</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46.16294235896389</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_17.png" src="../../_images/10_GLM-clu090_52_17.png" />
+</div><img alt="../../_images/bb4848ad8efd20f0a26626aeb42f953f8d0296f029a83507c63b5beab7f15525.png" src="../../_images/bb4848ad8efd20f0a26626aeb42f953f8d0296f029a83507c63b5beab7f15525.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1405,7 +1127,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.17753138069872</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.8129576380744</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.8863773779709</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.41953315241156</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.60947757565566</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.9588553876784</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.15120080198811</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_21.png" src="../../_images/10_GLM-clu090_52_21.png" />
+</div><img alt="../../_images/5d5aee5990a1ebfb1f2aac866a7761437a010596a63107fe39cd29653898adfd.png" src="../../_images/5d5aee5990a1ebfb1f2aac866a7761437a010596a63107fe39cd29653898adfd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1417,7 +1139,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.498639016050106</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.81936195797998</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.850880160036056</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.42106521458003</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57.844973258492494</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.16515083931511</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.82579256648093</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_25.png" src="../../_images/10_GLM-clu090_52_25.png" />
+</div><img alt="../../_images/adadc4c400432f7e09de6649eaa1b1545ac374f3979e009765b324ef67384969.png" src="../../_images/adadc4c400432f7e09de6649eaa1b1545ac374f3979e009765b324ef67384969.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1429,7 +1151,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.08069706312504</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.66915583355197</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.887121680131955</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.39467637064706</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.87881334500482</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.25019014045885</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.35950436339295</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_29.png" src="../../_images/10_GLM-clu090_52_29.png" />
+</div><img alt="../../_images/2d3a43876657228806ce09f7360de57ceb02c3fd315d2cfa9952c2cbaa058e08.png" src="../../_images/2d3a43876657228806ce09f7360de57ceb02c3fd315d2cfa9952c2cbaa058e08.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1441,7 +1163,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.721281425740145</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">36.69249316163244</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.77395104319328</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39.849845607099034</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41.79279995787526</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43.90669128037808</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39.602418839242674</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_33.png" src="../../_images/10_GLM-clu090_52_33.png" />
+</div><img alt="../../_images/21fa0f5b62c515de880423faea6a1ff3c0ea5c4e4e53bbe8717a2fafae8588ef.png" src="../../_images/21fa0f5b62c515de880423faea6a1ff3c0ea5c4e4e53bbe8717a2fafae8588ef.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1453,7 +1175,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">67.4717086478926</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.0571776168735</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65.41935926951619</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.06067418237258</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.18080976434922</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.1302224965944</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.346417201584885</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_37.png" src="../../_images/10_GLM-clu090_52_37.png" />
+</div><img alt="../../_images/96bf8aaa47066a7d9103834f28ade55079e28dff1426577ce731ac318e445ec4.png" src="../../_images/96bf8aaa47066a7d9103834f28ade55079e28dff1426577ce731ac318e445ec4.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1465,7 +1187,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.776633440045714</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.702601516138024</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">63.90273658245131</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.98943983836838</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">66.3692367731364</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.5439329229617</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.57525495389356</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_41.png" src="../../_images/10_GLM-clu090_52_41.png" />
+</div><img alt="../../_images/bd52069189e2fc60265cda1cbf6406695a9f673cd79e24543d66710eb120317b.png" src="../../_images/bd52069189e2fc60265cda1cbf6406695a9f673cd79e24543d66710eb120317b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1477,7 +1199,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.00339682681474</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.25099242388694</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.88164953637882</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">72.02709335918784</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">71.80693910862614</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">68.21239130831177</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.87759377600238</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_45.png" src="../../_images/10_GLM-clu090_52_45.png" />
+</div><img alt="../../_images/ccaa6d49729f39971410db9dd824120669e1a250704070ccbb06b9a43e11cae1.png" src="../../_images/ccaa6d49729f39971410db9dd824120669e1a250704070ccbb06b9a43e11cae1.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1489,7 +1211,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.11294032266142</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.7804444232776</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">53.07454724273395</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.96049817856805</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.98807996795796</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.05838045778695</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">32.16698262280756</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_49.png" src="../../_images/10_GLM-clu090_52_49.png" />
+</div><img alt="../../_images/0bc9239440b92aebc6feea1290a4fbfd5f92c76551bc49723298692d99e32c03.png" src="../../_images/0bc9239440b92aebc6feea1290a4fbfd5f92c76551bc49723298692d99e32c03.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1501,7 +1223,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.669683616689554</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">55.660527303261595</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.41791152702702</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.2434361413548</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.252099950934124</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.611213408447206</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41.857848763887986</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_53.png" src="../../_images/10_GLM-clu090_52_53.png" />
+</div><img alt="../../_images/41b17594b4c2ba2f1f16eb4591337c73fbb641011e03fe258d2f6fbca0115b24.png" src="../../_images/41b17594b4c2ba2f1f16eb4591337c73fbb641011e03fe258d2f6fbca0115b24.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1513,7 +1235,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.64911120765804</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.20967917016846</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.041515302357354</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.912589817993144</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.33202569893874</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.29125869117187</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">51.08704851166572</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_57.png" src="../../_images/10_GLM-clu090_52_57.png" />
+</div><img alt="../../_images/451c1572de36b224de6e58a959d96409c0c2c2db8ac018a388f8fc9651c3d87c.png" src="../../_images/451c1572de36b224de6e58a959d96409c0c2c2db8ac018a388f8fc9651c3d87c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1525,7 +1247,7 @@ Wall time: 6min 41s
 <span style="font-weight: bold">{</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.135605082285814</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.6728306132285</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.009</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.31545668372189</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>: 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">61.322674459256376</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.02</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.68358450426927</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">58.11133822793478</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46.61281107416579</span><span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_52_61.png" src="../../_images/10_GLM-clu090_52_61.png" />
+</div><img alt="../../_images/34e3bc2d256019773073da0531fee0d039a5bb21de9994bd5a26802f2b635f05.png" src="../../_images/34e3bc2d256019773073da0531fee0d039a5bb21de9994bd5a26802f2b635f05.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -1545,13 +1267,13 @@ Wall time: 3min 4s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_54_0.png" src="../../_images/10_GLM-clu090_54_0.png" />
+<img alt="../../_images/efcda6e4176fe26182d62bfee7935a7695cd36e49cb68bb14bfa3597c6defed9.png" src="../../_images/efcda6e4176fe26182d62bfee7935a7695cd36e49cb68bb14bfa3597c6defed9.png" />
 </div>
 </div>
 <p>We see that indeed pixel (2, 3) is best.</p>
 </section>
 <section id="what-if-i-reduce-the-number-of-lags">
-<h2>What if I reduce the number of lags?<a class="headerlink" href="#what-if-i-reduce-the-number-of-lags" title="Permalink to this headline">¶</a></h2>
+<h2>What if I reduce the number of lags?<a class="headerlink" href="#what-if-i-reduce-the-number-of-lags" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1574,7 +1296,7 @@ Wall time: 4min 36s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_59_0.png" src="../../_images/10_GLM-clu090_59_0.png" />
+<img alt="../../_images/e70d8dd997f88161654b377927f07d7fb4eb1dfd42be1257d04018e2f09da113.png" src="../../_images/e70d8dd997f88161654b377927f07d7fb4eb1dfd42be1257d04018e2f09da113.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1618,12 +1340,12 @@ Wall time: 11.3 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_61_0.png" src="../../_images/10_GLM-clu090_61_0.png" />
+<img alt="../../_images/bd52069189e2fc60265cda1cbf6406695a9f673cd79e24543d66710eb120317b.png" src="../../_images/bd52069189e2fc60265cda1cbf6406695a9f673cd79e24543d66710eb120317b.png" />
 </div>
 </div>
 </section>
 <section id="sta">
-<h2>STA<a class="headerlink" href="#sta" title="Permalink to this headline">¶</a></h2>
+<h2>STA<a class="headerlink" href="#sta" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lags</span> <span class="o">=</span> <span class="mi">19</span>
@@ -1713,7 +1435,7 @@ Wall time: 11.3 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_75_0.png" src="../../_images/10_GLM-clu090_75_0.png" />
+<img alt="../../_images/a3710a313e7a97b2414f4b75505dbf90771653375a33868523b5ab034e719b00.png" src="../../_images/a3710a313e7a97b2414f4b75505dbf90771653375a33868523b5ab034e719b00.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1764,7 +1486,7 @@ Wall time: 11.3 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_79_0.png" src="../../_images/10_GLM-clu090_79_0.png" />
+<img alt="../../_images/f77e366171e56f3cfbf74bd0fce8367381eb360ee1587d752e22007a3f31624f.png" src="../../_images/f77e366171e56f3cfbf74bd0fce8367381eb360ee1587d752e22007a3f31624f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1774,7 +1496,7 @@ Wall time: 11.3 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_80_0.png" src="../../_images/10_GLM-clu090_80_0.png" />
+<img alt="../../_images/1d9c22ba0a21eaf657f9c639106c1e098c051f5489dfb24af8d810ddf75c32e6.png" src="../../_images/1d9c22ba0a21eaf657f9c639106c1e098c051f5489dfb24af8d810ddf75c32e6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1846,7 +1568,7 @@ Wall time: 3min 16s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_85_0.png" src="../../_images/10_GLM-clu090_85_0.png" />
+<img alt="../../_images/4f4c36e5fedb857340bdff72fa721b6afd49052885c7da3b2cdef149854f165a.png" src="../../_images/4f4c36e5fedb857340bdff72fa721b6afd49052885c7da3b2cdef149854f165a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1896,7 +1618,7 @@ Wall time: 6min 2s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_88_0.png" src="../../_images/10_GLM-clu090_88_0.png" />
+<img alt="../../_images/2d7f665f5638894b7dca61468dfb64eecb7755d93e332827bcb420ba8ee482fc.png" src="../../_images/2d7f665f5638894b7dca61468dfb64eecb7755d93e332827bcb420ba8ee482fc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1935,7 +1657,7 @@ Wall time: 6min 2s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f90bc8a9430&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/10_GLM-clu090_94_1.png" src="../../_images/10_GLM-clu090_94_1.png" />
+<img alt="../../_images/9ee1cd2732fd9cf0c70e8e93d85b2fad5225d967c539123fc84d8eceef297c37.png" src="../../_images/9ee1cd2732fd9cf0c70e8e93d85b2fad5225d967c539123fc84d8eceef297c37.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1991,7 +1713,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 </div>
 </section>
 <section id="fit-using-10-lags">
-<h2>Fit using 10 lags<a class="headerlink" href="#fit-using-10-lags" title="Permalink to this headline">¶</a></h2>
+<h2>Fit using 10 lags<a class="headerlink" href="#fit-using-10-lags" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -2014,7 +1736,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_105_0.png" src="../../_images/10_GLM-clu090_105_0.png" />
+<img alt="../../_images/ff851debc9e9b04d655bd0e8972884e2ca3c3b77992f5c73c6caaee9cda56bce.png" src="../../_images/ff851debc9e9b04d655bd0e8972884e2ca3c3b77992f5c73c6caaee9cda56bce.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2091,12 +1813,12 @@ Wall time: 35min 19s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_110_0.png" src="../../_images/10_GLM-clu090_110_0.png" />
+<img alt="../../_images/c352366039f838aec229c8547fb7aaca861c629a0b708666d9e3754594a1760a.png" src="../../_images/c352366039f838aec229c8547fb7aaca861c629a0b708666d9e3754594a1760a.png" />
 </div>
 </div>
 </section>
 <section id="loop">
-<h2>loop<a class="headerlink" href="#loop" title="Permalink to this headline">¶</a></h2>
+<h2>loop<a class="headerlink" href="#loop" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
@@ -2120,7 +1842,7 @@ Wall time: 35min 19s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_116_0.png" src="../../_images/10_GLM-clu090_116_0.png" />
+<img alt="../../_images/f77e366171e56f3cfbf74bd0fce8367381eb360ee1587d752e22007a3f31624f.png" src="../../_images/f77e366171e56f3cfbf74bd0fce8367381eb360ee1587d752e22007a3f31624f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2191,7 +1913,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.992996729038351</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_2.png" src="../../_images/10_GLM-clu090_119_2.png" />
+</div><img alt="../../_images/50473daccf17513d7f6f3afa236b6d894b9a33abe094a60e8d59c43569b7acfe.png" src="../../_images/50473daccf17513d7f6f3afa236b6d894b9a33abe094a60e8d59c43569b7acfe.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2214,7 +1936,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14.964383607771282</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_5.png" src="../../_images/10_GLM-clu090_119_5.png" />
+</div><img alt="../../_images/6c5de8fefc77ac06e95d29dd1d3db6172cb1317a3ef7e16634564ea256ffcb67.png" src="../../_images/6c5de8fefc77ac06e95d29dd1d3db6172cb1317a3ef7e16634564ea256ffcb67.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2243,7 +1965,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">34.82751974238298</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_8.png" src="../../_images/10_GLM-clu090_119_8.png" />
+</div><img alt="../../_images/2ec3ac7e33708fa060a184d1e6c573002e01d0d19788bc3bd1bcf28b445bc394.png" src="../../_images/2ec3ac7e33708fa060a184d1e6c573002e01d0d19788bc3bd1bcf28b445bc394.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2272,7 +1994,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">45.866078671280206</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_11.png" src="../../_images/10_GLM-clu090_119_11.png" />
+</div><img alt="../../_images/4675687a02fcb8ae154665885a7351c3663643d76fb7d0c7e1f8df8eb350772e.png" src="../../_images/4675687a02fcb8ae154665885a7351c3663643d76fb7d0c7e1f8df8eb350772e.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2301,7 +2023,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">52.0711998582472</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_14.png" src="../../_images/10_GLM-clu090_119_14.png" />
+</div><img alt="../../_images/71cb9a19bb070b852302cab1b0daf0259a62aeac5d28cdad51870bdf2db50ef1.png" src="../../_images/71cb9a19bb070b852302cab1b0daf0259a62aeac5d28cdad51870bdf2db50ef1.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2330,7 +2052,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">56.72751291463764</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_17.png" src="../../_images/10_GLM-clu090_119_17.png" />
+</div><img alt="../../_images/273704dc9f036e50841d4c94e93ed2fde8281ec7a739014542b2967df7eb736c.png" src="../../_images/273704dc9f036e50841d4c94e93ed2fde8281ec7a739014542b2967df7eb736c.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2359,7 +2081,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">59.12565579044078</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_20.png" src="../../_images/10_GLM-clu090_119_20.png" />
+</div><img alt="../../_images/4d4de39d834c286b6503afe89638ec794ae6e0835ca1ea5cd9a423b0e99b0cb6.png" src="../../_images/4d4de39d834c286b6503afe89638ec794ae6e0835ca1ea5cd9a423b0e99b0cb6.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2394,7 +2116,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60.85791762791176</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_23.png" src="../../_images/10_GLM-clu090_119_23.png" />
+</div><img alt="../../_images/c734bac4f4a15ae5adeb47b553f267f83a1ec6d115056f27d889ba58b9caa717.png" src="../../_images/c734bac4f4a15ae5adeb47b553f267f83a1ec6d115056f27d889ba58b9caa717.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2429,7 +2151,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.35269475616163</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_26.png" src="../../_images/10_GLM-clu090_119_26.png" />
+</div><img alt="../../_images/1f82aa3c87f18c81e6e2338f687ab01fda082a2cad2a49de107ac3b09294db8d.png" src="../../_images/1f82aa3c87f18c81e6e2338f687ab01fda082a2cad2a49de107ac3b09294db8d.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2464,7 +2186,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">62.85388720904478</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_29.png" src="../../_images/10_GLM-clu090_119_29.png" />
+</div><img alt="../../_images/621647aac50721ca7aea97fa9edd72511de3ebc51b11feb28ac29043925303ec.png" src="../../_images/621647aac50721ca7aea97fa9edd72511de3ebc51b11feb28ac29043925303ec.png" />
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_glm/glm.py:287: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
@@ -2499,7 +2221,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">64.86583810280146</span>
 <span style="font-weight: bold">}</span>
 </pre>
-</div><img alt="../../_images/10_GLM-clu090_119_32.png" src="../../_images/10_GLM-clu090_119_32.png" />
+</div><img alt="../../_images/1c206a6e6921f9f10dd5da5a9c812865da32f84050d16794c912e5e8e57d4ee7.png" src="../../_images/1c206a6e6921f9f10dd5da5a9c812865da32f84050d16794c912e5e8e57d4ee7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3h 31min 54s, sys: 19min 19s, total: 3h 51min 14s
 Wall time: 1h 9min 54s
 </pre></div>
@@ -2508,7 +2230,7 @@ Wall time: 1h 9min 54s
 </div>
 </section>
 <section id="pca">
-<h2>PCA<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h2>
+<h2>PCA<a class="headerlink" href="#pca" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -2535,7 +2257,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_123_0.png" src="../../_images/10_GLM-clu090_123_0.png" />
+<img alt="../../_images/aec8a58cf1fcfce637c5b2f173cbb8fa84ca82685be4fdfe53c587fd94f1567a.png" src="../../_images/aec8a58cf1fcfce637c5b2f173cbb8fa84ca82685be4fdfe53c587fd94f1567a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2566,7 +2288,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_127_0.png" src="../../_images/10_GLM-clu090_127_0.png" />
+<img alt="../../_images/a3710a313e7a97b2414f4b75505dbf90771653375a33868523b5ab034e719b00.png" src="../../_images/a3710a313e7a97b2414f4b75505dbf90771653375a33868523b5ab034e719b00.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2606,7 +2328,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_131_0.png" src="../../_images/10_GLM-clu090_131_0.png" />
+<img alt="../../_images/6c7408b895b8560a54d94737de0235015e277b521e36203fb6ebf91ee7699fba.png" src="../../_images/6c7408b895b8560a54d94737de0235015e277b521e36203fb6ebf91ee7699fba.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2669,7 +2391,7 @@ Wall time: 1h 9min 54s
 </div>
 </div>
 <section id="pca-without-z-score">
-<h3>PCA without z score<a class="headerlink" href="#pca-without-z-score" title="Permalink to this headline">¶</a></h3>
+<h3>PCA without z score<a class="headerlink" href="#pca-without-z-score" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2752,7 +2474,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_143_0.png" src="../../_images/10_GLM-clu090_143_0.png" />
+<img alt="../../_images/daa8c450437bb6ab219150c14c141d39643287a67002882720b0618c86344481.png" src="../../_images/daa8c450437bb6ab219150c14c141d39643287a67002882720b0618c86344481.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2762,7 +2484,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_144_0.png" src="../../_images/10_GLM-clu090_144_0.png" />
+<img alt="../../_images/f265a27bf52514f904e5acd65f6a26f4d21dab488668a8a426041cd94cc7b9a4.png" src="../../_images/f265a27bf52514f904e5acd65f6a26f4d21dab488668a8a426041cd94cc7b9a4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2804,7 +2526,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_157_0.png" src="../../_images/10_GLM-clu090_157_0.png" />
+<img alt="../../_images/66fe0ed61178f18dee6b1916f8ba92d8932b45fa11b8c8b76d0b548f44f167c7.png" src="../../_images/66fe0ed61178f18dee6b1916f8ba92d8932b45fa11b8c8b76d0b548f44f167c7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2814,7 +2536,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_158_0.png" src="../../_images/10_GLM-clu090_158_0.png" />
+<img alt="../../_images/8381a23301e976fa73bfc2231944c31b3818ba2c21c9704fa4964d61fc4a0755.png" src="../../_images/8381a23301e976fa73bfc2231944c31b3818ba2c21c9704fa4964d61fc4a0755.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2824,7 +2546,7 @@ Wall time: 1min 21s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_159_0.png" src="../../_images/10_GLM-clu090_159_0.png" />
+<img alt="../../_images/af3d8d5a3d19d77b762091c3abc797b30b76b8f7d59c7f305d0b75f9a1d8be89.png" src="../../_images/af3d8d5a3d19d77b762091c3abc797b30b76b8f7d59c7f305d0b75f9a1d8be89.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2871,12 +2593,12 @@ Wall time: 12.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_161_0.png" src="../../_images/10_GLM-clu090_161_0.png" />
+<img alt="../../_images/f6e4143041d6f4a3e88772eeba950ded1348fecf9130d6db8c422dae5dbb7cf5.png" src="../../_images/f6e4143041d6f4a3e88772eeba950ded1348fecf9130d6db8c422dae5dbb7cf5.png" />
 </div>
 </div>
 </section>
 <section id="pca-with-zscoring">
-<h3>PCA with zscoring<a class="headerlink" href="#pca-with-zscoring" title="Permalink to this headline">¶</a></h3>
+<h3>PCA with zscoring<a class="headerlink" href="#pca-with-zscoring" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">x_transformed</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2930,7 +2652,7 @@ Wall time: 7.55 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10_GLM-clu090_166_0.png" src="../../_images/10_GLM-clu090_166_0.png" />
+<img alt="../../_images/7adcc43ae271a8f5a6dfe306e6fe2b97981e496456f5cfc3dc73c2d20875b37e.png" src="../../_images/7adcc43ae271a8f5a6dfe306e6fe2b97981e496456f5cfc3dc73c2d20875b37e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2964,7 +2686,7 @@ Wall time: 7.55 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f90a70c82b0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/10_GLM-clu090_170_1.png" src="../../_images/10_GLM-clu090_170_1.png" />
+<img alt="../../_images/526561dd2d35212f4ecc91baa5946d8e5ef0e42d4aa83c1c0e98d65727635b35.png" src="../../_images/526561dd2d35212f4ecc91baa5946d8e5ef0e42d4aa83c1c0e98d65727635b35.png" />
 </div>
 </div>
 </section>
@@ -2983,7 +2705,7 @@ Wall time: 7.55 s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-04"
         },
         predefinedOutput: true
@@ -2991,36 +2713,118 @@ Wall time: 7.55 s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="09_sim-final-save.html" title="previous page">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a>
-    <a class='right-next' id="next-link" href="12_GLM-pix.html" title="next page">(12) Reservoir + GLM</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_sim-final-save.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="12_GLM-pix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(12) Reservoir + GLM</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-reservoir">Create reservoir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readoutglm">ReadoutGLM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#old-approach-looping-over-pixels">Old approach (looping over pixels)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-ftrs">Extract ftrs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-i-reduce-the-number-of-lags">What if I reduce the number of lags?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sta">STA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-using-10-lags">Fit using 10 lags</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca">PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-without-z-score">PCA without z score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-with-zscoring">PCA with zscoring</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

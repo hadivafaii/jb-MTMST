@@ -1,668 +1,491 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(03) Fit neurons – GLM &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-04/03_loop-glm';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="(03) Fit neurons – Ridge" href="03_loop-ridge.html" />
     <link rel="prev" title="(03) Fit neurons – GLM" href="03_fit-glm.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/28_sim-self.html">
-     (28) Simulation – self [velocity: new way]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
-     (29) Simulation – full [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
-     (30) Simulation – full [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  February 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-02.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-02_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/01_play-nvae.html">
-     (01) NVAE – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
-     (02) VAE2D – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/09_rot-conv.html">
-     (09) RotConv2d – verified
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/23_sim-gen.html">
-     (23) Simulation – generate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
-     (24) Simulation – generate (fix &amp; obj uncoupled)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
-     (24) Simulation – generate (save)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
-     (25) Fit – cuda (gaban)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
-     (25) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
-     (25) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
-     (25) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
-     (30) KL Balancer
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  March 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-03.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-03_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/17_sim-new-draft.html">
-     (17) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/22_sim-new-draft.html">
-     (22) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/23_sim-new.html">
-     (23) Sim New – visualize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda.html">
-     (30) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda0.html">
-     (30) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda2.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_sim-final.html">
-     (30) Sim – added
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       terrain
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/31_sim-factors.html">
-     (31) Sim – true generative factors
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  April 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-04.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-04_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="02_fit-lin.html">
-     (02) Fit neurons – Linear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_fit-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-ridge.html">
-     (03) Fit neurons – Ridge
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_dan.html">
-     (04) Dan notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_profiler.html">
-     (04) PyTorch profiler
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06_sim-kNN.html">
-     (06) Sim – kNN analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-3d.html">
-     (07) Readout: 3D conv
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-sep.html">
-     (07) Readout: Separable
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu090.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu096.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-accept-filter.html">
-     (08) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_sim-final-save.html">
-     (09) Sim – generate &amp; save
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_GLM-clu090.html">
-     (10) Reservoir + GLM
-    </a>
-   </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/03_loop-glm.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-04/03_loop-glm.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  
 </div>
-
 </div>
+              
+              
 
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(03) Fit neurons – GLM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-04/03_loop-glm.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/03_loop-glm.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-04/03_loop-glm.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loop">
-   Loop
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#show-hyperflow-with-radius-6">
-   Show HyperFlow with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     radius=6
-    </span>
-   </code>
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#show-hyperflow-with-radius-6">Show HyperFlow with <code class="docutils literal notranslate"><span class="pre">radius=6</span></code></a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="fit-neurons-glm">
-<h1>(03) Fit neurons – GLM<a class="headerlink" href="#fit-neurons-glm" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fit-neurons-glm">
+<h1>(03) Fit neurons – GLM<a class="headerlink" href="#fit-neurons-glm" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Fit <code class="docutils literal notranslate"><span class="pre">PoissonRegressor</span></code> GLM to neurons (loop). <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -692,9 +515,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">model.dataset</span> <span class="kn">import</span> <span class="n">setup_repeat_data</span><span class="p">,</span> <span class="n">setup_supervised_data</span>
@@ -727,7 +551,7 @@
 </div>
 </section>
 <section id="loop">
-<h2>Loop<a class="headerlink" href="#loop" title="Permalink to this headline">¶</a></h2>
+<h2>Loop<a class="headerlink" href="#loop" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -827,16 +651,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu036 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.016</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.107</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_3.png" src="../../_images/03_loop-glm_6_3.png" />
+</div><img alt="../../_images/86879bb50ba0193188bcfa6bf5c493eb800cfe9bde00c815c692d9d64a677abd.png" src="../../_images/86879bb50ba0193188bcfa6bf5c493eb800cfe9bde00c815c692d9d64a677abd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu036 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.008</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.095</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_5.png" src="../../_images/03_loop-glm_6_5.png" />
+</div><img alt="../../_images/6aa05f5e164f737512390865b76486da0e218f82e6866b959dea499d996f9de5.png" src="../../_images/6aa05f5e164f737512390865b76486da0e218f82e6866b959dea499d996f9de5.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu036 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.002</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.090</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_7.png" src="../../_images/03_loop-glm_6_7.png" />
+</div><img alt="../../_images/fd524e6ada686fdc5c0d4a172f91a3247e152d48398eb77c463fe340f203d4fd.png" src="../../_images/fd524e6ada686fdc5c0d4a172f91a3247e152d48398eb77c463fe340f203d4fd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu036 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.090</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_9.png" src="../../_images/03_loop-glm_6_9.png" />
+</div><img alt="../../_images/cb602abf9c9c69ef6f6f5b38941af2d13adf313ce7084221121cfdbe7eab19ce.png" src="../../_images/cb602abf9c9c69ef6f6f5b38941af2d13adf313ce7084221121cfdbe7eab19ce.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu036: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1067</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -851,16 +675,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu037 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.158</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_16.png" src="../../_images/03_loop-glm_6_16.png" />
+</div><img alt="../../_images/aa0497e31f3f0dbf38889aa61683cbdf46e65e7279262309b8b4bce6241fd7b8.png" src="../../_images/aa0497e31f3f0dbf38889aa61683cbdf46e65e7279262309b8b4bce6241fd7b8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu037 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.014</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.108</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_18.png" src="../../_images/03_loop-glm_6_18.png" />
+</div><img alt="../../_images/fa132ea7d18f1339d6786688f0421a725982a95a71162a454a7689163e851f44.png" src="../../_images/fa132ea7d18f1339d6786688f0421a725982a95a71162a454a7689163e851f44.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu037 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.003</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.096</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_20.png" src="../../_images/03_loop-glm_6_20.png" />
+</div><img alt="../../_images/1cb9fb7d7bd1344695ed947891ae680dfe959a88d35ccbef1370dbc2adf4a6c7.png" src="../../_images/1cb9fb7d7bd1344695ed947891ae680dfe959a88d35ccbef1370dbc2adf4a6c7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu037 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.094</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_22.png" src="../../_images/03_loop-glm_6_22.png" />
+</div><img alt="../../_images/985b4030485dba20422dd60140d74dc93103a96300a599ffafa5094a60fa2463.png" src="../../_images/985b4030485dba20422dd60140d74dc93103a96300a599ffafa5094a60fa2463.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu037: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1578</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -875,16 +699,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu038 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.033</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.262</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_29.png" src="../../_images/03_loop-glm_6_29.png" />
+</div><img alt="../../_images/7729366df5abe608d473cfc867a6ca8d714a3d2ef6ca720639757f06b5a4cd9b.png" src="../../_images/7729366df5abe608d473cfc867a6ca8d714a3d2ef6ca720639757f06b5a4cd9b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu038 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.020</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.212</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_31.png" src="../../_images/03_loop-glm_6_31.png" />
+</div><img alt="../../_images/2a0cb5ae9e07292e059258d76ce04ed46cf6b899c98ef0e29bd20e521fc46a7b.png" src="../../_images/2a0cb5ae9e07292e059258d76ce04ed46cf6b899c98ef0e29bd20e521fc46a7b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu038 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.011</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.182</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_33.png" src="../../_images/03_loop-glm_6_33.png" />
+</div><img alt="../../_images/dac863e4afa280960559937dbe5dce65bf958645987ae2e2395ca43562569f09.png" src="../../_images/dac863e4afa280960559937dbe5dce65bf958645987ae2e2395ca43562569f09.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu038 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.173</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_35.png" src="../../_images/03_loop-glm_6_35.png" />
+</div><img alt="../../_images/fba2ea3249ed0a254da549adfce92c2565b6362c387a3bb0b52a16469c70063b.png" src="../../_images/fba2ea3249ed0a254da549adfce92c2565b6362c387a3bb0b52a16469c70063b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu038: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2623</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -899,16 +723,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu039 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.037</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.210</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_42.png" src="../../_images/03_loop-glm_6_42.png" />
+</div><img alt="../../_images/6644f8e81568207a8001089fc278b78c6d5fd4a93a40a13eb9a8062bbb63384e.png" src="../../_images/6644f8e81568207a8001089fc278b78c6d5fd4a93a40a13eb9a8062bbb63384e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu039 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.014</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.151</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_44.png" src="../../_images/03_loop-glm_6_44.png" />
+</div><img alt="../../_images/c43fef93105851b60aa7873ffe6d5fe48d1f8d4a41100d62809f1a2ef0eefaa1.png" src="../../_images/c43fef93105851b60aa7873ffe6d5fe48d1f8d4a41100d62809f1a2ef0eefaa1.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu039 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.125</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_46.png" src="../../_images/03_loop-glm_6_46.png" />
+</div><img alt="../../_images/82eab7caf808ebebac29398e6084fc6325e86a9d4d2f22833fce9f7aa4e6c8f6.png" src="../../_images/82eab7caf808ebebac29398e6084fc6325e86a9d4d2f22833fce9f7aa4e6c8f6.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu039 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.002</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.118</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_48.png" src="../../_images/03_loop-glm_6_48.png" />
+</div><img alt="../../_images/32cd97f0f4600627dff9e5b729aa5251384d162e44e8aeaac54cf802df131c66.png" src="../../_images/32cd97f0f4600627dff9e5b729aa5251384d162e44e8aeaac54cf802df131c66.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu039: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2096</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -923,16 +747,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu040 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.125</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.285</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_55.png" src="../../_images/03_loop-glm_6_55.png" />
+</div><img alt="../../_images/60260ae86eba2f0b961f1e3d49f2675b09acd5f4279237b6cf8761b83ecebe9b.png" src="../../_images/60260ae86eba2f0b961f1e3d49f2675b09acd5f4279237b6cf8761b83ecebe9b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu040 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.043</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.198</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_57.png" src="../../_images/03_loop-glm_6_57.png" />
+</div><img alt="../../_images/aedf360f5def39eb9fc4019e48be0fee65cbe80a58005ee452b0d10c17781cd8.png" src="../../_images/aedf360f5def39eb9fc4019e48be0fee65cbe80a58005ee452b0d10c17781cd8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu040 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.012</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.174</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_59.png" src="../../_images/03_loop-glm_6_59.png" />
+</div><img alt="../../_images/adff29c68b7171d127dd292e5a35b6ed4ea2fcc615fc69430c7fc67f2b46c9fb.png" src="../../_images/adff29c68b7171d127dd292e5a35b6ed4ea2fcc615fc69430c7fc67f2b46c9fb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu040 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.006</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.170</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_61.png" src="../../_images/03_loop-glm_6_61.png" />
+</div><img alt="../../_images/7dffbc23c82aecad5ab77fa6aab619213879eff61ec541adc3f3b2fd83c3c295.png" src="../../_images/7dffbc23c82aecad5ab77fa6aab619213879eff61ec541adc3f3b2fd83c3c295.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu040: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2848</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -947,16 +771,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu043 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.016</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.215</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_68.png" src="../../_images/03_loop-glm_6_68.png" />
+</div><img alt="../../_images/b8795aa397cbad24c9109203eeac3f9e123327fcdb83b7b86aee6a1b19f985c5.png" src="../../_images/b8795aa397cbad24c9109203eeac3f9e123327fcdb83b7b86aee6a1b19f985c5.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu043 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.187</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_70.png" src="../../_images/03_loop-glm_6_70.png" />
+</div><img alt="../../_images/185e6ecbed2091fc0c4bd5ac708e4254741e166ab829e8c4863a80ca82eb7944.png" src="../../_images/185e6ecbed2091fc0c4bd5ac708e4254741e166ab829e8c4863a80ca82eb7944.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu043 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.002</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.180</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_72.png" src="../../_images/03_loop-glm_6_72.png" />
+</div><img alt="../../_images/bbfc67e65910af97813fadf8fc1392ab11490ff098bb8fffaf223c4663cb3548.png" src="../../_images/bbfc67e65910af97813fadf8fc1392ab11490ff098bb8fffaf223c4663cb3548.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu043 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.178</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_74.png" src="../../_images/03_loop-glm_6_74.png" />
+</div><img alt="../../_images/9a8c9dfda170bc7c37bb8d1cd87a1ad140c829773da183be81331a534be8de85.png" src="../../_images/9a8c9dfda170bc7c37bb8d1cd87a1ad140c829773da183be81331a534be8de85.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu043: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2152</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -971,16 +795,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu044 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.069</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.282</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_81.png" src="../../_images/03_loop-glm_6_81.png" />
+</div><img alt="../../_images/d565d8b64f1158a4d103b909306a14c155b15cd48263923d4ba71bda96e65597.png" src="../../_images/d565d8b64f1158a4d103b909306a14c155b15cd48263923d4ba71bda96e65597.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu044 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.027</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.248</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_83.png" src="../../_images/03_loop-glm_6_83.png" />
+</div><img alt="../../_images/35f24b4ca6223a62f43ff6813a8f781241b7648fc293007d8cb95ba8fb239f5d.png" src="../../_images/35f24b4ca6223a62f43ff6813a8f781241b7648fc293007d8cb95ba8fb239f5d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu044 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.240</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_85.png" src="../../_images/03_loop-glm_6_85.png" />
+</div><img alt="../../_images/84b417039dad50cfa616e67cfe30c2532581d5ea26cf9b836a32601f958a1402.png" src="../../_images/84b417039dad50cfa616e67cfe30c2532581d5ea26cf9b836a32601f958a1402.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu044 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.239</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_87.png" src="../../_images/03_loop-glm_6_87.png" />
+</div><img alt="../../_images/4362b164207779416090351fd24b3a2ca1d3c2cd808918df764e0a1fd3ab34ff.png" src="../../_images/4362b164207779416090351fd24b3a2ca1d3c2cd808918df764e0a1fd3ab34ff.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu044: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2824</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -995,16 +819,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu053 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.315</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.458</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_94.png" src="../../_images/03_loop-glm_6_94.png" />
+</div><img alt="../../_images/2233e828c8a5179f73cb89ef8bc1b63a2220947676fac7c103869922b29b9dd2.png" src="../../_images/2233e828c8a5179f73cb89ef8bc1b63a2220947676fac7c103869922b29b9dd2.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu053 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.109</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.436</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_96.png" src="../../_images/03_loop-glm_6_96.png" />
+</div><img alt="../../_images/e0164c1e92c05a406f9560fd87d16519323f6175344dc6c563bcbd54da44253a.png" src="../../_images/e0164c1e92c05a406f9560fd87d16519323f6175344dc6c563bcbd54da44253a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu053 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.027</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.419</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_98.png" src="../../_images/03_loop-glm_6_98.png" />
+</div><img alt="../../_images/83c7b9d957d6fb510a6a00c20028f614c9f29b43a327c478db68e91e2fd7beec.png" src="../../_images/83c7b9d957d6fb510a6a00c20028f614c9f29b43a327c478db68e91e2fd7beec.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu053 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.013</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.415</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_100.png" src="../../_images/03_loop-glm_6_100.png" />
+</div><img alt="../../_images/5db3321397509878dd3b7c60460c0bf6f7178b440761fd8f2ba48a29bdc43e21.png" src="../../_images/5db3321397509878dd3b7c60460c0bf6f7178b440761fd8f2ba48a29bdc43e21.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu053: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.4581</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1019,16 +843,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu055 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.136</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.340</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_107.png" src="../../_images/03_loop-glm_6_107.png" />
+</div><img alt="../../_images/e0f6fcc86d41d6978cb807d4d043d2d806579637342afd531bfe149792d3eef1.png" src="../../_images/e0f6fcc86d41d6978cb807d4d043d2d806579637342afd531bfe149792d3eef1.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu055 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.054</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.308</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_109.png" src="../../_images/03_loop-glm_6_109.png" />
+</div><img alt="../../_images/49b6c48329f5d79e823f8ab11c0118933d3300ff3f53607c5e0affb29ea7c4fa.png" src="../../_images/49b6c48329f5d79e823f8ab11c0118933d3300ff3f53607c5e0affb29ea7c4fa.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu055 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.014</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.297</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_111.png" src="../../_images/03_loop-glm_6_111.png" />
+</div><img alt="../../_images/eb1f1e30a96656bf1ee2f670c22528d07008153ae2e23723c4dea8b17e7136de.png" src="../../_images/eb1f1e30a96656bf1ee2f670c22528d07008153ae2e23723c4dea8b17e7136de.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu055 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.295</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_113.png" src="../../_images/03_loop-glm_6_113.png" />
+</div><img alt="../../_images/31f901eaac5b1d6bd890a2b053c22b258a7b0f52e6163340f2feef3cbe707f5c.png" src="../../_images/31f901eaac5b1d6bd890a2b053c22b258a7b0f52e6163340f2feef3cbe707f5c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu055: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3397</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1043,16 +867,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu059 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.205</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.482</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_120.png" src="../../_images/03_loop-glm_6_120.png" />
+</div><img alt="../../_images/aa46578b053ad3814aca329ab092b3a9d80979aeae64d25199f7bb59999752d3.png" src="../../_images/aa46578b053ad3814aca329ab092b3a9d80979aeae64d25199f7bb59999752d3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu059 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.075</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.432</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_122.png" src="../../_images/03_loop-glm_6_122.png" />
+</div><img alt="../../_images/b997354fcadd552e97c7be6f3893e5116ce07b94df06d4b9b42c478e65ad86e3.png" src="../../_images/b997354fcadd552e97c7be6f3893e5116ce07b94df06d4b9b42c478e65ad86e3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu059 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.019</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.403</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_124.png" src="../../_images/03_loop-glm_6_124.png" />
+</div><img alt="../../_images/6f16098f351bde20d56aca2cf33b18042608619d3922046a3e90e0e4e5d2613c.png" src="../../_images/6f16098f351bde20d56aca2cf33b18042608619d3922046a3e90e0e4e5d2613c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu059 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.010</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.398</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_126.png" src="../../_images/03_loop-glm_6_126.png" />
+</div><img alt="../../_images/42fe25978a44a18ad730bef9fc1df60694ddf10a44ffc48d86f23d9277c5c076.png" src="../../_images/42fe25978a44a18ad730bef9fc1df60694ddf10a44ffc48d86f23d9277c5c076.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu059: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.4820</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1067,16 +891,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu061 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.058</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.127</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_133.png" src="../../_images/03_loop-glm_6_133.png" />
+</div><img alt="../../_images/e6de4434a8ec64ee90345db215f4bf09be09f3a98a1630debecba26fd053a2df.png" src="../../_images/e6de4434a8ec64ee90345db215f4bf09be09f3a98a1630debecba26fd053a2df.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu061 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.122</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_135.png" src="../../_images/03_loop-glm_6_135.png" />
+</div><img alt="../../_images/a28f20992b09589a4b653bf52623aacb70d53f380411c152089577a743f72851.png" src="../../_images/a28f20992b09589a4b653bf52623aacb70d53f380411c152089577a743f72851.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu061 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.002</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.122</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_137.png" src="../../_images/03_loop-glm_6_137.png" />
+</div><img alt="../../_images/0872bbe5c2ed88e4d0ae6683582d63cd0dc86f1e7521dee521ea20bda78e0e8e.png" src="../../_images/0872bbe5c2ed88e4d0ae6683582d63cd0dc86f1e7521dee521ea20bda78e0e8e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu061 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.003</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.122</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_139.png" src="../../_images/03_loop-glm_6_139.png" />
+</div><img alt="../../_images/a539bba1d41b3bc13a7d683f5f281e00a7074f3b8069b92e815a39a017764289.png" src="../../_images/a539bba1d41b3bc13a7d683f5f281e00a7074f3b8069b92e815a39a017764289.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu061: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1273</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1091,16 +915,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu064 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.101</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.309</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_146.png" src="../../_images/03_loop-glm_6_146.png" />
+</div><img alt="../../_images/1fd9577a504b83fbac2efca93d0734933fe70f0fe2312ffa03ed14606426eee3.png" src="../../_images/1fd9577a504b83fbac2efca93d0734933fe70f0fe2312ffa03ed14606426eee3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu064 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.042</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.291</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_148.png" src="../../_images/03_loop-glm_6_148.png" />
+</div><img alt="../../_images/91ac64f1053c5b0b1ebbce3aaeff3f36d286e26f28b854a5be9bfa92a4972c0a.png" src="../../_images/91ac64f1053c5b0b1ebbce3aaeff3f36d286e26f28b854a5be9bfa92a4972c0a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu064 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.011</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.283</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_150.png" src="../../_images/03_loop-glm_6_150.png" />
+</div><img alt="../../_images/8ed5d3239ae46f26c26d3cd88d48bf0c5ef98e2539be4d4420544a6dcc08ef22.png" src="../../_images/8ed5d3239ae46f26c26d3cd88d48bf0c5ef98e2539be4d4420544a6dcc08ef22.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu064 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.006</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.281</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_152.png" src="../../_images/03_loop-glm_6_152.png" />
+</div><img alt="../../_images/bec63766c2ae84d8f8da01ac77e3cea0dc8370e4c27732bdd9a0d0201bf7d101.png" src="../../_images/bec63766c2ae84d8f8da01ac77e3cea0dc8370e4c27732bdd9a0d0201bf7d101.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu064: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3094</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1115,16 +939,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu068 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.046</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.270</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_159.png" src="../../_images/03_loop-glm_6_159.png" />
+</div><img alt="../../_images/bfaba9da5c22695d80172b5fc990a38868bdb5bac3afc47c76c261fb35e85466.png" src="../../_images/bfaba9da5c22695d80172b5fc990a38868bdb5bac3afc47c76c261fb35e85466.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu068 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.025</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.256</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_161.png" src="../../_images/03_loop-glm_6_161.png" />
+</div><img alt="../../_images/1e5e5e8173e84b58fa76715c8ef1024a3baca12d3dc7d25c02da4d3a8119bb1a.png" src="../../_images/1e5e5e8173e84b58fa76715c8ef1024a3baca12d3dc7d25c02da4d3a8119bb1a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu068 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.008</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.250</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_163.png" src="../../_images/03_loop-glm_6_163.png" />
+</div><img alt="../../_images/9dadcb9bc5b30a75d5957729ae7cb4cbc953862043e722242762bf158820e439.png" src="../../_images/9dadcb9bc5b30a75d5957729ae7cb4cbc953862043e722242762bf158820e439.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu068 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.248</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_165.png" src="../../_images/03_loop-glm_6_165.png" />
+</div><img alt="../../_images/3ff2babe5cafd3be3aab2615a4e1f27ac0a81e57666ca8a233d3014e2bc8f58f.png" src="../../_images/3ff2babe5cafd3be3aab2615a4e1f27ac0a81e57666ca8a233d3014e2bc8f58f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu068: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2696</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1139,16 +963,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu069 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.003</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.047</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_172.png" src="../../_images/03_loop-glm_6_172.png" />
+</div><img alt="../../_images/a91c95d0fc28d2f58318204de762b5ec8a06eccd0a53e676d20991f796a5fd21.png" src="../../_images/a91c95d0fc28d2f58318204de762b5ec8a06eccd0a53e676d20991f796a5fd21.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu069 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.044</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_174.png" src="../../_images/03_loop-glm_6_174.png" />
+</div><img alt="../../_images/db17aa546b6538416c9e29c82abd525385a4607e04ceab954051aa574a5ce4d2.png" src="../../_images/db17aa546b6538416c9e29c82abd525385a4607e04ceab954051aa574a5ce4d2.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu069 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.000</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.043</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_176.png" src="../../_images/03_loop-glm_6_176.png" />
+</div><img alt="../../_images/00676a813defb40aac0b2f7355d43252c07bb5a88cee22afcf0e600b395c1c88.png" src="../../_images/00676a813defb40aac0b2f7355d43252c07bb5a88cee22afcf0e600b395c1c88.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu069 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.000</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.042</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_178.png" src="../../_images/03_loop-glm_6_178.png" />
+</div><img alt="../../_images/e754b19ccba7eeb6cda56b3c3f1de660f4e8c167a3de02d893e43e3b207ae99b.png" src="../../_images/e754b19ccba7eeb6cda56b3c3f1de660f4e8c167a3de02d893e43e3b207ae99b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu069: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0471</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1163,16 +987,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu081 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.278</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.367</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_185.png" src="../../_images/03_loop-glm_6_185.png" />
+</div><img alt="../../_images/ff931aa23720939ae60f3d1fc41e5c8e1ca994d900a26e2d9b4d1c6c4fed4240.png" src="../../_images/ff931aa23720939ae60f3d1fc41e5c8e1ca994d900a26e2d9b4d1c6c4fed4240.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu081 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.096</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.327</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_187.png" src="../../_images/03_loop-glm_6_187.png" />
+</div><img alt="../../_images/32710a5e7457d3c7e344544051923026b2275f6215691dfc486ed0779202fb36.png" src="../../_images/32710a5e7457d3c7e344544051923026b2275f6215691dfc486ed0779202fb36.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu081 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.024</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.301</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_189.png" src="../../_images/03_loop-glm_6_189.png" />
+</div><img alt="../../_images/37bc1162a3081b7fe5c73b6fc10c3026c89cbd7dfe922f37d366b8375d2217ad.png" src="../../_images/37bc1162a3081b7fe5c73b6fc10c3026c89cbd7dfe922f37d366b8375d2217ad.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu081 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.012</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.296</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_191.png" src="../../_images/03_loop-glm_6_191.png" />
+</div><img alt="../../_images/7ddee935cf2274ce2565d9be501944bc2c8ef74b7380e6f1d47610e7a12c6f23.png" src="../../_images/7ddee935cf2274ce2565d9be501944bc2c8ef74b7380e6f1d47610e7a12c6f23.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu081: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3675</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1187,16 +1011,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu082 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.038</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.139</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_198.png" src="../../_images/03_loop-glm_6_198.png" />
+</div><img alt="../../_images/3f0c7eeb5e04c9d8d389c9219f924ab18ad343983a4be2db6177bff08adc5665.png" src="../../_images/3f0c7eeb5e04c9d8d389c9219f924ab18ad343983a4be2db6177bff08adc5665.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu082 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.013</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.123</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_200.png" src="../../_images/03_loop-glm_6_200.png" />
+</div><img alt="../../_images/c29441ffd40099dc91baf6ae19567031416a47cae11f569ad6b626c93744ca2e.png" src="../../_images/c29441ffd40099dc91baf6ae19567031416a47cae11f569ad6b626c93744ca2e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu082 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.003</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.119</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_202.png" src="../../_images/03_loop-glm_6_202.png" />
+</div><img alt="../../_images/882e38034f69b2680f9fa6827c5d6e9ad88d4774f34f376dbe52c57f50870101.png" src="../../_images/882e38034f69b2680f9fa6827c5d6e9ad88d4774f34f376dbe52c57f50870101.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu082 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.118</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_204.png" src="../../_images/03_loop-glm_6_204.png" />
+</div><img alt="../../_images/8eb46eb5a6eb2aec0cf2f5c4f36817c7049ada1fd67d2817d60611b92da2ef0c.png" src="../../_images/8eb46eb5a6eb2aec0cf2f5c4f36817c7049ada1fd67d2817d60611b92da2ef0c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu082: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1391</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1211,16 +1035,16 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu087 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.028</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.285</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_211.png" src="../../_images/03_loop-glm_6_211.png" />
+</div><img alt="../../_images/81b2f04b6aaf67218e74c3a867a7699a584399b661a4d2ad8b358256e6ddef12.png" src="../../_images/81b2f04b6aaf67218e74c3a867a7699a584399b661a4d2ad8b358256e6ddef12.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu087 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.019</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.258</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_213.png" src="../../_images/03_loop-glm_6_213.png" />
+</div><img alt="../../_images/69cd08180cb39ad2ef8519fdf6a6fae4e3ca0b332363c41bbc5bec9029dc53e8.png" src="../../_images/69cd08180cb39ad2ef8519fdf6a6fae4e3ca0b332363c41bbc5bec9029dc53e8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu087 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.008</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.239</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_215.png" src="../../_images/03_loop-glm_6_215.png" />
+</div><img alt="../../_images/3b4ff76d5d88a1075503fe5a935a9e81487780161069e620a8fe0e4a5175e7ee.png" src="../../_images/3b4ff76d5d88a1075503fe5a935a9e81487780161069e620a8fe0e4a5175e7ee.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu087 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.005</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.234</span>, r2 = nan %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_217.png" src="../../_images/03_loop-glm_6_217.png" />
+</div><img alt="../../_images/796d34fda959ac8be6d161f6a59749b15f098ea805dc6ed3577b1ec24969335d.png" src="../../_images/796d34fda959ac8be6d161f6a59749b15f098ea805dc6ed3577b1ec24969335d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu087: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2852</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1233,19 +1057,19 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu088 . . .
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_223.png" src="../../_images/03_loop-glm_6_223.png" />
+</div><img alt="../../_images/6b1ec3bfbe6aa51ea1985706adb621f3158bb593b028656dbc64c588fc3e652b.png" src="../../_images/6b1ec3bfbe6aa51ea1985706adb621f3158bb593b028656dbc64c588fc3e652b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu088 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.028</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.081</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-11.6</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_225.png" src="../../_images/03_loop-glm_6_225.png" />
+</div><img alt="../../_images/3902b01c68b4284173d8de654514cbb10b74d53b09829039333ae371aef1bee2.png" src="../../_images/3902b01c68b4284173d8de654514cbb10b74d53b09829039333ae371aef1bee2.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu088 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.066</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-8.0</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_227.png" src="../../_images/03_loop-glm_6_227.png" />
+</div><img alt="../../_images/08917a656ef728f7eab2c64d6fb3e4cfa241b46deaab657c4cafe3f3964388f8.png" src="../../_images/08917a656ef728f7eab2c64d6fb3e4cfa241b46deaab657c4cafe3f3964388f8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu088 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.001</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.063</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10.9</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_229.png" src="../../_images/03_loop-glm_6_229.png" />
+</div><img alt="../../_images/e5810a70a60c96a98eb86f38e3483e5392bff3f4e20a749bafaf67f852546749.png" src="../../_images/e5810a70a60c96a98eb86f38e3483e5392bff3f4e20a749bafaf67f852546749.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu088 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.062</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-11.5</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_231.png" src="../../_images/03_loop-glm_6_231.png" />
+</div><img alt="../../_images/e7c737d2bcf64176041e4237b56b7a98173fde15fccbf65bf06b3937d2b68662.png" src="../../_images/e7c737d2bcf64176041e4237b56b7a98173fde15fccbf65bf06b3937d2b68662.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu088: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0659</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1258,19 +1082,19 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu089 . . .
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_237.png" src="../../_images/03_loop-glm_6_237.png" />
+</div><img alt="../../_images/bca0e6db20f104acdd4811787975426346b4d23ef81176fc396f5c618d592888.png" src="../../_images/bca0e6db20f104acdd4811787975426346b4d23ef81176fc396f5c618d592888.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu089 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.039</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.145</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.2</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_239.png" src="../../_images/03_loop-glm_6_239.png" />
+</div><img alt="../../_images/1ef9ff1dd0a54f8fce41fc53665c8804d4d69211925dbda81448c9101458dad4.png" src="../../_images/1ef9ff1dd0a54f8fce41fc53665c8804d4d69211925dbda81448c9101458dad4.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu089 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.020</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.126</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-8.8</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_241.png" src="../../_images/03_loop-glm_6_241.png" />
+</div><img alt="../../_images/6a1868e07c62d0af54d6138cd227c41f70e4e3b90721920f328a84a13b5a7d27.png" src="../../_images/6a1868e07c62d0af54d6138cd227c41f70e4e3b90721920f328a84a13b5a7d27.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu089 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.006</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.119</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-19.4</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_243.png" src="../../_images/03_loop-glm_6_243.png" />
+</div><img alt="../../_images/79b80b2ffef94c49c266bef40ab6d391269d4656e18bff5eaf5ece7d425fec03.png" src="../../_images/79b80b2ffef94c49c266bef40ab6d391269d4656e18bff5eaf5ece7d425fec03.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu089 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.003</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.117</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-21.7</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_245.png" src="../../_images/03_loop-glm_6_245.png" />
+</div><img alt="../../_images/e1cf73ec2873b0ae908af0d1819feae5cee944043922f5bf478910a55f2ef97f.png" src="../../_images/e1cf73ec2873b0ae908af0d1819feae5cee944043922f5bf478910a55f2ef97f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu089: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1449</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1283,19 +1107,19 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu090 . . .
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_251.png" src="../../_images/03_loop-glm_6_251.png" />
+</div><img alt="../../_images/3c570bb4d74a3aa5079bd2d59e5892c4b2940e573594560c5bd09bdb93e49713.png" src="../../_images/3c570bb4d74a3aa5079bd2d59e5892c4b2940e573594560c5bd09bdb93e49713.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu090 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.182</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.301</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">54.6</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_253.png" src="../../_images/03_loop-glm_6_253.png" />
+</div><img alt="../../_images/6b9a0d86b7bc68b300dc5efab1aadeae485eea41c49a9aa2f97e1b58598bc63d.png" src="../../_images/6b9a0d86b7bc68b300dc5efab1aadeae485eea41c49a9aa2f97e1b58598bc63d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu090 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.098</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.278</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25.0</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_255.png" src="../../_images/03_loop-glm_6_255.png" />
+</div><img alt="../../_images/994814f1de659b5f07a799dbd6c785b61c4d69da7eba158a86406cacbe7b7c1d.png" src="../../_images/994814f1de659b5f07a799dbd6c785b61c4d69da7eba158a86406cacbe7b7c1d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu090 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.033</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.263</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3.0</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_257.png" src="../../_images/03_loop-glm_6_257.png" />
+</div><img alt="../../_images/37fafc752f3e73360f56bbb180bdf0388e0368043852daf67310f3b0bd45ff55.png" src="../../_images/37fafc752f3e73360f56bbb180bdf0388e0368043852daf67310f3b0bd45ff55.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu090 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.018</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.259</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.5</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_259.png" src="../../_images/03_loop-glm_6_259.png" />
+</div><img alt="../../_images/9076b04f1fa25d42728f18bb347d1587ff8155f45c2eb1b7b7cb60dd86e12af2.png" src="../../_images/9076b04f1fa25d42728f18bb347d1587ff8155f45c2eb1b7b7cb60dd86e12af2.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu090: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3011</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1308,19 +1132,19 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu095 . . .
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_265.png" src="../../_images/03_loop-glm_6_265.png" />
+</div><img alt="../../_images/e50a655d08f638b99e7de55dfeb2839b7bc75fffdb3a7b65ebed4a47ea165671.png" src="../../_images/e50a655d08f638b99e7de55dfeb2839b7bc75fffdb3a7b65ebed4a47ea165671.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu095 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.066</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.169</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49.2</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_267.png" src="../../_images/03_loop-glm_6_267.png" />
+</div><img alt="../../_images/0e4706acd5577e157b7f8eedd907887e3a0daa86dd79cd88810121b5132d5827.png" src="../../_images/0e4706acd5577e157b7f8eedd907887e3a0daa86dd79cd88810121b5132d5827.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu095 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.030</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.146</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16.7</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_269.png" src="../../_images/03_loop-glm_6_269.png" />
+</div><img alt="../../_images/cc878881c7b218d5d70a8c94f7bac9d6ebe518005fa906d17bd5eddd10de493f.png" src="../../_images/cc878881c7b218d5d70a8c94f7bac9d6ebe518005fa906d17bd5eddd10de493f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu095 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.008</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.138</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.8</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_271.png" src="../../_images/03_loop-glm_6_271.png" />
+</div><img alt="../../_images/a8e7f1b6b97f7e458c1f576832d0ec6575c75507114a1c02f043a3f7a5442d6c.png" src="../../_images/a8e7f1b6b97f7e458c1f576832d0ec6575c75507114a1c02f043a3f7a5442d6c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu095 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.137</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2.1</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_273.png" src="../../_images/03_loop-glm_6_273.png" />
+</div><img alt="../../_images/d1607585cc4fbd1da00b0e94990ed85fdd55d8a45be5d315239a706f03ecad54.png" src="../../_images/d1607585cc4fbd1da00b0e94990ed85fdd55d8a45be5d315239a706f03ecad54.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu095: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1685</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1333,19 +1157,19 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu096 . . .
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_279.png" src="../../_images/03_loop-glm_6_279.png" />
+</div><img alt="../../_images/52b92aca61a3415e1a2747e8fd840cf410bacf4a70e41e28508f648481de98dd.png" src="../../_images/52b92aca61a3415e1a2747e8fd840cf410bacf4a70e41e28508f648481de98dd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu096 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.157</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.219</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-25.3</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_281.png" src="../../_images/03_loop-glm_6_281.png" />
+</div><img alt="../../_images/12bd2ea5a64a86ff68f87c027039180717f58608c11da5721ee0c46bdadeed75.png" src="../../_images/12bd2ea5a64a86ff68f87c027039180717f58608c11da5721ee0c46bdadeed75.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu096 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.052</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.175</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-62.3</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_283.png" src="../../_images/03_loop-glm_6_283.png" />
+</div><img alt="../../_images/ee64962f21ed2084fe46b03e224bc85827b0ec4a1cb8a56d33a662839022b7fa.png" src="../../_images/ee64962f21ed2084fe46b03e224bc85827b0ec4a1cb8a56d33a662839022b7fa.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu096 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.011</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.163</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-72.7</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_285.png" src="../../_images/03_loop-glm_6_285.png" />
+</div><img alt="../../_images/3b3cf539d38570b934a4f27237e793655cfdafccbec66f967351df3d7104a945.png" src="../../_images/3b3cf539d38570b934a4f27237e793655cfdafccbec66f967351df3d7104a945.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">expt = clu096 <span style="font-weight: bold">(</span>i = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span>  ---&gt;  a = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">100.0</span>, nnll = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>, r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.162</span>, r2 = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-74.3</span> %
 </pre>
-</div><img alt="../../_images/03_loop-glm_6_287.png" src="../../_images/03_loop-glm_6_287.png" />
+</div><img alt="../../_images/c0e7adbe149684e84a8bed47915f0f2d840819f7345ceb9a4750b2dab09fcf7a.png" src="../../_images/c0e7adbe149684e84a8bed47915f0f2d840819f7345ceb9a4750b2dab09fcf7a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fitting clu096: Done! <span style="font-weight: bold">(</span>best alpha: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span> <span style="color: #800080; text-decoration-color: #800080">/</span> r: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2193</span><span style="font-weight: bold">)</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">________________________________________________________________________________
@@ -1362,7 +1186,7 @@
 </div>
 </section>
 <section id="show-hyperflow-with-radius-6">
-<h2>Show HyperFlow with <code class="docutils literal notranslate"><span class="pre">radius=6</span></code><a class="headerlink" href="#show-hyperflow-with-radius-6" title="Permalink to this headline">¶</a></h2>
+<h2>Show HyperFlow with <code class="docutils literal notranslate"><span class="pre">radius=6</span></code><a class="headerlink" href="#show-hyperflow-with-radius-6" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf</span> <span class="o">=</span> <span class="n">HyperFlow</span><span class="p">(</span>
@@ -1459,7 +1283,7 @@
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-04"
         },
         predefinedOutput: true
@@ -1467,36 +1291,107 @@
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="03_fit-glm.html" title="previous page">(03) Fit neurons – GLM</a>
-    <a class='right-next' id="next-link" href="03_loop-ridge.html" title="next page">(03) Fit neurons – Ridge</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_fit-glm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(03) Fit neurons – GLM</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="03_loop-ridge.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(03) Fit neurons – Ridge</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#show-hyperflow-with-radius-6">Show HyperFlow with <code class="docutils literal notranslate"><span class="pre">radius=6</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

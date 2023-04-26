@@ -1,678 +1,494 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(30) Fit – cuda2 &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-03/30_fit-cuda2';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="(30) Sim – added terrain" href="30_sim-final.html" />
-    <link rel="prev" title="(30) Fit – cuda2" href="30_fit-cuda1.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+    <link rel="prev" title="(30) Fit – cuda1" href="30_fit-cuda1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/28_sim-self.html">
-     (28) Simulation – self [velocity: new way]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
-     (29) Simulation – full [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
-     (30) Simulation – full [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  February 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-02.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-02_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/01_play-nvae.html">
-     (01) NVAE – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
-     (02) VAE2D – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/09_rot-conv.html">
-     (09) RotConv2d – verified
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/23_sim-gen.html">
-     (23) Simulation – generate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
-     (24) Simulation – generate (fix &amp; obj uncoupled)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
-     (24) Simulation – generate (save)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
-     (25) Fit – cuda (gaban)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
-     (25) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
-     (25) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
-     (25) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
-     (30) KL Balancer
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  March 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-03.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-03_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="17_sim-new-draft.html">
-     (17) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="22_sim-new-draft.html">
-     (22) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="23_sim-new.html">
-     (23) Sim New – visualize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="30_fit-cuda.html">
-     (30) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="30_fit-cuda0.html">
-     (30) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="30_fit-cuda1.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="30_sim-final.html">
-     (30) Sim – added
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       terrain
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="31_sim-factors.html">
-     (31) Sim – true generative factors
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_sim-factors.html">(31) Sim – true generative factors</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  April 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-04.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-04_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/02_fit-lin.html">
-     (02) Fit neurons – Linear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/03_fit-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/03_loop-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/03_loop-ridge.html">
-     (03) Fit neurons – Ridge
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/04_dan.html">
-     (04) Dan notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/04_profiler.html">
-     (04) PyTorch profiler
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/06_sim-kNN.html">
-     (06) Sim – kNN analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/07_readout-3d.html">
-     (07) Readout: 3D conv
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/07_readout-sep.html">
-     (07) Readout: Separable
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/08_GLM-clu090.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/08_GLM-clu096.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/08_sim-accept-filter.html">
-     (08) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/09_sim-final-save.html">
-     (09) Sim – generate &amp; save
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-04/10_GLM-clu090.html">
-     (10) Reservoir + GLM
-    </a>
-   </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-03/30_fit-cuda2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-03/30_fit-cuda2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  
 </div>
-
 </div>
+              
+              
 
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(30) Fit – cuda2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-03/30_fit-cuda2.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-03/30_fit-cuda2.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-03/30_fit-cuda2.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#trainer">
-   Trainer
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review-train-options">
-   Review train options
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#train">
-   Train
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eval">
-   Eval
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eval-fit-old-code">
-   Eval fit (old code)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-quantiles">
-   Gradient quantiles
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trainer">Trainer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-train-options">Review train options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train">Train</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eval">Eval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eval-fit-old-code">Eval fit (old code)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-quantiles">Gradient quantiles</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="fit-cuda2">
-<h1>(30) Fit – cuda2<a class="headerlink" href="#fit-cuda2" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fit-cuda2">
+<h1>(30) Fit – cuda2<a class="headerlink" href="#fit-cuda2" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Fitting notebook, cuda2 <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -702,9 +518,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="trainer">
-<h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">¶</a></h2>
+<h2>Trainer<a class="headerlink" href="#trainer" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
@@ -778,7 +595,7 @@
 </div>
 </section>
 <section id="review-train-options">
-<h2>Review train options<a class="headerlink" href="#review-train-options" title="Permalink to this headline">¶</a></h2>
+<h2>Review train options<a class="headerlink" href="#review-train-options" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">vae</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -793,7 +610,7 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </section>
 <section id="train">
-<h2>Train<a class="headerlink" href="#train" title="Permalink to this headline">¶</a></h2>
+<h2>Train<a class="headerlink" href="#train" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comment</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Vanilla_</span><span class="si">{</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -805,209 +622,209 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch # 1660, avg loss: nan:  83%|████████▎ | 1659/2000 [28:00:25&lt;5:45:24, 60.77s/it]                                              
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RemoteTraceback</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="ne">Remote</span>Traceback: 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Traceback (most recent call last):</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/multiprocessing/pool.py&quot;, line 125, in worker</span>
-<span class="sd">    result = (True, func(*args, **kwds))</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/joblib/_parallel_backends.py&quot;, line 595, in __call__</span>
-<span class="sd">    return self.func(*args, **kwargs)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/joblib/parallel.py&quot;, line 262, in __call__</span>
-<span class="sd">    return [func(*args, **kwargs)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/joblib/parallel.py&quot;, line 262, in &lt;listcomp&gt;</span>
-<span class="sd">    return [func(*args, **kwargs)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py&quot;, line 384, in mutual_info_regression</span>
-<span class="sd">    return _estimate_mi(X, y, discrete_features, False, n_neighbors, copy, random_state)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py&quot;, line 256, in _estimate_mi</span>
-<span class="sd">    X, y = check_X_y(X, y, accept_sparse=&quot;csc&quot;, y_numeric=not discrete_target)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py&quot;, line 979, in check_X_y</span>
-<span class="sd">    y = _check_y(y, multi_output=multi_output, y_numeric=y_numeric)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py&quot;, line 994, in _check_y</span>
-<span class="sd">    _assert_all_finite(y)</span>
-<span class="sd">  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py&quot;, line 114, in _assert_all_finite</span>
-<span class="sd">    raise ValueError(</span>
-<span class="ne">ValueError</span>: Input contains NaN, infinity or a value too large for dtype(&#39;float32&#39;).
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+RemoteTraceback                           Traceback (most recent call last)
+RemoteTraceback: 
+&quot;&quot;&quot;
+Traceback (most recent call last):
+  File &quot;/home/hadi/anaconda3/lib/python3.8/multiprocessing/pool.py&quot;, line 125, in worker
+    result = (True, func(*args, **kwds))
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/joblib/_parallel_backends.py&quot;, line 595, in __call__
+    return self.func(*args, **kwargs)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/joblib/parallel.py&quot;, line 262, in __call__
+    return [func(*args, **kwargs)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/joblib/parallel.py&quot;, line 262, in &lt;listcomp&gt;
+    return [func(*args, **kwargs)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py&quot;, line 384, in mutual_info_regression
+    return _estimate_mi(X, y, discrete_features, False, n_neighbors, copy, random_state)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py&quot;, line 256, in _estimate_mi
+    X, y = check_X_y(X, y, accept_sparse=&quot;csc&quot;, y_numeric=not discrete_target)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py&quot;, line 979, in check_X_y
+    y = _check_y(y, multi_output=multi_output, y_numeric=y_numeric)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py&quot;, line 994, in _check_y
+    _assert_all_finite(y)
+  File &quot;/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py&quot;, line 114, in _assert_all_finite
+    raise ValueError(
+ValueError: Input contains NaN, infinity or a value too large for dtype(&#39;float32&#39;).
+&quot;&quot;&quot;
 
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+The above exception was the direct cause of the following exception:
 
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">comment</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Vanilla_</span><span class="si">{</span><span class="n">tr</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">tr</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">)</span>
+ValueError                                Traceback (most recent call last)
+Input In [6], in &lt;cell line: 2&gt;()
+      1 comment = f&quot;Vanilla_{tr.cfg.name()}&quot;
+----&gt; 2 tr.train(comment=comment)
 
-<span class="nn">File ~/Dropbox/git/_MTMST/base/train_base.py:89,</span> in <span class="ni">BaseTrainer.train</span><span class="nt">(self, epochs, comment, save)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> 	<span class="k">if</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">eval_freq</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span> 		<span class="n">gstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">89</span> 		<span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">gstep</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span> 	<span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+File ~/Dropbox/git/_MTMST/base/train_base.py:89, in BaseTrainer.train(self, epochs, comment, save)
+     87 	if (epoch + 1) % self.cfg.eval_freq == 0:
+     88 		gstep = (epoch + 1) * len(self.dl_trn)
+---&gt; 89 		_ = self.validate(gstep)
+     90 if self.writer is not None:
+     91 	self.writer.close()
 
-<span class="nn">File ~/Dropbox/git/_MTMST/vae/train_vae.py:196,</span> in <span class="ni">TrainerVAE.validate</span><span class="nt">(self, gstep, n_samples, use_ema)</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="n">cond</span> <span class="o">=</span> <span class="n">cond</span> <span class="ow">and</span> <span class="n">n_samples</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span> <span class="k">if</span> <span class="n">cond</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">196</span> 	<span class="n">x_sample</span><span class="p">,</span> <span class="n">z_sample</span><span class="p">,</span> <span class="n">regr</span><span class="p">,</span> <span class="n">figs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">197</span> 		<span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">use_ema</span><span class="o">=</span><span class="n">use_ema</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span> 	<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span> 		<span class="s1">&#39;x_sample&#39;</span><span class="p">:</span> <span class="n">x_sample</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> 		<span class="s1">&#39;z_sample&#39;</span><span class="p">:</span> <span class="n">z_sample</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span> 		<span class="o">**</span><span class="n">regr</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span> 		<span class="o">**</span><span class="n">figs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span> 	<span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">else</span><span class="p">:</span>
+File ~/Dropbox/git/_MTMST/vae/train_vae.py:196, in TrainerVAE.validate(self, gstep, n_samples, use_ema)
+    194 cond = cond and n_samples is not None
+    195 if cond:
+--&gt; 196 	x_sample, z_sample, regr, figs = self.plot(
+    197 		n_samples=n_samples, use_ema=use_ema)
+    198 	data = {
+    199 		&#39;x_sample&#39;: x_sample,
+    200 		&#39;z_sample&#39;: z_sample,
+    201 		**regr,
+    202 		**figs,
+    203 	}
+    204 else:
 
-<span class="nn">File ~/Dropbox/git/_MTMST/vae/train_vae.py:319,</span> in <span class="ni">TrainerVAE.plot</span><span class="nt">(self, sample, regr, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">regr</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">319</span> 	<span class="n">regr</span> <span class="o">=</span> <span class="n">regr</span> <span class="k">if</span> <span class="n">regr</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">regress</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span> 		<span class="o">**</span><span class="n">filter_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regress</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span> 	<span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span> 		<span class="n">x_sample</span><span class="p">,</span> <span class="n">z_sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span> 			<span class="o">**</span><span class="n">filter_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+File ~/Dropbox/git/_MTMST/vae/train_vae.py:319, in TrainerVAE.plot(self, sample, regr, **kwargs)
+    318 def plot(self, sample: dict = None, regr: dict = None, **kwargs):
+--&gt; 319 	regr = regr if regr else self.regress(
+    320 		**filter_kwargs(self.regress, kwargs))
+    321 	if sample is None:
+    322 		x_sample, z_sample = self.sample(
+    323 			**filter_kwargs(self.sample, kwargs))
 
-<span class="nn">File ~/Dropbox/git/_MTMST/vae/train_vae.py:304,</span> in <span class="ni">TrainerVAE.regress</span><span class="nt">(self, n_fwd, use_ema)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="n">g_vld</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dl_vld</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">factors</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="n">g_tst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dl_tst</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">factors</span>
-<span class="ne">--&gt; </span><span class="mi">304</span> <span class="n">output</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">z_vld</span><span class="p">,</span> <span class="n">g_vld</span><span class="p">,</span> <span class="n">z_tst</span><span class="p">,</span> <span class="n">g_tst</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span> 	<span class="sa">f</span><span class="s2">&quot;regr/</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span>
-<span class="nn">    307 	k, v</span> in <span class="ni">output.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> 	<span class="s1">&#39;z_vld&#39;</span><span class="p">:</span> <span class="n">z_vld</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span> 	<span class="s1">&#39;z_tst&#39;</span><span class="p">:</span> <span class="n">z_tst</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span> 	<span class="o">**</span><span class="n">output</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="p">}</span>
+File ~/Dropbox/git/_MTMST/vae/train_vae.py:304, in TrainerVAE.regress(self, n_fwd, use_ema)
+    302 g_vld = self.dl_vld.dataset.factors
+    303 g_tst = self.dl_tst.dataset.factors
+--&gt; 304 output = regress(z_vld, g_vld, z_tst, g_tst)
+    305 output = {
+    306 	f&quot;regr/{k}&quot;: v for
+    307 	k, v in output.items()
+    308 }
+    309 output = {
+    310 	&#39;z_vld&#39;: z_vld,
+    311 	&#39;z_tst&#39;: z_tst,
+   (...)
+    314 	**output,
+    315 }
 
-<span class="nn">File ~/Dropbox/git/_MTMST/analysis/linear.py:22,</span> in <span class="ni">regress</span><span class="nt">(z, g, z_tst, g_tst, n_bins, process, parallel, n_jobs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> 	<span class="k">with</span> <span class="n">joblib</span><span class="o">.</span><span class="n">parallel_backend</span><span class="p">(</span><span class="s1">&#39;multiprocessing&#39;</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">22</span> 		<span class="n">mi</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)(</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> 			<span class="n">joblib</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">mutual_info_regression</span><span class="p">)</span>
-<span class="nn">     24 			(g, z[:, i]) for i</span> in <span class="ni">range</span><span class="nt">(z.shape[-1])</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> 		<span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> 	<span class="n">mi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">mi</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="k">else</span><span class="p">:</span>
+File ~/Dropbox/git/_MTMST/analysis/linear.py:22, in regress(z, g, z_tst, g_tst, n_bins, process, parallel, n_jobs)
+     20 if parallel:
+     21 	with joblib.parallel_backend(&#39;multiprocessing&#39;):
+---&gt; 22 		mi = joblib.Parallel(n_jobs=n_jobs)(
+     23 			joblib.delayed(mutual_info_regression)
+     24 			(g, z[:, i]) for i in range(z.shape[-1])
+     25 		)
+     26 	mi = np.stack(mi).T
+     27 else:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:1056,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">   </span><span class="mi">1055</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1056</span>     <span class="bp">self</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1057</span> <span class="c1"># Make sure that we get a last message telling us we are done</span>
-<span class="g g-Whitespace">   </span><span class="mi">1058</span> <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span>
+File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:1056, in Parallel.__call__(self, iterable)
+   1053     self._iterating = False
+   1055 with self._backend.retrieval_context():
+-&gt; 1056     self.retrieve()
+   1057 # Make sure that we get a last message telling us we are done
+   1058 elapsed_time = time.time() - self._start_time
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:935,</span> in <span class="ni">Parallel.retrieve</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">933</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">934</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="s1">&#39;supports_timeout&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">935</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:935, in Parallel.retrieve(self)
+    933 try:
+    934     if getattr(self._backend, &#39;supports_timeout&#39;, False):
+--&gt; 935         self._output.extend(job.get(timeout=self.timeout))
+    936     else:
+    937         self._output.extend(job.get())
 
-<span class="nn">File ~/anaconda3/lib/python3.8/multiprocessing/pool.py:771,</span> in <span class="ni">ApplyResult.get</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">769</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
-<span class="g g-Whitespace">    </span><span class="mi">770</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">771</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+File ~/anaconda3/lib/python3.8/multiprocessing/pool.py:771, in ApplyResult.get(self, timeout)
+    769     return self._value
+    770 else:
+--&gt; 771     raise self._value
 
-<span class="nn">File ~/anaconda3/lib/python3.8/multiprocessing/pool.py:125,</span> in <span class="ni">worker</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="n">job</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwds</span> <span class="o">=</span> <span class="n">task</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">125</span>     <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="k">if</span> <span class="n">wrap_exception</span> <span class="ow">and</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_helper_reraises_exception</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/multiprocessing/pool.py:125, in worker()
+    123 job, i, func, args, kwds = task
+    124 try:
+--&gt; 125     result = (True, func(*args, **kwds))
+    126 except Exception as e:
+    127     if wrap_exception and func is not _helper_reraises_exception:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/joblib/_parallel_backends.py:595,</span> in <span class="ni">__call__</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">593</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">594</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">595</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="c1"># We capture the KeyboardInterrupt and reraise it as</span>
-<span class="g g-Whitespace">    </span><span class="mi">598</span>         <span class="c1"># something different, as multiprocessing does not</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span>         <span class="c1"># interrupt processing for a KeyboardInterrupt</span>
-<span class="g g-Whitespace">    </span><span class="mi">600</span>         <span class="k">raise</span> <span class="n">WorkerInterrupt</span><span class="p">()</span> <span class="kn">from</span> <span class="nn">e</span>
+File ~/anaconda3/lib/python3.8/site-packages/joblib/_parallel_backends.py:595, in __call__()
+    593 def __call__(self, *args, **kwargs):
+    594     try:
+--&gt; 595         return self.func(*args, **kwargs)
+    596     except KeyboardInterrupt as e:
+    597         # We capture the KeyboardInterrupt and reraise it as
+    598         # something different, as multiprocessing does not
+    599         # interrupt processing for a KeyboardInterrupt
+    600         raise WorkerInterrupt() from e
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:262,</span> in <span class="ni">__call__</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:262, in __call__()
+    258 def __call__(self):
+    259     # Set the default nested backend to self._backend but do not set the
+    260     # change the default number of processes to -1
+    261     with parallel_backend(self._backend, n_jobs=self._n_jobs):
+--&gt; 262         return [func(*args, **kwargs)
+    263                 for func, args, kwargs in self.items]
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:262,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+File ~/anaconda3/lib/python3.8/site-packages/joblib/parallel.py:262, in &lt;listcomp&gt;()
+    258 def __call__(self):
+    259     # Set the default nested backend to self._backend but do not set the
+    260     # change the default number of processes to -1
+    261     with parallel_backend(self._backend, n_jobs=self._n_jobs):
+--&gt; 262         return [func(*args, **kwargs)
+    263                 for func, args, kwargs in self.items]
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py:384,</span> in <span class="ni">mutual_info_regression</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="k">def</span> <span class="nf">mutual_info_regression</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">discrete_features</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>     <span class="sd">&quot;&quot;&quot;Estimate mutual information for a continuous target variable.</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span><span class="sd">     Mutual information (MI) [1]_ between two random variables is a non-negative</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span><span class="sd">            of a Random Vector&quot;, Probl. Peredachi Inf., 23:2 (1987), 9-16</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">384</span>     <span class="k">return</span> <span class="n">_estimate_mi</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">discrete_features</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">random_state</span><span class="p">)</span>
+File ~/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py:384, in mutual_info_regression()
+    308 def mutual_info_regression(
+    309     X, y, *, discrete_features=&quot;auto&quot;, n_neighbors=3, copy=True, random_state=None
+    310 ):
+    311     &quot;&quot;&quot;Estimate mutual information for a continuous target variable.
+    312 
+    313     Mutual information (MI) [1]_ between two random variables is a non-negative
+   (...)
+    382            of a Random Vector&quot;, Probl. Peredachi Inf., 23:2 (1987), 9-16
+    383     &quot;&quot;&quot;
+--&gt; 384     return _estimate_mi(X, y, discrete_features, False, n_neighbors, copy, random_state)
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py:256,</span> in <span class="ni">_estimate_mi</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span> <span class="k">def</span> <span class="nf">_estimate_mi</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span>     <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>     <span class="n">y</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span> <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>     <span class="sd">&quot;&quot;&quot;Estimate mutual information between the features and the target.</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="sd">     Parameters</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span><span class="sd">            Data Sets&quot;. PLoS ONE 9(2), 2014.</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">256</span>     <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s2">&quot;csc&quot;</span><span class="p">,</span> <span class="n">y_numeric</span><span class="o">=</span><span class="ow">not</span> <span class="n">discrete_target</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">discrete_features</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)):</span>
+File ~/anaconda3/lib/python3.8/site-packages/sklearn/feature_selection/_mutual_info.py:256, in _estimate_mi()
+    199 def _estimate_mi(
+    200     X,
+    201     y,
+   (...)
+    206     random_state=None,
+    207 ):
+    208     &quot;&quot;&quot;Estimate mutual information between the features and the target.
+    209 
+    210     Parameters
+   (...)
+    254            Data Sets&quot;. PLoS ONE 9(2), 2014.
+    255     &quot;&quot;&quot;
+--&gt; 256     X, y = check_X_y(X, y, accept_sparse=&quot;csc&quot;, y_numeric=not discrete_target)
+    257     n_samples, n_features = X.shape
+    259     if isinstance(discrete_features, (str, bool)):
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:979,</span> in <span class="ni">check_X_y</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">962</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;y cannot be None&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">964</span> <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">965</span>     <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">966</span>     <span class="n">accept_sparse</span><span class="o">=</span><span class="n">accept_sparse</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>     <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span> <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">979</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_check_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">multi_output</span><span class="o">=</span><span class="n">multi_output</span><span class="p">,</span> <span class="n">y_numeric</span><span class="o">=</span><span class="n">y_numeric</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span> <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">983</span> <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:979, in check_X_y()
+    962     raise ValueError(&quot;y cannot be None&quot;)
+    964 X = check_array(
+    965     X,
+    966     accept_sparse=accept_sparse,
+   (...)
+    976     estimator=estimator,
+    977 )
+--&gt; 979 y = _check_y(y, multi_output=multi_output, y_numeric=y_numeric)
+    981 check_consistent_length(X, y)
+    983 return X, y
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:994,</span> in <span class="ni">_check_y</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">992</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">993</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">994</span>     <span class="n">_assert_all_finite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">995</span>     <span class="n">_ensure_no_complex_data</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">996</span> <span class="k">if</span> <span class="n">y_numeric</span> <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:994, in _check_y()
+    992 else:
+    993     y = column_or_1d(y, warn=True)
+--&gt; 994     _assert_all_finite(y)
+    995     _ensure_no_complex_data(y)
+    996 if y_numeric and y.dtype.kind == &quot;O&quot;:
 
-<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:114,</span> in <span class="ni">_assert_all_finite</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>         <span class="n">allow_nan</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>         <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>         <span class="ow">or</span> <span class="ow">not</span> <span class="n">allow_nan</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="n">type_err</span> <span class="o">=</span> <span class="s2">&quot;infinity&quot;</span> <span class="k">if</span> <span class="n">allow_nan</span> <span class="k">else</span> <span class="s2">&quot;NaN, infinity&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">114</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span>             <span class="n">msg_err</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span>                 <span class="n">type_err</span><span class="p">,</span> <span class="n">msg_dtype</span> <span class="k">if</span> <span class="n">msg_dtype</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">X</span><span class="o">.</span><span class="n">dtype</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span>             <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span> <span class="c1"># for object dtype data, we only check for NaNs (GH-13254)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">elif</span> <span class="n">X</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">allow_nan</span><span class="p">:</span>
+File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:114, in _assert_all_finite()
+    107     if (
+    108         allow_nan
+    109         and np.isinf(X).any()
+    110         or not allow_nan
+    111         and not np.isfinite(X).all()
+    112     ):
+    113         type_err = &quot;infinity&quot; if allow_nan else &quot;NaN, infinity&quot;
+--&gt; 114         raise ValueError(
+    115             msg_err.format(
+    116                 type_err, msg_dtype if msg_dtype is not None else X.dtype
+    117             )
+    118         )
+    119 # for object dtype data, we only check for NaNs (GH-13254)
+    120 elif X.dtype == np.dtype(&quot;object&quot;) and not allow_nan:
 
-<span class="ne">ValueError</span>: Input contains NaN, infinity or a value too large for dtype(&#39;float32&#39;).
+ValueError: Input contains NaN, infinity or a value too large for dtype(&#39;float32&#39;).
 </pre></div>
 </div>
 </div>
@@ -1022,11 +839,11 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">File</span> <span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+File &lt;timed exec&gt;:1, in &lt;module&gt;
 
-<span class="ne">NameError</span>: name &#39;regress&#39; is not defined
+NameError: name &#39;regress&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1172,12 +989,12 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_27_0.png" src="../../_images/30_fit-cuda2_27_0.png" />
+<img alt="../../_images/b0d1ad6ed1110599fba76f6deb703c0e773b56533ea02afb293607e906977c94.png" src="../../_images/b0d1ad6ed1110599fba76f6deb703c0e773b56533ea02afb293607e906977c94.png" />
 </div>
 </div>
 </section>
 <section id="eval">
-<h2>Eval<a class="headerlink" href="#eval" title="Permalink to this headline">¶</a></h2>
+<h2>Eval<a class="headerlink" href="#eval" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1230,26 +1047,26 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/30_fit-cuda2_34_1.png" src="../../_images/30_fit-cuda2_34_1.png" />
+</div><img alt="../../_images/194f6f347c891359797c6d730a70b65863581176fe1fca289771b4d489c15547.png" src="../../_images/194f6f347c891359797c6d730a70b65863581176fe1fca289771b4d489c15547.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/30_fit-cuda2_34_3.png" src="../../_images/30_fit-cuda2_34_3.png" />
+</div><img alt="../../_images/1b32950d2e7ad2f1070a3075bcb08549e98e6270ba6effb6d414f87eddfbeea1.png" src="../../_images/1b32950d2e7ad2f1070a3075bcb08549e98e6270ba6effb6d414f87eddfbeea1.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/30_fit-cuda2_34_6.png" src="../../_images/30_fit-cuda2_34_6.png" />
+</div><img alt="../../_images/8a972bbe5cf795dbf714c0df5c8bd4c3849d3fc62c56bc19e5ad77bc53217a45.png" src="../../_images/8a972bbe5cf795dbf714c0df5c8bd4c3849d3fc62c56bc19e5ad77bc53217a45.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/30_fit-cuda2_34_8.png" src="../../_images/30_fit-cuda2_34_8.png" />
+</div><img alt="../../_images/bb863e8afcd01559ae4fa9366ded7dfb37c3830eaf48ca90ad3aa58241b27375.png" src="../../_images/bb863e8afcd01559ae4fa9366ded7dfb37c3830eaf48ca90ad3aa58241b27375.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/30_fit-cuda2_34_11.png" src="../../_images/30_fit-cuda2_34_11.png" />
+</div><img alt="../../_images/5dd6aeba3fc4bf400d44101990844375e7cf2bfa687ba47bd7cba6e332419291.png" src="../../_images/5dd6aeba3fc4bf400d44101990844375e7cf2bfa687ba47bd7cba6e332419291.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/30_fit-cuda2_34_13.png" src="../../_images/30_fit-cuda2_34_13.png" />
+</div><img alt="../../_images/5076e5935539a0ab2635a9213a8cf88ed01639791660c76a681cc8c8024bf749.png" src="../../_images/5076e5935539a0ab2635a9213a8cf88ed01639791660c76a681cc8c8024bf749.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div></div>
@@ -1313,7 +1130,7 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_41_0.png" src="../../_images/30_fit-cuda2_41_0.png" />
+<img alt="../../_images/f971142b669083e8580a8fd7b69d53ab7f73c505054f95b47b9e1a83f3714b36.png" src="../../_images/f971142b669083e8580a8fd7b69d53ab7f73c505054f95b47b9e1a83f3714b36.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1333,7 +1150,7 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </section>
 <section id="eval-fit-old-code">
-<h2>Eval fit (old code)<a class="headerlink" href="#eval-fit-old-code" title="Permalink to this headline">¶</a></h2>
+<h2>Eval fit (old code)<a class="headerlink" href="#eval-fit-old-code" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_norm</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">vae</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">]</span>
@@ -1343,7 +1160,7 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_49_0.png" src="../../_images/30_fit-cuda2_49_0.png" />
+<img alt="../../_images/1560f095c4266ea111ecdf3b01d25f44130c4010dcbf3720c3cbed300404359c.png" src="../../_images/1560f095c4266ea111ecdf3b01d25f44130c4010dcbf3720c3cbed300404359c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1368,7 +1185,7 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_52_0.png" src="../../_images/30_fit-cuda2_52_0.png" />
+<img alt="../../_images/b0ae2ca12341a206a5669aeda4e46dffcb63ecca1d4adfc57367e0bcc39f1a9d.png" src="../../_images/b0ae2ca12341a206a5669aeda4e46dffcb63ecca1d4adfc57367e0bcc39f1a9d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1385,7 +1202,7 @@ ep2000-b500-<span style="color: #800080; text-decoration-color: #800080; font-we
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_53_0.png" src="../../_images/30_fit-cuda2_53_0.png" />
+<img alt="../../_images/6767240f1835ed464b7afbf5d3fe7f9aae82c4ff9ff2ddb3a60ba273a0762ac0.png" src="../../_images/6767240f1835ed464b7afbf5d3fe7f9aae82c4ff9ff2ddb3a60ba273a0762ac0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 40.1 s, sys: 1.31 s, total: 41.4 s
 Wall time: 41.4 s
 </pre></div>
@@ -1459,7 +1276,7 @@ Wall time: 41.4 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_57_0.png" src="../../_images/30_fit-cuda2_57_0.png" />
+<img alt="../../_images/70000b5ca0f29e245381e81a6a75982db52fec9ff199d6e32801a36b3346e2ce.png" src="../../_images/70000b5ca0f29e245381e81a6a75982db52fec9ff199d6e32801a36b3346e2ce.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1481,41 +1298,41 @@ Wall time: 41.4 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_60_0.png" src="../../_images/30_fit-cuda2_60_0.png" />
-<img alt="../../_images/30_fit-cuda2_60_1.png" src="../../_images/30_fit-cuda2_60_1.png" />
-<img alt="../../_images/30_fit-cuda2_60_2.png" src="../../_images/30_fit-cuda2_60_2.png" />
-<img alt="../../_images/30_fit-cuda2_60_3.png" src="../../_images/30_fit-cuda2_60_3.png" />
-<img alt="../../_images/30_fit-cuda2_60_4.png" src="../../_images/30_fit-cuda2_60_4.png" />
-<img alt="../../_images/30_fit-cuda2_60_5.png" src="../../_images/30_fit-cuda2_60_5.png" />
-<img alt="../../_images/30_fit-cuda2_60_6.png" src="../../_images/30_fit-cuda2_60_6.png" />
-<img alt="../../_images/30_fit-cuda2_60_7.png" src="../../_images/30_fit-cuda2_60_7.png" />
-<img alt="../../_images/30_fit-cuda2_60_8.png" src="../../_images/30_fit-cuda2_60_8.png" />
-<img alt="../../_images/30_fit-cuda2_60_9.png" src="../../_images/30_fit-cuda2_60_9.png" />
-<img alt="../../_images/30_fit-cuda2_60_10.png" src="../../_images/30_fit-cuda2_60_10.png" />
-<img alt="../../_images/30_fit-cuda2_60_11.png" src="../../_images/30_fit-cuda2_60_11.png" />
-<img alt="../../_images/30_fit-cuda2_60_12.png" src="../../_images/30_fit-cuda2_60_12.png" />
-<img alt="../../_images/30_fit-cuda2_60_13.png" src="../../_images/30_fit-cuda2_60_13.png" />
-<img alt="../../_images/30_fit-cuda2_60_14.png" src="../../_images/30_fit-cuda2_60_14.png" />
-<img alt="../../_images/30_fit-cuda2_60_15.png" src="../../_images/30_fit-cuda2_60_15.png" />
-<img alt="../../_images/30_fit-cuda2_60_16.png" src="../../_images/30_fit-cuda2_60_16.png" />
-<img alt="../../_images/30_fit-cuda2_60_17.png" src="../../_images/30_fit-cuda2_60_17.png" />
-<img alt="../../_images/30_fit-cuda2_60_18.png" src="../../_images/30_fit-cuda2_60_18.png" />
-<img alt="../../_images/30_fit-cuda2_60_19.png" src="../../_images/30_fit-cuda2_60_19.png" />
-<img alt="../../_images/30_fit-cuda2_60_20.png" src="../../_images/30_fit-cuda2_60_20.png" />
-<img alt="../../_images/30_fit-cuda2_60_21.png" src="../../_images/30_fit-cuda2_60_21.png" />
-<img alt="../../_images/30_fit-cuda2_60_22.png" src="../../_images/30_fit-cuda2_60_22.png" />
-<img alt="../../_images/30_fit-cuda2_60_23.png" src="../../_images/30_fit-cuda2_60_23.png" />
-<img alt="../../_images/30_fit-cuda2_60_24.png" src="../../_images/30_fit-cuda2_60_24.png" />
-<img alt="../../_images/30_fit-cuda2_60_25.png" src="../../_images/30_fit-cuda2_60_25.png" />
-<img alt="../../_images/30_fit-cuda2_60_26.png" src="../../_images/30_fit-cuda2_60_26.png" />
-<img alt="../../_images/30_fit-cuda2_60_27.png" src="../../_images/30_fit-cuda2_60_27.png" />
-<img alt="../../_images/30_fit-cuda2_60_28.png" src="../../_images/30_fit-cuda2_60_28.png" />
-<img alt="../../_images/30_fit-cuda2_60_29.png" src="../../_images/30_fit-cuda2_60_29.png" />
+<img alt="../../_images/83b3c631db7c40702f3619a8cfce2267d50c5f32b3f1116a21d24f3b7918805d.png" src="../../_images/83b3c631db7c40702f3619a8cfce2267d50c5f32b3f1116a21d24f3b7918805d.png" />
+<img alt="../../_images/fe165a96784fa94eeaa6c3f64f249bf5695274861fd748bab3cc71ba9692d13e.png" src="../../_images/fe165a96784fa94eeaa6c3f64f249bf5695274861fd748bab3cc71ba9692d13e.png" />
+<img alt="../../_images/b8d2e95fbe61e222dc02c6e03b36ad581394e236c5ae5a60bc5031593a0d5db6.png" src="../../_images/b8d2e95fbe61e222dc02c6e03b36ad581394e236c5ae5a60bc5031593a0d5db6.png" />
+<img alt="../../_images/99c289e6ac6ab804a21772027ae2eb8294d34caec4530c67d6c9438c756d6e78.png" src="../../_images/99c289e6ac6ab804a21772027ae2eb8294d34caec4530c67d6c9438c756d6e78.png" />
+<img alt="../../_images/7a400656486d4b2b9195d4be6b5f380727cdb00e77fe937ef0c49c0fd57558ac.png" src="../../_images/7a400656486d4b2b9195d4be6b5f380727cdb00e77fe937ef0c49c0fd57558ac.png" />
+<img alt="../../_images/71d0f69f15e5183f2c00311abc9df484e924bc2bc13b63fbfac2b1ee6b61fdd0.png" src="../../_images/71d0f69f15e5183f2c00311abc9df484e924bc2bc13b63fbfac2b1ee6b61fdd0.png" />
+<img alt="../../_images/02025f4892792714e16f50cf1c672e3880fc80021579b98bfbe09e90950b1798.png" src="../../_images/02025f4892792714e16f50cf1c672e3880fc80021579b98bfbe09e90950b1798.png" />
+<img alt="../../_images/a3a976c0d84b1d27676e3f48c6943638142aeae04a433ddc793262d1fdde75a6.png" src="../../_images/a3a976c0d84b1d27676e3f48c6943638142aeae04a433ddc793262d1fdde75a6.png" />
+<img alt="../../_images/77d0cbcf218faee353bb1b94c582f89cc0a8a39e61da8a0d14211f08ab66d21a.png" src="../../_images/77d0cbcf218faee353bb1b94c582f89cc0a8a39e61da8a0d14211f08ab66d21a.png" />
+<img alt="../../_images/fd8f9cf7dea57d08a65f72485f2c64cac15a1e57f79bca23012a02e9952a4c89.png" src="../../_images/fd8f9cf7dea57d08a65f72485f2c64cac15a1e57f79bca23012a02e9952a4c89.png" />
+<img alt="../../_images/cbcfc189384ad8571345bb0ae6e8f9ec9851cc77c3419f957b6e7677d11e707b.png" src="../../_images/cbcfc189384ad8571345bb0ae6e8f9ec9851cc77c3419f957b6e7677d11e707b.png" />
+<img alt="../../_images/18be03c506afc7dc550eee2068147ee089b75f15e62d1c2b4683ed2d4e14e928.png" src="../../_images/18be03c506afc7dc550eee2068147ee089b75f15e62d1c2b4683ed2d4e14e928.png" />
+<img alt="../../_images/96bfe9b0d8eac4db940371ee0d238979b09fc323c68ee2129ae1bfc5134a5c79.png" src="../../_images/96bfe9b0d8eac4db940371ee0d238979b09fc323c68ee2129ae1bfc5134a5c79.png" />
+<img alt="../../_images/5701f9c0a8d8ac8c38af0df470cbf08f29d9054544e0f607696e09b93b6553c0.png" src="../../_images/5701f9c0a8d8ac8c38af0df470cbf08f29d9054544e0f607696e09b93b6553c0.png" />
+<img alt="../../_images/1ca24b3075deca812ef356d798f9a1ec29e186c9e193fda76dbedd76b8a4c500.png" src="../../_images/1ca24b3075deca812ef356d798f9a1ec29e186c9e193fda76dbedd76b8a4c500.png" />
+<img alt="../../_images/eeb3d1522058ec4bae96f95f0f398b5a8df4b1394c6434f334ef5acc40cda790.png" src="../../_images/eeb3d1522058ec4bae96f95f0f398b5a8df4b1394c6434f334ef5acc40cda790.png" />
+<img alt="../../_images/b4feb38657a6084a54adcee4dbb57cb4ee586d38af7e862442a32cbd8e65af86.png" src="../../_images/b4feb38657a6084a54adcee4dbb57cb4ee586d38af7e862442a32cbd8e65af86.png" />
+<img alt="../../_images/6e4359a7c9e9a3ae97f5d528588014120de4856b8a1e052759cb65eb26e8a72c.png" src="../../_images/6e4359a7c9e9a3ae97f5d528588014120de4856b8a1e052759cb65eb26e8a72c.png" />
+<img alt="../../_images/6cbb4720215397507a3afa30a912b10c34ce1922a8d0b49718125683ebd77b45.png" src="../../_images/6cbb4720215397507a3afa30a912b10c34ce1922a8d0b49718125683ebd77b45.png" />
+<img alt="../../_images/ed2723edfde64a85d23f9e7359b1dd4a369f5b74fb9db043756f1c6dffcf4eb3.png" src="../../_images/ed2723edfde64a85d23f9e7359b1dd4a369f5b74fb9db043756f1c6dffcf4eb3.png" />
+<img alt="../../_images/b68f1b59d7fe41e7ed65c1dc9ba98191c95d26fc7ac3def843c2de768222fb7c.png" src="../../_images/b68f1b59d7fe41e7ed65c1dc9ba98191c95d26fc7ac3def843c2de768222fb7c.png" />
+<img alt="../../_images/df365a99954bc4b5674ae8cbbfaacd4e989195c884383e86329b1a1c4e37adc5.png" src="../../_images/df365a99954bc4b5674ae8cbbfaacd4e989195c884383e86329b1a1c4e37adc5.png" />
+<img alt="../../_images/0875dca54e35f5d0131db388367fec06bf0f73a1bc38200f7b2e467aa0831edc.png" src="../../_images/0875dca54e35f5d0131db388367fec06bf0f73a1bc38200f7b2e467aa0831edc.png" />
+<img alt="../../_images/28a87ebd60f2820c14e74e23dfd145e6d70aec40cc323ff9f08383514a6210df.png" src="../../_images/28a87ebd60f2820c14e74e23dfd145e6d70aec40cc323ff9f08383514a6210df.png" />
+<img alt="../../_images/3a5b9626b115cb4e2e311eb211157d4bbb5decd6c6ca2bea99d6c16e1c70c0a2.png" src="../../_images/3a5b9626b115cb4e2e311eb211157d4bbb5decd6c6ca2bea99d6c16e1c70c0a2.png" />
+<img alt="../../_images/41b5d671126e273da5bda43ed58729a5365067bda0c572ffc35de3389464dcc3.png" src="../../_images/41b5d671126e273da5bda43ed58729a5365067bda0c572ffc35de3389464dcc3.png" />
+<img alt="../../_images/ef9a1b6c5332c8696a8c809810a4283c41e53952e4d3d2ef211cd41e1d00a9b1.png" src="../../_images/ef9a1b6c5332c8696a8c809810a4283c41e53952e4d3d2ef211cd41e1d00a9b1.png" />
+<img alt="../../_images/fe9c2c14f4807cfab42800550f5338ed04ca003921134f29f765fd1b5b63518e.png" src="../../_images/fe9c2c14f4807cfab42800550f5338ed04ca003921134f29f765fd1b5b63518e.png" />
+<img alt="../../_images/6386d5c629357734ba793105e18865176d9011975de18eec99381fce4932f467.png" src="../../_images/6386d5c629357734ba793105e18865176d9011975de18eec99381fce4932f467.png" />
+<img alt="../../_images/d288010545fa6eb2d56d57b5c51237a89843b6ca9bcce8db9b1ad0fecd255fb4.png" src="../../_images/d288010545fa6eb2d56d57b5c51237a89843b6ca9bcce8db9b1ad0fecd255fb4.png" />
 </div>
 </div>
 </section>
 <section id="gradient-quantiles">
-<h2>Gradient quantiles<a class="headerlink" href="#gradient-quantiles" title="Permalink to this headline">¶</a></h2>
+<h2>Gradient quantiles<a class="headerlink" href="#gradient-quantiles" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>
@@ -1539,7 +1356,7 @@ Wall time: 41.4 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_66_0.png" src="../../_images/30_fit-cuda2_66_0.png" />
+<img alt="../../_images/ebbde71fd713fb1aae46a0a04c489878c958bf65da5561b76063e783cf655bcb.png" src="../../_images/ebbde71fd713fb1aae46a0a04c489878c958bf65da5561b76063e783cf655bcb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1552,7 +1369,7 @@ Wall time: 41.4 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/30_fit-cuda2_68_0.png" src="../../_images/30_fit-cuda2_68_0.png" />
+<img alt="../../_images/a6bdee37fe85682aaa2f3092b9351bc3aa9cb34a372d16a72c3f1775ef19fc01.png" src="../../_images/a6bdee37fe85682aaa2f3092b9351bc3aa9cb34a372d16a72c3f1775ef19fc01.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1598,7 +1415,7 @@ Wall time: 41.4 s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-03"
         },
         predefinedOutput: true
@@ -1606,36 +1423,110 @@ Wall time: 41.4 s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="30_fit-cuda1.html" title="previous page">(30) Fit – cuda2</a>
-    <a class='right-next' id="next-link" href="30_sim-final.html" title="next page">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="30_fit-cuda1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(30) Fit – cuda1</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="30_sim-final.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trainer">Trainer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-train-options">Review train options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train">Train</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eval">Eval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eval-fit-old-code">Eval fit (old code)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-quantiles">Gradient quantiles</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

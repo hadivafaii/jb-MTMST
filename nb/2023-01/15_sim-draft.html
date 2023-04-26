@@ -1,415 +1,502 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(15) Simulation – draft &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-01/15_sim-draft';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="(16) Simulation – wrong" href="16_sim-wrong.html" />
     <link rel="prev" title="(10) Nardin play" href="10_nardin.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="25_sim-self.html">
-     (25) Simulation – self [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-01/15_sim-draft.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-01/15_sim-draft.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-01/15_sim-draft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-01/15_sim-draft.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-01/15_sim-draft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(15) Simulation – draft</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initial">
-   Initial
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#comptue-dot-theta-from-linear-velocities">
-   Comptue
-   <span class="math notranslate nohighlight">
-    \(\dot{\theta}\)
-   </span>
-   from linear velocities
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#new">
-   New
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#on-the-way-to-working">
-   On the way to working
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finally-working">
-   Finally, working
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-z-zoom-out">
-     Change z (zoom out)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#show-velocity-field-optical-flow">
-   Show velocity field (optical flow)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#allow-more-width">
-     Allow more width
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial">Initial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comptue-dot-theta-from-linear-velocities">Comptue <span class="math notranslate nohighlight">\(\dot{\theta}\)</span> from linear velocities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new">New</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-the-way-to-working">On the way to working</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-working">Finally, working</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-z-zoom-out">Change z (zoom out)</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#show-velocity-field-optical-flow">Show velocity field (optical flow)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#allow-more-width">Allow more width</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="simulation-draft">
-<h1>(15) Simulation – draft<a class="headerlink" href="#simulation-draft" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="simulation-draft">
+<h1>(15) Simulation – draft<a class="headerlink" href="#simulation-draft" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>:  <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -439,8 +526,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -485,9 +578,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="initial">
-<h2>Initial<a class="headerlink" href="#initial" title="Permalink to this headline">¶</a></h2>
+<h2>Initial<a class="headerlink" href="#initial" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="mi">10</span>
@@ -561,7 +655,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_10_0.png" src="../../_images/15_sim-draft_10_0.png" />
+<img alt="../../_images/d7e084d577c1b5eb44b3e3da72c05941cdbb337f0fc17a573bc4bb946647fff7.png" src="../../_images/d7e084d577c1b5eb44b3e3da72c05941cdbb337f0fc17a573bc4bb946647fff7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -616,7 +710,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_16_0.png" src="../../_images/15_sim-draft_16_0.png" />
+<img alt="../../_images/89a7f2dad422f61ac6cbb9b89add188793511b26f88a32201597a299d42a3b38.png" src="../../_images/89a7f2dad422f61ac6cbb9b89add188793511b26f88a32201597a299d42a3b38.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -670,7 +764,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_18_0.png" src="../../_images/15_sim-draft_18_0.png" />
+<img alt="../../_images/6c967cc3a43f1099afa8ae8c0c41fae64c01f5b404eeabdf43e147dd4230fe08.png" src="../../_images/6c967cc3a43f1099afa8ae8c0c41fae64c01f5b404eeabdf43e147dd4230fe08.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -693,7 +787,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_19_0.png" src="../../_images/15_sim-draft_19_0.png" />
+<img alt="../../_images/0d3299ab796bd3fee9a16868bb17ea65a240c1a426fdf692b663df8b6d06e3c5.png" src="../../_images/0d3299ab796bd3fee9a16868bb17ea65a240c1a426fdf692b663df8b6d06e3c5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -706,7 +800,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_20_1.png" src="../../_images/15_sim-draft_20_1.png" />
+<img alt="../../_images/f9326b1dbda653179a9d5a0f1314116d14629f5d277e434ef006c9364180956b.png" src="../../_images/f9326b1dbda653179a9d5a0f1314116d14629f5d277e434ef006c9364180956b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -788,7 +882,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_26_0.png" src="../../_images/15_sim-draft_26_0.png" />
+<img alt="../../_images/5780b1a2c417b722298dfca1b507361be11496e2bdd2cd1a6065193f67f03215.png" src="../../_images/5780b1a2c417b722298dfca1b507361be11496e2bdd2cd1a6065193f67f03215.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -821,7 +915,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_28_0.png" src="../../_images/15_sim-draft_28_0.png" />
+<img alt="../../_images/f84020a7b5bfdb8f0adea921be11f0758830c49cec0f282a3401af7fa9e194a9.png" src="../../_images/f84020a7b5bfdb8f0adea921be11f0758830c49cec0f282a3401af7fa9e194a9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -858,7 +952,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_32_0.png" src="../../_images/15_sim-draft_32_0.png" />
+<img alt="../../_images/fab1f6a21841f124aa210645358af4625226cdddf60f06feaee8b80bde7b43ba.png" src="../../_images/fab1f6a21841f124aa210645358af4625226cdddf60f06feaee8b80bde7b43ba.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -880,7 +974,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_36_1.png" src="../../_images/15_sim-draft_36_1.png" />
+<img alt="../../_images/aa395f72d05c9644310848c67204d59f6a30c374d811f712884397c72cb692d4.png" src="../../_images/aa395f72d05c9644310848c67204d59f6a30c374d811f712884397c72cb692d4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -919,7 +1013,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4dc397fac0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_40_1.png" src="../../_images/15_sim-draft_40_1.png" />
+<img alt="../../_images/51252e5c714d94f6bed2e7a8252ac5c41d45847ac6d5da8ee447138b93ca16a7.png" src="../../_images/51252e5c714d94f6bed2e7a8252ac5c41d45847ac6d5da8ee447138b93ca16a7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -942,7 +1036,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4dc38b5790&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_43_1.png" src="../../_images/15_sim-draft_43_1.png" />
+<img alt="../../_images/d194349cc7f9d52e9e79937f4ccdbfa4e56d5ab3817f297820ee4458065a0699.png" src="../../_images/d194349cc7f9d52e9e79937f4ccdbfa4e56d5ab3817f297820ee4458065a0699.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -957,7 +1051,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4dc37ea310&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_45_1.png" src="../../_images/15_sim-draft_45_1.png" />
+<img alt="../../_images/9311c055733f7ed90fe438947580879c4695a8e660093a01bc2e3db402551aa8.png" src="../../_images/9311c055733f7ed90fe438947580879c4695a8e660093a01bc2e3db402551aa8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -974,7 +1068,7 @@
 </div>
 </section>
 <section id="comptue-dot-theta-from-linear-velocities">
-<h2>Comptue <span class="math notranslate nohighlight">\(\dot{\theta}\)</span> from linear velocities<a class="headerlink" href="#comptue-dot-theta-from-linear-velocities" title="Permalink to this headline">¶</a></h2>
+<h2>Comptue <span class="math notranslate nohighlight">\(\dot{\theta}\)</span> from linear velocities<a class="headerlink" href="#comptue-dot-theta-from-linear-velocities" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_theta_dot</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">fix</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
@@ -1067,7 +1161,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f75092c0eb0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_57_1.png" src="../../_images/15_sim-draft_57_1.png" />
+<img alt="../../_images/6b5fb14b37613fa4b31f358d5c1bf15ffa4711a6723e2e6dca179b12fb702825.png" src="../../_images/6b5fb14b37613fa4b31f358d5c1bf15ffa4711a6723e2e6dca179b12fb702825.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1080,7 +1174,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_58_1.png" src="../../_images/15_sim-draft_58_1.png" />
+<img alt="../../_images/9f1f50efbf8aa7e320fa59582b707f8325a8cf24a235f42281f029f61df0dc3b.png" src="../../_images/9f1f50efbf8aa7e320fa59582b707f8325a8cf24a235f42281f029f61df0dc3b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1106,7 +1200,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7509e0bc10&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_61_1.png" src="../../_images/15_sim-draft_61_1.png" />
+<img alt="../../_images/a456cdcb3f4d1686beccc0bf6a1ce5da0f80942504370d7fcb3b66abc99a5d0e.png" src="../../_images/a456cdcb3f4d1686beccc0bf6a1ce5da0f80942504370d7fcb3b66abc99a5d0e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1132,7 +1226,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7509b1fee0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_63_1.png" src="../../_images/15_sim-draft_63_1.png" />
+<img alt="../../_images/6420275faada05b55a8e08a66d138aef20731b83c363ba47eb0e2431aafdceac.png" src="../../_images/6420275faada05b55a8e08a66d138aef20731b83c363ba47eb0e2431aafdceac.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1153,7 +1247,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4db7fd74c0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_67_1.png" src="../../_images/15_sim-draft_67_1.png" />
+<img alt="../../_images/57c49e1501fd8d27efb97337894ab0e87e7699d719eac1f8844ddf7879e29606.png" src="../../_images/57c49e1501fd8d27efb97337894ab0e87e7699d719eac1f8844ddf7879e29606.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1167,7 +1261,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f4db7adf4f0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_68_1.png" src="../../_images/15_sim-draft_68_1.png" />
+<img alt="../../_images/7e4cc7b36f7e199df3409c5b65e23969e9f1586881a2ba6fbef7c94513ee9643.png" src="../../_images/7e4cc7b36f7e199df3409c5b65e23969e9f1586881a2ba6fbef7c94513ee9643.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1181,7 +1275,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f4dbc342640&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_69_1.png" src="../../_images/15_sim-draft_69_1.png" />
+<img alt="../../_images/c4f49a30bd22bffb56a9baa2d7e9fa8429405d929ad499d7ef0a59e9aed2c224.png" src="../../_images/c4f49a30bd22bffb56a9baa2d7e9fa8429405d929ad499d7ef0a59e9aed2c224.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1207,7 +1301,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f750999d7f0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_73_1.png" src="../../_images/15_sim-draft_73_1.png" />
+<img alt="../../_images/cddb1569aba887d0d6e32b68188c64338bb09797ba0b24a369bafc98a81b2c3e.png" src="../../_images/cddb1569aba887d0d6e32b68188c64338bb09797ba0b24a369bafc98a81b2c3e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1269,7 +1363,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f7509937820&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_81_1.png" src="../../_images/15_sim-draft_81_1.png" />
+<img alt="../../_images/a8bd4a9c90aca614e9365e7c830543bb5f8cb836bf5328536fff2e2820cf6302.png" src="../../_images/a8bd4a9c90aca614e9365e7c830543bb5f8cb836bf5328536fff2e2820cf6302.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1283,12 +1377,12 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f750901e3a0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_82_1.png" src="../../_images/15_sim-draft_82_1.png" />
+<img alt="../../_images/b35546a03956e35a3911747f156b29ae972994bf95315e9f032b691f73c026c6.png" src="../../_images/b35546a03956e35a3911747f156b29ae972994bf95315e9f032b691f73c026c6.png" />
 </div>
 </div>
 </section>
 <section id="new">
-<h2>New<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h2>
+<h2>New<a class="headerlink" href="#new" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="mi">5</span>
@@ -1417,7 +1511,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_91_0.png" src="../../_images/15_sim-draft_91_0.png" />
+<img alt="../../_images/fb40c0ce6756375bad65c36ae8111b47bdecc93f4fb67f16b3e2caf8b53ee01e.png" src="../../_images/fb40c0ce6756375bad65c36ae8111b47bdecc93f4fb67f16b3e2caf8b53ee01e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1440,7 +1534,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_92_0.png" src="../../_images/15_sim-draft_92_0.png" />
+<img alt="../../_images/e241cd0c0852f99e0eb9ae216e96146ae2b20d049f8bad9442a2351075b206a2.png" src="../../_images/e241cd0c0852f99e0eb9ae216e96146ae2b20d049f8bad9442a2351075b206a2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1465,7 +1559,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f750564bb80&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_95_1.png" src="../../_images/15_sim-draft_95_1.png" />
+<img alt="../../_images/5c30f6e2cb4bbc741f6ac175c5b11a54f9645e379ad235ee163b819508fb4033.png" src="../../_images/5c30f6e2cb4bbc741f6ac175c5b11a54f9645e379ad235ee163b819508fb4033.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1478,12 +1572,12 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f75054ded60&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_97_1.png" src="../../_images/15_sim-draft_97_1.png" />
+<img alt="../../_images/05fcb3b71773eddb990e0f4e2adf7252e58470c6354fb9dac920b94c9ed7a178.png" src="../../_images/05fcb3b71773eddb990e0f4e2adf7252e58470c6354fb9dac920b94c9ed7a178.png" />
 </div>
 </div>
 </section>
 <section id="on-the-way-to-working">
-<h2>On the way to working<a class="headerlink" href="#on-the-way-to-working" title="Permalink to this headline">¶</a></h2>
+<h2>On the way to working<a class="headerlink" href="#on-the-way-to-working" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
@@ -1526,7 +1620,7 @@
 </div>
 </section>
 <section id="finally-working">
-<h2>Finally, working<a class="headerlink" href="#finally-working" title="Permalink to this headline">¶</a></h2>
+<h2>Finally, working<a class="headerlink" href="#finally-working" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vz</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
@@ -1595,7 +1689,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_106_0.png" src="../../_images/15_sim-draft_106_0.png" />
+<img alt="../../_images/e15b785bda9f782e82d2b7a1abfee5b4f502de07a6b0f42b902b03227aa2b918.png" src="../../_images/e15b785bda9f782e82d2b7a1abfee5b4f502de07a6b0f42b902b03227aa2b918.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1605,7 +1699,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_107_0.png" src="../../_images/15_sim-draft_107_0.png" />
+<img alt="../../_images/64f481097e39bef00b9aa61fb86401fe0b2c953f89b161fd48232049cd65c317.png" src="../../_images/64f481097e39bef00b9aa61fb86401fe0b2c953f89b161fd48232049cd65c317.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1621,11 +1715,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_109_0.png" src="../../_images/15_sim-draft_109_0.png" />
+<img alt="../../_images/e4270a6c5ac3791fe4e4311a5c4bb0c9f966b99e291503b7a1347ff0ff9128b9.png" src="../../_images/e4270a6c5ac3791fe4e4311a5c4bb0c9f966b99e291503b7a1347ff0ff9128b9.png" />
 </div>
 </div>
 <section id="change-z-zoom-out">
-<h3>Change z (zoom out)<a class="headerlink" href="#change-z-zoom-out" title="Permalink to this headline">¶</a></h3>
+<h3>Change z (zoom out)<a class="headerlink" href="#change-z-zoom-out" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="mi">50</span>
@@ -1662,7 +1756,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_113_0.png" src="../../_images/15_sim-draft_113_0.png" />
+<img alt="../../_images/ec8ac5f7ef43f8273e0f14bcf694059c29243689ff6e4a6f9e09a94e825a439c.png" src="../../_images/ec8ac5f7ef43f8273e0f14bcf694059c29243689ff6e4a6f9e09a94e825a439c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1672,7 +1766,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_114_0.png" src="../../_images/15_sim-draft_114_0.png" />
+<img alt="../../_images/a85fc2c7a915ceef4eeed5fc796ba42e675c7144a5a578cf8f3a7a5ee400d52f.png" src="../../_images/a85fc2c7a915ceef4eeed5fc796ba42e675c7144a5a578cf8f3a7a5ee400d52f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1688,13 +1782,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_116_0.png" src="../../_images/15_sim-draft_116_0.png" />
+<img alt="../../_images/216ac9905f5be4440e6fae0104abe4507d997f0adf00e4546474dde6681633aa.png" src="../../_images/216ac9905f5be4440e6fae0104abe4507d997f0adf00e4546474dde6681633aa.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="show-velocity-field-optical-flow">
-<h2>Show velocity field (optical flow)<a class="headerlink" href="#show-velocity-field-optical-flow" title="Permalink to this headline">¶</a></h2>
+<h2>Show velocity field (optical flow)<a class="headerlink" href="#show-velocity-field-optical-flow" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="mi">50</span>
@@ -1736,7 +1830,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.quiver.Quiver at 0x7f15cf16db50&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_122_1.png" src="../../_images/15_sim-draft_122_1.png" />
+<img alt="../../_images/f4bdb3659293cdb3d2bdab989ceab668b2a3503f169704680c7b1e689ffdcacc.png" src="../../_images/f4bdb3659293cdb3d2bdab989ceab668b2a3503f169704680c7b1e689ffdcacc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1769,11 +1863,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_125_0.png" src="../../_images/15_sim-draft_125_0.png" />
+<img alt="../../_images/7d49da11c799988262e1a69b69140c1753fa51c061f22eb015e6e65272f865d5.png" src="../../_images/7d49da11c799988262e1a69b69140c1753fa51c061f22eb015e6e65272f865d5.png" />
 </div>
 </div>
 <section id="allow-more-width">
-<h3>Allow more width<a class="headerlink" href="#allow-more-width" title="Permalink to this headline">¶</a></h3>
+<h3>Allow more width<a class="headerlink" href="#allow-more-width" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">32</span>
@@ -1799,7 +1893,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.quiver.Quiver at 0x7f15cbb2c370&gt;
 </pre></div>
 </div>
-<img alt="../../_images/15_sim-draft_129_1.png" src="../../_images/15_sim-draft_129_1.png" />
+<img alt="../../_images/15854bcd04c06fa25b3927ea1ea5a0f93ac06a6afc3f778c269585f202c5a5c4.png" src="../../_images/15854bcd04c06fa25b3927ea1ea5a0f93ac06a6afc3f778c269585f202c5a5c4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1832,7 +1926,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/15_sim-draft_132_0.png" src="../../_images/15_sim-draft_132_0.png" />
+<img alt="../../_images/b67567cb3f4af19682f305882f3235d0e1f2b69795fbdec57f16cf10c994666d.png" src="../../_images/b67567cb3f4af19682f305882f3235d0e1f2b69795fbdec57f16cf10c994666d.png" />
 </div>
 </div>
 </section>
@@ -1851,7 +1945,7 @@
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-01"
         },
         predefinedOutput: true
@@ -1859,36 +1953,116 @@
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="10_nardin.html" title="previous page">(10) Nardin play</a>
-    <a class='right-next' id="next-link" href="16_sim-wrong.html" title="next page">(16) Simulation – wrong</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_nardin.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(10) Nardin play</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="16_sim-wrong.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(16) Simulation – wrong</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial">Initial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comptue-dot-theta-from-linear-velocities">Comptue <span class="math notranslate nohighlight">\(\dot{\theta}\)</span> from linear velocities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new">New</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-the-way-to-working">On the way to working</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-working">Finally, working</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-z-zoom-out">Change z (zoom out)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#show-velocity-field-optical-flow">Show velocity field (optical flow)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#allow-more-width">Allow more width</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

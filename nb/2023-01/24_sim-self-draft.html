@@ -1,404 +1,499 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(24) Simulation – self [still draft] &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-01/24_sim-self-draft';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="(25) Simulation – self [final]" href="25_sim-self.html" />
+    <link rel="next" title="(28) Simulation – self [velocity: new way]" href="28_sim-self.html" />
     <link rel="prev" title="(23) Simulation – self-motion aspect [draft]" href="23_sim-self-draft.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="25_sim-self.html">
-     (25) Simulation – self [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-01/24_sim-self-draft.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-01/24_sim-self-draft.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-01/24_sim-self-draft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-01/24_sim-self-draft.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-01/24_sim-self-draft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(24) Simulation – self [still draft]</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simple">
-   Simple
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary-so-far">
-     Summary (so far)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arbitrary-fixation-point">
-   Arbitrary fixation point
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#velocity-added">
-   Velocity added
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-limits-was-old">
-   Test limits (was old)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#task-tomorrow-tuesday">
-   Task (tomorrow Tuesday):
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-the-inequality-for-valid-x0-and-y0">
-   Test the inequality for valid x0 and y0
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple">Simple</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-so-far">Summary (so far)</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arbitrary-fixation-point">Arbitrary fixation point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-added">Velocity added</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-limits-was-old">Test limits (was old)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-tomorrow-tuesday">Task (tomorrow Tuesday):</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-inequality-for-valid-x0-and-y0">Test the inequality for valid x0 and y0</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="simulation-self-still-draft">
-<h1>(24) Simulation – self [still draft]<a class="headerlink" href="#simulation-self-still-draft" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="simulation-self-still-draft">
+<h1>(24) Simulation – self [still draft]<a class="headerlink" href="#simulation-self-still-draft" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Finalize self motion part, but not vectorized yet. <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -428,8 +523,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -593,9 +694,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="simple">
-<h2>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h2>
+<h2>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fov</span> <span class="o">=</span> <span class="mi">45</span>
@@ -632,7 +734,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_6_0.png" src="../../_images/24_sim-self-draft_6_0.png" />
+<img alt="../../_images/262eba2e093d5f02d2b2fff0312f981264ab9f263372cdce1b7e892352454037.png" src="../../_images/262eba2e093d5f02d2b2fff0312f981264ab9f263372cdce1b7e892352454037.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -658,7 +760,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_7_0.png" src="../../_images/24_sim-self-draft_7_0.png" />
+<img alt="../../_images/76c269a4a792d641b3d4186ea4e77c8ac9e89926729e599926750df86d2c0c34.png" src="../../_images/76c269a4a792d641b3d4186ea4e77c8ac9e89926729e599926750df86d2c0c34.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -668,7 +770,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_8_0.png" src="../../_images/24_sim-self-draft_8_0.png" />
+<img alt="../../_images/068f0db9abd60eb2e36214ee7199b3f3473b6a6005735d26dcca5263d4389afa.png" src="../../_images/068f0db9abd60eb2e36214ee7199b3f3473b6a6005735d26dcca5263d4389afa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -678,11 +780,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_9_0.png" src="../../_images/24_sim-self-draft_9_0.png" />
+<img alt="../../_images/30192bf3d1c74dce40d2ba3e29457c5d85c6d5d468a4ebde934423d56d162880.png" src="../../_images/30192bf3d1c74dce40d2ba3e29457c5d85c6d5d468a4ebde934423d56d162880.png" />
 </div>
 </div>
 <section id="summary-so-far">
-<h3>Summary (so far)<a class="headerlink" href="#summary-so-far" title="Permalink to this headline">¶</a></h3>
+<h3>Summary (so far)<a class="headerlink" href="#summary-so-far" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Now I have established a solid relationship between <span class="math notranslate nohighlight">\((\alpha, \beta)\)</span>, <span class="math notranslate nohighlight">\((\theta, \phi)\)</span>, and <span class="math notranslate nohighlight">\((x, y)\)</span> pairs.</p></li>
 <li><p>Maybe -60/+60 is too wide, cosinder narrowing it down.</p></li>
@@ -693,7 +795,7 @@
 </section>
 </section>
 <section id="arbitrary-fixation-point">
-<h2>Arbitrary fixation point<a class="headerlink" href="#arbitrary-fixation-point" title="Permalink to this headline">¶</a></h2>
+<h2>Arbitrary fixation point<a class="headerlink" href="#arbitrary-fixation-point" title="Permalink to this headline">#</a></h2>
 <p>Consider a fixation point
 $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_0, \Theta_0, \Phi_0),\)</span><span class="math notranslate nohighlight">\(
 \)</span><span class="math notranslate nohighlight">\(D_0 := \sqrt{X_0^2 + Y_0^2 + Z^2}, \cos\Theta_0 = Z/D_0, \tan\Phi_0 = X_0/Y_0.\)</span>$</p>
@@ -733,7 +835,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_15_0.png" src="../../_images/24_sim-self-draft_15_0.png" />
+<img alt="../../_images/262eba2e093d5f02d2b2fff0312f981264ab9f263372cdce1b7e892352454037.png" src="../../_images/262eba2e093d5f02d2b2fff0312f981264ab9f263372cdce1b7e892352454037.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -743,7 +845,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_16_0.png" src="../../_images/24_sim-self-draft_16_0.png" />
+<img alt="../../_images/3ed2c4c8267ba234209042169d7ba196991e7ee0e0f98977173d8658509ed0dd.png" src="../../_images/3ed2c4c8267ba234209042169d7ba196991e7ee0e0f98977173d8658509ed0dd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -753,12 +855,12 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_17_0.png" src="../../_images/24_sim-self-draft_17_0.png" />
+<img alt="../../_images/ffffa6daabbf131d550eeda19cc11d288c6cfe3a8c14bff1c1b1378ba65b27f9.png" src="../../_images/ffffa6daabbf131d550eeda19cc11d288c6cfe3a8c14bff1c1b1378ba65b27f9.png" />
 </div>
 </div>
 </section>
 <section id="velocity-added">
-<h2>Velocity added<a class="headerlink" href="#velocity-added" title="Permalink to this headline">¶</a></h2>
+<h2>Velocity added<a class="headerlink" href="#velocity-added" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
@@ -808,7 +910,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_23_0.png" src="../../_images/24_sim-self-draft_23_0.png" />
+<img alt="../../_images/262eba2e093d5f02d2b2fff0312f981264ab9f263372cdce1b7e892352454037.png" src="../../_images/262eba2e093d5f02d2b2fff0312f981264ab9f263372cdce1b7e892352454037.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -824,10 +926,10 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_24_0.png" src="../../_images/24_sim-self-draft_24_0.png" />
-<img alt="../../_images/24_sim-self-draft_24_1.png" src="../../_images/24_sim-self-draft_24_1.png" />
-<img alt="../../_images/24_sim-self-draft_24_2.png" src="../../_images/24_sim-self-draft_24_2.png" />
-<img alt="../../_images/24_sim-self-draft_24_3.png" src="../../_images/24_sim-self-draft_24_3.png" />
+<img alt="../../_images/068f0db9abd60eb2e36214ee7199b3f3473b6a6005735d26dcca5263d4389afa.png" src="../../_images/068f0db9abd60eb2e36214ee7199b3f3473b6a6005735d26dcca5263d4389afa.png" />
+<img alt="../../_images/3ed2c4c8267ba234209042169d7ba196991e7ee0e0f98977173d8658509ed0dd.png" src="../../_images/3ed2c4c8267ba234209042169d7ba196991e7ee0e0f98977173d8658509ed0dd.png" />
+<img alt="../../_images/2a62b9c5d7d1a846db42abfbc9707f4138aa978ac8a152c256099d71e7fa223a.png" src="../../_images/2a62b9c5d7d1a846db42abfbc9707f4138aa978ac8a152c256099d71e7fa223a.png" />
+<img alt="../../_images/987b7f954e433972351c312a7b6a4ff36ab8c28fd1919617ecba78cde50ee18a.png" src="../../_images/987b7f954e433972351c312a7b6a4ff36ab8c28fd1919617ecba78cde50ee18a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -843,10 +945,10 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_25_0.png" src="../../_images/24_sim-self-draft_25_0.png" />
-<img alt="../../_images/24_sim-self-draft_25_1.png" src="../../_images/24_sim-self-draft_25_1.png" />
-<img alt="../../_images/24_sim-self-draft_25_2.png" src="../../_images/24_sim-self-draft_25_2.png" />
-<img alt="../../_images/24_sim-self-draft_25_3.png" src="../../_images/24_sim-self-draft_25_3.png" />
+<img alt="../../_images/30192bf3d1c74dce40d2ba3e29457c5d85c6d5d468a4ebde934423d56d162880.png" src="../../_images/30192bf3d1c74dce40d2ba3e29457c5d85c6d5d468a4ebde934423d56d162880.png" />
+<img alt="../../_images/588d8ec556ae3c14b4d5ffc6e9006319d5df4c8221fdc25d99e5f742a24dd223.png" src="../../_images/588d8ec556ae3c14b4d5ffc6e9006319d5df4c8221fdc25d99e5f742a24dd223.png" />
+<img alt="../../_images/8b26a939c1d27525007cd17be21d2ca6fec950929ed954f9ef6478fb73ca5680.png" src="../../_images/8b26a939c1d27525007cd17be21d2ca6fec950929ed954f9ef6478fb73ca5680.png" />
+<img alt="../../_images/0441c1ddf17bb7ca24392db1ba8b014e94e9dbd6f4c27081e26095725924d866.png" src="../../_images/0441c1ddf17bb7ca24392db1ba8b014e94e9dbd6f4c27081e26095725924d866.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -910,14 +1012,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_1.png" src="../../_images/24_sim-self-draft_32_1.png" />
-<img alt="../../_images/24_sim-self-draft_32_2.png" src="../../_images/24_sim-self-draft_32_2.png" />
+</div><img alt="../../_images/e4e0a6ea01327b4ae8844af76cc2c114d3c2eefcba092baa1aef1ce725fe49c4.png" src="../../_images/e4e0a6ea01327b4ae8844af76cc2c114d3c2eefcba092baa1aef1ce725fe49c4.png" />
+<img alt="../../_images/4284668d066632c17f25279fb27e59abd88131d366e3296f519d5ac7bf13e638.png" src="../../_images/4284668d066632c17f25279fb27e59abd88131d366e3296f519d5ac7bf13e638.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_4.png" src="../../_images/24_sim-self-draft_32_4.png" />
-<img alt="../../_images/24_sim-self-draft_32_5.png" src="../../_images/24_sim-self-draft_32_5.png" />
+</div><img alt="../../_images/e4e0a6ea01327b4ae8844af76cc2c114d3c2eefcba092baa1aef1ce725fe49c4.png" src="../../_images/e4e0a6ea01327b4ae8844af76cc2c114d3c2eefcba092baa1aef1ce725fe49c4.png" />
+<img alt="../../_images/4284668d066632c17f25279fb27e59abd88131d366e3296f519d5ac7bf13e638.png" src="../../_images/4284668d066632c17f25279fb27e59abd88131d366e3296f519d5ac7bf13e638.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -928,14 +1030,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_9.png" src="../../_images/24_sim-self-draft_32_9.png" />
-<img alt="../../_images/24_sim-self-draft_32_10.png" src="../../_images/24_sim-self-draft_32_10.png" />
+</div><img alt="../../_images/931da96510c9996ff6461ffd9f1eae7d0470fb5bcdafba070e7ff5b5f5e85766.png" src="../../_images/931da96510c9996ff6461ffd9f1eae7d0470fb5bcdafba070e7ff5b5f5e85766.png" />
+<img alt="../../_images/e49c2edc6dfc8fe8418cac438ad70e8cbdd40a3a57b8a513e977ed706a58e2be.png" src="../../_images/e49c2edc6dfc8fe8418cac438ad70e8cbdd40a3a57b8a513e977ed706a58e2be.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_12.png" src="../../_images/24_sim-self-draft_32_12.png" />
-<img alt="../../_images/24_sim-self-draft_32_13.png" src="../../_images/24_sim-self-draft_32_13.png" />
+</div><img alt="../../_images/931da96510c9996ff6461ffd9f1eae7d0470fb5bcdafba070e7ff5b5f5e85766.png" src="../../_images/931da96510c9996ff6461ffd9f1eae7d0470fb5bcdafba070e7ff5b5f5e85766.png" />
+<img alt="../../_images/e49c2edc6dfc8fe8418cac438ad70e8cbdd40a3a57b8a513e977ed706a58e2be.png" src="../../_images/e49c2edc6dfc8fe8418cac438ad70e8cbdd40a3a57b8a513e977ed706a58e2be.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -946,14 +1048,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_17.png" src="../../_images/24_sim-self-draft_32_17.png" />
-<img alt="../../_images/24_sim-self-draft_32_18.png" src="../../_images/24_sim-self-draft_32_18.png" />
+</div><img alt="../../_images/29066b211d74e23ab4cd37b06337f55deb9219094c4c084aea56349b68afa3c2.png" src="../../_images/29066b211d74e23ab4cd37b06337f55deb9219094c4c084aea56349b68afa3c2.png" />
+<img alt="../../_images/65f92fea7045b3bd4a82ff66376e3404fe8946020d5bdd1e3a295f6a9e1bdc18.png" src="../../_images/65f92fea7045b3bd4a82ff66376e3404fe8946020d5bdd1e3a295f6a9e1bdc18.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_20.png" src="../../_images/24_sim-self-draft_32_20.png" />
-<img alt="../../_images/24_sim-self-draft_32_21.png" src="../../_images/24_sim-self-draft_32_21.png" />
+</div><img alt="../../_images/b78557e8734db5085624228d63f2d4575abb240f30c964003fce4648143228e0.png" src="../../_images/b78557e8734db5085624228d63f2d4575abb240f30c964003fce4648143228e0.png" />
+<img alt="../../_images/fae827d72ef11981d3a1f8dad35f177503e171c399363e339a9b57e340bd6320.png" src="../../_images/fae827d72ef11981d3a1f8dad35f177503e171c399363e339a9b57e340bd6320.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -964,14 +1066,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_25.png" src="../../_images/24_sim-self-draft_32_25.png" />
-<img alt="../../_images/24_sim-self-draft_32_26.png" src="../../_images/24_sim-self-draft_32_26.png" />
+</div><img alt="../../_images/069b5f57982fb8ff4c83bb1db8da942e1f1b53c35a7fd3be1ab4da0ca14388d9.png" src="../../_images/069b5f57982fb8ff4c83bb1db8da942e1f1b53c35a7fd3be1ab4da0ca14388d9.png" />
+<img alt="../../_images/2dca2b7bf69a7ee11cca237e08c6f5bc6b479dbb506d9990329ca5a6867ec3c6.png" src="../../_images/2dca2b7bf69a7ee11cca237e08c6f5bc6b479dbb506d9990329ca5a6867ec3c6.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_28.png" src="../../_images/24_sim-self-draft_32_28.png" />
-<img alt="../../_images/24_sim-self-draft_32_29.png" src="../../_images/24_sim-self-draft_32_29.png" />
+</div><img alt="../../_images/e6da7dfd067b87fe309d19a3793bd21def93054faa1d9eabe43d0ee9e972165c.png" src="../../_images/e6da7dfd067b87fe309d19a3793bd21def93054faa1d9eabe43d0ee9e972165c.png" />
+<img alt="../../_images/a2ee54512c9d93de73343fb597607d54ab9e826afbed53b032edd10f1bacb6a0.png" src="../../_images/a2ee54512c9d93de73343fb597607d54ab9e826afbed53b032edd10f1bacb6a0.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -982,14 +1084,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_33.png" src="../../_images/24_sim-self-draft_32_33.png" />
-<img alt="../../_images/24_sim-self-draft_32_34.png" src="../../_images/24_sim-self-draft_32_34.png" />
+</div><img alt="../../_images/8499e8826fcf93e54ab475a48121370088cfa1d7cc7a92f1e8b7d262b6a9c983.png" src="../../_images/8499e8826fcf93e54ab475a48121370088cfa1d7cc7a92f1e8b7d262b6a9c983.png" />
+<img alt="../../_images/3c305d88ffa801d730bd1ca9d7eabf2372e05dd8c232e343d28188fd7ee6dddc.png" src="../../_images/3c305d88ffa801d730bd1ca9d7eabf2372e05dd8c232e343d28188fd7ee6dddc.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_36.png" src="../../_images/24_sim-self-draft_32_36.png" />
-<img alt="../../_images/24_sim-self-draft_32_37.png" src="../../_images/24_sim-self-draft_32_37.png" />
+</div><img alt="../../_images/18d994eedacd9a21c6eb897d21c376ce608702019c31d04ea4dbcb1dd6d41479.png" src="../../_images/18d994eedacd9a21c6eb897d21c376ce608702019c31d04ea4dbcb1dd6d41479.png" />
+<img alt="../../_images/64b40e70e6fd2bd51141c4d35475cde19472aa3290bba106d30f41117e5242db.png" src="../../_images/64b40e70e6fd2bd51141c4d35475cde19472aa3290bba106d30f41117e5242db.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1000,14 +1102,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_41.png" src="../../_images/24_sim-self-draft_32_41.png" />
-<img alt="../../_images/24_sim-self-draft_32_42.png" src="../../_images/24_sim-self-draft_32_42.png" />
+</div><img alt="../../_images/663fd3d90fbc2a1c54b139945fba9a062f10ae46652d7272f4f789d5fbd4bd8a.png" src="../../_images/663fd3d90fbc2a1c54b139945fba9a062f10ae46652d7272f4f789d5fbd4bd8a.png" />
+<img alt="../../_images/37b6adc00cac6ce1527f1e1196d86c35fb4235a45085401e6c949ed91220d1c6.png" src="../../_images/37b6adc00cac6ce1527f1e1196d86c35fb4235a45085401e6c949ed91220d1c6.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_44.png" src="../../_images/24_sim-self-draft_32_44.png" />
-<img alt="../../_images/24_sim-self-draft_32_45.png" src="../../_images/24_sim-self-draft_32_45.png" />
+</div><img alt="../../_images/67af7ef3e60c05334b9fddfa90085a1b51c73d13878684fbdef3e9c5801af10f.png" src="../../_images/67af7ef3e60c05334b9fddfa90085a1b51c73d13878684fbdef3e9c5801af10f.png" />
+<img alt="../../_images/500ba4d93b42fdc41de731b0c3fdfcfcb3798e3329e983bbf8798d9a8eb124ca.png" src="../../_images/500ba4d93b42fdc41de731b0c3fdfcfcb3798e3329e983bbf8798d9a8eb124ca.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1018,14 +1120,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>,      velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_49.png" src="../../_images/24_sim-self-draft_32_49.png" />
-<img alt="../../_images/24_sim-self-draft_32_50.png" src="../../_images/24_sim-self-draft_32_50.png" />
+</div><img alt="../../_images/f8cdb09b31eab2671654fc6644684fbc74a7b3a936534e9d479c70880c7ebc30.png" src="../../_images/f8cdb09b31eab2671654fc6644684fbc74a7b3a936534e9d479c70880c7ebc30.png" />
+<img alt="../../_images/0e7bfe849cef64ea016abdb22a9d044b7b3af9e1d7f0eea5cb1e7a4c00bf08b3.png" src="../../_images/0e7bfe849cef64ea016abdb22a9d044b7b3af9e1d7f0eea5cb1e7a4c00bf08b3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_52.png" src="../../_images/24_sim-self-draft_32_52.png" />
-<img alt="../../_images/24_sim-self-draft_32_53.png" src="../../_images/24_sim-self-draft_32_53.png" />
+</div><img alt="../../_images/fc9e79252a29589ccf2dbbd1c09300ba94fddd8ca6ff041e735ce87be6c55bbb.png" src="../../_images/fc9e79252a29589ccf2dbbd1c09300ba94fddd8ca6ff041e735ce87be6c55bbb.png" />
+<img alt="../../_images/64d4a4e0f4a8a2a79816a94201388c6f9f98ab27562595b1a64c0be81ba3578f.png" src="../../_images/64d4a4e0f4a8a2a79816a94201388c6f9f98ab27562595b1a64c0be81ba3578f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1036,14 +1138,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_57.png" src="../../_images/24_sim-self-draft_32_57.png" />
-<img alt="../../_images/24_sim-self-draft_32_58.png" src="../../_images/24_sim-self-draft_32_58.png" />
+</div><img alt="../../_images/0d4a1333f5c245d43f322567d001ed806bc3c2310ade8801e0fcb8ea07341e77.png" src="../../_images/0d4a1333f5c245d43f322567d001ed806bc3c2310ade8801e0fcb8ea07341e77.png" />
+<img alt="../../_images/84a6e4efce8b446a5131441a27ff217dc7e2f4fb7c25ac5f3131ed030783d2ef.png" src="../../_images/84a6e4efce8b446a5131441a27ff217dc7e2f4fb7c25ac5f3131ed030783d2ef.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_60.png" src="../../_images/24_sim-self-draft_32_60.png" />
-<img alt="../../_images/24_sim-self-draft_32_61.png" src="../../_images/24_sim-self-draft_32_61.png" />
+</div><img alt="../../_images/77f1d4919e2d7ae0e7c6af378fb0824ca79330c303d18ad63630997d059b8df8.png" src="../../_images/77f1d4919e2d7ae0e7c6af378fb0824ca79330c303d18ad63630997d059b8df8.png" />
+<img alt="../../_images/93d21a5a25b3f651f1587d0e2c68d47f25ce893c2bfaa46c1a957f03ac37f1bd.png" src="../../_images/93d21a5a25b3f651f1587d0e2c68d47f25ce893c2bfaa46c1a957f03ac37f1bd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1054,14 +1156,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_65.png" src="../../_images/24_sim-self-draft_32_65.png" />
-<img alt="../../_images/24_sim-self-draft_32_66.png" src="../../_images/24_sim-self-draft_32_66.png" />
+</div><img alt="../../_images/4f0517a8f975cab7573fd37f950ecdecce4ad3ce97ca8806a82e3126a43e0e8a.png" src="../../_images/4f0517a8f975cab7573fd37f950ecdecce4ad3ce97ca8806a82e3126a43e0e8a.png" />
+<img alt="../../_images/b761366b7caa190041de0deb7fa8e81641d4d41f4ac6f3e72209b3b0f3299d3e.png" src="../../_images/b761366b7caa190041de0deb7fa8e81641d4d41f4ac6f3e72209b3b0f3299d3e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_68.png" src="../../_images/24_sim-self-draft_32_68.png" />
-<img alt="../../_images/24_sim-self-draft_32_69.png" src="../../_images/24_sim-self-draft_32_69.png" />
+</div><img alt="../../_images/5be94ae6f97d948ede0ef3a182f2cbb970be425ee1bc0d58df21f56e04c2561a.png" src="../../_images/5be94ae6f97d948ede0ef3a182f2cbb970be425ee1bc0d58df21f56e04c2561a.png" />
+<img alt="../../_images/43a12acf06ed1532f65d2732c9de04e1684a3aa99db68707b19a85d5790915a7.png" src="../../_images/43a12acf06ed1532f65d2732c9de04e1684a3aa99db68707b19a85d5790915a7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1072,14 +1174,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_73.png" src="../../_images/24_sim-self-draft_32_73.png" />
-<img alt="../../_images/24_sim-self-draft_32_74.png" src="../../_images/24_sim-self-draft_32_74.png" />
+</div><img alt="../../_images/401bf96c2447ab74c6be011ccc991874be6ac4798a9fecf5a1b18eb4f0a2a067.png" src="../../_images/401bf96c2447ab74c6be011ccc991874be6ac4798a9fecf5a1b18eb4f0a2a067.png" />
+<img alt="../../_images/9f7e34bf515313eea831d62391812322a910fab11551db2886c82edbb87957dd.png" src="../../_images/9f7e34bf515313eea831d62391812322a910fab11551db2886c82edbb87957dd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_76.png" src="../../_images/24_sim-self-draft_32_76.png" />
-<img alt="../../_images/24_sim-self-draft_32_77.png" src="../../_images/24_sim-self-draft_32_77.png" />
+</div><img alt="../../_images/4bd50ed21f41f77958690da0c6610f41e6841b225b7c2eaf495ae45ecf677221.png" src="../../_images/4bd50ed21f41f77958690da0c6610f41e6841b225b7c2eaf495ae45ecf677221.png" />
+<img alt="../../_images/d9420596a30b502c5632a6e576a65abcc3a15abaff45a9aecfae1a8514683cf8.png" src="../../_images/d9420596a30b502c5632a6e576a65abcc3a15abaff45a9aecfae1a8514683cf8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1090,14 +1192,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_81.png" src="../../_images/24_sim-self-draft_32_81.png" />
-<img alt="../../_images/24_sim-self-draft_32_82.png" src="../../_images/24_sim-self-draft_32_82.png" />
+</div><img alt="../../_images/ba4c0080d62137bd118b8fc6be01368ffe0753ef6e9d5c1049e37402ba42fc87.png" src="../../_images/ba4c0080d62137bd118b8fc6be01368ffe0753ef6e9d5c1049e37402ba42fc87.png" />
+<img alt="../../_images/08987e5b1bbe59b8d1aa97f0acb452f128d0e495fa377016f928af243e1f4488.png" src="../../_images/08987e5b1bbe59b8d1aa97f0acb452f128d0e495fa377016f928af243e1f4488.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_84.png" src="../../_images/24_sim-self-draft_32_84.png" />
-<img alt="../../_images/24_sim-self-draft_32_85.png" src="../../_images/24_sim-self-draft_32_85.png" />
+</div><img alt="../../_images/a56153501a1a29ed683e80180f9afa4c18e33f944e0807ac0eac3bf0f143f886.png" src="../../_images/a56153501a1a29ed683e80180f9afa4c18e33f944e0807ac0eac3bf0f143f886.png" />
+<img alt="../../_images/07c73d92e94dedc41a867cba5a61a81b85c120ab3964d59f02a8cbb4bfc2eff7.png" src="../../_images/07c73d92e94dedc41a867cba5a61a81b85c120ab3964d59f02a8cbb4bfc2eff7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1108,14 +1210,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_89.png" src="../../_images/24_sim-self-draft_32_89.png" />
-<img alt="../../_images/24_sim-self-draft_32_90.png" src="../../_images/24_sim-self-draft_32_90.png" />
+</div><img alt="../../_images/7d8a4a1feda80770eaab4d866399dfa1d3456b99ec62e397a62371a2edb675b8.png" src="../../_images/7d8a4a1feda80770eaab4d866399dfa1d3456b99ec62e397a62371a2edb675b8.png" />
+<img alt="../../_images/75d2cb57f7b3aab04046464a41c0014aa9cd20ca96c35d9e71f12575c39b44c8.png" src="../../_images/75d2cb57f7b3aab04046464a41c0014aa9cd20ca96c35d9e71f12575c39b44c8.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_92.png" src="../../_images/24_sim-self-draft_32_92.png" />
-<img alt="../../_images/24_sim-self-draft_32_93.png" src="../../_images/24_sim-self-draft_32_93.png" />
+</div><img alt="../../_images/59972447de3f25b56e6500b51de0f2f3d515b434bad2aab014c76c6cd7971311.png" src="../../_images/59972447de3f25b56e6500b51de0f2f3d515b434bad2aab014c76c6cd7971311.png" />
+<img alt="../../_images/18b10087ba3428897658900e4c53326d638249e79646b71eee2791eb0876cdd0.png" src="../../_images/18b10087ba3428897658900e4c53326d638249e79646b71eee2791eb0876cdd0.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1126,14 +1228,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_97.png" src="../../_images/24_sim-self-draft_32_97.png" />
-<img alt="../../_images/24_sim-self-draft_32_98.png" src="../../_images/24_sim-self-draft_32_98.png" />
+</div><img alt="../../_images/f89cc1fb7b3329ef0c6ee14dd056d0d2f3ab4e49b5de82f86bba9e4d220b1a28.png" src="../../_images/f89cc1fb7b3329ef0c6ee14dd056d0d2f3ab4e49b5de82f86bba9e4d220b1a28.png" />
+<img alt="../../_images/47053db5167709acb027882b72f64529772f28cc3b4cfe587e051df6c5f3926f.png" src="../../_images/47053db5167709acb027882b72f64529772f28cc3b4cfe587e051df6c5f3926f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_100.png" src="../../_images/24_sim-self-draft_32_100.png" />
-<img alt="../../_images/24_sim-self-draft_32_101.png" src="../../_images/24_sim-self-draft_32_101.png" />
+</div><img alt="../../_images/0ccd151656e37eb927149370fe2a4e8968b09a8cbdf4fde4493b7591872e17da.png" src="../../_images/0ccd151656e37eb927149370fe2a4e8968b09a8cbdf4fde4493b7591872e17da.png" />
+<img alt="../../_images/8f70ff91eca642ccb08a33a7f91b2a29b1cc32c6cb1b152422d748deeb64b4f7.png" src="../../_images/8f70ff91eca642ccb08a33a7f91b2a29b1cc32c6cb1b152422d748deeb64b4f7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1144,14 +1246,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_105.png" src="../../_images/24_sim-self-draft_32_105.png" />
-<img alt="../../_images/24_sim-self-draft_32_106.png" src="../../_images/24_sim-self-draft_32_106.png" />
+</div><img alt="../../_images/b05a382745273946c3cc5519bc753ffad25eb8eb069c3078c6a15c5c4ef0a42b.png" src="../../_images/b05a382745273946c3cc5519bc753ffad25eb8eb069c3078c6a15c5c4ef0a42b.png" />
+<img alt="../../_images/de41a7a8ce2c7141f69cba300035999900bf24f21a2abd948142c72c84bab27d.png" src="../../_images/de41a7a8ce2c7141f69cba300035999900bf24f21a2abd948142c72c84bab27d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_108.png" src="../../_images/24_sim-self-draft_32_108.png" />
-<img alt="../../_images/24_sim-self-draft_32_109.png" src="../../_images/24_sim-self-draft_32_109.png" />
+</div><img alt="../../_images/7d023b548862c750f1f23d07e1457bdc10997351eedf5089d90b8c942b64ea67.png" src="../../_images/7d023b548862c750f1f23d07e1457bdc10997351eedf5089d90b8c942b64ea67.png" />
+<img alt="../../_images/39daaf19a98558548a94bed35576a0e134d2ab8c5bb4aebcfa66e868372f5f7b.png" src="../../_images/39daaf19a98558548a94bed35576a0e134d2ab8c5bb4aebcfa66e868372f5f7b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1162,14 +1264,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_113.png" src="../../_images/24_sim-self-draft_32_113.png" />
-<img alt="../../_images/24_sim-self-draft_32_114.png" src="../../_images/24_sim-self-draft_32_114.png" />
+</div><img alt="../../_images/1eb259e327cbae679117087d2be0fc432fc1375eb3c555b1865f18cafe22283f.png" src="../../_images/1eb259e327cbae679117087d2be0fc432fc1375eb3c555b1865f18cafe22283f.png" />
+<img alt="../../_images/1c42f4675282f79c943e6e04ca126ab99b4b2c8e46c71a7e769c00b6d1e9351c.png" src="../../_images/1c42f4675282f79c943e6e04ca126ab99b4b2c8e46c71a7e769c00b6d1e9351c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_116.png" src="../../_images/24_sim-self-draft_32_116.png" />
-<img alt="../../_images/24_sim-self-draft_32_117.png" src="../../_images/24_sim-self-draft_32_117.png" />
+</div><img alt="../../_images/e80101716d6b76d6949fc5cc2cc007cf989806cced009b916fc2e4d7df2aeea8.png" src="../../_images/e80101716d6b76d6949fc5cc2cc007cf989806cced009b916fc2e4d7df2aeea8.png" />
+<img alt="../../_images/153853416d1ba1a833f3c3cde3c71b959ebf09ca579600fc8b414c510d9fef6e.png" src="../../_images/153853416d1ba1a833f3c3cde3c71b959ebf09ca579600fc8b414c510d9fef6e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1180,14 +1282,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_121.png" src="../../_images/24_sim-self-draft_32_121.png" />
-<img alt="../../_images/24_sim-self-draft_32_122.png" src="../../_images/24_sim-self-draft_32_122.png" />
+</div><img alt="../../_images/4362ceb2328181d24286b5c46fc3a1cf25351f9cc619f4662608d63a50cd5f3e.png" src="../../_images/4362ceb2328181d24286b5c46fc3a1cf25351f9cc619f4662608d63a50cd5f3e.png" />
+<img alt="../../_images/1f2b50481b5c725dfd5f0c66f1f638b3d6010db331e9bef4f424e5cac0aeac02.png" src="../../_images/1f2b50481b5c725dfd5f0c66f1f638b3d6010db331e9bef4f424e5cac0aeac02.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_124.png" src="../../_images/24_sim-self-draft_32_124.png" />
-<img alt="../../_images/24_sim-self-draft_32_125.png" src="../../_images/24_sim-self-draft_32_125.png" />
+</div><img alt="../../_images/825a0401aa54d9575fea76cfa4d265d5d20753442714119b931a77cefc5e9157.png" src="../../_images/825a0401aa54d9575fea76cfa4d265d5d20753442714119b931a77cefc5e9157.png" />
+<img alt="../../_images/707cbca93ab0c481986df948cd987ae06295e804b8b97a1a3492bfc6828e007e.png" src="../../_images/707cbca93ab0c481986df948cd987ae06295e804b8b97a1a3492bfc6828e007e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1198,14 +1300,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_129.png" src="../../_images/24_sim-self-draft_32_129.png" />
-<img alt="../../_images/24_sim-self-draft_32_130.png" src="../../_images/24_sim-self-draft_32_130.png" />
+</div><img alt="../../_images/b59ac5f08b3198bf8eac4ab2b0272eda70a7a64c410ef0984e819756cb6be755.png" src="../../_images/b59ac5f08b3198bf8eac4ab2b0272eda70a7a64c410ef0984e819756cb6be755.png" />
+<img alt="../../_images/52194414b07618b680848236765c086e9e777154c05d8896560b0c57b776b503.png" src="../../_images/52194414b07618b680848236765c086e9e777154c05d8896560b0c57b776b503.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_132.png" src="../../_images/24_sim-self-draft_32_132.png" />
-<img alt="../../_images/24_sim-self-draft_32_133.png" src="../../_images/24_sim-self-draft_32_133.png" />
+</div><img alt="../../_images/06266a8106b4d84528347901590d5f9d931459f31551141c1ea368f55037c158.png" src="../../_images/06266a8106b4d84528347901590d5f9d931459f31551141c1ea368f55037c158.png" />
+<img alt="../../_images/693e6e69a968b83df52138e9fb88f321d61eb72e583d64d34adbaee6815dafe3.png" src="../../_images/693e6e69a968b83df52138e9fb88f321d61eb72e583d64d34adbaee6815dafe3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1216,14 +1318,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_137.png" src="../../_images/24_sim-self-draft_32_137.png" />
-<img alt="../../_images/24_sim-self-draft_32_138.png" src="../../_images/24_sim-self-draft_32_138.png" />
+</div><img alt="../../_images/ae66cddb3f99c8159d7d9d2eeecc95c7544530fc4dee270540eb9f99fd698e76.png" src="../../_images/ae66cddb3f99c8159d7d9d2eeecc95c7544530fc4dee270540eb9f99fd698e76.png" />
+<img alt="../../_images/bf4c351467c53c9cdf6a4b8b9454d29712566f415245c44de95ae18c87a5f062.png" src="../../_images/bf4c351467c53c9cdf6a4b8b9454d29712566f415245c44de95ae18c87a5f062.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_140.png" src="../../_images/24_sim-self-draft_32_140.png" />
-<img alt="../../_images/24_sim-self-draft_32_141.png" src="../../_images/24_sim-self-draft_32_141.png" />
+</div><img alt="../../_images/d90cc9731b8ecf59e387e66e384e502558ede6f049a8eb57360186214b2b5405.png" src="../../_images/d90cc9731b8ecf59e387e66e384e502558ede6f049a8eb57360186214b2b5405.png" />
+<img alt="../../_images/dd5b24c7e66bd293705cbc5e3480130b965f0f31cdfbec5aa86dfcd0aae1efe3.png" src="../../_images/dd5b24c7e66bd293705cbc5e3480130b965f0f31cdfbec5aa86dfcd0aae1efe3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1234,14 +1336,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_145.png" src="../../_images/24_sim-self-draft_32_145.png" />
-<img alt="../../_images/24_sim-self-draft_32_146.png" src="../../_images/24_sim-self-draft_32_146.png" />
+</div><img alt="../../_images/ec98964dfa1c710318fe996d4fd8c5ecdc96223ccaae918b02d3974bc55d3b06.png" src="../../_images/ec98964dfa1c710318fe996d4fd8c5ecdc96223ccaae918b02d3974bc55d3b06.png" />
+<img alt="../../_images/9f090a11174b2437b25c083b436bd00cecd0b5ff3cec2f15488e3bebf33d63f6.png" src="../../_images/9f090a11174b2437b25c083b436bd00cecd0b5ff3cec2f15488e3bebf33d63f6.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_148.png" src="../../_images/24_sim-self-draft_32_148.png" />
-<img alt="../../_images/24_sim-self-draft_32_149.png" src="../../_images/24_sim-self-draft_32_149.png" />
+</div><img alt="../../_images/e292ee92cf5164380c46e72a3cfaa94ee904cfd9553d19b04d2180fd20f56395.png" src="../../_images/e292ee92cf5164380c46e72a3cfaa94ee904cfd9553d19b04d2180fd20f56395.png" />
+<img alt="../../_images/4004d255e00152520cb5888d68b483fbf4213802b10dcb0186f935562b1b1dfd.png" src="../../_images/4004d255e00152520cb5888d68b483fbf4213802b10dcb0186f935562b1b1dfd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1252,14 +1354,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_153.png" src="../../_images/24_sim-self-draft_32_153.png" />
-<img alt="../../_images/24_sim-self-draft_32_154.png" src="../../_images/24_sim-self-draft_32_154.png" />
+</div><img alt="../../_images/7f2f679aaa9254ad7627597cb7438c79828340a753d7f60b6a41a14686215e0a.png" src="../../_images/7f2f679aaa9254ad7627597cb7438c79828340a753d7f60b6a41a14686215e0a.png" />
+<img alt="../../_images/471d7f9d50f73dfcf433ad6fbb5487b469b9b620b3c65aad0e88b095c8721ad7.png" src="../../_images/471d7f9d50f73dfcf433ad6fbb5487b469b9b620b3c65aad0e88b095c8721ad7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_156.png" src="../../_images/24_sim-self-draft_32_156.png" />
-<img alt="../../_images/24_sim-self-draft_32_157.png" src="../../_images/24_sim-self-draft_32_157.png" />
+</div><img alt="../../_images/deb099d532b5e95e0c398374a9adf93e181ed54ace0c4fead5b4374a26d19492.png" src="../../_images/deb099d532b5e95e0c398374a9adf93e181ed54ace0c4fead5b4374a26d19492.png" />
+<img alt="../../_images/316e128f7188486428a8f96146038c8164a36b438f8af92f5b22314ae794de3f.png" src="../../_images/316e128f7188486428a8f96146038c8164a36b438f8af92f5b22314ae794de3f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1270,14 +1372,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_161.png" src="../../_images/24_sim-self-draft_32_161.png" />
-<img alt="../../_images/24_sim-self-draft_32_162.png" src="../../_images/24_sim-self-draft_32_162.png" />
+</div><img alt="../../_images/50e5b14865a56bd59fd5bc1b55340a051b47c91a32a933c8c91daaa27bd6ee5d.png" src="../../_images/50e5b14865a56bd59fd5bc1b55340a051b47c91a32a933c8c91daaa27bd6ee5d.png" />
+<img alt="../../_images/713d37a82fc6f0e0450d185328b3824f99d68cbe58f86c9a3dd2e10ffb53ac36.png" src="../../_images/713d37a82fc6f0e0450d185328b3824f99d68cbe58f86c9a3dd2e10ffb53ac36.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_164.png" src="../../_images/24_sim-self-draft_32_164.png" />
-<img alt="../../_images/24_sim-self-draft_32_165.png" src="../../_images/24_sim-self-draft_32_165.png" />
+</div><img alt="../../_images/384e849e475c36a9e2e7e2fc18e96ead7af1183490590794d6baae97ff1b2ac7.png" src="../../_images/384e849e475c36a9e2e7e2fc18e96ead7af1183490590794d6baae97ff1b2ac7.png" />
+<img alt="../../_images/09a87225df563f6c1cd31ba90dd00652ff20ccfcb0f65e0403adb6b305ab596f.png" src="../../_images/09a87225df563f6c1cd31ba90dd00652ff20ccfcb0f65e0403adb6b305ab596f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1288,14 +1390,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_169.png" src="../../_images/24_sim-self-draft_32_169.png" />
-<img alt="../../_images/24_sim-self-draft_32_170.png" src="../../_images/24_sim-self-draft_32_170.png" />
+</div><img alt="../../_images/8acc184780adccbe4b831c0f8e46746a9b37f5de947d7ef1fbec8c41e7149f55.png" src="../../_images/8acc184780adccbe4b831c0f8e46746a9b37f5de947d7ef1fbec8c41e7149f55.png" />
+<img alt="../../_images/bfad31a172b4df3b41b2dbdfc55e4d86f5bdd8f7b3aa70c51d357c051b53624b.png" src="../../_images/bfad31a172b4df3b41b2dbdfc55e4d86f5bdd8f7b3aa70c51d357c051b53624b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_172.png" src="../../_images/24_sim-self-draft_32_172.png" />
-<img alt="../../_images/24_sim-self-draft_32_173.png" src="../../_images/24_sim-self-draft_32_173.png" />
+</div><img alt="../../_images/9bc0c5d4f082be8a8773fec630db6d1eea32c5a5291ae1e68262b882a8603e01.png" src="../../_images/9bc0c5d4f082be8a8773fec630db6d1eea32c5a5291ae1e68262b882a8603e01.png" />
+<img alt="../../_images/11d9c7d81f291c6f004b77c3e7a2c3dbd0d0e2738b7be5bb5ca4434b7d01de6d.png" src="../../_images/11d9c7d81f291c6f004b77c3e7a2c3dbd0d0e2738b7be5bb5ca4434b7d01de6d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1306,14 +1408,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_177.png" src="../../_images/24_sim-self-draft_32_177.png" />
-<img alt="../../_images/24_sim-self-draft_32_178.png" src="../../_images/24_sim-self-draft_32_178.png" />
+</div><img alt="../../_images/63f680f30414b1aaea2272e8a7d238f5469adb628fc7b85164ea059a43356f9e.png" src="../../_images/63f680f30414b1aaea2272e8a7d238f5469adb628fc7b85164ea059a43356f9e.png" />
+<img alt="../../_images/ee47720ed71c5d1ac958569bf0f0ee2aa1140d54786a73788a1bf870fc685deb.png" src="../../_images/ee47720ed71c5d1ac958569bf0f0ee2aa1140d54786a73788a1bf870fc685deb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_180.png" src="../../_images/24_sim-self-draft_32_180.png" />
-<img alt="../../_images/24_sim-self-draft_32_181.png" src="../../_images/24_sim-self-draft_32_181.png" />
+</div><img alt="../../_images/5fa1b17a437bf42e3c6d53da8bb5839b7360ccb53fb753beaca61e51fe2b7695.png" src="../../_images/5fa1b17a437bf42e3c6d53da8bb5839b7360ccb53fb753beaca61e51fe2b7695.png" />
+<img alt="../../_images/3a1cd3e704eec2142929be14fe974a00eca777c84c7b4f60a7d242dfd15361e2.png" src="../../_images/3a1cd3e704eec2142929be14fe974a00eca777c84c7b4f60a7d242dfd15361e2.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1324,14 +1426,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_185.png" src="../../_images/24_sim-self-draft_32_185.png" />
-<img alt="../../_images/24_sim-self-draft_32_186.png" src="../../_images/24_sim-self-draft_32_186.png" />
+</div><img alt="../../_images/679fa5f3ede1d80625cb8a4c18c88af0ef1be9bd9ab172f6ca46d671d080689f.png" src="../../_images/679fa5f3ede1d80625cb8a4c18c88af0ef1be9bd9ab172f6ca46d671d080689f.png" />
+<img alt="../../_images/7ec59f11399d322168df8cb52d089624c313148b0bd5fcc44da540e1c6526213.png" src="../../_images/7ec59f11399d322168df8cb52d089624c313148b0bd5fcc44da540e1c6526213.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_188.png" src="../../_images/24_sim-self-draft_32_188.png" />
-<img alt="../../_images/24_sim-self-draft_32_189.png" src="../../_images/24_sim-self-draft_32_189.png" />
+</div><img alt="../../_images/f541af0e3f9224b562076a0dd7417ff22c34a89f875e9e4f6c8cef3842fb197f.png" src="../../_images/f541af0e3f9224b562076a0dd7417ff22c34a89f875e9e4f6c8cef3842fb197f.png" />
+<img alt="../../_images/7274965670665e8afcb1af65c4538ffec7ebe0d14691e372a467676516eb02ca.png" src="../../_images/7274965670665e8afcb1af65c4538ffec7ebe0d14691e372a467676516eb02ca.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1342,14 +1444,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_193.png" src="../../_images/24_sim-self-draft_32_193.png" />
-<img alt="../../_images/24_sim-self-draft_32_194.png" src="../../_images/24_sim-self-draft_32_194.png" />
+</div><img alt="../../_images/84b4cd6378a016b25ba2a1f9527c9e65e3d03018e2ee7690007a0c1ab739d895.png" src="../../_images/84b4cd6378a016b25ba2a1f9527c9e65e3d03018e2ee7690007a0c1ab739d895.png" />
+<img alt="../../_images/aedcbc6db7c8597b77e4d025dc536930aa3398b3821c958aea7270f7555ef9de.png" src="../../_images/aedcbc6db7c8597b77e4d025dc536930aa3398b3821c958aea7270f7555ef9de.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_196.png" src="../../_images/24_sim-self-draft_32_196.png" />
-<img alt="../../_images/24_sim-self-draft_32_197.png" src="../../_images/24_sim-self-draft_32_197.png" />
+</div><img alt="../../_images/c100f4fc83642dc5159c17b0a11e68dd46b01dc60903076c7693a3e05bc65bb9.png" src="../../_images/c100f4fc83642dc5159c17b0a11e68dd46b01dc60903076c7693a3e05bc65bb9.png" />
+<img alt="../../_images/06df12502977d89ef073c76e19d1bebd750bdf0ad8c51a72b909c7262fe2213b.png" src="../../_images/06df12502977d89ef073c76e19d1bebd750bdf0ad8c51a72b909c7262fe2213b.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1360,14 +1462,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_201.png" src="../../_images/24_sim-self-draft_32_201.png" />
-<img alt="../../_images/24_sim-self-draft_32_202.png" src="../../_images/24_sim-self-draft_32_202.png" />
+</div><img alt="../../_images/69806f0f175e0f07d20c32ed9b82a79483d95f3c367d10e794bdb15f81f9fe9f.png" src="../../_images/69806f0f175e0f07d20c32ed9b82a79483d95f3c367d10e794bdb15f81f9fe9f.png" />
+<img alt="../../_images/1da85c62eefbcfa93b94589ace6624c9c4e82aab07fee8757d7d0a3d69bb782c.png" src="../../_images/1da85c62eefbcfa93b94589ace6624c9c4e82aab07fee8757d7d0a3d69bb782c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_204.png" src="../../_images/24_sim-self-draft_32_204.png" />
-<img alt="../../_images/24_sim-self-draft_32_205.png" src="../../_images/24_sim-self-draft_32_205.png" />
+</div><img alt="../../_images/a1b0fe2aeedee8aaa9dc16786306943344fedb505656678e35bfdd1120610fc5.png" src="../../_images/a1b0fe2aeedee8aaa9dc16786306943344fedb505656678e35bfdd1120610fc5.png" />
+<img alt="../../_images/9a637d9d04f497c58cbcaced98772068a61184200b45e939cf5ab21815816463.png" src="../../_images/9a637d9d04f497c58cbcaced98772068a61184200b45e939cf5ab21815816463.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1378,14 +1480,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_209.png" src="../../_images/24_sim-self-draft_32_209.png" />
-<img alt="../../_images/24_sim-self-draft_32_210.png" src="../../_images/24_sim-self-draft_32_210.png" />
+</div><img alt="../../_images/f2b87240ad723e45e7070daa6d91b7d657ae9d6c1ae1f0ccf629aaca2f0cb745.png" src="../../_images/f2b87240ad723e45e7070daa6d91b7d657ae9d6c1ae1f0ccf629aaca2f0cb745.png" />
+<img alt="../../_images/a2a041278ba2bc8a6af25d90fe57dc12780cfcb6419693421cccd899f6b48bdd.png" src="../../_images/a2a041278ba2bc8a6af25d90fe57dc12780cfcb6419693421cccd899f6b48bdd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_212.png" src="../../_images/24_sim-self-draft_32_212.png" />
-<img alt="../../_images/24_sim-self-draft_32_213.png" src="../../_images/24_sim-self-draft_32_213.png" />
+</div><img alt="../../_images/5b460405c8adbbe3fce147189554532adcdaab8adcbda8e8c6c20fb993f3d43c.png" src="../../_images/5b460405c8adbbe3fce147189554532adcdaab8adcbda8e8c6c20fb993f3d43c.png" />
+<img alt="../../_images/05eab41710bdb8cb94fa8eb7f6566f05f096e3239539d372f010ae98d40ebf8d.png" src="../../_images/05eab41710bdb8cb94fa8eb7f6566f05f096e3239539d372f010ae98d40ebf8d.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1396,14 +1498,14 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fixation: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.3</span><span style="font-weight: bold">]</span>,    velocity: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>.  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>.<span style="font-weight: bold">]</span>
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_217.png" src="../../_images/24_sim-self-draft_32_217.png" />
-<img alt="../../_images/24_sim-self-draft_32_218.png" src="../../_images/24_sim-self-draft_32_218.png" />
+</div><img alt="../../_images/ef97a1e9d1741703d55914b2aa77e3f0aac48e456524ac63314c14fac939f75c.png" src="../../_images/ef97a1e9d1741703d55914b2aa77e3f0aac48e456524ac63314c14fac939f75c.png" />
+<img alt="../../_images/be4835043b3b0671c11b94b6c8e3bd77dda78e3fd1ff028d12efefd2aa92eb82.png" src="../../_images/be4835043b3b0671c11b94b6c8e3bd77dda78e3fd1ff028d12efefd2aa92eb82.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  -------------------------------------------------------------------------------- 
 
 </pre>
-</div><img alt="../../_images/24_sim-self-draft_32_220.png" src="../../_images/24_sim-self-draft_32_220.png" />
-<img alt="../../_images/24_sim-self-draft_32_221.png" src="../../_images/24_sim-self-draft_32_221.png" />
+</div><img alt="../../_images/8a29df4c479fe7a15ba2d61d59e8c2c2699eda4e20437620939f68088dbc7d78.png" src="../../_images/8a29df4c479fe7a15ba2d61d59e8c2c2699eda4e20437620939f68088dbc7d78.png" />
+<img alt="../../_images/09839a26994c679b832c807b95d1891046fb142531922911187607fff7cbbec5.png" src="../../_images/09839a26994c679b832c807b95d1891046fb142531922911187607fff7cbbec5.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
  --------------------------------------------------------------------------------
 </pre>
@@ -1416,7 +1518,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </section>
 <section id="test-limits-was-old">
-<h2>Test limits (was old)<a class="headerlink" href="#test-limits-was-old" title="Permalink to this headline">¶</a></h2>
+<h2>Test limits (was old)<a class="headerlink" href="#test-limits-was-old" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sim</span><span class="p">[</span><span class="s1">&#39;span&#39;</span><span class="p">])</span>
@@ -1459,7 +1561,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_39_0.png" src="../../_images/24_sim-self-draft_39_0.png" />
+<img alt="../../_images/fbb5a4890defd558dbb82c7ce7c39754fc67898909ae2ead601121ab880c0f86.png" src="../../_images/fbb5a4890defd558dbb82c7ce7c39754fc67898909ae2ead601121ab880c0f86.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1519,7 +1621,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_46_0.png" src="../../_images/24_sim-self-draft_46_0.png" />
+<img alt="../../_images/5d1ad8fd5d09da5f7ffc87c901c1c7cb6de686eff8ec68104650b6e13d3a5361.png" src="../../_images/5d1ad8fd5d09da5f7ffc87c901c1c7cb6de686eff8ec68104650b6e13d3a5361.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1556,7 +1658,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_50_0.png" src="../../_images/24_sim-self-draft_50_0.png" />
+<img alt="../../_images/8b1881588ff6cf6ea5db1e533cc6afcda1f41ae73814cbb87e7db51961fb59b3.png" src="../../_images/8b1881588ff6cf6ea5db1e533cc6afcda1f41ae73814cbb87e7db51961fb59b3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1581,7 +1683,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_51_0.png" src="../../_images/24_sim-self-draft_51_0.png" />
+<img alt="../../_images/4ca7f617e5c1b511b4208f72b5b3ea1572c4c56d9a1d46ffb714ee4db15cdf46.png" src="../../_images/4ca7f617e5c1b511b4208f72b5b3ea1572c4c56d9a1d46ffb714ee4db15cdf46.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1593,7 +1695,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_53_0.png" src="../../_images/24_sim-self-draft_53_0.png" />
+<img alt="../../_images/7602ac1997ec5bd87b3c7540c898c316d8bda68ae4ed1a4ce9e7863be3655aef.png" src="../../_images/7602ac1997ec5bd87b3c7540c898c316d8bda68ae4ed1a4ce9e7863be3655aef.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1605,7 +1707,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_54_0.png" src="../../_images/24_sim-self-draft_54_0.png" />
+<img alt="../../_images/ee885ee196d62268d506bc6d329a81dbfb1802a522b572211cb79e4a53d7557b.png" src="../../_images/ee885ee196d62268d506bc6d329a81dbfb1802a522b572211cb79e4a53d7557b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1619,7 +1721,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb0c09ded90&gt;
 </pre></div>
 </div>
-<img alt="../../_images/24_sim-self-draft_57_1.png" src="../../_images/24_sim-self-draft_57_1.png" />
+<img alt="../../_images/f4683ca84aba0efed845421d0b4f3ee95b8cc9d2a069e5966631ef6482ba75ff.png" src="../../_images/f4683ca84aba0efed845421d0b4f3ee95b8cc9d2a069e5966631ef6482ba75ff.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1653,12 +1755,12 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_60_0.png" src="../../_images/24_sim-self-draft_60_0.png" />
+<img alt="../../_images/c0c8484957226f6ae5e51d2518298fb89259cff0963fdae64a8e1acf3c2056c2.png" src="../../_images/c0c8484957226f6ae5e51d2518298fb89259cff0963fdae64a8e1acf3c2056c2.png" />
 </div>
 </div>
 </section>
 <section id="task-tomorrow-tuesday">
-<h2>Task (tomorrow Tuesday):<a class="headerlink" href="#task-tomorrow-tuesday" title="Permalink to this headline">¶</a></h2>
+<h2>Task (tomorrow Tuesday):<a class="headerlink" href="#task-tomorrow-tuesday" title="Permalink to this headline">#</a></h2>
 <p>Do a linspan over x0 and y0 in range (0, 1) and plot the valid values for fixation points. The valid points are the ones that valid_2 (above) is strictly contains valid_1 (in other words, when we go the the valid_1 square, all points in there already exist in valid_2)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1703,7 +1805,7 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_66_0.png" src="../../_images/24_sim-self-draft_66_0.png" />
+<img alt="../../_images/b1707657c74eccf4775a82e234d11d2688975598967b1b0b3c763ec386cf8042.png" src="../../_images/b1707657c74eccf4775a82e234d11d2688975598967b1b0b3c763ec386cf8042.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1714,12 +1816,12 @@ $<span class="math notranslate nohighlight">\(\vec{F} = (X_0, Y_0, Z) \equiv (D_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_68_0.png" src="../../_images/24_sim-self-draft_68_0.png" />
+<img alt="../../_images/d37a6fcc465c932977cba603bb55bbf1a144ca83f87928b6645c48a26bdb9e78.png" src="../../_images/d37a6fcc465c932977cba603bb55bbf1a144ca83f87928b6645c48a26bdb9e78.png" />
 </div>
 </div>
 </section>
 <section id="test-the-inequality-for-valid-x0-and-y0">
-<h2>Test the inequality for valid x0 and y0<a class="headerlink" href="#test-the-inequality-for-valid-x0-and-y0" title="Permalink to this headline">¶</a></h2>
+<h2>Test the inequality for valid x0 and y0<a class="headerlink" href="#test-the-inequality-for-valid-x0-and-y0" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -1791,7 +1893,7 @@ Wall time: 4min 55s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb0c39a9a00&gt;
 </pre></div>
 </div>
-<img alt="../../_images/24_sim-self-draft_74_1.png" src="../../_images/24_sim-self-draft_74_1.png" />
+<img alt="../../_images/11168464873e0893bd1eb92a8651a534ff7cf7387fd3a51f0385dd029761fc95.png" src="../../_images/11168464873e0893bd1eb92a8651a534ff7cf7387fd3a51f0385dd029761fc95.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1839,7 +1941,7 @@ Wall time: 4min 55s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_77_0.png" src="../../_images/24_sim-self-draft_77_0.png" />
+<img alt="../../_images/4672cd78f6d726bf432d740c8d815d30a6e58ce7ddeb29ac65cbc9aed44b0c13.png" src="../../_images/4672cd78f6d726bf432d740c8d815d30a6e58ce7ddeb29ac65cbc9aed44b0c13.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1857,7 +1959,7 @@ Wall time: 4min 55s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/24_sim-self-draft_79_0.png" src="../../_images/24_sim-self-draft_79_0.png" />
+<img alt="../../_images/014acea81c017c2d0250f3440c24ddd415af0f77d737c875159c6566e4635ea7.png" src="../../_images/014acea81c017c2d0250f3440c24ddd415af0f77d737c875159c6566e4635ea7.png" />
 </div>
 </div>
 </section>
@@ -1875,7 +1977,7 @@ Wall time: 4min 55s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-01"
         },
         predefinedOutput: true
@@ -1883,36 +1985,113 @@ Wall time: 4min 55s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="23_sim-self-draft.html" title="previous page">(23) Simulation – self-motion aspect [draft]</a>
-    <a class='right-next' id="next-link" href="25_sim-self.html" title="next page">(25) Simulation – self [final]</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="23_sim-self-draft.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(23) Simulation – self-motion aspect [draft]</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="28_sim-self.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(28) Simulation – self [velocity: new way]</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple">Simple</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-so-far">Summary (so far)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arbitrary-fixation-point">Arbitrary fixation point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-added">Velocity added</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-limits-was-old">Test limits (was old)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-tomorrow-tuesday">Task (tomorrow Tuesday):</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-inequality-for-valid-x0-and-y0">Test the inequality for valid x0 and y0</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

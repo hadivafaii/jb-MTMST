@@ -1,816 +1,517 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>(??) Fit neurons (MT) &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-04/??_fit-neurons-ftr';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-09-2022.html">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-10/oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/16_sim-wrong.html">
-     (16) Simulation – wrong
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/21_sim-explore.html">
-     (21) Simulation – explore
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/23_sim-self-draft.html">
-     (23) Simulation – self-motion aspect [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/24_sim-self-draft.html">
-     (24) Simulation – self [still draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/28_sim-self.html">
-     (28) Simulation – self [velocity: new way]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/29_sim-full-draft.html">
-     (29) Simulation – full [draft]
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/30_sim-full-final.html">
-     (30) Simulation – full [final]
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  February 2023
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-02.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-02_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/01_play-nvae.html">
-     (01) NVAE – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/02_play-vae2d.html">
-     (02) VAE2D – play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/09_rot-conv.html">
-     (09) RotConv2d – verified
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/23_sim-gen.html">
-     (23) Simulation – generate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">
-     (24) Simulation – generate (fix &amp; obj uncoupled)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/24_sim-gen-save.html">
-     (24) Simulation – generate (save)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda.html">
-     (25) Fit – cuda (gaban)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda0.html">
-     (25) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda1.html">
-     (25) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/25_fit-cuda2.html">
-     (25) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">
-     (30) KL Balancer
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  March 2023
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-03.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-03_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/17_sim-new-draft.html">
-     (17) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/22_sim-new-draft.html">
-     (22) Sim New – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/23_sim-new.html">
-     (23) Sim New – visualize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda.html">
-     (30) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda0.html">
-     (30) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda1.html">
-     (30) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_fit-cuda2.html">
-     (30) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/30_sim-final.html">
-     (30) Sim – added
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       terrain
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-03/31_sim-factors.html">
-     (31) Sim – true generative factors
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  April 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-04.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-04_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02_fit-lin.html">
-     (02) Fit neurons – Linear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_fit-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-glm.html">
-     (03) Fit neurons – GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_loop-ridge.html">
-     (03) Fit neurons – Ridge
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_dan.html">
-     (04) Dan notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_profiler.html">
-     (04) PyTorch profiler
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06_sim-kNN.html">
-     (06) Sim – kNN analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-3d.html">
-     (07) Readout: 3D conv
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_readout-sep.html">
-     (07) Readout: Separable
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu090.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_GLM-clu096.html">
-     (08) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-accept-filter.html">
-     (08) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_sim-dim65-manyseeds.html">
-     (08) Sim – many seeds
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_sim-final-save.html">
-     (09) Sim – generate &amp; save
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=65
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_GLM-clu090.html">
-     (10) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_GLM-pix.html">
-     (12) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_dim17-accept-filter.html">
-     (13) Sim – behavior of
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       filter()
-      </span>
-     </code>
-     when
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=17
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_dim17-dists.html">
-     (13) Sim – dists for
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dim=17
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda.html">
-     (13) Fit – cuda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda0.html">
-     (13) Fit – cuda0
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda1.html">
-     (13) Fit – cuda1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13_fit-cuda2.html">
-     (13) Fit – cuda2
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14_GLM-loop.html">
-     (14) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="15_GLM-loop.html">
-     (15) Reservoir + GLM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16_GLM-save.html">
-     (16) Reservoir + GLM + Save
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17_Neurons.html">
-     (17) Neurons: how many, how good?
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2023-04/??_fit-neurons-ftr.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/??_fit-neurons-ftr.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-04/??_fit-neurons-ftr.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2023-04/??_fit-neurons-ftr.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-04/??_fit-neurons-ftr.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(??) Fit neurons (MT)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-neuron">
-   Load neuron
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reservoir">
-   Reservoir
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extract-features">
-     Extract features
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-model">
-   Load model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#xtract-ftrs-loaded-model">
-     Xtract ftrs (loaded model)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#another-neuron">
-   Another neuron
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Reservoir
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Extract features
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pca">
-   PCA
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#glm-to-reservoir">
-     GLM to reservoir
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   Load model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#begin-copy-from-above">
-     Begin copy from above
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       PCA
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#end-copy-from-above">
-     End copy from above
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Xtract ftrs (loaded model)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#glm-but-other-extract">
-   GLM but other extract
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-sta">
-   Load –&gt; STA
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-neuron">Load neuron</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reservoir">Reservoir</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-features">Extract features</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-model">Load model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xtract-ftrs-loaded-model">Xtract ftrs (loaded model)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-neuron">Another neuron</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Reservoir</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Extract features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca">PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glm-to-reservoir">GLM to reservoir</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Load model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-copy-from-above">Begin copy from above</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">PCA</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#end-copy-from-above">End copy from above</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Xtract ftrs (loaded model)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glm-but-other-extract">GLM but other extract</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-sta">Load –&gt; STA</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="fit-neurons-mt">
-<h1>(??) Fit neurons (MT)<a class="headerlink" href="#fit-neurons-mt" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fit-neurons-mt">
+<h1>(??) Fit neurons (MT)<a class="headerlink" href="#fit-neurons-mt" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Load models, evaluate then fit MT <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -839,6 +540,7 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -879,7 +581,7 @@ Wall time: 5.51 s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_5_1.png" src="../../_images/??_fit-neurons-ftr_5_1.png" />
+<img alt="../../_images/a0980624b6e7dbe8f5b46ecd21459fad84dc5edec64d142355cc9076dfcca55c.png" src="../../_images/a0980624b6e7dbe8f5b46ecd21459fad84dc5edec64d142355cc9076dfcca55c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1163,7 +865,7 @@ Wall time: 1min 41s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_20_0.png" src="../../_images/??_fit-neurons-ftr_20_0.png" />
+<img alt="../../_images/a567519c679e5c0bf0f7f325dc431bf6c51f52626dbb85268b42cb0215cf1cd5.png" src="../../_images/a567519c679e5c0bf0f7f325dc431bf6c51f52626dbb85268b42cb0215cf1cd5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1185,7 +887,7 @@ Wall time: 1min 41s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_22_0.png" src="../../_images/??_fit-neurons-ftr_22_0.png" />
+<img alt="../../_images/5cc37af988323568755c4614a1fe4b494adfe03ec02e4676a2eee4449206a5a0.png" src="../../_images/5cc37af988323568755c4614a1fe4b494adfe03ec02e4676a2eee4449206a5a0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1207,7 +909,7 @@ Wall time: 1min 41s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_24_0.png" src="../../_images/??_fit-neurons-ftr_24_0.png" />
+<img alt="../../_images/41fdeafde98ad74ccca49809cb932bc126bf8c875cbfb19186998a6fdd190527.png" src="../../_images/41fdeafde98ad74ccca49809cb932bc126bf8c875cbfb19186998a6fdd190527.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1322,7 +1024,7 @@ Wall time: 527 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_33_2.png" src="../../_images/??_fit-neurons-ftr_33_2.png" />
+<img alt="../../_images/9d4f1100e65262e3d6f52acf3de0ba5729159bb3ea7f4b25924d8b6553716715.png" src="../../_images/9d4f1100e65262e3d6f52acf3de0ba5729159bb3ea7f4b25924d8b6553716715.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1432,7 +1134,7 @@ Wall time: 527 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21,)
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_47_1.png" src="../../_images/??_fit-neurons-ftr_47_1.png" />
+<img alt="../../_images/4f23341fa834ee2ac5ec95f5d8aa5a2bee730b989f9f2b31ed792a4c4f2e230b.png" src="../../_images/4f23341fa834ee2ac5ec95f5d8aa5a2bee730b989f9f2b31ed792a4c4f2e230b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1473,7 +1175,7 @@ Wall time: 527 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1020,)
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_50_1.png" src="../../_images/??_fit-neurons-ftr_50_1.png" />
+<img alt="../../_images/2aaff884b84ab508acc1d1dd4344aa99c7a47d8ff7ec1e66243bec284a0a4341.png" src="../../_images/2aaff884b84ab508acc1d1dd4344aa99c7a47d8ff7ec1e66243bec284a0a4341.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1501,7 +1203,7 @@ Wall time: 527 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1000)
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_52_1.png" src="../../_images/??_fit-neurons-ftr_52_1.png" />
+<img alt="../../_images/116d1e98001512aca5edfcc13a7e0bda83523cccf58217ac6e05bd0dbbc6ed4a.png" src="../../_images/116d1e98001512aca5edfcc13a7e0bda83523cccf58217ac6e05bd0dbbc6ed4a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1568,7 +1270,7 @@ tensor([0., 0., 0.], requires_grad=True)
 </div>
 </div>
 <section id="load-neuron">
-<h2>Load neuron<a class="headerlink" href="#load-neuron" title="Permalink to this headline">¶</a></h2>
+<h2>Load neuron<a class="headerlink" href="#load-neuron" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">common.dataset</span> <span class="kn">import</span> <span class="n">setup_supervised_data</span><span class="p">,</span> <span class="n">setup_repeat_data</span><span class="p">,</span> <span class="n">time_embed</span>
@@ -1612,14 +1314,16 @@ tensor([0., 0., 0.], requires_grad=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KeyboardInterrupt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+KeyboardInterrupt
+
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="reservoir">
-<h2>Reservoir<a class="headerlink" href="#reservoir" title="Permalink to this headline">¶</a></h2>
+<h2>Reservoir<a class="headerlink" href="#reservoir" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
@@ -1690,7 +1394,7 @@ tensor([0., 0., 0.], requires_grad=True)
 </div>
 </div>
 <section id="extract-features">
-<h3>Extract features<a class="headerlink" href="#extract-features" title="Permalink to this headline">¶</a></h3>
+<h3>Extract features<a class="headerlink" href="#extract-features" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
@@ -1919,13 +1623,13 @@ Wall time: 12min 57s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_86_0.png" src="../../_images/??_fit-neurons-ftr_86_0.png" />
+<img alt="../../_images/ff060dbc59d9fa9cc9240c3406cbe57c8266a80481c4b5cb77553e0aae30a1d3.png" src="../../_images/ff060dbc59d9fa9cc9240c3406cbe57c8266a80481c4b5cb77553e0aae30a1d3.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="load-model">
-<h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
+<h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2031,26 +1735,26 @@ Wall time: 48.1 s
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_95_1.png" src="../../_images/??_fit-neurons-ftr_95_1.png" />
+</div><img alt="../../_images/e3099e91838c2e2897fffe0542f5eb0b3aa1c149337474beac875f8376f71f41.png" src="../../_images/e3099e91838c2e2897fffe0542f5eb0b3aa1c149337474beac875f8376f71f41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_95_3.png" src="../../_images/??_fit-neurons-ftr_95_3.png" />
+</div><img alt="../../_images/bf21605ec572852ac0dd4fc4b25d134afe80778458543ff6a7a828cc9e7b36f0.png" src="../../_images/bf21605ec572852ac0dd4fc4b25d134afe80778458543ff6a7a828cc9e7b36f0.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_95_6.png" src="../../_images/??_fit-neurons-ftr_95_6.png" />
+</div><img alt="../../_images/1f45fd58e0b3139c4e4fc2fb592684977d4b88522379b36d34880528614f97aa.png" src="../../_images/1f45fd58e0b3139c4e4fc2fb592684977d4b88522379b36d34880528614f97aa.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_95_8.png" src="../../_images/??_fit-neurons-ftr_95_8.png" />
+</div><img alt="../../_images/e4c625ccda45b648fd8b431eac0068e906abf00921e85fdf73f9baf57125636c.png" src="../../_images/e4c625ccda45b648fd8b431eac0068e906abf00921e85fdf73f9baf57125636c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_95_11.png" src="../../_images/??_fit-neurons-ftr_95_11.png" />
+</div><img alt="../../_images/7264f2cf3771405580245f312ec5906a098f5d86ca9860ef01bed0d6bf3dd3ce.png" src="../../_images/7264f2cf3771405580245f312ec5906a098f5d86ca9860ef01bed0d6bf3dd3ce.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_95_13.png" src="../../_images/??_fit-neurons-ftr_95_13.png" />
+</div><img alt="../../_images/e524befdd4777a1e9594609e374798ce58ab928005886ef9f97f384125ead661.png" src="../../_images/e524befdd4777a1e9594609e374798ce58ab928005886ef9f97f384125ead661.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
 </pre>
 </div></div>
@@ -2068,7 +1772,7 @@ Wall time: 48.1 s
 </div>
 </div>
 <section id="xtract-ftrs-loaded-model">
-<h3>Xtract ftrs (loaded model)<a class="headerlink" href="#xtract-ftrs-loaded-model" title="Permalink to this headline">¶</a></h3>
+<h3>Xtract ftrs (loaded model)<a class="headerlink" href="#xtract-ftrs-loaded-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stim</span>
@@ -2210,7 +1914,7 @@ Wall time: 23min 44s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_105_0.png" src="../../_images/??_fit-neurons-ftr_105_0.png" />
+<img alt="../../_images/e5a0f52e4bee9588fbeb063051fd3f07158a293afc1ee056ed4d72ab647a458b.png" src="../../_images/e5a0f52e4bee9588fbeb063051fd3f07158a293afc1ee056ed4d72ab647a458b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2220,7 +1924,7 @@ Wall time: 23min 44s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_106_0.png" src="../../_images/??_fit-neurons-ftr_106_0.png" />
+<img alt="../../_images/ff060dbc59d9fa9cc9240c3406cbe57c8266a80481c4b5cb77553e0aae30a1d3.png" src="../../_images/ff060dbc59d9fa9cc9240c3406cbe57c8266a80481c4b5cb77553e0aae30a1d3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2250,7 +1954,7 @@ Wall time: 23min 44s
 </section>
 </section>
 <section id="another-neuron">
-<h2>Another neuron<a class="headerlink" href="#another-neuron" title="Permalink to this headline">¶</a></h2>
+<h2>Another neuron<a class="headerlink" href="#another-neuron" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">common.dataset</span> <span class="kn">import</span> <span class="n">setup_supervised_data</span><span class="p">,</span> <span class="n">setup_repeat_data</span><span class="p">,</span> <span class="n">time_embed</span>
@@ -2294,7 +1998,7 @@ Wall time: 23min 44s
 </div>
 </div>
 <section id="id1">
-<h3>Reservoir<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Reservoir<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vae</span> <span class="o">=</span> <span class="n">VAE</span><span class="p">(</span><span class="n">ConfigVAE</span><span class="p">(</span>
@@ -2314,7 +2018,7 @@ Wall time: 23min 44s
 </div>
 </div>
 <section id="id2">
-<h4>Extract features<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<h4>Extract features<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">common.utils_model</span> <span class="kn">import</span> <span class="n">F</span>
@@ -2364,7 +2068,7 @@ Wall time: 23min 44s
 </section>
 </section>
 <section id="pca">
-<h2>PCA<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h2>
+<h2>PCA<a class="headerlink" href="#pca" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
@@ -2478,11 +2182,11 @@ Wall time: 23 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_131_0.png" src="../../_images/??_fit-neurons-ftr_131_0.png" />
+<img alt="../../_images/0c0bccea2808bcee823bdaa7d7315f6690a8856e6b162308be546cb4ed945e60.png" src="../../_images/0c0bccea2808bcee823bdaa7d7315f6690a8856e6b162308be546cb4ed945e60.png" />
 </div>
 </div>
 <section id="glm-to-reservoir">
-<h3>GLM to reservoir<a class="headerlink" href="#glm-to-reservoir" title="Permalink to this headline">¶</a></h3>
+<h3>GLM to reservoir<a class="headerlink" href="#glm-to-reservoir" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2569,7 +2273,7 @@ Wall time: 6min 53s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6167de4f70&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_135_1.png" src="../../_images/??_fit-neurons-ftr_135_1.png" />
+<img alt="../../_images/efd569dfe57c289ab3f63f115085810d0ba19f15123f40c1899b5471ee4e96af.png" src="../../_images/efd569dfe57c289ab3f63f115085810d0ba19f15123f40c1899b5471ee4e96af.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2637,13 +2341,13 @@ Wall time: 2min 26s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_140_0.png" src="../../_images/??_fit-neurons-ftr_140_0.png" />
+<img alt="../../_images/e51496d17c002c3838dbcd296352cbfccd4910dea7da68e95eb9c8c94403295c.png" src="../../_images/e51496d17c002c3838dbcd296352cbfccd4910dea7da68e95eb9c8c94403295c.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="id3">
-<h2>Load model<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>Load model<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2738,7 +2442,7 @@ Wall time: 12.2 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_149_0.png" src="../../_images/??_fit-neurons-ftr_149_0.png" />
+<img alt="../../_images/b7f397c32f129ebb901fdef3271ad1fc4804e318e6b7a28728d00f2362e92bb3.png" src="../../_images/b7f397c32f129ebb901fdef3271ad1fc4804e318e6b7a28728d00f2362e92bb3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2750,7 +2454,7 @@ Wall time: 12.2 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_150_0.png" src="../../_images/??_fit-neurons-ftr_150_0.png" />
+<img alt="../../_images/f11a1a9af2e15b65cf075bad1562c6e0388efe1980a4939803d799ee374572ad.png" src="../../_images/f11a1a9af2e15b65cf075bad1562c6e0388efe1980a4939803d799ee374572ad.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2780,7 +2484,7 @@ Wall time: 49.8 s
 </div>
 </div>
 <section id="begin-copy-from-above">
-<h3>Begin copy from above<a class="headerlink" href="#begin-copy-from-above" title="Permalink to this headline">¶</a></h3>
+<h3>Begin copy from above<a class="headerlink" href="#begin-copy-from-above" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">common.utils_model</span> <span class="kn">import</span> <span class="n">F</span>
@@ -2827,7 +2531,7 @@ Wall time: 49.8 s
 </div>
 </div>
 <section id="id4">
-<h4>PCA<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<h4>PCA<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
@@ -2934,7 +2638,7 @@ Wall time: 8.98 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_167_0.png" src="../../_images/??_fit-neurons-ftr_167_0.png" />
+<img alt="../../_images/1dc112e0d15549eece6a6db56209c7fc1ebc16f5cd8149449903ad160a7825c2.png" src="../../_images/1dc112e0d15549eece6a6db56209c7fc1ebc16f5cd8149449903ad160a7825c2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2944,16 +2648,16 @@ Wall time: 8.98 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_168_0.png" src="../../_images/??_fit-neurons-ftr_168_0.png" />
+<img alt="../../_images/0c0bccea2808bcee823bdaa7d7315f6690a8856e6b162308be546cb4ed945e60.png" src="../../_images/0c0bccea2808bcee823bdaa7d7315f6690a8856e6b162308be546cb4ed945e60.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="end-copy-from-above">
-<h3>End copy from above<a class="headerlink" href="#end-copy-from-above" title="Permalink to this headline">¶</a></h3>
+<h3>End copy from above<a class="headerlink" href="#end-copy-from-above" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="id5">
-<h3>Xtract ftrs (loaded model)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>Xtract ftrs (loaded model)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stim</span>
@@ -3125,13 +2829,13 @@ Wall time: 1min 14s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_183_0.png" src="../../_images/??_fit-neurons-ftr_183_0.png" />
+<img alt="../../_images/fb6d4267719c133362e705454ecd9f2ac2232808d45484a064afccc8a523e736.png" src="../../_images/fb6d4267719c133362e705454ecd9f2ac2232808d45484a064afccc8a523e736.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="glm-but-other-extract">
-<h2>GLM but other extract<a class="headerlink" href="#glm-but-other-extract" title="Permalink to this headline">¶</a></h2>
+<h2>GLM but other extract<a class="headerlink" href="#glm-but-other-extract" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stim</span>
@@ -3242,7 +2946,7 @@ Wall time: 12min 38s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_191_0.png" src="../../_images/??_fit-neurons-ftr_191_0.png" />
+<img alt="../../_images/47774d39b841bede9ebc9cfad2a01f6983891b7c697b5436812a308774a14fcd.png" src="../../_images/47774d39b841bede9ebc9cfad2a01f6983891b7c697b5436812a308774a14fcd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3303,7 +3007,7 @@ Wall time: 12min 38s
 </div>
 </section>
 <section id="load-sta">
-<h2>Load –&gt; STA<a class="headerlink" href="#load-sta" title="Permalink to this headline">¶</a></h2>
+<h2>Load –&gt; STA<a class="headerlink" href="#load-sta" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">model.dataset</span> <span class="kn">import</span> <span class="n">setup_supervised_data</span>
@@ -3319,7 +3023,7 @@ Wall time: 12min 38s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_211_0.png" src="../../_images/??_fit-neurons-ftr_211_0.png" />
+<img alt="../../_images/da648468f2f40f7f4cb6c6736b95d8f0bba8fbc39625b2c439c05912db334a64.png" src="../../_images/da648468f2f40f7f4cb6c6736b95d8f0bba8fbc39625b2c439c05912db334a64.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3379,7 +3083,7 @@ Wall time: 12min 38s
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu044,  good: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">81.5</span> %
 </pre>
-</div><img alt="../../_images/??_fit-neurons-ftr_212_1.png" src="../../_images/??_fit-neurons-ftr_212_1.png" />
+</div><img alt="../../_images/ad1c930032a2902200bcb42f37725e7034d23d8b88787626c1724985cc3cb613.png" src="../../_images/ad1c930032a2902200bcb42f37725e7034d23d8b88787626c1724985cc3cb613.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
@@ -3474,7 +3178,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_220_0.png" src="../../_images/??_fit-neurons-ftr_220_0.png" />
+<img alt="../../_images/9d9190f95d4e45d94cb52bdee49f1c9f6db60401484bcbd830ed042eaa88df03.png" src="../../_images/9d9190f95d4e45d94cb52bdee49f1c9f6db60401484bcbd830ed042eaa88df03.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3497,7 +3201,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_222_0.png" src="../../_images/??_fit-neurons-ftr_222_0.png" />
+<img alt="../../_images/2617db341750eef05a3df6bc9f46a6577055c1553a9d409721f03e80eea3f382.png" src="../../_images/2617db341750eef05a3df6bc9f46a6577055c1553a9d409721f03e80eea3f382.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3508,7 +3212,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_223_0.png" src="../../_images/??_fit-neurons-ftr_223_0.png" />
+<img alt="../../_images/0f84bec033e3b095ad3a2d4d6d260706849cded9f6c018e05ee8aeeaaec2a1b4.png" src="../../_images/0f84bec033e3b095ad3a2d4d6d260706849cded9f6c018e05ee8aeeaaec2a1b4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3518,7 +3222,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_224_0.png" src="../../_images/??_fit-neurons-ftr_224_0.png" />
+<img alt="../../_images/3e540417dcd63cec071ce2ef3fd7ddfb11219818d37323c9083790fc1e482d03.png" src="../../_images/3e540417dcd63cec071ce2ef3fd7ddfb11219818d37323c9083790fc1e482d03.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3540,7 +3244,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_228_0.png" src="../../_images/??_fit-neurons-ftr_228_0.png" />
+<img alt="../../_images/78b89aba0488017f533498a4131d439aee2635d69094fb8f64929b9604bf2a2a.png" src="../../_images/78b89aba0488017f533498a4131d439aee2635d69094fb8f64929b9604bf2a2a.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 864x432 with 6 Axes&gt;,
  array([[&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;],
         [&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;]],
@@ -3556,7 +3260,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_229_0.png" src="../../_images/??_fit-neurons-ftr_229_0.png" />
+<img alt="../../_images/a66f79f9eeaab0e2d8061171d2e09b28f7c400cd5d8bac8b943cafe5a8f911d9.png" src="../../_images/a66f79f9eeaab0e2d8061171d2e09b28f7c400cd5d8bac8b943cafe5a8f911d9.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 864x432 with 6 Axes&gt;,
  array([[&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;],
         [&lt;AxesSubplot:ylabel=&#39;[%]&#39;&gt;, &lt;AxesSubplot:&gt;, &lt;AxesSubplot:&gt;]],
@@ -3572,7 +3276,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_231_0.png" src="../../_images/??_fit-neurons-ftr_231_0.png" />
+<img alt="../../_images/e25d5ce21452001f53ac123baea0dc2d4e7d263b3ec0f8bcb335916baed666ff.png" src="../../_images/e25d5ce21452001f53ac123baea0dc2d4e7d263b3ec0f8bcb335916baed666ff.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3582,7 +3286,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_234_0.png" src="../../_images/??_fit-neurons-ftr_234_0.png" />
+<img alt="../../_images/0dbc72d54a1b9cbe5d741d208b833d22f3d3372a79aaef522947d30037cf5494.png" src="../../_images/0dbc72d54a1b9cbe5d741d208b833d22f3d3372a79aaef522947d30037cf5494.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3592,7 +3296,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_235_0.png" src="../../_images/??_fit-neurons-ftr_235_0.png" />
+<img alt="../../_images/80217e65421e326c7fedf1de5551531882b7e801a904600e3047d74c011de4ee.png" src="../../_images/80217e65421e326c7fedf1de5551531882b7e801a904600e3047d74c011de4ee.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3606,7 +3310,7 @@ Wall time: 10.5 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_237_1.png" src="../../_images/??_fit-neurons-ftr_237_1.png" />
+<img alt="../../_images/1f6e90bdd34ac4e79f1eaf9f7fc945e91aeea80f2cbd21e8f2e25b14afc06efe.png" src="../../_images/1f6e90bdd34ac4e79f1eaf9f7fc945e91aeea80f2cbd21e8f2e25b14afc06efe.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3696,8 +3400,8 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_242_0.png" src="../../_images/??_fit-neurons-ftr_242_0.png" />
-<img alt="../../_images/??_fit-neurons-ftr_242_1.png" src="../../_images/??_fit-neurons-ftr_242_1.png" />
+<img alt="../../_images/587f60ec15a5f5c8bde8f6eae35cb1ae30ef54dcdb06a179b19f7c90f6712dd7.png" src="../../_images/587f60ec15a5f5c8bde8f6eae35cb1ae30ef54dcdb06a179b19f7c90f6712dd7.png" />
+<img alt="../../_images/58f36df3a871dc0ea521429f24ee2d2f8d70b4716f5ea7bfcc1620d666480c3b.png" src="../../_images/58f36df3a871dc0ea521429f24ee2d2f8d70b4716f5ea7bfcc1620d666480c3b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3713,7 +3417,7 @@ Wall time: 10.5 ms
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((72000, 15, 15, 2), (72000, 19, 19, 2))
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_244_1.png" src="../../_images/??_fit-neurons-ftr_244_1.png" />
+<img alt="../../_images/3787ea3970f9467664a4eca6a767b8cf5a9ff0e1ebd5c11753cf26d921c872db.png" src="../../_images/3787ea3970f9467664a4eca6a767b8cf5a9ff0e1ebd5c11753cf26d921c872db.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3804,7 +3508,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_254_0.png" src="../../_images/??_fit-neurons-ftr_254_0.png" />
+<img alt="../../_images/1733b09a86f513365049e5de30b0256c18f170abb5c9889c00be0fb9f2bf70ee.png" src="../../_images/1733b09a86f513365049e5de30b0256c18f170abb5c9889c00be0fb9f2bf70ee.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3814,7 +3518,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_256_0.png" src="../../_images/??_fit-neurons-ftr_256_0.png" />
+<img alt="../../_images/01fc48cbfc0db62ba005d5b407ef2ebefd544b4da48bcb833d287c6a64c23eed.png" src="../../_images/01fc48cbfc0db62ba005d5b407ef2ebefd544b4da48bcb833d287c6a64c23eed.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3919,7 +3623,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_267_0.png" src="../../_images/??_fit-neurons-ftr_267_0.png" />
+<img alt="../../_images/f537f172ae2d3fe93cc3188855ce4d8973dc1a69dde4d9e2b7d04cc153e8d3d5.png" src="../../_images/f537f172ae2d3fe93cc3188855ce4d8973dc1a69dde4d9e2b7d04cc153e8d3d5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3929,7 +3633,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/??_fit-neurons-ftr_268_0.png" src="../../_images/??_fit-neurons-ftr_268_0.png" />
+<img alt="../../_images/811c4bf73f062b1df2669176b7fc06962c17bdacb80eb1a695173bc1e48e7275.png" src="../../_images/811c4bf73f062b1df2669176b7fc06962c17bdacb80eb1a695173bc1e48e7275.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3995,9 +3699,7 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ef9f3090ec14454bba71fefeb12db300", "version_major": 2, "version_minor": 0}
-</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ef9f3090ec14454bba71fefeb12db300", "version_major": 2, "version_minor": 0}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
 Input In [402], in &lt;cell line: 4&gt;()
       5 start = i * bsz
@@ -4050,9 +3752,7 @@ Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "b427697a051e4369a2afcbc9b980b280", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/_loss/glm_distribution.py:132: RuntimeWarning: divide by zero encountered in true_divide
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b427697a051e4369a2afcbc9b980b280", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/_loss/glm_distribution.py:132: RuntimeWarning: divide by zero encountered in true_divide
   return -2 * (y - y_pred) / self.unit_variance(y_pred)
 /home/hadi/anaconda3/lib/python3.8/site-packages/sklearn/_loss/glm_distribution.py:132: RuntimeWarning: overflow encountered in true_divide
   return -2 * (y - y_pred) / self.unit_variance(y_pred)
@@ -4889,7 +4589,7 @@ Wall time: 34min 21s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f45b3f90e80&gt;
 </pre></div>
 </div>
-<img alt="../../_images/??_fit-neurons-ftr_282_2.png" src="../../_images/??_fit-neurons-ftr_282_2.png" />
+<img alt="../../_images/33c81f2a54d388962fb81c884fad6980b8014b30f45f6996579c8681d7f261f1.png" src="../../_images/33c81f2a54d388962fb81c884fad6980b8014b30f45f6996579c8681d7f261f1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -5267,7 +4967,7 @@ Wall time: 27 s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2023-04"
         },
         predefinedOutput: true
@@ -5275,34 +4975,117 @@ Wall time: 27 s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
             
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-        </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-neuron">Load neuron</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reservoir">Reservoir</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-features">Extract features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-model">Load model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xtract-ftrs-loaded-model">Xtract ftrs (loaded model)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-neuron">Another neuron</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Reservoir</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Extract features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca">PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glm-to-reservoir">GLM to reservoir</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Load model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-copy-from-above">Begin copy from above</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">PCA</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#end-copy-from-above">End copy from above</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Xtract ftrs (loaded model)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glm-but-other-extract">GLM but other extract</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-sta">Load –&gt; STA</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
         
-        </div>
+
+      </main>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
   </footer>
-</main>
-
-
-      </div>
-    </div>
-  
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  
   </body>
 </html>

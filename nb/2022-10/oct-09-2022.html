@@ -1,375 +1,496 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Oct 9th, 2022 (Opticflow stats) &#8212; MT/MST project</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2022-10/oct-09-2022';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Oct 11th, 2022 (Rot Conv verify)" href="oct-11-2022.html" />
     <link rel="prev" title="Oct 8th, 2022 (Linear: STA)" href="oct-08-2022.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="../../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">MT/MST project</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2022
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2022-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2022-01/jan-23-2022.html">
-     Jan 23rd, 2022 (jb tutorial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  October 2022
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2022-10.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../md/2022-10_updates.html">
-   Updates
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="oct-01-2022.html">
-     Oct 1st, 2022 (Load Wild Data)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="oct-06-2022.html">
-     Oct 6th, 2022 (Python processed)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="oct-07-2022.html">
-     Oct 7th, 2022 (Linear: STA – draft)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="oct-08-2022.html">
-     Oct 8th, 2022 (Linear: STA)
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Oct 9th, 2022 (Opticflow stats)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="oct-11-2022.html">
-     Oct 11th, 2022 (Rot Conv verify)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="oct-16-2022.html">
-     Oct 16th, 2022 (Linear: GLM – spatial)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  January 2023
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../md/2023-01.html">
-   Summary
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../md/2023-01_updates.html">
-   Updates
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/08_wild.html">
-     (08) Wild play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/10_nardin.html">
-     (10) Nardin play
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/15_sim-draft.html">
-     (15) Simulation – draft
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2023-01/16_sim.html">
-     (16) Simulation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_combine-fits.html">(26) Combine fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/2022-10/oct-09-2022.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hadivafaii/jb-MTMST"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2022-10/oct-09-2022.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2022-10/oct-09-2022.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hadivafaii/jb-MTMST/master?urlpath=tree/docs/nb/2022-10/oct-09-2022.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2022-10/oct-09-2022.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Oct 9th, 2022 (Opticflow stats)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-data">
-   Load data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loop">
-   Loop
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-stats">
-   Some stats
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mu-sigma">
-     <span class="math notranslate nohighlight">
-      \(\mu\)
-     </span>
-     ,
-     <span class="math notranslate nohighlight">
-      \(\sigma\)
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-stats">Some stats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-sigma"><span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span></a></li>
 </ul>
-
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <section id="oct-9th-2022-opticflow-stats">
-<h1>Oct 9th, 2022 (Opticflow stats)<a class="headerlink" href="#oct-9th-2022-opticflow-stats" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="oct-9th-2022-opticflow-stats">
+<h1>Oct 9th, 2022 (Opticflow stats)<a class="headerlink" href="#oct-9th-2022-opticflow-stats" title="Permalink to this headline">#</a></h1>
 <p><strong>Motivation</strong>: Distribution of opticflow values used to generate real hyperflow stimuli for experiments. <br></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -399,6 +520,7 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -410,7 +532,7 @@
 </div>
 </div>
 <section id="load-data">
-<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
+<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/hadi/Documents/MTMST&#39;</span>
@@ -423,8 +545,13 @@
 </div>
 </section>
 <section id="loop">
-<h2>Loop<a class="headerlink" href="#loop" title="Permalink to this headline">¶</a></h2>
+<h2>Loop<a class="headerlink" href="#loop" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -490,11 +617,12 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu036
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_1.png" src="../../_images/oct-09-2022_6_1.png" />
-<img alt="../../_images/oct-09-2022_6_2.png" src="../../_images/oct-09-2022_6_2.png" />
+</div><img alt="../../_images/8f90169383a13b5403090a8b6769b4c0ce21907d96b71c2f236f999661b7390d.png" src="../../_images/8f90169383a13b5403090a8b6769b4c0ce21907d96b71c2f236f999661b7390d.png" />
+<img alt="../../_images/085b3336c7b62a8e8c61c5dc80adbc4cef9011562addd80953926033effa67a7.png" src="../../_images/085b3336c7b62a8e8c61c5dc80adbc4cef9011562addd80953926033effa67a7.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu036, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -504,8 +632,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu037
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_7.png" src="../../_images/oct-09-2022_6_7.png" />
-<img alt="../../_images/oct-09-2022_6_8.png" src="../../_images/oct-09-2022_6_8.png" />
+</div><img alt="../../_images/8e9b744736080040ef06943c04d290d45dddcdc703f5c8817de4f8e3348a95f4.png" src="../../_images/8e9b744736080040ef06943c04d290d45dddcdc703f5c8817de4f8e3348a95f4.png" />
+<img alt="../../_images/780052e76cce9ea0e24067c3b485da4e2476558ae2b84157e327d451324994c2.png" src="../../_images/780052e76cce9ea0e24067c3b485da4e2476558ae2b84157e327d451324994c2.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu037, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.22</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.26</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -515,8 +643,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu038
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_13.png" src="../../_images/oct-09-2022_6_13.png" />
-<img alt="../../_images/oct-09-2022_6_14.png" src="../../_images/oct-09-2022_6_14.png" />
+</div><img alt="../../_images/4fed574ef31d21feee0aa0af674f2d4e23b5fc1766a021f9af9d73029da4026d.png" src="../../_images/4fed574ef31d21feee0aa0af674f2d4e23b5fc1766a021f9af9d73029da4026d.png" />
+<img alt="../../_images/820f645d26e2a9fcf49360013fdee5ce2a48ce142c8ea184ad2d6e14c1cb109c.png" src="../../_images/820f645d26e2a9fcf49360013fdee5ce2a48ce142c8ea184ad2d6e14c1cb109c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu038, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.23</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.14</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -526,8 +654,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu039
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_19.png" src="../../_images/oct-09-2022_6_19.png" />
-<img alt="../../_images/oct-09-2022_6_20.png" src="../../_images/oct-09-2022_6_20.png" />
+</div><img alt="../../_images/161bcdc16fff9d5f8c9903f10c2e239c7751d5751f293e89af960cc71587a234.png" src="../../_images/161bcdc16fff9d5f8c9903f10c2e239c7751d5751f293e89af960cc71587a234.png" />
+<img alt="../../_images/4b4f508a5f0cad0dd57d8bbcb44258b9a9d572c9dbfbc2ea0555f45c147aade9.png" src="../../_images/4b4f508a5f0cad0dd57d8bbcb44258b9a9d572c9dbfbc2ea0555f45c147aade9.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu039, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -537,8 +665,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu040
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_25.png" src="../../_images/oct-09-2022_6_25.png" />
-<img alt="../../_images/oct-09-2022_6_26.png" src="../../_images/oct-09-2022_6_26.png" />
+</div><img alt="../../_images/600a96fbe0e76373f62ea73da7bd407bafcd12376610ef2f23b1d9f692915584.png" src="../../_images/600a96fbe0e76373f62ea73da7bd407bafcd12376610ef2f23b1d9f692915584.png" />
+<img alt="../../_images/ba8d57f298f2d97c75c11058cf00f9ad4d66cf87df1d95989c475dbf5dde41cd.png" src="../../_images/ba8d57f298f2d97c75c11058cf00f9ad4d66cf87df1d95989c475dbf5dde41cd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu040, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -548,8 +676,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu043
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_31.png" src="../../_images/oct-09-2022_6_31.png" />
-<img alt="../../_images/oct-09-2022_6_32.png" src="../../_images/oct-09-2022_6_32.png" />
+</div><img alt="../../_images/a4ee8f7cca0bbfefb660c5e0b2f9e56c38fd8cd0dd679b38a025e61d08932686.png" src="../../_images/a4ee8f7cca0bbfefb660c5e0b2f9e56c38fd8cd0dd679b38a025e61d08932686.png" />
+<img alt="../../_images/c9652ff8deebdf6f5d3b85129ca48513cdb2a46ec192096f3e8ac7ceb86e5bed.png" src="../../_images/c9652ff8deebdf6f5d3b85129ca48513cdb2a46ec192096f3e8ac7ceb86e5bed.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu043, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.22</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.19</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -559,8 +687,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu044
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_37.png" src="../../_images/oct-09-2022_6_37.png" />
-<img alt="../../_images/oct-09-2022_6_38.png" src="../../_images/oct-09-2022_6_38.png" />
+</div><img alt="../../_images/2ff46e0c19dc920971904cbe21d0ff7ce6a72df6336b7a00a235c0b2dea11fcd.png" src="../../_images/2ff46e0c19dc920971904cbe21d0ff7ce6a72df6336b7a00a235c0b2dea11fcd.png" />
+<img alt="../../_images/8b5981338b486301f63f40e461d9e2f8581977dd83afdb5f8544085fe83ebe87.png" src="../../_images/8b5981338b486301f63f40e461d9e2f8581977dd83afdb5f8544085fe83ebe87.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu044, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -570,8 +698,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu053
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_43.png" src="../../_images/oct-09-2022_6_43.png" />
-<img alt="../../_images/oct-09-2022_6_44.png" src="../../_images/oct-09-2022_6_44.png" />
+</div><img alt="../../_images/8e4fb2938c05cd854530c8da276623c827be18b8e8ed778dcff9950bb1667350.png" src="../../_images/8e4fb2938c05cd854530c8da276623c827be18b8e8ed778dcff9950bb1667350.png" />
+<img alt="../../_images/aba8f6b65369720e565c4cc9c0efbff23c6b5a824777c87ac6ca1b7c389d07df.png" src="../../_images/aba8f6b65369720e565c4cc9c0efbff23c6b5a824777c87ac6ca1b7c389d07df.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu053, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -581,8 +709,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu055
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_49.png" src="../../_images/oct-09-2022_6_49.png" />
-<img alt="../../_images/oct-09-2022_6_50.png" src="../../_images/oct-09-2022_6_50.png" />
+</div><img alt="../../_images/ae759dd780548328388b93ca44eff1644f6b0cedd3159c7c19ac020a5ebc43bc.png" src="../../_images/ae759dd780548328388b93ca44eff1644f6b0cedd3159c7c19ac020a5ebc43bc.png" />
+<img alt="../../_images/8b981a76c3b942c7d8e4c91ac1979eff7a9d455b9cffc09b3cc89e73f208db58.png" src="../../_images/8b981a76c3b942c7d8e4c91ac1979eff7a9d455b9cffc09b3cc89e73f208db58.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu055, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -592,8 +720,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu059
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_55.png" src="../../_images/oct-09-2022_6_55.png" />
-<img alt="../../_images/oct-09-2022_6_56.png" src="../../_images/oct-09-2022_6_56.png" />
+</div><img alt="../../_images/c0e2db3b00c06d0f6185a7557fdb226e0665fa330ab2ae62a1df03bfced2fad0.png" src="../../_images/c0e2db3b00c06d0f6185a7557fdb226e0665fa330ab2ae62a1df03bfced2fad0.png" />
+<img alt="../../_images/56cbe368a1f4c2362f71220c1e0b8ad7f9c9588cc8e680a0722d57e2bae13481.png" src="../../_images/56cbe368a1f4c2362f71220c1e0b8ad7f9c9588cc8e680a0722d57e2bae13481.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu059, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.23</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -603,8 +731,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu061
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_61.png" src="../../_images/oct-09-2022_6_61.png" />
-<img alt="../../_images/oct-09-2022_6_62.png" src="../../_images/oct-09-2022_6_62.png" />
+</div><img alt="../../_images/e64d53912e82a923d1398464e1037a58b2c4bcb7dfcedd26e965138236b0f6f5.png" src="../../_images/e64d53912e82a923d1398464e1037a58b2c4bcb7dfcedd26e965138236b0f6f5.png" />
+<img alt="../../_images/e12d65acad9d9aa28f5ab095cd3b89d0d8ecc7886bc3bf2b8e598f1defb158a3.png" src="../../_images/e12d65acad9d9aa28f5ab095cd3b89d0d8ecc7886bc3bf2b8e598f1defb158a3.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu061, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.24</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -614,8 +742,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu064
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_67.png" src="../../_images/oct-09-2022_6_67.png" />
-<img alt="../../_images/oct-09-2022_6_68.png" src="../../_images/oct-09-2022_6_68.png" />
+</div><img alt="../../_images/f7c6c842fad1919b6d7488d675f35d842c35f42178f19c0a9a163d3dfe4f3d44.png" src="../../_images/f7c6c842fad1919b6d7488d675f35d842c35f42178f19c0a9a163d3dfe4f3d44.png" />
+<img alt="../../_images/5296658530732f5685f79afab3285029972f31b8aeff395a13afd19531bf1c87.png" src="../../_images/5296658530732f5685f79afab3285029972f31b8aeff395a13afd19531bf1c87.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu064, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.23</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -625,8 +753,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu068
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_73.png" src="../../_images/oct-09-2022_6_73.png" />
-<img alt="../../_images/oct-09-2022_6_74.png" src="../../_images/oct-09-2022_6_74.png" />
+</div><img alt="../../_images/448882e57c9fa6f3db196d5d3a319ea76303ea5a01d905a1151aa220ab9662fb.png" src="../../_images/448882e57c9fa6f3db196d5d3a319ea76303ea5a01d905a1151aa220ab9662fb.png" />
+<img alt="../../_images/4a9590276f03ae9832d6916fb78795327f07387c6bdb146374e019b1718951bf.png" src="../../_images/4a9590276f03ae9832d6916fb78795327f07387c6bdb146374e019b1718951bf.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu068, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.12</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.23</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -636,8 +764,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu069
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_79.png" src="../../_images/oct-09-2022_6_79.png" />
-<img alt="../../_images/oct-09-2022_6_80.png" src="../../_images/oct-09-2022_6_80.png" />
+</div><img alt="../../_images/51f3114fdba19282002799c1fd5b41d9d3afed545f1040b81fec49afcec8ca8f.png" src="../../_images/51f3114fdba19282002799c1fd5b41d9d3afed545f1040b81fec49afcec8ca8f.png" />
+<img alt="../../_images/b51e07db1bed40a1f7cccd03398689a00f0209ddcc90125201492fb24f0be9ac.png" src="../../_images/b51e07db1bed40a1f7cccd03398689a00f0209ddcc90125201492fb24f0be9ac.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu069, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.29</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.28</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -647,8 +775,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu081
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_85.png" src="../../_images/oct-09-2022_6_85.png" />
-<img alt="../../_images/oct-09-2022_6_86.png" src="../../_images/oct-09-2022_6_86.png" />
+</div><img alt="../../_images/3e9449954617d47a68f5abce0bfde5efc85b1e95c2fbd9d17e70d646cc835346.png" src="../../_images/3e9449954617d47a68f5abce0bfde5efc85b1e95c2fbd9d17e70d646cc835346.png" />
+<img alt="../../_images/4096cbe1f3fc88a5f4aa4dad90cd2ab7f7ba30e31f1adf4210a5a5b5c28f9525.png" src="../../_images/4096cbe1f3fc88a5f4aa4dad90cd2ab7f7ba30e31f1adf4210a5a5b5c28f9525.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu081, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.05</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.08</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -658,8 +786,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu082
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_91.png" src="../../_images/oct-09-2022_6_91.png" />
-<img alt="../../_images/oct-09-2022_6_92.png" src="../../_images/oct-09-2022_6_92.png" />
+</div><img alt="../../_images/1ca1111d5d13ed6fe944b8dac5287fa7d2c47730a93f51abe8e8bed3648c3322.png" src="../../_images/1ca1111d5d13ed6fe944b8dac5287fa7d2c47730a93f51abe8e8bed3648c3322.png" />
+<img alt="../../_images/de3c5b493f179be822646289e2b42a5b7d8d2fa39897964a4ce3fc60671c6ddf.png" src="../../_images/de3c5b493f179be822646289e2b42a5b7d8d2fa39897964a4ce3fc60671c6ddf.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu082, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.06</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.03</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -669,8 +797,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu087
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_97.png" src="../../_images/oct-09-2022_6_97.png" />
-<img alt="../../_images/oct-09-2022_6_98.png" src="../../_images/oct-09-2022_6_98.png" />
+</div><img alt="../../_images/2d6c2efd267b0bb2ba8be9b2a3f440401d3ae2fce52ed28fc93ab9a533b51e3e.png" src="../../_images/2d6c2efd267b0bb2ba8be9b2a3f440401d3ae2fce52ed28fc93ab9a533b51e3e.png" />
+<img alt="../../_images/e34a26ed206b251505bc0bb05a77496076974e96428641cdc7bc7d3a71b0a580.png" src="../../_images/e34a26ed206b251505bc0bb05a77496076974e96428641cdc7bc7d3a71b0a580.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu087, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.06</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -680,8 +808,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu088
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_103.png" src="../../_images/oct-09-2022_6_103.png" />
-<img alt="../../_images/oct-09-2022_6_104.png" src="../../_images/oct-09-2022_6_104.png" />
+</div><img alt="../../_images/31a21063673e1eae2218a77a4ab24a482d0490adb3809eb4afdb758dcb2aa361.png" src="../../_images/31a21063673e1eae2218a77a4ab24a482d0490adb3809eb4afdb758dcb2aa361.png" />
+<img alt="../../_images/d02298c49b25e161929c9ffb6266bcee10cc735446f7e9ee2830f0e83eadcf49.png" src="../../_images/d02298c49b25e161929c9ffb6266bcee10cc735446f7e9ee2830f0e83eadcf49.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu088, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -691,8 +819,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu089
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_109.png" src="../../_images/oct-09-2022_6_109.png" />
-<img alt="../../_images/oct-09-2022_6_110.png" src="../../_images/oct-09-2022_6_110.png" />
+</div><img alt="../../_images/f6fe9837b22b16da2e42297db91e4e08b97f1e4136fc36ba5e0ca6f0a85ffa70.png" src="../../_images/f6fe9837b22b16da2e42297db91e4e08b97f1e4136fc36ba5e0ca6f0a85ffa70.png" />
+<img alt="../../_images/6d8de1b7bf57d92eab369e72a251d330c5ded7831fc52cdf6484e30784c4cfad.png" src="../../_images/6d8de1b7bf57d92eab369e72a251d330c5ded7831fc52cdf6484e30784c4cfad.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu089, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -702,8 +830,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu090
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_115.png" src="../../_images/oct-09-2022_6_115.png" />
-<img alt="../../_images/oct-09-2022_6_116.png" src="../../_images/oct-09-2022_6_116.png" />
+</div><img alt="../../_images/6ca3d0d5da1bf1c363571924c6b37da5d9ed37a2d63cafc2cc20d1cbf76e1f79.png" src="../../_images/6ca3d0d5da1bf1c363571924c6b37da5d9ed37a2d63cafc2cc20d1cbf76e1f79.png" />
+<img alt="../../_images/4bfd2547ab984797247025fcbb7d13874649577d168ad1fbab6ab595440e8514.png" src="../../_images/4bfd2547ab984797247025fcbb7d13874649577d168ad1fbab6ab595440e8514.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu090, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.03</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.06</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -713,8 +841,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu095
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_121.png" src="../../_images/oct-09-2022_6_121.png" />
-<img alt="../../_images/oct-09-2022_6_122.png" src="../../_images/oct-09-2022_6_122.png" />
+</div><img alt="../../_images/63c57a2ef1660657dffa1632e13de10f991c2644ab188a53ff821f6d1034ae0e.png" src="../../_images/63c57a2ef1660657dffa1632e13de10f991c2644ab188a53ff821f6d1034ae0e.png" />
+<img alt="../../_images/1ec06d43e8c08187df3c8e774fed5d8ec2c7a366b89e8445dad8a8498303597a.png" src="../../_images/1ec06d43e8c08187df3c8e774fed5d8ec2c7a366b89e8445dad8a8498303597a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu095, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.13</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.07</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -724,8 +852,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu096
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_127.png" src="../../_images/oct-09-2022_6_127.png" />
-<img alt="../../_images/oct-09-2022_6_128.png" src="../../_images/oct-09-2022_6_128.png" />
+</div><img alt="../../_images/fd5ee2499719085e7502448b5bd9bdbe576d6dcf9703c3516b71aaeb0d746938.png" src="../../_images/fd5ee2499719085e7502448b5bd9bdbe576d6dcf9703c3516b71aaeb0d746938.png" />
+<img alt="../../_images/dd73619983c3512bb0c04a4f66c2bc891e942f950843648e531cd6c79b5d5c84.png" src="../../_images/dd73619983c3512bb0c04a4f66c2bc891e942f950843648e531cd6c79b5d5c84.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu096, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.12</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.07</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -735,8 +863,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu099
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_133.png" src="../../_images/oct-09-2022_6_133.png" />
-<img alt="../../_images/oct-09-2022_6_134.png" src="../../_images/oct-09-2022_6_134.png" />
+</div><img alt="../../_images/ce5f49bd3f1760a5b9d7cd8ffce97d20e5656ff40679b3b646cce496711d00bb.png" src="../../_images/ce5f49bd3f1760a5b9d7cd8ffce97d20e5656ff40679b3b646cce496711d00bb.png" />
+<img alt="../../_images/06caf0d53510564e65850f742ce6fa35b0e9c0565552f4e85d15aaed35819799.png" src="../../_images/06caf0d53510564e65850f742ce6fa35b0e9c0565552f4e85d15aaed35819799.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu099, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.09</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -746,8 +874,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu104
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_139.png" src="../../_images/oct-09-2022_6_139.png" />
-<img alt="../../_images/oct-09-2022_6_140.png" src="../../_images/oct-09-2022_6_140.png" />
+</div><img alt="../../_images/70243b0b901c95b3741823e398a3d02e5b7422455e307e372defadee429083e2.png" src="../../_images/70243b0b901c95b3741823e398a3d02e5b7422455e307e372defadee429083e2.png" />
+<img alt="../../_images/33faa886b3debcde5a1d96d068aa7f8e91611013dd117a6cf4b2c1f242a03d04.png" src="../../_images/33faa886b3debcde5a1d96d068aa7f8e91611013dd117a6cf4b2c1f242a03d04.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu104, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.05</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.08</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -757,8 +885,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu107
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_145.png" src="../../_images/oct-09-2022_6_145.png" />
-<img alt="../../_images/oct-09-2022_6_146.png" src="../../_images/oct-09-2022_6_146.png" />
+</div><img alt="../../_images/6a0c1ab02b6fbae3ad2517b638961e7013e535413727e0b9afcd01946383ba8b.png" src="../../_images/6a0c1ab02b6fbae3ad2517b638961e7013e535413727e0b9afcd01946383ba8b.png" />
+<img alt="../../_images/30299fdabf0fbe3f13427bc0676c54716345b7a15b8d17c6f17da41639c5a3de.png" src="../../_images/30299fdabf0fbe3f13427bc0676c54716345b7a15b8d17c6f17da41639c5a3de.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu107, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.09</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -768,8 +896,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu108
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_151.png" src="../../_images/oct-09-2022_6_151.png" />
-<img alt="../../_images/oct-09-2022_6_152.png" src="../../_images/oct-09-2022_6_152.png" />
+</div><img alt="../../_images/f725d408bbb96a8c49fdabe9a1e5d0decb79d12efe7cbf9234ef3a64a17ff827.png" src="../../_images/f725d408bbb96a8c49fdabe9a1e5d0decb79d12efe7cbf9234ef3a64a17ff827.png" />
+<img alt="../../_images/23dda4b474ea3ed47815af72ca31329375be490ebd8be8b4d7aa5df1e2fbf53e.png" src="../../_images/23dda4b474ea3ed47815af72ca31329375be490ebd8be8b4d7aa5df1e2fbf53e.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu108, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.07</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -779,8 +907,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu109
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_157.png" src="../../_images/oct-09-2022_6_157.png" />
-<img alt="../../_images/oct-09-2022_6_158.png" src="../../_images/oct-09-2022_6_158.png" />
+</div><img alt="../../_images/7a93cc7ada8ed8e8c6477ff1ea2b52cef138d626ed0912a69235d50b646548ba.png" src="../../_images/7a93cc7ada8ed8e8c6477ff1ea2b52cef138d626ed0912a69235d50b646548ba.png" />
+<img alt="../../_images/03730ef761024f08c7e0cf2f73472c3acff7c2cef0048a8a7a3b377266ee44f0.png" src="../../_images/03730ef761024f08c7e0cf2f73472c3acff7c2cef0048a8a7a3b377266ee44f0.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu109, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -790,8 +918,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu110
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_163.png" src="../../_images/oct-09-2022_6_163.png" />
-<img alt="../../_images/oct-09-2022_6_164.png" src="../../_images/oct-09-2022_6_164.png" />
+</div><img alt="../../_images/288aad4b45b0ff908420bdb9fec72fe1f6870b48a3b4f67f80bfeea416884a3b.png" src="../../_images/288aad4b45b0ff908420bdb9fec72fe1f6870b48a3b4f67f80bfeea416884a3b.png" />
+<img alt="../../_images/302ec8041eed6de152dbc242db99c0d977062a9834047bb945fa850a69c75feb.png" src="../../_images/302ec8041eed6de152dbc242db99c0d977062a9834047bb945fa850a69c75feb.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu110, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -801,8 +929,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu116
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_169.png" src="../../_images/oct-09-2022_6_169.png" />
-<img alt="../../_images/oct-09-2022_6_170.png" src="../../_images/oct-09-2022_6_170.png" />
+</div><img alt="../../_images/24bdd59a449b3af60a1d6507bc8a62425754c55488b2f268ee050a4e4ffc5c3e.png" src="../../_images/24bdd59a449b3af60a1d6507bc8a62425754c55488b2f268ee050a4e4ffc5c3e.png" />
+<img alt="../../_images/862931601d22a1ff8f4c5bbefc20063dc88e476aab9e3f6d177070d9e80e1096.png" src="../../_images/862931601d22a1ff8f4c5bbefc20063dc88e476aab9e3f6d177070d9e80e1096.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu116, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.09</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -812,8 +940,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu120
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_175.png" src="../../_images/oct-09-2022_6_175.png" />
-<img alt="../../_images/oct-09-2022_6_176.png" src="../../_images/oct-09-2022_6_176.png" />
+</div><img alt="../../_images/ae17169686efa7c1c6a8d45fce74b44f18455042e6c29eeb072491c9ab4a88a8.png" src="../../_images/ae17169686efa7c1c6a8d45fce74b44f18455042e6c29eeb072491c9ab4a88a8.png" />
+<img alt="../../_images/44de655da1269366239710114f3240d4c9f747d0c6b2499108f1eece524bbe2a.png" src="../../_images/44de655da1269366239710114f3240d4c9f747d0c6b2499108f1eece524bbe2a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu120, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -823,8 +951,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu126
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_181.png" src="../../_images/oct-09-2022_6_181.png" />
-<img alt="../../_images/oct-09-2022_6_182.png" src="../../_images/oct-09-2022_6_182.png" />
+</div><img alt="../../_images/1f21a3c373c5a2301f98b793225487c15006ee01a5484a50a295b58a47c4a30a.png" src="../../_images/1f21a3c373c5a2301f98b793225487c15006ee01a5484a50a295b58a47c4a30a.png" />
+<img alt="../../_images/8fe1c97afd426f292a01ca314a887cece5bd1306834e00a85dd2e87a2859e5bf.png" src="../../_images/8fe1c97afd426f292a01ca314a887cece5bd1306834e00a85dd2e87a2859e5bf.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu126, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.05</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -834,8 +962,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu131
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_187.png" src="../../_images/oct-09-2022_6_187.png" />
-<img alt="../../_images/oct-09-2022_6_188.png" src="../../_images/oct-09-2022_6_188.png" />
+</div><img alt="../../_images/da09dbb015f710379cbe0edac1134af690faa31cd8f7d11f50d0ee770310abdd.png" src="../../_images/da09dbb015f710379cbe0edac1134af690faa31cd8f7d11f50d0ee770310abdd.png" />
+<img alt="../../_images/03730ef761024f08c7e0cf2f73472c3acff7c2cef0048a8a7a3b377266ee44f0.png" src="../../_images/03730ef761024f08c7e0cf2f73472c3acff7c2cef0048a8a7a3b377266ee44f0.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu131, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.13</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -845,8 +973,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu132
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_193.png" src="../../_images/oct-09-2022_6_193.png" />
-<img alt="../../_images/oct-09-2022_6_194.png" src="../../_images/oct-09-2022_6_194.png" />
+</div><img alt="../../_images/38f6b308f1be0ce244b35fbe4d05615d4f5a908181ee5a85fe81280f76e427fd.png" src="../../_images/38f6b308f1be0ce244b35fbe4d05615d4f5a908181ee5a85fe81280f76e427fd.png" />
+<img alt="../../_images/8fe1c97afd426f292a01ca314a887cece5bd1306834e00a85dd2e87a2859e5bf.png" src="../../_images/8fe1c97afd426f292a01ca314a887cece5bd1306834e00a85dd2e87a2859e5bf.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu132, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.05</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -856,8 +984,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu142
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_199.png" src="../../_images/oct-09-2022_6_199.png" />
-<img alt="../../_images/oct-09-2022_6_200.png" src="../../_images/oct-09-2022_6_200.png" />
+</div><img alt="../../_images/ad26b73a0e71e45cc998664339d1aaa846a028dc5404d383f968e97a5a3f9952.png" src="../../_images/ad26b73a0e71e45cc998664339d1aaa846a028dc5404d383f968e97a5a3f9952.png" />
+<img alt="../../_images/4db8aa6eb12261e844256551734d6bb42306f4cfe2e19d88771744ac39674b49.png" src="../../_images/4db8aa6eb12261e844256551734d6bb42306f4cfe2e19d88771744ac39674b49.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu142, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.11</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.14</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.06</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -867,8 +995,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu145
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_205.png" src="../../_images/oct-09-2022_6_205.png" />
-<img alt="../../_images/oct-09-2022_6_206.png" src="../../_images/oct-09-2022_6_206.png" />
+</div><img alt="../../_images/f2817b584ae566a0252d056c473bc8919cc59fcbc50a102bba1737b32853303d.png" src="../../_images/f2817b584ae566a0252d056c473bc8919cc59fcbc50a102bba1737b32853303d.png" />
+<img alt="../../_images/fffea900ccd5b219c27dddd959b255f27f7a322f04513a909bb126911f156d4c.png" src="../../_images/fffea900ccd5b219c27dddd959b255f27f7a322f04513a909bb126911f156d4c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu145, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.13</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span><span style="font-weight: bold">]</span>
 </pre>
@@ -879,8 +1007,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu146
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_211.png" src="../../_images/oct-09-2022_6_211.png" />
-<img alt="../../_images/oct-09-2022_6_212.png" src="../../_images/oct-09-2022_6_212.png" />
+</div><img alt="../../_images/09de598e96e653897cd554d2680365f93c89bbcde6efb72a38173acd0c64e7a3.png" src="../../_images/09de598e96e653897cd554d2680365f93c89bbcde6efb72a38173acd0c64e7a3.png" />
+<img alt="../../_images/31ce950de873f129838f1fdfb4b29b8da207849811af292d8757fbbaa645e926.png" src="../../_images/31ce950de873f129838f1fdfb4b29b8da207849811af292d8757fbbaa645e926.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu146, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.12</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.17</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.08</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -891,8 +1019,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu147
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_217.png" src="../../_images/oct-09-2022_6_217.png" />
-<img alt="../../_images/oct-09-2022_6_218.png" src="../../_images/oct-09-2022_6_218.png" />
+</div><img alt="../../_images/124ec869a4958cc124c1e96bd41bccaa8fd01b8799b5953ee7453d6f8c734ccf.png" src="../../_images/124ec869a4958cc124c1e96bd41bccaa8fd01b8799b5953ee7453d6f8c734ccf.png" />
+<img alt="../../_images/5b202bd0f3cff2215413781b0502e66edefa16b45f3964c36a577fc45f414e90.png" src="../../_images/5b202bd0f3cff2215413781b0502e66edefa16b45f3964c36a577fc45f414e90.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu147, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.17</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.07</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -903,8 +1031,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu148
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_223.png" src="../../_images/oct-09-2022_6_223.png" />
-<img alt="../../_images/oct-09-2022_6_224.png" src="../../_images/oct-09-2022_6_224.png" />
+</div><img alt="../../_images/ccf04ea20a901d54ab9cfd627495a98aa7b5f7ce094701eeb9fde2984f70084a.png" src="../../_images/ccf04ea20a901d54ab9cfd627495a98aa7b5f7ce094701eeb9fde2984f70084a.png" />
+<img alt="../../_images/aa9b764355d1c3f2441b74f578796df9d4718c46698fa6ac1c70e3ef11c295dd.png" src="../../_images/aa9b764355d1c3f2441b74f578796df9d4718c46698fa6ac1c70e3ef11c295dd.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu148, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.18</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.08</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -915,8 +1043,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu180
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_229.png" src="../../_images/oct-09-2022_6_229.png" />
-<img alt="../../_images/oct-09-2022_6_230.png" src="../../_images/oct-09-2022_6_230.png" />
+</div><img alt="../../_images/4332f5cead9882cb29ead6711b836ae91874e5a76cdad67d58a8a86c3b4f9368.png" src="../../_images/4332f5cead9882cb29ead6711b836ae91874e5a76cdad67d58a8a86c3b4f9368.png" />
+<img alt="../../_images/0740ee82f8ae02476f58b67834fa9c044966762cd6b668dd0a3c1e9646d0335c.png" src="../../_images/0740ee82f8ae02476f58b67834fa9c044966762cd6b668dd0a3c1e9646d0335c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu180, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.28</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span><span style="font-weight: bold">]</span>
 </pre>
@@ -927,8 +1055,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu181
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_235.png" src="../../_images/oct-09-2022_6_235.png" />
-<img alt="../../_images/oct-09-2022_6_236.png" src="../../_images/oct-09-2022_6_236.png" />
+</div><img alt="../../_images/dffea84b6e5c9c8d5ec5e9bd7dbe37d3cd81da44cf0d241c95ab1977bd55df6e.png" src="../../_images/dffea84b6e5c9c8d5ec5e9bd7dbe37d3cd81da44cf0d241c95ab1977bd55df6e.png" />
+<img alt="../../_images/0740ee82f8ae02476f58b67834fa9c044966762cd6b668dd0a3c1e9646d0335c.png" src="../../_images/0740ee82f8ae02476f58b67834fa9c044966762cd6b668dd0a3c1e9646d0335c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu181, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.28</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span><span style="font-weight: bold">]</span>
 </pre>
@@ -939,8 +1067,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu183
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_241.png" src="../../_images/oct-09-2022_6_241.png" />
-<img alt="../../_images/oct-09-2022_6_242.png" src="../../_images/oct-09-2022_6_242.png" />
+</div><img alt="../../_images/0e635ed814aa4185587273f60126da5cec0ce7b121ab1b7cbba8f7f374b986fb.png" src="../../_images/0e635ed814aa4185587273f60126da5cec0ce7b121ab1b7cbba8f7f374b986fb.png" />
+<img alt="../../_images/0740ee82f8ae02476f58b67834fa9c044966762cd6b668dd0a3c1e9646d0335c.png" src="../../_images/0740ee82f8ae02476f58b67834fa9c044966762cd6b668dd0a3c1e9646d0335c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu183, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.28</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.15</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span><span style="font-weight: bold">]</span>
 </pre>
@@ -951,8 +1079,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu209
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_247.png" src="../../_images/oct-09-2022_6_247.png" />
-<img alt="../../_images/oct-09-2022_6_248.png" src="../../_images/oct-09-2022_6_248.png" />
+</div><img alt="../../_images/38feb9b43ac5dc0c6f3229f80ca5d5c5dcb193d5726d2ac54f8035ac5bcf55a9.png" src="../../_images/38feb9b43ac5dc0c6f3229f80ca5d5c5dcb193d5726d2ac54f8035ac5bcf55a9.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu209, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -963,8 +1091,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu216
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_253.png" src="../../_images/oct-09-2022_6_253.png" />
-<img alt="../../_images/oct-09-2022_6_254.png" src="../../_images/oct-09-2022_6_254.png" />
+</div><img alt="../../_images/771045d0f26709f8b038063b69025d5269c54a4da5e3ec5a959b12e4b7a00c08.png" src="../../_images/771045d0f26709f8b038063b69025d5269c54a4da5e3ec5a959b12e4b7a00c08.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu216, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -975,8 +1103,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu221
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_259.png" src="../../_images/oct-09-2022_6_259.png" />
-<img alt="../../_images/oct-09-2022_6_260.png" src="../../_images/oct-09-2022_6_260.png" />
+</div><img alt="../../_images/4999f519095963f3be2a7d09a19756d9378cfb441edd5cca9681a01ece4ddc26.png" src="../../_images/4999f519095963f3be2a7d09a19756d9378cfb441edd5cca9681a01ece4ddc26.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu221, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -987,8 +1115,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu222
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_265.png" src="../../_images/oct-09-2022_6_265.png" />
-<img alt="../../_images/oct-09-2022_6_266.png" src="../../_images/oct-09-2022_6_266.png" />
+</div><img alt="../../_images/f1bf3ae3c4ad7998c3471e2d597b95302884f45c0f2e49469c236beb1134301f.png" src="../../_images/f1bf3ae3c4ad7998c3471e2d597b95302884f45c0f2e49469c236beb1134301f.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu222, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -999,8 +1127,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu223
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_271.png" src="../../_images/oct-09-2022_6_271.png" />
-<img alt="../../_images/oct-09-2022_6_272.png" src="../../_images/oct-09-2022_6_272.png" />
+</div><img alt="../../_images/f01243071370deda2217a27ab1b3d9e3008601d21f757b3c3fc3898f2cbaac2d.png" src="../../_images/f01243071370deda2217a27ab1b3d9e3008601d21f757b3c3fc3898f2cbaac2d.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu223, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1011,8 +1139,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu224
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_277.png" src="../../_images/oct-09-2022_6_277.png" />
-<img alt="../../_images/oct-09-2022_6_278.png" src="../../_images/oct-09-2022_6_278.png" />
+</div><img alt="../../_images/2f158a639eaad5928b196b75705543021c7aca78e265914fffbd650d1fc26c9e.png" src="../../_images/2f158a639eaad5928b196b75705543021c7aca78e265914fffbd650d1fc26c9e.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu224, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1023,8 +1151,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu225
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_283.png" src="../../_images/oct-09-2022_6_283.png" />
-<img alt="../../_images/oct-09-2022_6_284.png" src="../../_images/oct-09-2022_6_284.png" />
+</div><img alt="../../_images/4999f519095963f3be2a7d09a19756d9378cfb441edd5cca9681a01ece4ddc26.png" src="../../_images/4999f519095963f3be2a7d09a19756d9378cfb441edd5cca9681a01ece4ddc26.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu225, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1035,8 +1163,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu226
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_289.png" src="../../_images/oct-09-2022_6_289.png" />
-<img alt="../../_images/oct-09-2022_6_290.png" src="../../_images/oct-09-2022_6_290.png" />
+</div><img alt="../../_images/366677e09e0ff500ec4cc7a89eaf46d9003bd353aa28a0d148fdfaa0ced8b065.png" src="../../_images/366677e09e0ff500ec4cc7a89eaf46d9003bd353aa28a0d148fdfaa0ced8b065.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu226, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1047,8 +1175,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu227
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_295.png" src="../../_images/oct-09-2022_6_295.png" />
-<img alt="../../_images/oct-09-2022_6_296.png" src="../../_images/oct-09-2022_6_296.png" />
+</div><img alt="../../_images/324c63415373043f4823ebfab7f9f3c8aa6b431439241f8b8a73f14f7b3d6bcf.png" src="../../_images/324c63415373043f4823ebfab7f9f3c8aa6b431439241f8b8a73f14f7b3d6bcf.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu227, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1059,8 +1187,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu229
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_301.png" src="../../_images/oct-09-2022_6_301.png" />
-<img alt="../../_images/oct-09-2022_6_302.png" src="../../_images/oct-09-2022_6_302.png" />
+</div><img alt="../../_images/771045d0f26709f8b038063b69025d5269c54a4da5e3ec5a959b12e4b7a00c08.png" src="../../_images/771045d0f26709f8b038063b69025d5269c54a4da5e3ec5a959b12e4b7a00c08.png" />
+<img alt="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" src="../../_images/4cf76f7eb56beffa9ac013646bf5494f02f43f6cd224bdee14bf65e1e49cbd41.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu229, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1071,8 +1199,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu267
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_307.png" src="../../_images/oct-09-2022_6_307.png" />
-<img alt="../../_images/oct-09-2022_6_308.png" src="../../_images/oct-09-2022_6_308.png" />
+</div><img alt="../../_images/2ca8a0f7234fecce4ef907733881f642166c063598060af57e014ad576aee378.png" src="../../_images/2ca8a0f7234fecce4ef907733881f642166c063598060af57e014ad576aee378.png" />
+<img alt="../../_images/ef619afb8801c869946c3eac37dd9a5f3416aa3069949d9babab24a4a8984e8a.png" src="../../_images/ef619afb8801c869946c3eac37dd9a5f3416aa3069949d9babab24a4a8984e8a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu267, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1083,8 +1211,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu292
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_313.png" src="../../_images/oct-09-2022_6_313.png" />
-<img alt="../../_images/oct-09-2022_6_314.png" src="../../_images/oct-09-2022_6_314.png" />
+</div><img alt="../../_images/9592cc8810846279c1042f27fe95448232f5459ac1182c12e76de54c5c106b1c.png" src="../../_images/9592cc8810846279c1042f27fe95448232f5459ac1182c12e76de54c5c106b1c.png" />
+<img alt="../../_images/e4e30623dd9c444b90d3f18611f030ef905fcb59d872614dfc4b1a191a8c5371.png" src="../../_images/e4e30623dd9c444b90d3f18611f030ef905fcb59d872614dfc4b1a191a8c5371.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu292, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.18</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -1094,8 +1222,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu293
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_319.png" src="../../_images/oct-09-2022_6_319.png" />
-<img alt="../../_images/oct-09-2022_6_320.png" src="../../_images/oct-09-2022_6_320.png" />
+</div><img alt="../../_images/de99d4252758c781f06b68e6e6f28ce84aba92c83068c2e19a9c84bb1d52121c.png" src="../../_images/de99d4252758c781f06b68e6e6f28ce84aba92c83068c2e19a9c84bb1d52121c.png" />
+<img alt="../../_images/e4e30623dd9c444b90d3f18611f030ef905fcb59d872614dfc4b1a191a8c5371.png" src="../../_images/e4e30623dd9c444b90d3f18611f030ef905fcb59d872614dfc4b1a191a8c5371.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu293, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.18</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -1105,8 +1233,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu294
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_325.png" src="../../_images/oct-09-2022_6_325.png" />
-<img alt="../../_images/oct-09-2022_6_326.png" src="../../_images/oct-09-2022_6_326.png" />
+</div><img alt="../../_images/d7c2085730582b183a33b96aef1d2bb96a7121be0982c9fcfbb7dc0fbc98db5a.png" src="../../_images/d7c2085730582b183a33b96aef1d2bb96a7121be0982c9fcfbb7dc0fbc98db5a.png" />
+<img alt="../../_images/c770c1798de79d395a680405a63742bf1de2b1ad900d622f24e072264a43348c.png" src="../../_images/c770c1798de79d395a680405a63742bf1de2b1ad900d622f24e072264a43348c.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu294, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.09</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">]</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
@@ -1116,8 +1244,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu295
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_331.png" src="../../_images/oct-09-2022_6_331.png" />
-<img alt="../../_images/oct-09-2022_6_332.png" src="../../_images/oct-09-2022_6_332.png" />
+</div><img alt="../../_images/12d71afee4171f0ffb17f55eff2d4b62c807f047ada9eb6ae47277da010a7827.png" src="../../_images/12d71afee4171f0ffb17f55eff2d4b62c807f047ada9eb6ae47277da010a7827.png" />
+<img alt="../../_images/ef619afb8801c869946c3eac37dd9a5f3416aa3069949d9babab24a4a8984e8a.png" src="../../_images/ef619afb8801c869946c3eac37dd9a5f3416aa3069949d9babab24a4a8984e8a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu295, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1128,8 +1256,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu021
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_337.png" src="../../_images/oct-09-2022_6_337.png" />
-<img alt="../../_images/oct-09-2022_6_338.png" src="../../_images/oct-09-2022_6_338.png" />
+</div><img alt="../../_images/14dee39ad0c1d415615fef676fd0f43151106281f86d1b081f89af28e70af926.png" src="../../_images/14dee39ad0c1d415615fef676fd0f43151106281f86d1b081f89af28e70af926.png" />
+<img alt="../../_images/16aa466b4ad82c636a166df81f265139eff19154554db4494721f1704d11f477.png" src="../../_images/16aa466b4ad82c636a166df81f265139eff19154554db4494721f1704d11f477.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu021, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.19</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.16</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1140,8 +1268,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu023
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_343.png" src="../../_images/oct-09-2022_6_343.png" />
-<img alt="../../_images/oct-09-2022_6_344.png" src="../../_images/oct-09-2022_6_344.png" />
+</div><img alt="../../_images/5a3512c690161a32b2e7b545e6cee23d95691b3415796e3c86c0709251e813f4.png" src="../../_images/5a3512c690161a32b2e7b545e6cee23d95691b3415796e3c86c0709251e813f4.png" />
+<img alt="../../_images/b943f4e8f7f65a56bccc208237726435e1a604cae03b361e276fcfce2dd3845f.png" src="../../_images/b943f4e8f7f65a56bccc208237726435e1a604cae03b361e276fcfce2dd3845f.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu023, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.32</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1152,8 +1280,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu028
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_349.png" src="../../_images/oct-09-2022_6_349.png" />
-<img alt="../../_images/oct-09-2022_6_350.png" src="../../_images/oct-09-2022_6_350.png" />
+</div><img alt="../../_images/34179ef1b13ef6fa27c0a71872a8c18a28454bfead68bf477512775cccaf1a6b.png" src="../../_images/34179ef1b13ef6fa27c0a71872a8c18a28454bfead68bf477512775cccaf1a6b.png" />
+<img alt="../../_images/ef619afb8801c869946c3eac37dd9a5f3416aa3069949d9babab24a4a8984e8a.png" src="../../_images/ef619afb8801c869946c3eac37dd9a5f3416aa3069949d9babab24a4a8984e8a.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu028, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.13</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.03</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1164,8 +1292,8 @@
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu029
 </pre>
-</div><img alt="../../_images/oct-09-2022_6_355.png" src="../../_images/oct-09-2022_6_355.png" />
-<img alt="../../_images/oct-09-2022_6_356.png" src="../../_images/oct-09-2022_6_356.png" />
+</div><img alt="../../_images/7f95d95cdc1286c0bdeebaa9f1318c1df1d4740061c7840db67ea42f22aa0670.png" src="../../_images/7f95d95cdc1286c0bdeebaa9f1318c1df1d4740061c7840db67ea42f22aa0670.png" />
+<img alt="../../_images/04d4875536703aa29add0415a1aa84a6531be813c6cd15ffa1b38973dcf4c714.png" src="../../_images/04d4875536703aa29add0415a1aa84a6531be813c6cd15ffa1b38973dcf4c714.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">ytu029, cutoffs <span style="font-weight: bold">(</span>center<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span><span style="font-weight: bold">]</span>, cutoffs <span style="font-weight: bold">(</span>opticflow<span style="font-weight: bold">)</span>: <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.04</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.22</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.02</span>, 
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.01</span><span style="font-weight: bold">]</span>
 </pre>
@@ -1184,9 +1312,9 @@ Wall time: 1min 14s
 </div>
 </section>
 <section id="some-stats">
-<h2>Some stats<a class="headerlink" href="#some-stats" title="Permalink to this headline">¶</a></h2>
+<h2>Some stats<a class="headerlink" href="#some-stats" title="Permalink to this headline">#</a></h2>
 <section id="mu-sigma">
-<h3><span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span><a class="headerlink" href="#mu-sigma" title="Permalink to this headline">¶</a></h3>
+<h3><span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span><a class="headerlink" href="#mu-sigma" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
@@ -1201,10 +1329,15 @@ Wall time: 1min 14s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/oct-09-2022_9_0.png" src="../../_images/oct-09-2022_9_0.png" />
+<img alt="../../_images/287e1bdf7283a19b2c93c1180d7b1b76e04e84a60cd5f1a955a60ee70ccee391.png" src="../../_images/287e1bdf7283a19b2c93c1180d7b1b76e04e84a60cd5f1a955a60ee70ccee391.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -1301,11 +1434,12 @@ Wall time: 1min 14s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../_images/oct-09-2022_10_0.png" src="../../_images/oct-09-2022_10_0.png" />
+<img alt="../../_images/e86ba44ba23cccf4741d7e898e832c957f1621db93527310d7dcf4b83e2ccded.png" src="../../_images/e86ba44ba23cccf4741d7e898e832c957f1621db93527310d7dcf4b83e2ccded.png" />
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">______________________________________________________________________
 </pre>
-</div><img alt="../../_images/oct-09-2022_10_2.png" src="../../_images/oct-09-2022_10_2.png" />
+</div><img alt="../../_images/91025880f83f4f1e8ba8dab3d656824e047da800630599a513abf8adb906e1c3.png" src="../../_images/91025880f83f4f1e8ba8dab3d656824e047da800630599a513abf8adb906e1c3.png" />
 </div>
 </div>
 </section>
@@ -1324,7 +1458,7 @@ Wall time: 1min 14s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./nb/2022-10"
         },
         predefinedOutput: true
@@ -1332,36 +1466,110 @@ Wall time: 1min 14s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="oct-08-2022.html" title="previous page">Oct 8th, 2022 (Linear: STA)</a>
-    <a class='right-next' id="next-link" href="oct-11-2022.html" title="next page">Oct 11th, 2022 (Rot Conv verify)</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hadi Vafaii<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="oct-08-2022.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Oct 8th, 2022 (Linear: STA)</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="oct-11-2022.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Oct 11th, 2022 (Rot Conv verify)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-stats">Some stats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-sigma"><span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
