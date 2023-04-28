@@ -261,6 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">(20) Load and plot readout results</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="23_nardin.html">(21) Nardin play</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_meeting-plots.html">(24) Make some figs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_diameters.html">(25) Diameters: dist</a></li>
@@ -463,10 +464,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">(20) Load and plot readout results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-1">Transl 1</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-2">Transl 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-4">Transl 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj4">Obj4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-medium">Obj1 (medium)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-shallow">Obj1 (shallow)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-ignore-below-older-stuff">Note: ignore below, older stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Transl 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-mask-consistency-bug-fixed">Apply Mask (consistency bug fixed)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-hf-mask-not">Apply HF mask NOT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-hf-mask">Apply HF mask</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate4">Fixate4</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lags-12">Lags 12</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lags-fit-10">Lags fit 10</a></li>
@@ -490,8 +498,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-readout">Load Readout</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reservoir">Reservoir</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another">Another</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Load Readout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Load Readout</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -542,8 +553,1177 @@ document.write(`
 </div>
 </details>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="transl-1">
+<h1>Transl 1<a class="headerlink" href="#transl-1" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl1_nf-420_(2023_04_27,13:00)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2bca2adab73bdb5e4dd78cac241f4203253e96dfa4fdc24a6c123b8339c95fbd.png" src="../../_images/2bca2adab73bdb5e4dd78cac241f4203253e96dfa4fdc24a6c123b8339c95fbd.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.128607</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.287725</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.372784</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.407124</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.541391</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.365159</td>
+      <td>0.941254</td>
+      <td>6.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.444701</td>
+      <td>0.958395</td>
+      <td>3.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.481367</td>
+      <td>0.846710</td>
+      <td>4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.657863</td>
+      <td>0.930033</td>
+      <td>3.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.636418</td>
+      <td>0.946823</td>
+      <td>5.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 9 columns</p>
+</div></div></div>
+</div>
 <section id="transl-2">
 <h2>Transl 2<a class="headerlink" href="#transl-2" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl2_nf-420_(2023_04_27,19:16)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3ca270888af279daa8d02f49a1b5ee5623865da77ed2965dbd65a1570d46399c.png" src="../../_images/3ca270888af279daa8d02f49a1b5ee5623865da77ed2965dbd65a1570d46399c.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.123074</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.274651</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.373832</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.400404</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.542245</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.404253</td>
+      <td>0.941254</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.208697</td>
+      <td>0.958395</td>
+      <td>-8.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.371421</td>
+      <td>0.846710</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.547586</td>
+      <td>0.930033</td>
+      <td>-6.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.428654</td>
+      <td>0.946823</td>
+      <td>-4.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 9 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="transl-4">
+<h2>Transl 4<a class="headerlink" href="#transl-4" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl4_nf-420_(2023_04_27,07:52)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bbce83497c601794865faba20595155783fb9e108bb024ff3ccb9ed5634e1c1a.png" src="../../_images/bbce83497c601794865faba20595155783fb9e108bb024ff3ccb9ed5634e1c1a.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.127058</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.295079</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.370478</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.399492</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.527534</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.424463</td>
+      <td>0.941254</td>
+      <td>5.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.133996</td>
+      <td>0.958395</td>
+      <td>-4.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.357585</td>
+      <td>0.846710</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.621357</td>
+      <td>0.930033</td>
+      <td>14.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.342468</td>
+      <td>0.946823</td>
+      <td>4.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 9 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="obj4">
+<h2>Obj4<a class="headerlink" href="#obj4" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;obj4_nf-280_(2023_04_26,18:21)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/11e1f7d820c7b0998b096c6a830fed9e69a5dbd1af2af98e1766f64108e8b90c.png" src="../../_images/11e1f7d820c7b0998b096c6a830fed9e69a5dbd1af2af98e1766f64108e8b90c.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.121370</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.276610</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.363862</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.389768</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.529824</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.441875</td>
+      <td>0.941254</td>
+      <td>5.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.247973</td>
+      <td>0.958395</td>
+      <td>5.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.327369</td>
+      <td>0.846710</td>
+      <td>5.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.444876</td>
+      <td>0.930033</td>
+      <td>4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.549789</td>
+      <td>0.946823</td>
+      <td>-8.0</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 9 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="obj1-medium">
+<h2>Obj1 (medium)<a class="headerlink" href="#obj1-medium" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;Medium_obj1_nf-280_(2023_04_26,15:53)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/52b9ea370bfd9d8fda4bf8cb8ea0e883cc2389019708558bda538db3478bee7a.png" src="../../_images/52b9ea370bfd9d8fda4bf8cb8ea0e883cc2389019708558bda538db3478bee7a.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.136978</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.284074</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.369333</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.397792</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.517191</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.368579</td>
+      <td>0.941254</td>
+      <td>-8.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.214588</td>
+      <td>0.958395</td>
+      <td>-6.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.362885</td>
+      <td>0.846710</td>
+      <td>0.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.609848</td>
+      <td>0.930033</td>
+      <td>-6.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.549863</td>
+      <td>0.946823</td>
+      <td>-8.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 9 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="obj1-shallow">
+<h2>Obj1 (shallow)<a class="headerlink" href="#obj1-shallow" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;Shallow_obj1_nf-1472_(2023_04_25,23:17)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d145ef3a9bccb2cad28e8607f94058322ea9f741828f54e1c0815304f8693fd2.png" src="../../_images/d145ef3a9bccb2cad28e8607f94058322ea9f741828f54e1c0815304f8693fd2.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.131263</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.271917</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.361812</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.391591</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.497451</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.330262</td>
+      <td>0.941254</td>
+      <td>2.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.132135</td>
+      <td>0.958395</td>
+      <td>-10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.514144</td>
+      <td>0.846710</td>
+      <td>-2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.539851</td>
+      <td>0.930033</td>
+      <td>-10.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>obj1</td>
+      <td>1472</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.570819</td>
+      <td>0.946823</td>
+      <td>-2.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 9 columns</p>
+</div></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="note-ignore-below-older-stuff">
+<h2>Note: ignore below, older stuff<a class="headerlink" href="#note-ignore-below-older-stuff" title="Permalink to this headline">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Transl 2<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl2_nf-2752_(2023_04_25,18:38)&#39;</span>
@@ -555,7 +1735,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/49632a09cc48c1845a5ad08849d2468f90910fab136c8511f62d166d2d7b68b0.png" src="../../_images/49632a09cc48c1845a5ad08849d2468f90910fab136c8511f62d166d2d7b68b0.png" />
+<img alt="../../_images/3ca270888af279daa8d02f49a1b5ee5623865da77ed2965dbd65a1570d46399c.png" src="../../_images/3ca270888af279daa8d02f49a1b5ee5623865da77ed2965dbd65a1570d46399c.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
 </pre></div>
 </div>
@@ -575,7 +1755,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7e726bade1687b80e560fcd2f5239ad8925c193ec82512bbdb9f1c2f2d87b605.png" src="../../_images/7e726bade1687b80e560fcd2f5239ad8925c193ec82512bbdb9f1c2f2d87b605.png" />
+<img alt="../../_images/006af15989dcebef84a7f17d222e16faf42c45b77f04e0728f1f17df1c075fab.png" src="../../_images/006af15989dcebef84a7f17d222e16faf42c45b77f04e0728f1f17df1c075fab.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
 </pre></div>
 </div>
@@ -606,6 +1786,8 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>category</th>
+      <th>nf</th>
       <th>root</th>
       <th>expt</th>
       <th>cell</th>
@@ -618,6 +1800,8 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu036</td>
       <td>0</td>
@@ -628,6 +1812,8 @@ document.write(`
     </tr>
     <tr>
       <th>1</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu037</td>
       <td>0</td>
@@ -638,6 +1824,8 @@ document.write(`
     </tr>
     <tr>
       <th>2</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu038</td>
       <td>0</td>
@@ -648,6 +1836,8 @@ document.write(`
     </tr>
     <tr>
       <th>3</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu039</td>
       <td>0</td>
@@ -658,6 +1848,8 @@ document.write(`
     </tr>
     <tr>
       <th>4</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu040</td>
       <td>0</td>
@@ -675,9 +1867,13 @@ document.write(`
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>136</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>19</td>
@@ -688,6 +1884,8 @@ document.write(`
     </tr>
     <tr>
       <th>137</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>20</td>
@@ -698,6 +1896,8 @@ document.write(`
     </tr>
     <tr>
       <th>138</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>21</td>
@@ -708,6 +1908,8 @@ document.write(`
     </tr>
     <tr>
       <th>139</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>22</td>
@@ -718,6 +1920,8 @@ document.write(`
     </tr>
     <tr>
       <th>140</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>23</td>
@@ -728,7 +1932,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-<p>141 rows × 7 columns</p>
+<p>141 rows × 9 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -739,13 +1943,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;ApplyMaskNot_fixate4_nf-2752_(2023_04_24,21:08)&#39;</span>
 <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
 
-<span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/43ea307fe541ae756716ad9f03e85285d9b135d0186c7e916f6a93953e7c1d74.png" src="../../_images/43ea307fe541ae756716ad9f03e85285d9b135d0186c7e916f6a93953e7c1d74.png" />
+<img alt="../../_images/8f0f4672bbac032dd5316d125e2e098204000b0e7de62cb5097e84ca147e50fe.png" src="../../_images/8f0f4672bbac032dd5316d125e2e098204000b0e7de62cb5097e84ca147e50fe.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
 </pre></div>
 </div>
@@ -776,6 +1980,8 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>category</th>
+      <th>nf</th>
       <th>root</th>
       <th>expt</th>
       <th>cell</th>
@@ -788,6 +1994,8 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu036</td>
       <td>0</td>
@@ -798,6 +2006,8 @@ document.write(`
     </tr>
     <tr>
       <th>1</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu037</td>
       <td>0</td>
@@ -808,6 +2018,8 @@ document.write(`
     </tr>
     <tr>
       <th>2</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu038</td>
       <td>0</td>
@@ -818,6 +2030,8 @@ document.write(`
     </tr>
     <tr>
       <th>3</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu039</td>
       <td>0</td>
@@ -828,6 +2042,8 @@ document.write(`
     </tr>
     <tr>
       <th>4</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>clu040</td>
       <td>0</td>
@@ -845,9 +2061,13 @@ document.write(`
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>136</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>19</td>
@@ -858,6 +2078,8 @@ document.write(`
     </tr>
     <tr>
       <th>137</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>20</td>
@@ -868,6 +2090,8 @@ document.write(`
     </tr>
     <tr>
       <th>138</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>21</td>
@@ -878,6 +2102,8 @@ document.write(`
     </tr>
     <tr>
       <th>139</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>22</td>
@@ -888,6 +2114,8 @@ document.write(`
     </tr>
     <tr>
       <th>140</th>
+      <td>fixate4</td>
+      <td>2752</td>
       <td>YUWEI</td>
       <td>ytu029</td>
       <td>23</td>
@@ -898,562 +2126,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-<p>141 rows × 7 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="apply-hf-mask">
-<h2>Apply HF mask<a class="headerlink" href="#apply-hf-mask" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;ApplyMask_fixate4_nf-2752_(2023_04_24,17:53)&#39;</span>
-<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_readout_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
-
-<span class="n">show_readout_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/4bb7e9ebc9552eed40f08050d2b281e93234cd738ce9100e5e14651696c95442.png" src="../../_images/4bb7e9ebc9552eed40f08050d2b281e93234cd738ce9100e5e14651696c95442.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>root</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>perf</th>
-      <th>log_alpha</th>
-      <th>best_lag</th>
-      <th>top_lag</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>YUWEI</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.125280</td>
-      <td>4.0</td>
-      <td>8</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>YUWEI</td>
-      <td>clu037</td>
-      <td>0</td>
-      <td>0.289185</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>YUWEI</td>
-      <td>clu038</td>
-      <td>0</td>
-      <td>0.376958</td>
-      <td>3.0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>YUWEI</td>
-      <td>clu039</td>
-      <td>0</td>
-      <td>0.408336</td>
-      <td>3.0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>YUWEI</td>
-      <td>clu040</td>
-      <td>0</td>
-      <td>0.541918</td>
-      <td>-10.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>YUWEI</td>
-      <td>clu043</td>
-      <td>0</td>
-      <td>0.410555</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>YUWEI</td>
-      <td>clu044</td>
-      <td>0</td>
-      <td>0.373119</td>
-      <td>3.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>YUWEI</td>
-      <td>clu053</td>
-      <td>0</td>
-      <td>0.454620</td>
-      <td>-10.0</td>
-      <td>5</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>YUWEI</td>
-      <td>clu055</td>
-      <td>0</td>
-      <td>0.419241</td>
-      <td>-2.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>YUWEI</td>
-      <td>clu059</td>
-      <td>0</td>
-      <td>0.641438</td>
-      <td>2.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>YUWEI</td>
-      <td>clu061</td>
-      <td>0</td>
-      <td>0.171059</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>YUWEI</td>
-      <td>clu064</td>
-      <td>0</td>
-      <td>0.352486</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>YUWEI</td>
-      <td>clu068</td>
-      <td>0</td>
-      <td>0.313248</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>YUWEI</td>
-      <td>clu069</td>
-      <td>0</td>
-      <td>0.073673</td>
-      <td>4.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>YUWEI</td>
-      <td>clu081</td>
-      <td>0</td>
-      <td>0.472327</td>
-      <td>-2.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>YUWEI</td>
-      <td>clu082</td>
-      <td>0</td>
-      <td>0.267819</td>
-      <td>4.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>YUWEI</td>
-      <td>clu087</td>
-      <td>0</td>
-      <td>0.473591</td>
-      <td>-10.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>YUWEI</td>
-      <td>clu088</td>
-      <td>0</td>
-      <td>0.356961</td>
-      <td>8.0</td>
-      <td>6</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>YUWEI</td>
-      <td>clu089</td>
-      <td>0</td>
-      <td>0.577189</td>
-      <td>5.0</td>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>YUWEI</td>
-      <td>clu090</td>
-      <td>0</td>
-      <td>0.692813</td>
-      <td>3.0</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>YUWEI</td>
-      <td>clu095</td>
-      <td>0</td>
-      <td>0.747474</td>
-      <td>-2.0</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>YUWEI</td>
-      <td>clu096</td>
-      <td>0</td>
-      <td>0.756941</td>
-      <td>6.0</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>YUWEI</td>
-      <td>clu099</td>
-      <td>0</td>
-      <td>0.545326</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>YUWEI</td>
-      <td>clu104</td>
-      <td>0</td>
-      <td>0.683954</td>
-      <td>8.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>YUWEI</td>
-      <td>clu107</td>
-      <td>0</td>
-      <td>0.562574</td>
-      <td>-10.0</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>YUWEI</td>
-      <td>clu108</td>
-      <td>0</td>
-      <td>0.596052</td>
-      <td>-2.0</td>
-      <td>4</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>YUWEI</td>
-      <td>clu109</td>
-      <td>0</td>
-      <td>0.221682</td>
-      <td>4.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>YUWEI</td>
-      <td>clu110</td>
-      <td>0</td>
-      <td>0.179318</td>
-      <td>-10.0</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>YUWEI</td>
-      <td>clu116</td>
-      <td>0</td>
-      <td>0.636821</td>
-      <td>6.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>YUWEI</td>
-      <td>clu120</td>
-      <td>0</td>
-      <td>0.828557</td>
-      <td>5.0</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>YUWEI</td>
-      <td>clu126</td>
-      <td>0</td>
-      <td>0.358945</td>
-      <td>2.0</td>
-      <td>5</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>YUWEI</td>
-      <td>clu131</td>
-      <td>0</td>
-      <td>0.097722</td>
-      <td>10.0</td>
-      <td>5</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>YUWEI</td>
-      <td>clu132</td>
-      <td>0</td>
-      <td>0.709491</td>
-      <td>5.0</td>
-      <td>5</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>YUWEI</td>
-      <td>clu142</td>
-      <td>0</td>
-      <td>0.648249</td>
-      <td>4.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>YUWEI</td>
-      <td>clu145</td>
-      <td>0</td>
-      <td>0.130536</td>
-      <td>3.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>YUWEI</td>
-      <td>clu146</td>
-      <td>0</td>
-      <td>0.268267</td>
-      <td>4.0</td>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>YUWEI</td>
-      <td>clu147</td>
-      <td>0</td>
-      <td>0.282176</td>
-      <td>-10.0</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>YUWEI</td>
-      <td>clu148</td>
-      <td>0</td>
-      <td>0.288001</td>
-      <td>3.0</td>
-      <td>5</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>YUWEI</td>
-      <td>clu180</td>
-      <td>0</td>
-      <td>0.130336</td>
-      <td>5.0</td>
-      <td>12</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>YUWEI</td>
-      <td>clu181</td>
-      <td>0</td>
-      <td>0.589171</td>
-      <td>-6.0</td>
-      <td>9</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>YUWEI</td>
-      <td>clu183</td>
-      <td>0</td>
-      <td>0.648154</td>
-      <td>-4.0</td>
-      <td>6</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>0</td>
-      <td>0.737164</td>
-      <td>3.0</td>
-      <td>4</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>1</td>
-      <td>0.849653</td>
-      <td>-8.0</td>
-      <td>4</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>4</td>
-      <td>0.757086</td>
-      <td>4.0</td>
-      <td>4</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>12</td>
-      <td>0.695125</td>
-      <td>3.0</td>
-      <td>5</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>13</td>
-      <td>0.698052</td>
-      <td>2.0</td>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>14</td>
-      <td>0.690354</td>
-      <td>-10.0</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>15</td>
-      <td>0.718948</td>
-      <td>3.0</td>
-      <td>5</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>YUWEI</td>
-      <td>clu216</td>
-      <td>0</td>
-      <td>0.475557</td>
-      <td>-4.0</td>
-      <td>7</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>YUWEI</td>
-      <td>clu221</td>
-      <td>1</td>
-      <td>0.653445</td>
-      <td>5.0</td>
-      <td>3</td>
-      <td>6</td>
-    </tr>
-  </tbody>
-</table>
+<p>141 rows × 9 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -5316,8 +5989,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id1">
-<h2>Load Readout<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<section id="id2">
+<h2>Load Readout<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-5056_(2023_04_21,10:21)&#39;</span>
@@ -5625,10 +6298,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">(20) Load and plot readout results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-1">Transl 1</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-2">Transl 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-4">Transl 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj4">Obj4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-medium">Obj1 (medium)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-shallow">Obj1 (shallow)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-ignore-below-older-stuff">Note: ignore below, older stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Transl 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-mask-consistency-bug-fixed">Apply Mask (consistency bug fixed)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-hf-mask-not">Apply HF mask NOT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-hf-mask">Apply HF mask</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate4">Fixate4</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lags-12">Lags 12</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lags-fit-10">Lags fit 10</a></li>
@@ -5652,8 +6332,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-readout">Load Readout</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reservoir">Reservoir</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another">Another</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Load Readout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Load Readout</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
