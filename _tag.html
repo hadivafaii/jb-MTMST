@@ -257,13 +257,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/20_examine-readout-GABAN.html">(20) Load and plot readout results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/20_examine-readout-KABA.html">(20) Load and plot readout results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/23_nardin.html">(21) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/20_eval.html">(20) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/23_nardin.html">(23) Nardin notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/25_diameters.html">(25) Diameters: dist</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/26_combine-fits.html">(26) Combine fits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/28_eval.html">(28) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/26_neural-fits-GABAN.html">(26) Load and plot neural results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/26_neural-fits-KABA.html">(26) Load and plot neural results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb/2023-04/29_combine-fits.html">(29) Combine neural fits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nb/2023-04/tmp.html">(??) Tmp</a></li>
 </ul>
@@ -480,7 +480,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="c1"># Collect a list of all notebooks in the content folder</span>
-<span class="n">nb_name</span> <span class="o">=</span> <span class="s1">&#39;2023-01&#39;</span>
+<span class="n">nb_name</span> <span class="o">=</span> <span class="s1">&#39;2023-04&#39;</span>
 <span class="n">notebooks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span>
     <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">nb_name</span> <span class="ow">in</span> <span class="n">x</span><span class="p">,</span>
     <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;./nb/**/*.ipynb&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -513,7 +513,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tagging ./nb/2023-01/mtmst_dan.ipynb: 100%|██████████| 9/9 [00:00&lt;00:00,  9.55it/s]        
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tagging ./nb/2023-04/tmp.ipynb: 100%|███████████| 42/42 [00:10&lt;00:00,  4.08it/s]
 </pre></div>
 </div>
 </div>
