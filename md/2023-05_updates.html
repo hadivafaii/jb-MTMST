@@ -60,11 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'md/2023-04_updates';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'md/2023-05_updates';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="(02) Fit neurons – Linear" href="../nb/2023-04/02_fit-lin.html" />
-    <link rel="prev" title="Summary" href="2023-04.html" />
+    <link rel="next" title="(01) Neural \(\beta\) results (GABAN)" href="../nb/2023-05/01_beta-fits-GABAN.html" />
+    <link rel="prev" title="Summary" href="2023-05.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -229,9 +229,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="2023-04.html">Summary</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
@@ -272,9 +272,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">May 2023</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="2023-05.html">Summary</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="2023-05_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-05/01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-05/01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-05/02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
@@ -351,7 +351,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fmd/2023-04_updates.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fmd/2023-05_updates.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +381,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/md/2023-04_updates.md" target="_blank"
+      <li><a href="../_sources/md/2023-05_updates.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -479,42 +479,9 @@ document.write(`
 <h1>Updates<a class="headerlink" href="#updates" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/04_dan.html">(04) Dan notebook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/20_eval.html">(20) Eval</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/23_nardin.html">(23) Nardin notebook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/25_diameters.html">(25) Diameters: dist</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/26_neural-fits-GABAN.html">(26) Neural results plot (GABAN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/26_neural-fits-KABA.html">(26) Neural results plot (KABA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/29_combine-fits.html">(29) Combine neural fits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/2023-04/tmp.html">(??) Tmp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/2023-05/01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/2023-05/01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/2023-05/02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
 </ul>
 </div>
 </section>
@@ -551,7 +518,7 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2023-04.html"
+       href="2023-05.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -560,11 +527,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../nb/2023-04/02_fit-lin.html"
+       href="../nb/2023-05/01_beta-fits-GABAN.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">(02) Fit neurons – Linear</p>
+        <p class="prev-next-title">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
