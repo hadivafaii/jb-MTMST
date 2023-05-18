@@ -278,6 +278,27 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-05/02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_intro.html">Fig: Intro, etc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_MI.html">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/tmp.html">tmp</a></li>
 </ul>
 </li>
 </ul>
@@ -829,6 +850,7 @@ outperforming reservoir: <span style="color: #008080; text-decoration-color: #00
 <span class="n">axtwix</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">res_r</span> <span class="o">=</span> <span class="mf">0.447</span>
 <span class="n">axtwix</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">res_r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Reservoir fit (R = </span><span class="si">{</span><span class="n">res_r</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">axtwix</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
 <span class="n">axtwix</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -837,8 +859,284 @@ outperforming reservoir: <span style="color: #008080; text-decoration-color: #00
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../../_images/942cd684a641ad5b62fa838b08ed50669107797131255b1340e58baa6acc3c22.png" src="../../_images/942cd684a641ad5b62fa838b08ed50669107797131255b1340e58baa6acc3c22.png" />
+<img alt="../../_images/80befdf1d34c85eb43cb8b4e70a01aadee1b1f4a409696eac9689a722ab78352.png" src="../../_images/80befdf1d34c85eb43cb8b4e70a01aadee1b1f4a409696eac9689a722ab78352.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;expt&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;clu096&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+      <th>beta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.746831</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.705947</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.666614</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>fixate4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.683183</td>
+      <td>0.909688</td>
+      <td>4.0</td>
+      <td>3</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>fixate8</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.720804</td>
+      <td>0.909688</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>transl0</td>
+      <td>70</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.689484</td>
+      <td>0.909688</td>
+      <td>5.0</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.737952</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>transl2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.721420</td>
+      <td>0.909688</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>transl4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.613550</td>
+      <td>0.909688</td>
+      <td>5.0</td>
+      <td>0</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>transl8</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.602026</td>
+      <td>0.909688</td>
+      <td>12.0</td>
+      <td>3</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.731281</td>
+      <td>0.909688</td>
+      <td>5.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>obj2</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.729231</td>
+      <td>0.909688</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>obj4</td>
+      <td>280</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.699064</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>obj8</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.538438</td>
+      <td>0.909688</td>
+      <td>5.0</td>
+      <td>1</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>terrain1</td>
+      <td>210</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.654367</td>
+      <td>0.909688</td>
+      <td>8.0</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>terrain2</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.735597</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>terrain4</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.650532</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>terrain8</td>
+      <td>420</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.678699</td>
+      <td>0.909688</td>
+      <td>6.0</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="get-df-best">

@@ -1,0 +1,1717 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Fig: MI &#8212; MT/MST project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-05/Fig_MI';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fig: PSTH + STA" href="Fig_psth.html" />
+    <link rel="prev" title="Fig: Intro, etc" href="Fig_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_eval.html">(20) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(23) Nardin notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-GABAN.html">(26) Neural results plot (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-KABA.html">(26) Neural results plot (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/29_combine-fits.html">(29) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">May 2023</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-05.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-05_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_intro.html">Fig: Intro, etc</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-05/Fig_MI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-05/Fig_MI.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fig: MI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-mi">Now mi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-should-work">This should work</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fig-mi">
+<h1>Fig: MI<a class="headerlink" href="#fig-mi" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># GitHub</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">vae.train_vae</span> <span class="kn">import</span> <span class="n">TrainerVAE</span><span class="p">,</span> <span class="n">ConfigTrainVAE</span>
+<span class="kn">from</span> <span class="nn">vae.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span><span class="p">,</span> <span class="n">ConfigVAE</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">base.dataset</span> <span class="kn">import</span> <span class="n">ROFLDS</span>
+<span class="kn">from</span> <span class="nn">analysis.linear</span> <span class="kn">import</span> <span class="n">compute_dci</span><span class="p">,</span> <span class="n">mi_analysis</span>
+
+<span class="n">kws_fig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;transparent&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;bbox_inches&#39;</span><span class="p">:</span> <span class="s1">&#39;tight&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dpi&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">label2latex</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fix_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$F_x$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fix_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$F_y$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slf_v_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, x}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slf_v_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, y}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slf_v_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, z}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$X_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$Y_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$Z_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_v_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, x}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_v_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, y}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_v_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, z}$&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">skip_fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate2_nf-420_beta-0.15_(2023_04_27,13:57).npy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-420_beta-0.8_(2023_05_07,04:15).npy&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">label2latex</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fix_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$F_x$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fix_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$F_y$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slf_v_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, x}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slf_v_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, y}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slf_v_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, z}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$X_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$Y_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$Z_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_v_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, x}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_v_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, y}$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;obj0_v_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, z}$&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">pal_model</span><span class="p">,</span> <span class="n">pal_cat</span> <span class="o">=</span> <span class="n">get_palette</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">):</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">index</span><span class="p">([</span>
+        <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">info</span>
+        <span class="k">if</span> <span class="s1">&#39;nf-&#39;</span> <span class="ow">in</span> <span class="n">e</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">nf</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;VAE&#39;</span> <span class="k">if</span> <span class="s1">&#39;vanilla&#39;</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="s1">&#39;cNVAE&#39;</span>
+    <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="s1">&#39;ae&#39;</span><span class="p">:</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load dataset</span>
+
+<span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;fixate1&#39;</span>
+
+<span class="n">sim_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/home/hadi/Documents/MTMST/data/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">_dim-17_n-750k&quot;</span>
+<span class="n">ds_vld</span> <span class="o">=</span> <span class="n">ROFLDS</span><span class="p">(</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;vld&#39;</span><span class="p">)</span>
+<span class="n">ds_tst</span> <span class="o">=</span> <span class="n">ROFLDS</span><span class="p">(</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;tst&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ds_vld</span><span class="o">.</span><span class="n">f</span> <span class="o">+</span> <span class="n">ds_vld</span><span class="o">.</span><span class="n">f_aux</span>
+
+<span class="c1"># select main ground-truth variables</span>
+<span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">lbl</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lbl</span>
+    <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">if</span>
+    <span class="n">lbl</span> <span class="ow">in</span> <span class="n">label2latex</span>
+<span class="p">])</span>
+<span class="n">select_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">select_i</span><span class="p">)</span>
+<span class="n">select_lbl</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">select_lbl</span><span class="p">)</span>
+
+<span class="c1"># R^2</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ds_vld</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">ds_vld</span><span class="o">.</span><span class="n">g_aux</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">select_i</span><span class="p">]</span>
+<span class="n">g_tst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ds_tst</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">ds_tst</span><span class="o">.</span><span class="n">g_aux</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">select_i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;trainer_analysis&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vanilla_fixate1_nf-420_beta-1.5_(2023_05_14,14:16).npy&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">everything</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">fits</span><span class="p">:</span>
+    <span class="n">everything</span><span class="p">[</span><span class="n">fit</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+        <span class="n">pjoin</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fit</span><span class="p">),</span>
+        <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">everything</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">f</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="mi">11</span><span class="p">,</span>
+    <span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">),</span>
+    <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">everything</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">sp_dist</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span>
+        <span class="n">XA</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">XB</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">g</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">sp_stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span>
+        
+        <span class="c1"># lin regress</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">sp_stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">)</span>
+        <span class="n">x_min</span> <span class="o">=</span> <span class="n">_x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">x_max</span> <span class="o">=</span> <span class="n">_x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">slope</span> <span class="o">*</span> <span class="n">xs</span> <span class="o">+</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept</span>
+
+        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">_x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">_y</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+            <span class="c1"># bins=20,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">pal_model</span><span class="p">[</span><span class="n">tag</span><span class="p">],</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.865</span><span class="p">),</span>
+            <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="n">label2latex</span><span class="p">[</span><span class="n">select_lbl</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span>
+                <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span>
+            <span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">remove_ticks</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fc968aa89a5829c98197992db10157b976a878537c2fd6133d7b8df72656e12c.png" src="../../_images/fc968aa89a5829c98197992db10157b976a878537c2fd6133d7b8df72656e12c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untang_300.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+
+<span class="n">kws_fig</span><span class="p">[</span><span class="s1">&#39;dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untang_600.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="now-mi">
+<h2>Now mi<a class="headerlink" href="#now-mi" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">mi</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">fit</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">everything</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">mi</span><span class="p">[</span><span class="n">fit</span><span class="p">]</span> <span class="o">=</span> <span class="n">mi_analysis</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 26.8 s, sys: 24.3 s, total: 51.1 s
+Wall time: 6min 7s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jake</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>
+    <span class="ow">in</span> <span class="n">mi</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_obj</span><span class="p">(</span>
+    <span class="n">obj</span><span class="o">=</span><span class="n">jake</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;jake_mi&#39;</span><span class="p">,</span>
+    <span class="n">save_dir</span><span class="o">=</span><span class="n">tmp_dir</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;npy&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'jake_mi.npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/jb-MTMST/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">tmp</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jake</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;jake_mi.npy&#39;</span><span class="p">),</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cnvae</span> <span class="o">=</span> <span class="n">jake</span><span class="p">[</span><span class="s1">&#39;fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy&#39;</span><span class="p">]</span>
+<span class="n">mi_vae</span> <span class="o">=</span> <span class="n">jake</span><span class="p">[</span><span class="s1">&#39;vanilla_fixate1_nf-420_beta-1.5_(2023_05_14,14:16).npy&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mf">9.7</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mi_cnvae</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;rocket&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mi_vae</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;rocket&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fc3ed02d474f40d69f3fcaba787009cf284f7e62a03b5c200a4900eab1c10a63.png" src="../../_images/fc3ed02d474f40d69f3fcaba787009cf284f7e62a03b5c200a4900eab1c10a63.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="p">(</span><span class="mf">9.7</span><span class="p">,</span> <span class="mf">1.95</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">g</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">everything</span><span class="p">[</span><span class="n">fit</span><span class="p">][</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">][:,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">sp_stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">_x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">_y</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">pal_model</span><span class="p">[</span><span class="n">tag</span><span class="p">],</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="mf">0.05</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="n">props</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="n">label2latex</span><span class="p">[</span><span class="n">select_lbl</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span>
+                <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span>
+            <span class="p">)</span>
+<span class="n">remove_ticks</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a32417ec5384e84149ed155165a0f2c87d214578a9dc13d7099d159fdc54acd3.png" src="../../_images/a32417ec5384e84149ed155165a0f2c87d214578a9dc13d7099d159fdc54acd3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(75000,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">g</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">everything</span><span class="p">[</span><span class="n">fit</span><span class="p">][</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">][:,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">sp_stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">_x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">_y</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">pal_model</span><span class="p">[</span><span class="n">tag</span><span class="p">],</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="mf">0.05</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="n">props</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="n">label2latex</span><span class="p">[</span><span class="n">select_lbl</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span>
+                <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span>
+            <span class="p">)</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3af38fb3833ccabeedff19d4d57775027a1c83a48efcba5d90adf111d7bdc6f9.png" src="../../_images/3af38fb3833ccabeedff19d4d57775027a1c83a48efcba5d90adf111d7bdc6f9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">g</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">everything</span><span class="p">[</span><span class="n">fit</span><span class="p">][</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">][:,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">sp_stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">_x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">_y</span><span class="p">,</span>
+            <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">pal_model</span><span class="p">[</span><span class="n">tag</span><span class="p">],</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">),</span>
+            <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="n">label2latex</span><span class="p">[</span><span class="n">select_lbl</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span>
+                <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span>
+            <span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">remove_ticks</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b45badf48923006d52712d010db433791034608440f68be3c6f178fbcb5b9cbe.png" src="../../_images/b45badf48923006d52712d010db433791034608440f68be3c6f178fbcb5b9cbe.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">g</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">everything</span><span class="p">[</span><span class="n">fit</span><span class="p">][</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">][:,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">sp_stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">_x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">_y</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+            <span class="c1"># bins=20,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">pal_model</span><span class="p">[</span><span class="n">tag</span><span class="p">],</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">inds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">),</span>
+            <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="n">label2latex</span><span class="p">[</span><span class="n">select_lbl</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span>
+                <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span>
+            <span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">remove_ticks</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4c545b108cf12c46f03a82cfbaca8cdb6db529889a622a135b60d4f01cda07c5.png" src="../../_images/4c545b108cf12c46f03a82cfbaca8cdb6db529889a622a135b60d4f01cda07c5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">mi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy&#39;,
+ &#39;vanilla_fixate1_nf-420_beta-1.5_(2023_05_14,14:16).npy&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">mi</span><span class="p">[</span><span class="s1">&#39;fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mi&#39;: array([[6.93054166e-03, 2.56845659e-02, 1.71403040e-02, ...,
+         1.81879572e-02, 4.77212287e-03, 2.24173316e-02],
+        [7.38940497e-03, 3.54146761e-03, 1.23351900e-01, ...,
+         4.06223600e-02, 3.84289488e-03, 4.56894111e-02],
+        [2.67499537e-03, 1.71302130e-03, 0.00000000e+00, ...,
+         6.25285279e-02, 2.28259366e-01, 6.90657896e-02],
+        ...,
+        [2.45522146e-03, 4.18361994e-03, 3.35409463e-03, ...,
+         6.69445174e-03, 4.03010842e-03, 1.51740703e-04],
+        [3.39297760e-03, 1.04007310e-02, 0.00000000e+00, ...,
+         9.59846823e-03, 0.00000000e+00, 5.45959324e-03],
+        [0.00000000e+00, 0.00000000e+00, 4.45528914e-03, ...,
+         0.00000000e+00, 0.00000000e+00, 2.74509636e-03]]),
+ &#39;mi_norm&#39;: array([[0.00302545, 0.00859701, 0.00347504, ..., 0.00645162, 0.00120844,
+         0.00690005],
+        [0.00219177, 0.00180246, 0.0303506 , ..., 0.012732  , 0.00231513,
+         0.01615009],
+        [0.00059609, 0.00161746, 0.00098516, ..., 0.02077538, 0.07479324,
+         0.02107351],
+        ...,
+        [0.00101689, 0.00313953, 0.00167065, ..., 0.00209444, 0.001068  ,
+         0.00112792],
+        [0.00143524, 0.0036783 , 0.0018995 , ..., 0.00358527, 0.0010151 ,
+         0.00265545],
+        [0.00100912, 0.00289565, 0.00155856, ..., 0.0010696 , 0.00103946,
+         0.00107405]]),
+ &#39;mig&#39;: array([0.0203127 , 0.02455653, 0.03579175, 0.14304934, 0.18327507,
+        0.03076485, 0.02155971, 0.00113731, 0.00890059, 0.04520607,
+        0.04971993])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">-</span> <span class="mf">0.5</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.8</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;silver&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;silver&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0bb4b18aa212941e678bb6c3b9a51f00e22d10fe01e30b1e43d8a0f8b8326bb7.png" src="../../_images/0bb4b18aa212941e678bb6c3b9a51f00e22d10fe01e30b1e43d8a0f8b8326bb7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;PuBuGn&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">-</span> <span class="mf">0.5</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.45</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4c8ae313cb8c734d1e347f253f9005c6406f021d25a7c8aa711f8a2b3f677469.png" src="../../_images/4c8ae313cb8c734d1e347f253f9005c6406f021d25a7c8aa711f8a2b3f677469.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">jake</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone_r&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">locator_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">-</span> <span class="mf">0.5</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/648b25d77cdba9c7160c2eb2bb1ca8bb2c66605a9b82b19e1bebc790316abea9.png" src="../../_images/648b25d77cdba9c7160c2eb2bb1ca8bb2c66605a9b82b19e1bebc790316abea9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">jake</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">x2p</span> <span class="o">=</span> <span class="n">sp_img</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x2p</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone_r&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+    <span class="n">xticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">420</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span> <span class="o">*</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">420</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">-</span> <span class="mf">0.5</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">val</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a7ad6efd59becf24660e0c8779d72ee0fa64381670559423e7c42086f1724565.png" src="../../_images/a7ad6efd59becf24660e0c8779d72ee0fa64381670559423e7c42086f1724565.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi_10.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">jake</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">x2p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
+        <span class="n">v</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">factor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x2p</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone_r&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+    <span class="n">xticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">420</span> <span class="o">*</span> <span class="n">factor</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">factor</span><span class="p">),</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">420</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">-</span> <span class="mf">0.5</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.7</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.7</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">val</span> <span class="o">*</span> <span class="n">factor</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+        <span class="k">pass</span>
+        <span class="c1"># ax.axhline((i + 1) * 11, color=&#39;dimgrey&#39;, ls=&#39;--&#39;, lw=0.8, alpha=0.5)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/01130e417c76a883cdfe570a6b4f8f8a37ba5339ec88a4935d6c72afb929b76a.png" src="../../_images/01130e417c76a883cdfe570a6b4f8f8a37ba5339ec88a4935d6c72afb929b76a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">mi</span><span class="p">[</span><span class="s1">&#39;fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy&#39;</span><span class="p">]</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(11, 21, 20)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">xx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd5685ef0d0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/a22595c49397caddf40c202d8ad502160077873128cbaba21015c2f497b1e4ab.png" src="../../_images/a22595c49397caddf40c202d8ad502160077873128cbaba21015c2f497b1e4ab.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">[:,</span> <span class="mi">19</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd553d22b80&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/0118367467c1cf1b5d0542ecd3dd413769158aedb0cb33fdb4613351c9f8983d.png" src="../../_images/0118367467c1cf1b5d0542ecd3dd413769158aedb0cb33fdb4613351c9f8983d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd5684c8940&gt;
+</pre></div>
+</div>
+<img alt="../../_images/1ad92bf43a192662e092af4ed3c2cc7495a39429ddad11430089623630b2de33.png" src="../../_images/1ad92bf43a192662e092af4ed3c2cc7495a39429ddad11430089623630b2de33.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yy</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">yy</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(11, 21)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">thres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">],</span> <span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">active</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thres</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/99b928bc5ecd9933ef08117470e6e4ec67c9a6d236b7da5caf70ac29affa61e4.png" src="../../_images/99b928bc5ecd9933ef08117470e6e4ec67c9a6d236b7da5caf70ac29affa61e4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_filt</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">x_filt</span><span class="p">[</span><span class="o">~</span><span class="n">active</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xx_filt</span> <span class="o">=</span> <span class="n">x_filt</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">yy_filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">xx_filt</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_909219/3909724208.py:2: RuntimeWarning: Mean of empty slice
+  yy_filt = np.nanmean(xx_filt, -1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">yy_filt</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd5685d8610&gt;
+</pre></div>
+</div>
+<img alt="../../_images/d99e079f74bb586ed7d7363c9946379d40e999ca11db9e27dbe0a8f3cc5560bb.png" src="../../_images/d99e079f74bb586ed7d7363c9946379d40e999ca11db9e27dbe0a8f3cc5560bb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">20</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd553fd6fd0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/506d4ca57266c8b95cc43fdc4bc6f8476c82f758d2e5e2a19e253d080c656171.png" src="../../_images/506d4ca57266c8b95cc43fdc4bc6f8476c82f758d2e5e2a19e253d080c656171.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">xx_filt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd5536fe340&gt;
+</pre></div>
+</div>
+<img alt="../../_images/b3d5d61ea1926bcebda981d2fef59f4fa0df6571ef9793328862010e71fe0545.png" src="../../_images/b3d5d61ea1926bcebda981d2fef59f4fa0df6571ef9793328862010e71fe0545.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">xx_filt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_909219/3795840226.py:1: RuntimeWarning: Mean of empty slice
+  plt.plot(np.nanmean(xx_filt[:, 0, :], -1))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd5537777f0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/d97b0183851c65012eec8665ec74be9f6e13b49578953a96c50600cf87d744a6.png" src="../../_images/d97b0183851c65012eec8665ec74be9f6e13b49578953a96c50600cf87d744a6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">],</span> <span class="n">q_vals</span><span class="p">)</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lbl</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">select_lbl</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">420</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">j</span> <span class="o">//</span> <span class="mi">20</span>
+        <span class="k">if</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="n">df_mi</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">lbl</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;Mutual info.&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;layer&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">layer</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">scale</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;above&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">thresh</span><span class="p">],</span>
+            <span class="s1">&#39;thresh&#39;</span><span class="p">:</span> <span class="n">thresh</span><span class="p">,</span>
+            <span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="n">q_vals</span><span class="p">,</span>
+        <span class="p">})</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">merge_dicts</span><span class="p">(</span><span class="n">df_mi</span><span class="p">))</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span> <span class="o">=</span> <span class="n">df_mi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s1">&#39;above&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mf">5.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;layer&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;Mutual info.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">320</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lSabel2latex</span><span class="p">)),</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+    <span class="n">xticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.045</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hierarchical layer&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/91175407e08156f03e6143270c329525d1e1491520186b2f541a64ee4ab61bc8.png" src="../../_images/91175407e08156f03e6143270c329525d1e1491520186b2f541a64ee4ab61bc8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span> <span class="o">=</span> <span class="n">df_mi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s1">&#39;above&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;layer&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;Mutual info.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">320</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+    <span class="n">xticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="c1"># sns.move_legend(ax, None, bbox_to_anchor=(1, 1.045))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Latent group&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b936e1e28a503b9d77faa89b062d8d5e3b2bae47716a546e12594106fd836ceb.png" src="../../_images/b936e1e28a503b9d77faa89b062d8d5e3b2bae47716a546e12594106fd836ceb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi_scatter.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;mi_scatter.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="this-should-work">
+<h2>This should work<a class="headerlink" href="#this-should-work" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xx</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(11, 21, 20)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lbl</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">select_lbl</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">420</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mi&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">j</span> <span class="o">//</span> <span class="mi">20</span>
+        <span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">xx</span><span class="p">[:,</span> <span class="n">layer</span><span class="p">,</span> <span class="p">:],</span> <span class="n">q_vals</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="n">df_mi</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">lbl</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;Mutual info.&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;layer&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">layer</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">scale</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_vals</span><span class="p">),</span>
+            <span class="s1">&#39;above&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">thresh</span><span class="p">],</span>
+            <span class="s1">&#39;thresh&#39;</span><span class="p">:</span> <span class="n">thresh</span><span class="p">,</span>
+            <span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="n">q_vals</span><span class="p">,</span>
+        <span class="p">})</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">merge_dicts</span><span class="p">(</span><span class="n">df_mi</span><span class="p">))</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span> <span class="o">=</span> <span class="n">df_mi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s1">&#39;above&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mf">5.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;layer&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;Mutual info.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">320</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label2latex</span><span class="p">)),</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+    <span class="n">xticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.045</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hierarchical layer&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eea98772b471fbaa77fa5c0be2eff04523d34248ecea9cedbcc6599857289fea.png" src="../../_images/eea98772b471fbaa77fa5c0be2eff04523d34248ecea9cedbcc6599857289fea.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/2023-05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Fig_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fig: Intro, etc</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Fig_psth.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fig: PSTH + STA</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-mi">Now mi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-should-work">This should work</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

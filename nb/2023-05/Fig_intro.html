@@ -1,0 +1,1774 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Fig: Intro, etc &#8212; MT/MST project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-05/Fig_intro';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fig: MI" href="Fig_MI.html" />
+    <link rel="prev" title="Fig: DCI" href="Fig_DCI.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_eval.html">(20) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(23) Nardin notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-GABAN.html">(26) Neural results plot (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-KABA.html">(26) Neural results plot (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/29_combine-fits.html">(29) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">May 2023</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-05.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-05_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fig: Intro, etc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_MI.html">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-05/Fig_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-05/Fig_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fig: Intro, etc</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rofl-traversal">ROFL traversal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1">fixate-1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-0">fixate-0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-1">obj-1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hf-frame">HF frame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-plot">Raster plot</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fig-intro-etc">
+<h1>Fig: Intro, etc<a class="headerlink" href="#fig-intro-etc" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># GitHub</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">vae.train_vae</span> <span class="kn">import</span> <span class="n">TrainerVAE</span><span class="p">,</span> <span class="n">ConfigTrainVAE</span>
+<span class="kn">from</span> <span class="nn">vae.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span><span class="p">,</span> <span class="n">ConfigVAE</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pal_model</span><span class="p">,</span> <span class="n">pal_cat</span> <span class="o">=</span> <span class="n">get_palette</span><span class="p">()</span>
+<span class="n">skip_fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate2_nf-420_beta-0.15_(2023_04_27,13:57)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-420_beta-0.8_(2023_05_07,04:15)&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">kws_fig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;transparent&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;bbox_inches&#39;</span><span class="p">:</span> <span class="s1">&#39;tight&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dpi&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">):</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">index</span><span class="p">([</span>
+        <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">info</span>
+        <span class="k">if</span> <span class="s1">&#39;nf-&#39;</span> <span class="ow">in</span> <span class="n">e</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">nf</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;VAE&#39;</span> <span class="k">if</span> <span class="s1">&#39;vanilla&#39;</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="s1">&#39;cNVAE&#39;</span>
+    <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="s1">&#39;ae&#39;</span><span class="p">:</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="k">def</span> <span class="nf">_do_pca</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">flatten_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">ndim_end</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ndim_start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">sp_lin</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compute_uv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">*=</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">s</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s2">0.1f</span><span class="si">}</span><span class="s2"> %&quot;</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+    <span class="n">pcs</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">of</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">of</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="n">pcs</span><span class="p">,</span> <span class="n">titles</span>
+
+
+<span class="k">def</span> <span class="nf">_plot_singular_values</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">thres</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thres</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+        <span class="n">idx</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1"> dimensions&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
+        <span class="n">thres</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">thres</span><span class="si">}</span><span class="s1">% of variance&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">103</span><span class="p">))</span>
+    <span class="n">add_grid</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_sizes_hist</span><span class="p">(</span><span class="n">of</span><span class="p">,</span> <span class="n">obj_i</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">size_pix</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="n">obj_i</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">of</span><span class="o">.</span><span class="n">dim</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">size_pix</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;percent&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">thres</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]):</span>
+        <span class="n">lbl</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">size_pix</span> <span class="o">&lt;</span> <span class="n">thres</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">of</span><span class="o">.</span><span class="n">n</span><span class="si">:</span><span class="s1">0.1f</span><span class="si">}</span><span class="s1">% smaller than </span><span class="si">{</span><span class="n">thres</span><span class="si">}</span><span class="s1"> pixels&#39;</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">thres</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">lbl</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">dim</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span>
+    <span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+    <span class="n">obj_r</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+    <span class="n">obj_bound</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span>
+    <span class="n">obj_zlim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">vlim_obj</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">vlim_slf</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">residual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">z_bg</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kws</span><span class="p">)</span>
+
+<span class="n">min_obj_size</span> <span class="o">=</span> <span class="mf">3.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008000; text-decoration-color: #008000">'dim'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'fov'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">45.0</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_r'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.25</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_bound'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.97</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'obj_zlim'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.5</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vlim_obj'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vlim_slf'</span>: <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.01</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'residual'</span>: <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'z_bg'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.0</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'seed'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<section id="rofl-traversal">
+<h2>ROFL traversal<a class="headerlink" href="#rofl-traversal" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">of</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1.23e2</span><span class="p">),</span>
+    <span class="n">n_obj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kws</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
+<span class="n">accept</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">min_obj_size</span><span class="p">)</span>
+<span class="n">of</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">s</span><span class="p">,</span> <span class="n">pcs</span><span class="p">,</span> <span class="n">titles</span> <span class="o">=</span> <span class="n">_do_pca</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 384 ms, sys: 53.4 ms, total: 437 ms
+Wall time: 127 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accept</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>110
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b8d45ddd826578e4fc82f88b0163a88bdc72aa7b109ff909babda4366f0b010b.png" src="../../_images/b8d45ddd826578e4fc82f88b0163a88bdc72aa7b109ff909babda4366f0b010b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.opticflow</span> <span class="kn">import</span> <span class="n">_replace_z</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_do_it</span><span class="p">(</span><span class="n">fix</span><span class="p">,</span> <span class="n">v_obj</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="n">of</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">NUM</span><span class="p">,</span>
+        <span class="n">n_obj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kws</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">(</span><span class="n">fix</span><span class="p">)</span>
+
+    <span class="n">v_slf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">NUM</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">of</span><span class="o">.</span><span class="n">v_slf</span> <span class="o">=</span> <span class="n">v_slf</span>
+
+    <span class="n">v_obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">v_obj</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">NUM</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">radself2polar</span><span class="p">(</span>
+        <span class="n">a</span><span class="o">=</span><span class="n">alpha</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">b</span><span class="o">=</span><span class="n">alpha</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">polar2cart</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">apply_rot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">_replace_z</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">NUM</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.55</span><span class="p">)</span>
+
+    <span class="n">of</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">Obj</span><span class="p">(</span><span class="n">v_obj</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+
+    <span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">of</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">fix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">fix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">fix</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">NUM</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">of</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">of</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">NUM</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">inds</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">NUM</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">alpha</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">of</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">]</span>
+
+<span class="n">of</span> <span class="o">=</span> <span class="n">_do_it</span><span class="p">(</span><span class="n">fix</span><span class="p">,</span> <span class="n">v_obj</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">inds</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9c6234ed4c4ba8530af597bf5a9bb40f589870789315bd7547c721c041b22065.png" src="../../_images/9c6234ed4c4ba8530af597bf5a9bb40f589870789315bd7547c721c041b22065.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span><span style="font-weight: bold">]</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_1</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tit_1</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$F_x = 0, X_</span><span class="si">{obj}</span><span class="s2"> = $&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span> <span class="o">-</span> <span class="mi">17</span> <span class="o">//</span> <span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">NUM</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">NUM</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">NUM</span><span class="p">)</span>
+
+<span class="n">v_obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">of</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">of</span><span class="o">.</span><span class="n">span</span><span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">NUM</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># alpha[:, 0] = [of.span[i] for i in range(4, 14)]</span>
+
+<span class="n">of</span> <span class="o">=</span> <span class="n">_do_it</span><span class="p">(</span><span class="n">fix</span><span class="p">,</span> <span class="n">v_obj</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">NUM</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8692af4fc1f9283e8ca2e7935e9a5c06bfdddee47e2129642f6095c94e6e9d9d.png" src="../../_images/8692af4fc1f9283e8ca2e7935e9a5c06bfdddee47e2129642f6095c94e6e9d9d.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.4</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.26666667</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.13333333</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>.          <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.13333333</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.26666667</span>
+  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.4</span>       <span style="font-weight: bold">]</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.4       , -0.26666667, -0.13333333,  0.        ,  0.13333333,
+        0.26666667,  0.4       ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_2</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tit_2</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$F_</span><span class="si">{x}</span><span class="s2"> = $&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$X_</span><span class="si">{obj}</span><span class="s2"> = $&quot;</span> <span class="o">+</span> <span class="s1">&#39;-4&#39;</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">row_1</span><span class="p">,</span> <span class="n">row_2</span><span class="p">])</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">NUM</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="n">titles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">tit_1</span>
+<span class="n">titles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tit_2</span>
+
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">titles</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((2, 7, 17, 17, 2), (2, 7))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">show_opticflow_row</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">titles</span><span class="o">=</span><span class="n">titles</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/643a615cc5cbda8efbf6228a8241e597a710e5bf5d8ff4bbc22821c2bc097fb9.png" src="../../_images/643a615cc5cbda8efbf6228a8241e597a710e5bf5d8ff4bbc22821c2bc097fb9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;g_traversal.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fixate-1">
+<h3>fixate-1<a class="headerlink" href="#fixate-1" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">of</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1.23e2</span><span class="p">),</span>
+    <span class="n">n_obj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kws</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
+<span class="n">accept</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">min_obj_size</span><span class="p">)</span>
+<span class="n">of</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">s</span><span class="p">,</span> <span class="n">pcs</span><span class="p">,</span> <span class="n">titles</span> <span class="o">=</span> <span class="n">_do_pca</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 331 ms, sys: 71 ms, total: 402 ms
+Wall time: 171 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accept</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>110
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">][</span><span class="n">selected_1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/af89ab31ca73a36288e9c3bb0f5a3111962e0bcf38696bc1e2c8f1c720702e76.png" src="../../_images/af89ab31ca73a36288e9c3bb0f5a3111962e0bcf38696bc1e2c8f1c720702e76.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">][</span><span class="n">selected_1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fixate-0">
+<h3>fixate-0<a class="headerlink" href="#fixate-0" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">of</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;fixate&#39;</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1.23e2</span><span class="p">),</span>
+    <span class="n">n_obj</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kws</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
+<span class="n">accept</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">min_obj_size</span><span class="p">)</span>
+<span class="n">of</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">s</span><span class="p">,</span> <span class="n">pcs</span><span class="p">,</span> <span class="n">titles</span> <span class="o">=</span> <span class="n">_do_pca</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 275 ms, sys: 0 ns, total: 275 ms
+Wall time: 102 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accept</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">][</span><span class="n">selected_2</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9478be122ee823bd8cbb1d7a0566750bcb5b6751a010230eed0c5381d08844f7.png" src="../../_images/9478be122ee823bd8cbb1d7a0566750bcb5b6751a010230eed0c5381d08844f7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">][</span><span class="n">selected_2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="obj-1">
+<h3>obj-1<a class="headerlink" href="#obj-1" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">of</span> <span class="o">=</span> <span class="n">ROFL</span><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1.23e2</span><span class="p">),</span>
+    <span class="n">n_obj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kws</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">compute_coords</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">compute_flow</span><span class="p">()</span>
+<span class="n">accept</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">min_obj_size</span><span class="p">)</span>
+<span class="n">of</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">s</span><span class="p">,</span> <span class="n">pcs</span><span class="p">,</span> <span class="n">titles</span> <span class="o">=</span> <span class="n">_do_pca</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 371 ms, sys: 2.38 ms, total: 373 ms
+Wall time: 157 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accept</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>110
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">][</span><span class="n">selected_1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7ecbcedd756163829ebb83de20a1c7fb7f08e3bd43cdcfd88055ec05d70eefaa.png" src="../../_images/7ecbcedd756163829ebb83de20a1c7fb7f08e3bd43cdcfd88055ec05d70eefaa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">alpha_dot</span><span class="p">[</span><span class="n">accept</span><span class="p">][</span><span class="n">selected_3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">show_opticflow_row</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span> <span class="o">/</span> <span class="mi">7</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e2336ec916a90241071c4702eae5027a7f5150a8928baf090e9c1724230a1280.png" src="../../_images/e2336ec916a90241071c4702eae5027a7f5150a8928baf090e9c1724230a1280.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;rofl_eg.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hf-frame">
+<h2>HF frame<a class="headerlink" href="#hf-frame" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;/home/hadi/Documents/MTMST/data/ALL_tres25.h5&#39;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;YUWEI&#39;</span><span class="p">][</span><span class="s1">&#39;clu090&#39;</span><span class="p">]</span>
+<span class="n">stim</span><span class="p">,</span> <span class="n">spks</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">stim_r</span><span class="p">,</span> <span class="n">spks_r</span><span class="p">,</span> <span class="n">good_r</span> <span class="o">=</span> <span class="n">load_ephys</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">show_opticflow</span><span class="p">(</span><span class="n">stim</span><span class="p">[</span><span class="mi">100</span><span class="p">:],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/65d7f32b47bd692c2a32e5b8812ff3d780adcdbd28bb51f9936d294ef105630b.png" src="../../_images/65d7f32b47bd692c2a32e5b8812ff3d780adcdbd28bb51f9936d294ef105630b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">stim</span><span class="p">[</span><span class="mi">103</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6db4c63f66569342462ee33961e83a13aab21394d370af4d74b66c6926c5d966.png" src="../../_images/6db4c63f66569342462ee33961e83a13aab21394d370af4d74b66c6926c5d966.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">span</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ticks</span><span class="p">,</span> <span class="n">ticklabels</span> <span class="o">=</span> <span class="n">make_ticks</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span>
+    <span class="n">span</span><span class="p">,</span> <span class="n">span</span><span class="p">,</span> <span class="n">stim</span><span class="p">[</span><span class="mi">103</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">stim</span><span class="p">[</span><span class="mi">103</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+    <span class="c1"># headaxislength=7,</span>
+    <span class="c1"># headlength=,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xticks</span><span class="o">=</span><span class="n">ticks</span><span class="p">,</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="n">ticks</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">ticklabels</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">ticklabels</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">remove_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">ax_square</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ff0fc0646921b9995a0fcb39e3090aaa6426976151bcc0c9b9ab6a4b927134b3.png" src="../../_images/ff0fc0646921b9995a0fcb39e3090aaa6426976151bcc0c9b9ab6a4b927134b3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;hf.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stim</span><span class="p">[</span><span class="mi">103</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 17, 17)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="raster-plot">
+<h2>Raster plot<a class="headerlink" href="#raster-plot" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;YUWEI&#39;</span><span class="p">][</span><span class="s1">&#39;clu267&#39;</span><span class="p">]</span>
+<span class="n">stim</span><span class="p">,</span> <span class="n">spks</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">stim_r</span><span class="p">,</span> <span class="n">spks_r</span><span class="p">,</span> <span class="n">good_r</span> <span class="o">=</span> <span class="n">load_ephys</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">spks_r</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(43, 201)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c368f6eeaa3525958e7234cf53640bf72a37dae31f0d942ed8dc1f62eff6d555.png" src="../../_images/c368f6eeaa3525958e7234cf53640bf72a37dae31f0d942ed8dc1f62eff6d555.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot the raster plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">25e-3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">indices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">indices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Trials&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ef7979dc4347b34b9fb86a7ea1d89d5829235c7c7f629d0957bd086057faf0f6.png" src="../../_images/ef7979dc4347b34b9fb86a7ea1d89d5829235c7c7f629d0957bd086057faf0f6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0,  86],
+       [  0, 148],
+       [  0, 152],
+       [  0, 155],
+       [  0, 156],
+       [  0, 157],
+       [  0, 159],
+       [  0, 160],
+       [  0, 161],
+       [  0, 162],
+       [  0, 164],
+       [  0, 166],
+       [  1,   3],
+       [  1,   5],
+       [  1,  73],
+       [  1, 145],
+       [  1, 146],
+       [  1, 154],
+       [  1, 155],
+       [  1, 157],
+       [  1, 160],
+       [  1, 170],
+       [  2,   5],
+       [  2,  21],
+       [  2,  24],
+       [  2,  53],
+       [  2, 151],
+       [  2, 154],
+       [  2, 156],
+       [  2, 158],
+       [  2, 168],
+       [  3, 145],
+       [  3, 146],
+       [  3, 147],
+       [  3, 153],
+       [  3, 155],
+       [  3, 156],
+       [  3, 160],
+       [  3, 161],
+       [  3, 162],
+       [  4,  21],
+       [  4,  25],
+       [  4,  53],
+       [  4, 146],
+       [  4, 147],
+       [  4, 153],
+       [  4, 155],
+       [  4, 156],
+       [  4, 159],
+       [  4, 161],
+       [  4, 164],
+       [  5, 142],
+       [  5, 145],
+       [  5, 154],
+       [  5, 155],
+       [  5, 156],
+       [  5, 159],
+       [  5, 161],
+       [  5, 162],
+       [  5, 164],
+       [  5, 165],
+       [  6,  53],
+       [  6,  67],
+       [  6, 145],
+       [  6, 157],
+       [  6, 158],
+       [  6, 159],
+       [  6, 160],
+       [  6, 162],
+       [  6, 164],
+       [  6, 165],
+       [  7,   7],
+       [  7,  70],
+       [  7, 142],
+       [  7, 154],
+       [  7, 157],
+       [  7, 158],
+       [  7, 159],
+       [  7, 161],
+       [  7, 163],
+       [  7, 165],
+       [  8,  26],
+       [  8,  48],
+       [  8,  66],
+       [  8, 144],
+       [  8, 145],
+       [  8, 155],
+       [  8, 158],
+       [  8, 162],
+       [  8, 164],
+       [  9,  91],
+       [  9, 148],
+       [  9, 153],
+       [  9, 154],
+       [  9, 155],
+       [  9, 157],
+       [  9, 162],
+       [  9, 166],
+       [ 10,   4],
+       [ 10,   7],
+       [ 10, 155],
+       [ 10, 158],
+       [ 10, 160],
+       [ 10, 161],
+       [ 10, 163],
+       [ 11,   4],
+       [ 11, 125],
+       [ 11, 145],
+       [ 11, 147],
+       [ 11, 153],
+       [ 11, 154],
+       [ 11, 155],
+       [ 11, 156],
+       [ 11, 157],
+       [ 11, 160],
+       [ 11, 162],
+       [ 11, 165],
+       [ 11, 166],
+       [ 12,   9],
+       [ 12,  24],
+       [ 12,  69],
+       [ 12, 147],
+       [ 12, 154],
+       [ 12, 156],
+       [ 12, 157],
+       [ 12, 158],
+       [ 12, 162],
+       [ 12, 167],
+       [ 13,   4],
+       [ 13,  24],
+       [ 13,  26],
+       [ 13, 157],
+       [ 13, 158],
+       [ 13, 159],
+       [ 13, 160],
+       [ 13, 162],
+       [ 13, 163],
+       [ 13, 164],
+       [ 13, 170],
+       [ 14,  66],
+       [ 14,  78],
+       [ 14,  93],
+       [ 14, 145],
+       [ 14, 147],
+       [ 14, 153],
+       [ 14, 163],
+       [ 14, 164],
+       [ 15,  10],
+       [ 15,  27],
+       [ 15,  52],
+       [ 15,  68],
+       [ 15, 145],
+       [ 15, 153],
+       [ 15, 154],
+       [ 15, 155],
+       [ 15, 157],
+       [ 15, 159],
+       [ 15, 162],
+       [ 15, 164],
+       [ 15, 165],
+       [ 15, 167],
+       [ 15, 169],
+       [ 15, 189],
+       [ 16,  44],
+       [ 16, 143],
+       [ 16, 153],
+       [ 16, 157],
+       [ 16, 158],
+       [ 16, 159],
+       [ 16, 160],
+       [ 16, 161],
+       [ 16, 162],
+       [ 16, 165],
+       [ 17, 107],
+       [ 17, 155],
+       [ 17, 156],
+       [ 17, 157],
+       [ 17, 158],
+       [ 17, 159],
+       [ 17, 160],
+       [ 17, 161],
+       [ 17, 162],
+       [ 17, 166],
+       [ 17, 191],
+       [ 18, 153],
+       [ 18, 155],
+       [ 18, 160],
+       [ 18, 165],
+       [ 19,   5],
+       [ 19,  70],
+       [ 19, 146],
+       [ 19, 154],
+       [ 19, 157],
+       [ 19, 160],
+       [ 19, 161],
+       [ 19, 162],
+       [ 20,   6],
+       [ 20,  80],
+       [ 20, 133],
+       [ 20, 153],
+       [ 20, 155],
+       [ 20, 158],
+       [ 20, 159],
+       [ 20, 161],
+       [ 20, 165],
+       [ 21, 146],
+       [ 21, 147],
+       [ 21, 150],
+       [ 21, 154],
+       [ 21, 158],
+       [ 21, 159],
+       [ 21, 161],
+       [ 21, 162],
+       [ 22,  24],
+       [ 22,  51],
+       [ 22,  76],
+       [ 22,  84],
+       [ 22, 122],
+       [ 22, 141],
+       [ 22, 144],
+       [ 22, 147],
+       [ 22, 151],
+       [ 22, 157],
+       [ 22, 158],
+       [ 22, 160],
+       [ 22, 164],
+       [ 23,  93],
+       [ 23, 141],
+       [ 23, 147],
+       [ 23, 156],
+       [ 23, 158],
+       [ 23, 161],
+       [ 23, 164],
+       [ 23, 166],
+       [ 24,   8],
+       [ 24, 114],
+       [ 24, 157],
+       [ 24, 160],
+       [ 24, 162],
+       [ 25,  50],
+       [ 25,  92],
+       [ 25, 114],
+       [ 25, 142],
+       [ 25, 145],
+       [ 25, 153],
+       [ 25, 157],
+       [ 25, 159],
+       [ 25, 160],
+       [ 25, 162],
+       [ 26,   8],
+       [ 26, 153],
+       [ 26, 154],
+       [ 26, 155],
+       [ 26, 156],
+       [ 26, 157],
+       [ 26, 158],
+       [ 26, 159],
+       [ 26, 162],
+       [ 26, 163],
+       [ 26, 164],
+       [ 26, 165],
+       [ 27, 145],
+       [ 27, 153],
+       [ 27, 155],
+       [ 27, 167],
+       [ 28, 153],
+       [ 28, 156],
+       [ 28, 157],
+       [ 28, 158],
+       [ 28, 159],
+       [ 28, 161],
+       [ 29, 143],
+       [ 29, 146],
+       [ 29, 153],
+       [ 29, 159],
+       [ 29, 161],
+       [ 29, 162],
+       [ 29, 163],
+       [ 29, 164],
+       [ 30,  28],
+       [ 30,  83],
+       [ 30, 146],
+       [ 30, 155],
+       [ 30, 159],
+       [ 30, 160],
+       [ 30, 162],
+       [ 30, 164],
+       [ 30, 166],
+       [ 31, 114],
+       [ 31, 145],
+       [ 31, 148],
+       [ 31, 151],
+       [ 31, 153],
+       [ 31, 159],
+       [ 31, 161],
+       [ 31, 162],
+       [ 31, 163],
+       [ 31, 165],
+       [ 32,  66],
+       [ 32, 107],
+       [ 32, 117],
+       [ 32, 125],
+       [ 32, 141],
+       [ 32, 144],
+       [ 32, 146],
+       [ 32, 153],
+       [ 32, 154],
+       [ 32, 155],
+       [ 32, 156],
+       [ 32, 157],
+       [ 32, 159],
+       [ 32, 161],
+       [ 32, 166],
+       [ 33,  24],
+       [ 33, 119],
+       [ 33, 146],
+       [ 33, 150],
+       [ 33, 156],
+       [ 33, 160],
+       [ 33, 161],
+       [ 33, 162],
+       [ 33, 163],
+       [ 33, 164],
+       [ 33, 165],
+       [ 34,  24],
+       [ 34, 122],
+       [ 34, 146],
+       [ 34, 155],
+       [ 34, 156],
+       [ 35, 143],
+       [ 35, 147],
+       [ 35, 153],
+       [ 35, 155],
+       [ 35, 159],
+       [ 35, 160],
+       [ 35, 161],
+       [ 35, 163],
+       [ 36,  73],
+       [ 36, 147],
+       [ 36, 153],
+       [ 36, 155],
+       [ 36, 157],
+       [ 36, 159],
+       [ 36, 163],
+       [ 36, 166],
+       [ 37,  26],
+       [ 37, 156],
+       [ 37, 157],
+       [ 37, 158],
+       [ 37, 159],
+       [ 37, 160],
+       [ 37, 161],
+       [ 38, 146],
+       [ 38, 153],
+       [ 38, 155],
+       [ 38, 157],
+       [ 38, 160],
+       [ 38, 162],
+       [ 38, 163],
+       [ 38, 177],
+       [ 39, 143],
+       [ 39, 146],
+       [ 39, 147],
+       [ 39, 154],
+       [ 39, 155],
+       [ 39, 159],
+       [ 39, 162],
+       [ 40,  11],
+       [ 40,  15],
+       [ 40,  27],
+       [ 40, 145],
+       [ 40, 146],
+       [ 40, 155],
+       [ 40, 156],
+       [ 40, 158],
+       [ 40, 159],
+       [ 40, 161],
+       [ 40, 166],
+       [ 41,   6],
+       [ 41,  83],
+       [ 41, 143],
+       [ 41, 153],
+       [ 41, 155],
+       [ 41, 157],
+       [ 41, 158],
+       [ 41, 160],
+       [ 41, 163],
+       [ 41, 164],
+       [ 42,   6],
+       [ 42,  13],
+       [ 42,  43],
+       [ 42, 128],
+       [ 42, 145],
+       [ 42, 154],
+       [ 42, 157],
+       [ 42, 161],
+       [ 42, 162],
+       [ 42, 164]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({0.0: 6066, 1.0: 1679, 2.0: 329, 3.0: 61, 4.0: 8})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/2023-05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Fig_DCI.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fig: DCI</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Fig_MI.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fig: MI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rofl-traversal">ROFL traversal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1">fixate-1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-0">fixate-0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-1">obj-1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hf-frame">HF frame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-plot">Raster plot</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

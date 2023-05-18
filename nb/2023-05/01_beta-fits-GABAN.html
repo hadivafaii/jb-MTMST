@@ -280,6 +280,27 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_intro.html">Fig: Intro, etc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_MI.html">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
 </ul>
 </li>
 </ul>
@@ -475,10 +496,49 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1">Fixate 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-2">Fixate 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-5"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1-vanilla">Fixate 1 (vanilla)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-5"><span class="math notranslate nohighlight">\(\beta = 1.5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-9"><span class="math notranslate nohighlight">\(\beta = 0.9\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-3"><span class="math notranslate nohighlight">\(\beta = 0.3\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-6"><span class="math notranslate nohighlight">\(\beta = 0.6\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-7"><span class="math notranslate nohighlight">\(\beta = 0.7\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-4"><span class="math notranslate nohighlight">\(\beta = 0.4\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-10"><span class="math notranslate nohighlight">\(\beta = 10\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-2"><span class="math notranslate nohighlight">\(\beta = 2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1"><span class="math notranslate nohighlight">\(\beta = 1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-5"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-0">Fixate 0</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span class="math notranslate nohighlight">\(\beta = 10\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span class="math notranslate nohighlight">\(\beta = 2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span class="math notranslate nohighlight">\(\beta = 1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-small"><span class="math notranslate nohighlight">\(\beta = 1\)</span> (small)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-1">Obj 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-10-0"><span class="math notranslate nohighlight">\(\beta = 10.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-0"><span class="math notranslate nohighlight">\(\beta = 1.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-0-nf-140"><span class="math notranslate nohighlight">\(\beta = 1.0\)</span> (nf = 140)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-1">Transl 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><span class="math notranslate nohighlight">\(\beta = 10.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><span class="math notranslate nohighlight">\(\beta = 1.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1">Fixate 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"><span class="math notranslate nohighlight">\(\beta = 0.6\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-7"><span class="math notranslate nohighlight">\(\beta = 0.7\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12"><span class="math notranslate nohighlight">\(\beta = 10\)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -535,26 +595,25 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;fixate1_k-32_z-20x[3,6,12]_enc(1x3)-dec(1x2)-pre(1x3)-post(1x3)/ep160-b600-lr(0.002)_beta(0.6:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_04_29,17:53)&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;fixate1_k-32_z-20x[3,6,12]_enc(1x3)-dec(1x2)-pre(1x3)-post(1x3)/ep160-b600-lr(0.002)_beta(0.7:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_04_29,17:53)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;transl2_k-32_z-20x[3,6,12]_enc(1x3)-dec(1x2)-pre(1x3)-post(1x3)/ep160-b600-lr(0.002)_beta(0.5:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_05_15,07:27)&#39;</span><span class="p">,</span>
 <span class="p">]</span>
-<span class="n">save_script_txt</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+<span class="n">save_script_neural</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'run_gaban.txt'</span> saved at
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'run_neuron_gaban.txt'</span> saved at
 <span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/_MTMST/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">scripts</span>
 </pre>
 </div></div>
 </div>
-<section id="fixate-1">
-<h2>Fixate 1<a class="headerlink" href="#fixate-1" title="Permalink to this headline">#</a></h2>
-<section id="beta-0-6">
-<h3><span class="math notranslate nohighlight">\(\beta = 0.6\)</span><a class="headerlink" href="#beta-0-6" title="Permalink to this headline">#</a></h3>
+<section id="fixate-2">
+<h2>Fixate 2<a class="headerlink" href="#fixate-2" title="Permalink to this headline">#</a></h2>
+<section id="beta-5">
+<h3><span class="math notranslate nohighlight">\(\beta = 5\)</span><a class="headerlink" href="#beta-5" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-420_beta-0.6_(2023_04_30,20:36)&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate2_nf-420_beta-5.0_(2023_05_15,08:46)&#39;</span>
 <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -563,7 +622,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e9dc89d8352ee201cc82a741f4c22bf361efa5392de6fc63b70c64a6b446d357.png" src="../../_images/e9dc89d8352ee201cc82a741f4c22bf361efa5392de6fc63b70c64a6b446d357.png" />
+<img alt="../../_images/d94d285d98e9a37355be9c8cd9efd73b09e8926eda08189659d874d99752f907.png" src="../../_images/d94d285d98e9a37355be9c8cd9efd73b09e8926eda08189659d874d99752f907.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
 </pre></div>
 </div>
@@ -571,7 +630,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -608,68 +668,278 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>fixate1</td>
+      <th>118</th>
+      <td>fixate2</td>
       <td>420</td>
-      <td>0.6</td>
-      <td>YUWEI</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.136964</td>
-      <td>NaN</td>
       <td>5.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>1.060234</td>
+      <td>0.328052</td>
+      <td>1.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.891967</td>
+      <td>0.900849</td>
+      <td>-10.0</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>fixate1</td>
+      <th>42</th>
+      <td>fixate2</td>
       <td>420</td>
-      <td>0.6</td>
+      <td>5.0</td>
       <td>YUWEI</td>
-      <td>clu037</td>
-      <td>0</td>
-      <td>0.288780</td>
-      <td>NaN</td>
-      <td>3.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>0.6</td>
-      <td>YUWEI</td>
-      <td>clu038</td>
-      <td>0</td>
-      <td>0.375147</td>
-      <td>NaN</td>
-      <td>3.0</td>
+      <td>clu209</td>
       <td>1</td>
+      <td>0.872689</td>
+      <td>0.923722</td>
+      <td>-10.0</td>
+      <td>4</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>fixate1</td>
+      <th>49</th>
+      <td>fixate2</td>
       <td>420</td>
-      <td>0.6</td>
+      <td>5.0</td>
       <td>YUWEI</td>
-      <td>clu039</td>
-      <td>0</td>
-      <td>0.405588</td>
-      <td>NaN</td>
-      <td>3.0</td>
-      <td>0</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.861053</td>
+      <td>0.924544</td>
+      <td>-10.0</td>
+      <td>4</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>50</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>2</td>
+      <td>0.853288</td>
+      <td>0.921324</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.105524</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu180</td>
+      <td>0</td>
+      <td>0.101125</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.080969</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.060781</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate2</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.046163</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="fixate-1-vanilla">
+<h2>Fixate 1 (vanilla)<a class="headerlink" href="#fixate-1-vanilla" title="Permalink to this headline">#</a></h2>
+<section id="id1">
+<h3><span class="math notranslate nohighlight">\(\beta = 5\)</span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-5.0_(2023_05_15,07:23)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04b50c1aad3b5458fb53de5a37643e1317b2bbc4f7f1dd58dc6179c211a2aec9.png" src="../../_images/04b50c1aad3b5458fb53de5a37643e1317b2bbc4f7f1dd58dc6179c211a2aec9.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>51</th>
       <td>fixate1</td>
       <td>420</td>
-      <td>0.6</td>
+      <td>5.0</td>
       <td>YUWEI</td>
-      <td>clu040</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.919576</td>
+      <td>0.900849</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.881883</td>
+      <td>0.923722</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.834825</td>
+      <td>0.933615</td>
+      <td>-10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
       <td>0</td>
-      <td>0.534920</td>
-      <td>NaN</td>
-      <td>-2.0</td>
+      <td>0.834029</td>
+      <td>0.835483</td>
+      <td>-8.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.822745</td>
+      <td>0.924544</td>
+      <td>-6.0</td>
       <td>3</td>
     </tr>
     <tr>
@@ -686,69 +956,4842 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>136</th>
+      <th>38</th>
       <td>fixate1</td>
       <td>420</td>
-      <td>0.6</td>
+      <td>5.0</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>19</td>
-      <td>0.446412</td>
-      <td>0.941254</td>
-      <td>4.0</td>
-      <td>7</td>
+      <td>clu180</td>
+      <td>0</td>
+      <td>0.118874</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>10</td>
     </tr>
     <tr>
-      <th>137</th>
+      <th>96</th>
       <td>fixate1</td>
       <td>420</td>
-      <td>0.6</td>
+      <td>5.0</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>20</td>
-      <td>0.323203</td>
-      <td>0.958395</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.117167</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.069367</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.068601</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.062357</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-1-5">
+<h3><span class="math notranslate nohighlight">\(\beta = 1.5\)</span><a class="headerlink" href="#beta-1-5" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-1.5_(2023_05_14,14:16)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/42c1433e8e2b8d2a8a136d08ab6b2597c8dfdc5ed9bc8cd4b9781e3f4366158d.png" src="../../_images/42c1433e8e2b8d2a8a136d08ab6b2597c8dfdc5ed9bc8cd4b9781e3f4366158d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.899095</td>
+      <td>0.900849</td>
+      <td>-6.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.869517</td>
+      <td>0.923722</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.859832</td>
+      <td>0.924544</td>
+      <td>-8.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>2</td>
+      <td>0.848201</td>
+      <td>0.921324</td>
+      <td>-6.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.843442</td>
+      <td>0.835483</td>
       <td>-10.0</td>
-      <td>7</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>138</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.117285</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.112612</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.067252</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.066390</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.053368</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-0-9">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.9\)</span><a class="headerlink" href="#beta-0-9" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-0.9_(2023_05_13,20:45)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4dda400d0461352e7ad0aaec9cd777e052b6f6d7e207dbe11a3daf90848ada33.png" src="../../_images/4dda400d0461352e7ad0aaec9cd777e052b6f6d7e207dbe11a3daf90848ada33.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.899845</td>
+      <td>0.923722</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.884605</td>
+      <td>0.900849</td>
+      <td>-8.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.882997</td>
+      <td>0.835483</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.873919</td>
+      <td>0.935583</td>
+      <td>-6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.839540</td>
+      <td>0.924544</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.110039</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.062551</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.059792</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.052290</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.9</td>
+      <td>YUWEI</td>
+      <td>clu183</td>
+      <td>0</td>
+      <td>0.017471</td>
+      <td>0.927126</td>
+      <td>8.0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-0-3">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.3\)</span><a class="headerlink" href="#beta-0-3" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-0.3_(2023_05_13,07:46)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ba7a42e490f572476011be0f1f7ee2e421e5d64d795d7f031ddad73874e5bf88.png" src="../../_images/ba7a42e490f572476011be0f1f7ee2e421e5d64d795d7f031ddad73874e5bf88.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.922681</td>
+      <td>0.923722</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.902338</td>
+      <td>0.924544</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.878455</td>
+      <td>0.979806</td>
+      <td>-2.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.877364</td>
+      <td>0.900849</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.864591</td>
+      <td>0.933615</td>
+      <td>-1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.071649</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.067696</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.057907</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu131</td>
+      <td>0</td>
+      <td>0.055797</td>
+      <td>0.843686</td>
+      <td>-1.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.3</td>
+      <td>YUWEI</td>
+      <td>clu145</td>
+      <td>0</td>
+      <td>0.046644</td>
+      <td>0.593791</td>
+      <td>2.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-0-6">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.6\)</span><a class="headerlink" href="#beta-0-6" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-0.6_(2023_05_12,18:12)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/810792027c32eabf8c745efc9d9779f22fff5e7c432a0c822face86bee622dce.png" src="../../_images/810792027c32eabf8c745efc9d9779f22fff5e7c432a0c822face86bee622dce.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.873347</td>
+      <td>0.923722</td>
+      <td>-6.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>124</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.6</td>
       <td>YUWEI</td>
       <td>ytu029</td>
-      <td>21</td>
-      <td>0.509688</td>
-      <td>0.846710</td>
+      <td>4</td>
+      <td>0.849400</td>
+      <td>0.935583</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.825895</td>
+      <td>0.900849</td>
+      <td>-8.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.821391</td>
+      <td>0.835483</td>
+      <td>-6.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>7</td>
+      <td>0.818134</td>
+      <td>0.955361</td>
+      <td>0.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu180</td>
+      <td>0</td>
+      <td>0.126446</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.118799</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.079331</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.063656</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.047721</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-0-4">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.4\)</span><a class="headerlink" href="#beta-0-4" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-0.4_(2023_05_11,19:25)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5b31a77e42f3b2f73ff5dcd4144823f1ff65d3fd4cae764a5291e9790c91f196.png" src="../../_images/5b31a77e42f3b2f73ff5dcd4144823f1ff65d3fd4cae764a5291e9790c91f196.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>124</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.900714</td>
+      <td>0.935583</td>
+      <td>-1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu120</td>
+      <td>0</td>
+      <td>0.886863</td>
+      <td>0.967720</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.882197</td>
+      <td>0.923722</td>
+      <td>-1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.878913</td>
+      <td>0.979806</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.874686</td>
+      <td>0.900849</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.075401</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.068862</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu131</td>
+      <td>0</td>
+      <td>0.059507</td>
+      <td>0.843686</td>
+      <td>-10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>clu145</td>
+      <td>0</td>
+      <td>-0.002516</td>
+      <td>0.593791</td>
+      <td>2.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.4</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>12</td>
+      <td>-0.049515</td>
+      <td>0.324496</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-10">
+<h3><span class="math notranslate nohighlight">\(\beta = 10\)</span><a class="headerlink" href="#beta-10" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-10.0_(2023_05_09,09:59)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8037aa03a1ecd73043082d7f303bc6efabd8ba958e45ce670388817f9eea5da0.png" src="../../_images/8037aa03a1ecd73043082d7f303bc6efabd8ba958e45ce670388817f9eea5da0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.896120</td>
+      <td>0.923722</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.853357</td>
+      <td>0.900849</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.830650</td>
+      <td>0.933615</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.829844</td>
+      <td>0.929612</td>
+      <td>-8.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>2</td>
+      <td>0.817239</td>
+      <td>0.921324</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.111811</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu145</td>
+      <td>0</td>
+      <td>0.107673</td>
+      <td>0.593791</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.067694</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.065041</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.042231</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-2">
+<h3><span class="math notranslate nohighlight">\(\beta = 2\)</span><a class="headerlink" href="#beta-2" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-2.0_(2023_05_09,08:19)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b28c9d219c6e3c9c3b9e8640cd5c1a71a7f9eff41ec9180c2d9e394699f28ca7.png" src="../../_images/b28c9d219c6e3c9c3b9e8640cd5c1a71a7f9eff41ec9180c2d9e394699f28ca7.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.905538</td>
+      <td>0.923722</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.847234</td>
+      <td>0.933615</td>
+      <td>-6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu090</td>
+      <td>0</td>
+      <td>0.817957</td>
+      <td>0.990020</td>
+      <td>-4.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.817220</td>
+      <td>0.929612</td>
+      <td>-6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>0</td>
+      <td>0.813111</td>
+      <td>0.896802</td>
+      <td>-4.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.118471</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.116947</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.065444</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.061682</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.048468</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-1">
+<h3><span class="math notranslate nohighlight">\(\beta = 1\)</span><a class="headerlink" href="#beta-1" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-1.0_(2023_05_07,01:18)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/af2eb90b8bd3a31699c0e553c4cb2593c2ff0580e55737e9054bced4ddac06a4.png" src="../../_images/af2eb90b8bd3a31699c0e553c4cb2593c2ff0580e55737e9054bced4ddac06a4.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.893502</td>
+      <td>0.923722</td>
+      <td>-6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.849253</td>
+      <td>0.900849</td>
+      <td>-1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.843770</td>
+      <td>0.933615</td>
+      <td>-4.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.828408</td>
+      <td>0.979806</td>
+      <td>-8.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.828386</td>
+      <td>0.924544</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.115307</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>12</td>
+      <td>0.093452</td>
+      <td>0.324496</td>
+      <td>0.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.068787</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.064196</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.053824</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-0-5">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.5\)</span><a class="headerlink" href="#beta-0-5" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-0.5_(2023_05_07,02:51)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dcaa21ac305ef877cd317daa978822c8f03680ed5adbedd77c950c29e893f15c.png" src="../../_images/dcaa21ac305ef877cd317daa978822c8f03680ed5adbedd77c950c29e893f15c.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>51</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.887011</td>
+      <td>0.900849</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.883898</td>
+      <td>0.835483</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.881716</td>
+      <td>0.923722</td>
+      <td>0.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.875058</td>
+      <td>0.979806</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.859810</td>
+      <td>0.929612</td>
+      <td>-2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.107527</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.107469</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.076600</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.058739</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.053966</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="fixate-0">
+<h2>Fixate 0<a class="headerlink" href="#fixate-0" title="Permalink to this headline">#</a></h2>
+<section id="id2">
+<h3><span class="math notranslate nohighlight">\(\beta = 10\)</span><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate0_nf-280_beta-10.0_(2023_05_07,04:49)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/454292d85e50cda6365d491a67d53e1c218eeba547acc21bc33efb74b4fbacde.png" src="../../_images/454292d85e50cda6365d491a67d53e1c218eeba547acc21bc33efb74b4fbacde.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>118</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>0.882526</td>
+      <td>0.328052</td>
+      <td>-4.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>1</td>
+      <td>0.863390</td>
+      <td>0.944895</td>
+      <td>-10.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.857094</td>
+      <td>0.935583</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.850000</td>
+      <td>0.835483</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu222</td>
+      <td>0</td>
+      <td>0.819592</td>
+      <td>0.969344</td>
+      <td>-10.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.077073</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.074726</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.056115</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.040841</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.031083</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id3">
+<h3><span class="math notranslate nohighlight">\(\beta = 5\)</span><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate0_nf-280_beta-5.0_(2023_05_07,09:58)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1e4cb0617bb699a994507f91899606c2cc5380f242dfe18c4936a492ab5d87bb.png" src="../../_images/1e4cb0617bb699a994507f91899606c2cc5380f242dfe18c4936a492ab5d87bb.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>49</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.877971</td>
+      <td>0.924544</td>
+      <td>-4.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.877300</td>
+      <td>0.900849</td>
+      <td>-8.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.862654</td>
+      <td>0.923722</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.849435</td>
+      <td>0.929612</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>8</td>
+      <td>0.837366</td>
+      <td>0.987233</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.098548</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.075088</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.051655</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.051246</td>
+      <td>NaN</td>
+      <td>-6.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.050747</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="math notranslate nohighlight">\(\beta = 2\)</span><a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate0_nf-280_beta-2.0_(2023_05_07,04:16)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c2159bf04f789c8fff73f90002e34c7200f72c3421fc28fea888a9fe948bce9e.png" src="../../_images/c2159bf04f789c8fff73f90002e34c7200f72c3421fc28fea888a9fe948bce9e.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.868261</td>
+      <td>0.835483</td>
+      <td>-4.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.861644</td>
+      <td>0.900849</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.861356</td>
+      <td>0.923722</td>
+      <td>3.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.840085</td>
+      <td>0.933615</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.835492</td>
+      <td>0.979806</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.074922</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.074834</td>
+      <td>NaN</td>
       <td>3.0</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>139</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>0.6</td>
+      <th>102</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.045698</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.035442</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>2.0</td>
       <td>YUWEI</td>
       <td>ytu029</td>
-      <td>22</td>
-      <td>0.661793</td>
-      <td>0.930033</td>
+      <td>12</td>
+      <td>0.025017</td>
+      <td>0.324496</td>
+      <td>4.0</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="math notranslate nohighlight">\(\beta = 1\)</span><a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate0_nf-280_beta-1.0_(2023_05_08,15:10)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f11449fc8c75f497c0e53cac27014bdf27c696a80b0f17f7a10b2833f61fb3e8.png" src="../../_images/f11449fc8c75f497c0e53cac27014bdf27c696a80b0f17f7a10b2833f61fb3e8.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.836599</td>
+      <td>0.923722</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu104</td>
+      <td>0</td>
+      <td>0.833890</td>
+      <td>0.980831</td>
+      <td>12.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.824602</td>
+      <td>0.979806</td>
+      <td>-1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.817168</td>
+      <td>0.900849</td>
+      <td>4.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.816366</td>
+      <td>0.835483</td>
+      <td>-1.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.071317</td>
+      <td>NaN</td>
       <td>2.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.070164</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu131</td>
+      <td>0</td>
+      <td>0.055131</td>
+      <td>0.843686</td>
+      <td>12.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.053843</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate0</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.021481</td>
+      <td>NaN</td>
+      <td>10.0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-1-small">
+<h3><span class="math notranslate nohighlight">\(\beta = 1\)</span> (small)<a class="headerlink" href="#beta-1-small" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit_name = &#39;fixate0_nf-80_beta-1_(2023_05_04,09:03)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/27d0db8888be9dfb313ce049a83318ca89af437676d3e4aa4bc95900ef85e834.png" src="../../_images/27d0db8888be9dfb313ce049a83318ca89af437676d3e4aa4bc95900ef85e834.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu090</td>
+      <td>0</td>
+      <td>0.822292</td>
+      <td>0.990020</td>
+      <td>0.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.811698</td>
+      <td>0.835483</td>
+      <td>2.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu222</td>
+      <td>0</td>
+      <td>0.769233</td>
+      <td>0.969344</td>
+      <td>-6.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>5</td>
+      <td>0.760665</td>
+      <td>0.984911</td>
+      <td>-6.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu095</td>
+      <td>0</td>
+      <td>0.754663</td>
+      <td>0.956606</td>
+      <td>3.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.029146</td>
+      <td>NaN</td>
+      <td>10.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu229</td>
+      <td>11</td>
+      <td>0.025399</td>
+      <td>0.716168</td>
+      <td>5.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu225</td>
+      <td>0</td>
+      <td>0.019836</td>
+      <td>0.791217</td>
+      <td>-10.0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu131</td>
+      <td>0</td>
+      <td>-0.021731</td>
+      <td>0.843686</td>
+      <td>4.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>fixate0</td>
+      <td>80</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>-0.108443</td>
+      <td>0.328052</td>
+      <td>2.0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="obj-1">
+<h2>Obj 1<a class="headerlink" href="#obj-1" title="Permalink to this headline">#</a></h2>
+<section id="beta-10-0">
+<h3><span class="math notranslate nohighlight">\(\beta = 10.0\)</span><a class="headerlink" href="#beta-10-0" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit_name = &#39;obj1_nf-140_beta-10.0_(2023_05_04,11:53)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/343eb0dadd7d6d0b496dbf3223f4299f8bd8081ee56eb7d26f226784c2116140.png" src="../../_images/343eb0dadd7d6d0b496dbf3223f4299f8bd8081ee56eb7d26f226784c2116140.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>118</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>0.922303</td>
+      <td>0.328052</td>
+      <td>1.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu183</td>
+      <td>0</td>
+      <td>0.886864</td>
+      <td>0.927126</td>
+      <td>2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>5</td>
+      <td>0.825451</td>
+      <td>0.984911</td>
+      <td>1.0</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>140</th>
+      <th>124</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.820556</td>
+      <td>0.935583</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.786207</td>
+      <td>0.933615</td>
+      <td>0.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.065607</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu061</td>
+      <td>0</td>
+      <td>0.058620</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.035251</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.032923</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.031040</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id6">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.5\)</span><a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;obj1_nf-280_beta-0.5_(2023_05_04,11:11)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f55e13728153cc172b8ec5c0632524fb2e79d8b9edd264e44eb3eae5770c50b4.png" src="../../_images/f55e13728153cc172b8ec5c0632524fb2e79d8b9edd264e44eb3eae5770c50b4.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.837850</td>
+      <td>0.835483</td>
+      <td>16.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>1</td>
+      <td>0.831336</td>
+      <td>0.944895</td>
+      <td>-2.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.823877</td>
+      <td>0.923722</td>
+      <td>5.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.823590</td>
+      <td>0.979806</td>
+      <td>4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.815383</td>
+      <td>0.929612</td>
+      <td>2.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.110499</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.083910</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.075498</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu145</td>
+      <td>0</td>
+      <td>0.069567</td>
+      <td>0.593791</td>
+      <td>8.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.059685</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-1-0">
+<h3><span class="math notranslate nohighlight">\(\beta = 1.0\)</span><a class="headerlink" href="#beta-1-0" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;obj1_nf-280_beta-1.0_(2023_05_04,10:27)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b6a9ddf2e240dd8508d05ab185405a8c53ef33540bef733340ab957f9a6edf5b.png" src="../../_images/b6a9ddf2e240dd8508d05ab185405a8c53ef33540bef733340ab957f9a6edf5b.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>118</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>0.982281</td>
+      <td>0.328052</td>
+      <td>-2.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.918254</td>
+      <td>0.923722</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.834817</td>
+      <td>0.900849</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.827101</td>
+      <td>0.929612</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.791167</td>
+      <td>0.933615</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.102135</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.084034</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.067822</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.055478</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.053283</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="beta-1-0-nf-140">
+<h3><span class="math notranslate nohighlight">\(\beta = 1.0\)</span> (nf = 140)<a class="headerlink" href="#beta-1-0-nf-140" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit_name = &#39;obj1_nf-140_beta-1_(2023_05_02,15:57)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4d15b5ad04a3ec7c566191bcb8418964e065a2a1b0a6fc649540e103f28d5a43.png" src="../../_images/4d15b5ad04a3ec7c566191bcb8418964e065a2a1b0a6fc649540e103f28d5a43.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.837109</td>
+      <td>0.923722</td>
+      <td>2.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.786949</td>
+      <td>0.835483</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu096</td>
+      <td>0</td>
+      <td>0.784371</td>
+      <td>0.909688</td>
+      <td>-1.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu090</td>
+      <td>0</td>
+      <td>0.765962</td>
+      <td>0.990020</td>
+      <td>6.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu107</td>
+      <td>0</td>
+      <td>0.750969</td>
+      <td>0.970653</td>
+      <td>0.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu216</td>
+      <td>0</td>
+      <td>0.078946</td>
+      <td>0.896978</td>
+      <td>-2.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.066947</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.062923</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu131</td>
+      <td>0</td>
+      <td>0.050162</td>
+      <td>0.843686</td>
+      <td>4.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>obj1</td>
+      <td>140</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu183</td>
+      <td>0</td>
+      <td>-0.011984</td>
+      <td>0.927126</td>
+      <td>-6.0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="transl-1">
+<h2>Transl 1<a class="headerlink" href="#transl-1" title="Permalink to this headline">#</a></h2>
+<section id="id7">
+<h3><span class="math notranslate nohighlight">\(\beta = 5\)</span><a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl1_nf-420_beta-5.0_(2023_05_15,16:32)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ff3b7b696025975ed5684019c3e97b2861ab87204b6f68f4e900a850e0b7ef35.png" src="../../_images/ff3b7b696025975ed5684019c3e97b2861ab87204b6f68f4e900a850e0b7ef35.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.860603</td>
+      <td>0.923722</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.822304</td>
+      <td>0.924544</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.821550</td>
+      <td>0.933615</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.782099</td>
+      <td>0.929612</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.781933</td>
+      <td>0.979806</td>
+      <td>-10.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.088269</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.086094</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.053487</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.050053</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>5.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.049154</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id8">
+<h3><span class="math notranslate nohighlight">\(\beta = 10.0\)</span><a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl1_nf-420_beta-10.0_(2023_05_04,09:20)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e80c85fffc3e410fedfc88bdd0d93910db8a952e44b812d37f7d17496b3744da.png" src="../../_images/e80c85fffc3e410fedfc88bdd0d93910db8a952e44b812d37f7d17496b3744da.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>118</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>0.926081</td>
+      <td>0.328052</td>
+      <td>1.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.888798</td>
+      <td>0.923722</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu221</td>
+      <td>2</td>
+      <td>0.878807</td>
+      <td>0.921324</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.859043</td>
+      <td>0.835483</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>13</td>
+      <td>0.853619</td>
+      <td>0.267459</td>
+      <td>3.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.106150</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.093615</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.085758</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.057166</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.054477</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id9">
+<h3><span class="math notranslate nohighlight">\(\beta = 1.0\)</span><a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl1_nf-420_beta-1.0_(2023_05_02,22:02)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/be79fd4c470dd774998cb159f9c025d905fb1f42771273b676b3468bb093c890.png" src="../../_images/be79fd4c470dd774998cb159f9c025d905fb1f42771273b676b3468bb093c890.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>118</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>0.937899</td>
+      <td>0.328052</td>
+      <td>-8.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.860165</td>
+      <td>0.923722</td>
+      <td>2.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.842731</td>
+      <td>0.935583</td>
+      <td>-6.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>1</td>
+      <td>0.824497</td>
+      <td>0.944895</td>
+      <td>-10.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>4</td>
+      <td>0.820370</td>
+      <td>0.933615</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.104609</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.102957</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.068029</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.060499</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>1.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.040505</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id10">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.5\)</span><a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;transl1_nf-420_beta-0.5_(2023_05_02,15:00)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dbc63aaec755485dbf7593fa5e7432a5ce8fee867c531719dd934bc5691408c5.png" src="../../_images/dbc63aaec755485dbf7593fa5e7432a5ce8fee867c531719dd934bc5691408c5.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>124</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.908100</td>
+      <td>0.935583</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu120</td>
+      <td>0</td>
+      <td>0.884341</td>
+      <td>0.967720</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.875584</td>
+      <td>0.979806</td>
+      <td>3.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.875578</td>
+      <td>0.923722</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.849563</td>
+      <td>0.835483</td>
+      <td>3.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.133499</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.125624</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.090922</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.075240</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>transl1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.057947</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="fixate-1">
+<h2>Fixate 1<a class="headerlink" href="#fixate-1" title="Permalink to this headline">#</a></h2>
+<section id="id11">
+<h3><span class="math notranslate nohighlight">\(\beta = 0.6\)</span><a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-420_beta-0.6_(2023_04_30,20:36)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e9dc89d8352ee201cc82a741f4c22bf361efa5392de6fc63b70c64a6b446d357.png" src="../../_images/e9dc89d8352ee201cc82a741f4c22bf361efa5392de6fc63b70c64a6b446d357.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.905758</td>
+      <td>0.923722</td>
+      <td>3.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu120</td>
+      <td>0</td>
+      <td>0.874993</td>
+      <td>0.967720</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>7</td>
+      <td>0.856259</td>
+      <td>0.955361</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>124</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.6</td>
       <td>YUWEI</td>
       <td>ytu029</td>
-      <td>23</td>
-      <td>0.606277</td>
-      <td>0.946823</td>
-      <td>2.0</td>
       <td>4</td>
+      <td>0.852892</td>
+      <td>0.935583</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.847146</td>
+      <td>0.979806</td>
+      <td>1.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.130683</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.130189</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.093309</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.084369</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.6</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.063530</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -777,7 +5820,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -814,68 +5858,68 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>42</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.131421</td>
-      <td>NaN</td>
-      <td>3.0</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.867432</td>
+      <td>0.923722</td>
+      <td>4.0</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>124</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>clu037</td>
-      <td>0</td>
-      <td>0.277746</td>
-      <td>NaN</td>
-      <td>3.0</td>
-      <td>6</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.867288</td>
+      <td>0.935583</td>
+      <td>4.0</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>28</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>clu038</td>
+      <td>clu116</td>
       <td>0</td>
-      <td>0.361620</td>
-      <td>NaN</td>
-      <td>3.0</td>
-      <td>0</td>
+      <td>0.855247</td>
+      <td>0.835483</td>
+      <td>1.0</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>69</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>clu039</td>
-      <td>0</td>
-      <td>0.402115</td>
-      <td>NaN</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.851329</td>
+      <td>0.979806</td>
       <td>3.0</td>
-      <td>0</td>
+      <td>5</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>109</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>clu040</td>
-      <td>0</td>
-      <td>0.532881</td>
-      <td>NaN</td>
-      <td>-10.0</td>
+      <td>clu295</td>
+      <td>4</td>
+      <td>0.835850</td>
+      <td>0.929612</td>
+      <td>-6.0</td>
       <td>3</td>
     </tr>
     <tr>
@@ -892,69 +5936,69 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>136</th>
+      <th>68</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>19</td>
-      <td>0.447524</td>
-      <td>0.941254</td>
-      <td>14.0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>137</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>0.7</td>
-      <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>20</td>
-      <td>0.251581</td>
-      <td>0.958395</td>
-      <td>-6.0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>138</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>0.7</td>
-      <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>21</td>
-      <td>0.491255</td>
-      <td>0.846710</td>
-      <td>1.0</td>
+      <td>clu267</td>
+      <td>3</td>
+      <td>0.119581</td>
+      <td>0.943782</td>
+      <td>5.0</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>139</th>
+      <th>97</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>22</td>
-      <td>0.648284</td>
-      <td>0.930033</td>
-      <td>-4.0</td>
+      <td>clu294</td>
       <td>3</td>
+      <td>0.091513</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>140</th>
+      <th>13</th>
       <td>fixate1</td>
       <td>420</td>
       <td>0.7</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>23</td>
-      <td>0.591515</td>
-      <td>0.946823</td>
-      <td>-4.0</td>
-      <td>5</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.082509</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.7</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.065941</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.7</td>
+      <td>YUWEI</td>
+      <td>clu145</td>
+      <td>0</td>
+      <td>0.042415</td>
+      <td>0.593791</td>
+      <td>-8.0</td>
+      <td>3</td>
     </tr>
   </tbody>
 </table>
@@ -962,11 +6006,11 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-<section id="beta-10">
-<h3><span class="math notranslate nohighlight">\(\beta = 10\)</span><a class="headerlink" href="#beta-10" title="Permalink to this headline">#</a></h3>
+<section id="id12">
+<h3><span class="math notranslate nohighlight">\(\beta = 10\)</span><a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-420_beta-1e+01_(2023_04_30,22:48)&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-420_beta-10.0_(2023_04_30,22:48)&#39;</span>
 <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -983,7 +6027,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1020,68 +6065,68 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>124</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.107269</td>
-      <td>NaN</td>
-      <td>-10.0</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.867450</td>
+      <td>0.935583</td>
+      <td>0.0</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>51</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>clu037</td>
-      <td>0</td>
-      <td>0.236165</td>
-      <td>NaN</td>
-      <td>-10.0</td>
-      <td>9</td>
+      <td>clu221</td>
+      <td>3</td>
+      <td>0.852781</td>
+      <td>0.900849</td>
+      <td>2.0</td>
+      <td>4</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>28</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>clu038</td>
+      <td>clu116</td>
       <td>0</td>
-      <td>0.311113</td>
-      <td>NaN</td>
-      <td>-10.0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>10.0</td>
-      <td>YUWEI</td>
-      <td>clu039</td>
-      <td>0</td>
-      <td>0.291945</td>
-      <td>NaN</td>
-      <td>-10.0</td>
+      <td>0.844301</td>
+      <td>0.835483</td>
+      <td>-2.0</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>49</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>clu040</td>
+      <td>clu221</td>
+      <td>1</td>
+      <td>0.818352</td>
+      <td>0.924544</td>
+      <td>2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu120</td>
       <td>0</td>
-      <td>0.400256</td>
-      <td>NaN</td>
-      <td>-10.0</td>
+      <td>0.816611</td>
+      <td>0.967720</td>
+      <td>4.0</td>
       <td>3</td>
     </tr>
     <tr>
@@ -1098,69 +6143,69 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>136</th>
+      <th>103</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>19</td>
-      <td>0.276610</td>
-      <td>0.941254</td>
-      <td>1.0</td>
-      <td>1</td>
+      <td>clu294</td>
+      <td>10</td>
+      <td>0.085266</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>137</th>
+      <th>13</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>20</td>
-      <td>0.338626</td>
-      <td>0.958395</td>
-      <td>-6.0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>138</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>10.0</td>
-      <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>21</td>
-      <td>0.404134</td>
-      <td>0.846710</td>
-      <td>-4.0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>139</th>
-      <td>fixate1</td>
-      <td>420</td>
-      <td>10.0</td>
-      <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>22</td>
-      <td>0.413221</td>
-      <td>0.930033</td>
-      <td>-2.0</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.061334</td>
+      <td>NaN</td>
+      <td>-10.0</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>140</th>
+      <th>96</th>
       <td>fixate1</td>
       <td>420</td>
       <td>10.0</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>23</td>
-      <td>0.471153</td>
-      <td>0.946823</td>
-      <td>-2.0</td>
-      <td>12</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.049240</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.041724</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>10.0</td>
+      <td>YUWEI</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.038987</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -1238,10 +6283,49 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1">Fixate 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-2">Fixate 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-5"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1-vanilla">Fixate 1 (vanilla)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-5"><span class="math notranslate nohighlight">\(\beta = 1.5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-9"><span class="math notranslate nohighlight">\(\beta = 0.9\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-3"><span class="math notranslate nohighlight">\(\beta = 0.3\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-6"><span class="math notranslate nohighlight">\(\beta = 0.6\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-7"><span class="math notranslate nohighlight">\(\beta = 0.7\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-4"><span class="math notranslate nohighlight">\(\beta = 0.4\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-10"><span class="math notranslate nohighlight">\(\beta = 10\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-2"><span class="math notranslate nohighlight">\(\beta = 2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1"><span class="math notranslate nohighlight">\(\beta = 1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-5"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-0">Fixate 0</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span class="math notranslate nohighlight">\(\beta = 10\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span class="math notranslate nohighlight">\(\beta = 2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span class="math notranslate nohighlight">\(\beta = 1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-small"><span class="math notranslate nohighlight">\(\beta = 1\)</span> (small)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-1">Obj 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-10-0"><span class="math notranslate nohighlight">\(\beta = 10.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-0"><span class="math notranslate nohighlight">\(\beta = 1.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-1-0-nf-140"><span class="math notranslate nohighlight">\(\beta = 1.0\)</span> (nf = 140)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-1">Transl 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><span class="math notranslate nohighlight">\(\beta = 5\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><span class="math notranslate nohighlight">\(\beta = 10.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><span class="math notranslate nohighlight">\(\beta = 1.0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1">Fixate 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"><span class="math notranslate nohighlight">\(\beta = 0.6\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-7"><span class="math notranslate nohighlight">\(\beta = 0.7\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12"><span class="math notranslate nohighlight">\(\beta = 10\)</span></a></li>
 </ul>
 </li>
 </ul>

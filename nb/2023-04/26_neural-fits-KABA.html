@@ -278,6 +278,27 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-05/02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_intro.html">Fig: Intro, etc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_MI.html">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/tmp.html">tmp</a></li>
 </ul>
 </li>
 </ul>
@@ -473,6 +494,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1-vanilla">Fixate 1 (vanilla)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-4">Fixate 4</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-8">Fixate 8</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-8">Obj 8</a></li>
@@ -480,7 +502,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-2">Transl 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-4">Transl 4</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj4">Obj4</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-medium">Obj1 (medium)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-1-medium">Obj 1 (medium)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-ignore-below-older-stuff">Note: ignore below, older stuff</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-shallow">Obj1 (shallow)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Transl 2</a></li>
@@ -561,6 +583,227 @@ document.write(`
 </div>
 </details>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">save_script_neural</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'run_neuron_kaba.txt'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/_MTMST/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">scripts</span>
+</pre>
+</div></div>
+</div>
+<section id="fixate-1-vanilla">
+<h2>Fixate 1 (vanilla)<a class="headerlink" href="#fixate-1-vanilla" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;vanilla_fixate1_nf-420_beta-0.15_(2023_05_02,15:15)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8cf5f5797482fd6fb707d51238ca21f22cece51abcca7dcf439ec2b3608ba851.png" src="../../_images/8cf5f5797482fd6fb707d51238ca21f22cece51abcca7dcf439ec2b3608ba851.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu036</td>
+      <td>0</td>
+      <td>0.134933</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu037</td>
+      <td>0</td>
+      <td>0.277480</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu038</td>
+      <td>0</td>
+      <td>0.366209</td>
+      <td>NaN</td>
+      <td>-2.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu039</td>
+      <td>0</td>
+      <td>0.395374</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu040</td>
+      <td>0</td>
+      <td>0.550329</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>19</td>
+      <td>0.373986</td>
+      <td>0.941254</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>20</td>
+      <td>0.261221</td>
+      <td>0.958395</td>
+      <td>-8.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>21</td>
+      <td>0.318316</td>
+      <td>0.846710</td>
+      <td>8.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>22</td>
+      <td>0.647974</td>
+      <td>0.930033</td>
+      <td>-1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>ytu029</td>
+      <td>23</td>
+      <td>0.588791</td>
+      <td>0.946823</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+</section>
 <section id="fixate-4">
 <h2>Fixate 4<a class="headerlink" href="#fixate-4" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
@@ -2003,8 +2246,8 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-<section id="obj1-medium">
-<h2>Obj1 (medium)<a class="headerlink" href="#obj1-medium" title="Permalink to this headline">#</a></h2>
+<section id="obj-1-medium">
+<h2>Obj 1 (medium)<a class="headerlink" href="#obj-1-medium" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;obj1_nf-280_(2023_04_26,15:53)&#39;</span>
@@ -2206,6 +2449,204 @@ document.write(`
   </tbody>
 </table>
 <p>141 rows × 10 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;expt&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;clu267&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>67</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>1</td>
+      <td>0.723322</td>
+      <td>0.944895</td>
+      <td>5.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>3</td>
+      <td>0.234865</td>
+      <td>0.943782</td>
+      <td>-10.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.825012</td>
+      <td>0.979806</td>
+      <td>-1.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>5</td>
+      <td>0.782284</td>
+      <td>0.984911</td>
+      <td>-10.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>6</td>
+      <td>0.423006</td>
+      <td>0.880980</td>
+      <td>-2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>7</td>
+      <td>0.680861</td>
+      <td>0.955361</td>
+      <td>-10.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>8</td>
+      <td>0.661734</td>
+      <td>0.975974</td>
+      <td>8.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>9</td>
+      <td>0.410651</td>
+      <td>0.982964</td>
+      <td>-10.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>11</td>
+      <td>0.679141</td>
+      <td>0.850368</td>
+      <td>-8.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>12</td>
+      <td>0.638146</td>
+      <td>0.924557</td>
+      <td>4.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>13</td>
+      <td>0.487466</td>
+      <td>0.960405</td>
+      <td>8.0</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>obj1</td>
+      <td>280</td>
+      <td>0.15</td>
+      <td>YUWEI</td>
+      <td>clu267</td>
+      <td>14</td>
+      <td>0.623481</td>
+      <td>0.919044</td>
+      <td>8.0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
 </div></div></div>
 </div>
 </section>
@@ -6984,6 +7425,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-1-vanilla">Fixate 1 (vanilla)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-4">Fixate 4</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixate-8">Fixate 8</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-8">Obj 8</a></li>
@@ -6991,7 +7433,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-2">Transl 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transl-4">Transl 4</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj4">Obj4</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-medium">Obj1 (medium)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-1-medium">Obj 1 (medium)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-ignore-below-older-stuff">Note: ignore below, older stuff</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj1-shallow">Obj1 (shallow)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Transl 2</a></li>
