@@ -294,10 +294,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Fig: Alignment scores</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_EPE-NELBO.html">Fig: EPE/NELBO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_intro.html">Fig: Intro, etc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_MI.html">Fig: MI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_z-traversal.html">Load</a></li>
+
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Table_pvals.html">Table: pvals (perf + align)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
 </ul>
 </li>
@@ -495,6 +504,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-df">Create df</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box">Box</a></li>
 </ul>
             </nav>
         </div>
@@ -541,7 +551,9 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pal_model</span><span class="p">,</span> <span class="n">pal_cat</span> <span class="o">=</span> <span class="n">get_palette</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">figures.box</span> <span class="kn">import</span> <span class="n">plot_box</span>
+<span class="n">pal_model</span><span class="p">,</span> <span class="n">pal_cat</span> <span class="o">=</span> <span class="n">get_palette</span><span class="p">()</span>
+
 <span class="n">skip_fits</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;fixate2_nf-420_beta-0.15_(2023_04_27,13:57)&#39;</span><span class="p">,</span>
     <span class="s1">&#39;fixate1_nf-420_beta-0.8_(2023_05_07,04:15)&#39;</span><span class="p">,</span>
@@ -589,6 +601,7 @@ document.write(`
     <span style="color: #008000; text-decoration-color: #008000">'fixate0_nf-280_beta-10.0_(2023_05_07,04:49).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'fixate0_nf-280_beta-2.0_(2023_05_07,04:16).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'fixate0_nf-280_beta-5.0_(2023_05_07,09:58).npy'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.001_(2023_05_16,00:03).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.01_(2023_04_30,07:42).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.1_(2023_04_29,22:01).npy'</span>,
@@ -627,9 +640,11 @@ document.write(`
     <span style="color: #008000; text-decoration-color: #008000">'transl1_nf-420_beta-0.8_(2023_05_04,12:46).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'transl1_nf-420_beta-1.0_(2023_05_02,22:02).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'transl1_nf-420_beta-10.0_(2023_05_04,09:20).npy'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'transl1_nf-420_beta-5.0_(2023_05_15,16:32).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'transl2_nf-420_beta-0.15_(2023_04_27,19:16).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'transl2_nf-420_beta-0.5_(2023_05_03,10:12).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'transl2_nf-420_beta-1.0_(2023_05_02,00:19).npy'</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'vanilla_fixate1_nf-420_beta-0.001_(2023_05_16,08:26).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'vanilla_fixate1_nf-420_beta-0.01_(2023_05_13,21:48).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'vanilla_fixate1_nf-420_beta-0.15_(2023_05_02,15:15).npy'</span>,
     <span style="color: #008000; text-decoration-color: #008000">'vanilla_fixate1_nf-420_beta-0.1_(2023_05_10,21:14).npy'</span>,
@@ -660,7 +675,7 @@ document.write(`
     <span class="k">if</span> <span class="s1">&#39;reservoir&#39;</span> <span class="ow">in</span> <span class="n">fit</span> <span class="ow">or</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">skip_fits</span><span class="p">:</span>
         <span class="k">continue</span>
     <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>    
-    <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="mf">20.0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">beta</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">]:</span>
         <span class="k">continue</span>
 
     <span class="c1"># load npy</span>
@@ -689,265 +704,22 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████| 65/65 [13:47&lt;00:00, 12.73s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 68/68 [18:09&lt;00:00, 16.02s/it]
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="box">
+<h2>Box<a class="headerlink" href="#box" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_align</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_box</span><span class="p">(</span><span class="n">df_align</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;Alignment&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>model</th>
-      <th>category</th>
-      <th>beta</th>
-      <th>nf</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>a</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.1</td>
-      <td>280</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.363952</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.1</td>
-      <td>280</td>
-      <td>clu037</td>
-      <td>0</td>
-      <td>0.411051</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.1</td>
-      <td>280</td>
-      <td>clu038</td>
-      <td>0</td>
-      <td>0.432012</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.1</td>
-      <td>280</td>
-      <td>clu039</td>
-      <td>0</td>
-      <td>0.397605</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.1</td>
-      <td>280</td>
-      <td>clu040</td>
-      <td>0</td>
-      <td>0.516862</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>8927</th>
-      <td>AE</td>
-      <td>fixate1</td>
-      <td>ae</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>19</td>
-      <td>0.464388</td>
-    </tr>
-    <tr>
-      <th>8928</th>
-      <td>AE</td>
-      <td>fixate1</td>
-      <td>ae</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>20</td>
-      <td>0.288113</td>
-    </tr>
-    <tr>
-      <th>8929</th>
-      <td>AE</td>
-      <td>fixate1</td>
-      <td>ae</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>21</td>
-      <td>0.264531</td>
-    </tr>
-    <tr>
-      <th>8930</th>
-      <td>AE</td>
-      <td>fixate1</td>
-      <td>ae</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>22</td>
-      <td>0.302297</td>
-    </tr>
-    <tr>
-      <th>8931</th>
-      <td>AE</td>
-      <td>fixate1</td>
-      <td>ae</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>23</td>
-      <td>0.310107</td>
-    </tr>
-  </tbody>
-</table>
-<p>8932 rows × 7 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_align</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;fixate0&#39;, &#39;fixate1&#39;, &#39;fixate2&#39;, &#39;obj1&#39;, &#39;transl1&#39;, &#39;transl2&#39;],
-      dtype=object)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">props_box</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;boxprops&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
-        <span class="c1"># &#39;facecolor&#39;: &#39;none&#39;,</span>
-        <span class="c1"># &#39;lw&#39;: 1.5,</span>
-        <span class="s1">&#39;ls&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">},</span>
-    <span class="s1">&#39;medianprops&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;lw&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">},</span>
-    <span class="s1">&#39;whiskerprops&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;lw&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">},</span>
-    <span class="s1">&#39;capprops&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;lw&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;zorder&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="s1">&#39;flierprops&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
-        <span class="s1">&#39;zorder&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-    <span class="s1">&#39;showfliers&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s1">&#39;showmeans&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s1">&#39;dodge&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">props_mean</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;markerfacecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;markeredgecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df1</span> <span class="o">=</span> <span class="n">df_align</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_align</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_align</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">_df2</span> <span class="o">=</span> <span class="n">df_align</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_align</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_align</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">_pal1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pal_model</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="p">}</span>
-<span class="n">_pal2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pal_model</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_df2</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">_df1</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">_pal1</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">_pal1</span><span class="p">,</span>
-    <span class="n">meanprops</span><span class="o">=</span><span class="n">props_mean</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">props_box</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">_df2</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">_pal2</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">_pal2</span><span class="p">,</span>
-    <span class="n">meanprops</span><span class="o">=</span><span class="n">props_mean</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">props_box</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\beta$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Alignment&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">))</span>
-    
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/6823486d5d28034bdb19c9ce6421fce6d55cdc4636fd9ed497c9b0bf131241c7.png" src="../../_images/6823486d5d28034bdb19c9ce6421fce6d55cdc4636fd9ed497c9b0bf131241c7.png" />
+<img alt="../../_images/8dbf5f10e93b7bb8dad417c539503102dfb6eb6298002e08bee5f6652bcf25bb.png" src="../../_images/8dbf5f10e93b7bb8dad417c539503102dfb6eb6298002e08bee5f6652bcf25bb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -957,156 +729,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>model</th>
-      <th>category</th>
-      <th>beta</th>
-      <th>nf</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>a</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>846</th>
-      <td>cNVAE</td>
-      <td>fixate1</td>
-      <td>0.01</td>
-      <td>420</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.268528</td>
-    </tr>
-    <tr>
-      <th>847</th>
-      <td>cNVAE</td>
-      <td>fixate1</td>
-      <td>0.01</td>
-      <td>420</td>
-      <td>clu037</td>
-      <td>0</td>
-      <td>0.527369</td>
-    </tr>
-    <tr>
-      <th>848</th>
-      <td>cNVAE</td>
-      <td>fixate1</td>
-      <td>0.01</td>
-      <td>420</td>
-      <td>clu038</td>
-      <td>0</td>
-      <td>0.190698</td>
-    </tr>
-    <tr>
-      <th>849</th>
-      <td>cNVAE</td>
-      <td>fixate1</td>
-      <td>0.01</td>
-      <td>420</td>
-      <td>clu039</td>
-      <td>0</td>
-      <td>0.246395</td>
-    </tr>
-    <tr>
-      <th>850</th>
-      <td>cNVAE</td>
-      <td>fixate1</td>
-      <td>0.01</td>
-      <td>420</td>
-      <td>clu040</td>
-      <td>0</td>
-      <td>0.586000</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>7940</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>2.0</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>19</td>
-      <td>0.138316</td>
-    </tr>
-    <tr>
-      <th>7941</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>2.0</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>20</td>
-      <td>0.147245</td>
-    </tr>
-    <tr>
-      <th>7942</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>2.0</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>21</td>
-      <td>0.241407</td>
-    </tr>
-    <tr>
-      <th>7943</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>2.0</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>22</td>
-      <td>0.158871</td>
-    </tr>
-    <tr>
-      <th>7944</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>2.0</td>
-      <td>420</td>
-      <td>ytu029</td>
-      <td>23</td>
-      <td>0.150269</td>
-    </tr>
-  </tbody>
-</table>
-<p>4371 rows × 7 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1167,7 +789,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e6b6d93bfdbaabcab96b4214f1c3777126e0b2dc4843fb453d379d40d9b7a3a8.png" src="../../_images/e6b6d93bfdbaabcab96b4214f1c3777126e0b2dc4843fb453d379d40d9b7a3a8.png" />
+<img alt="../../_images/868a851da871e1c80790764f81ec1ae8fe07ad26c367fbe41deeae56e425023e.png" src="../../_images/868a851da871e1c80790764f81ec1ae8fe07ad26c367fbe41deeae56e425023e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1423,6 +1045,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-df">Create df</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box">Box</a></li>
 </ul>
   </nav></div>
 

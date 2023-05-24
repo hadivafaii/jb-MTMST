@@ -1,0 +1,1627 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>(29) Traversal (+Eval) &#8212; MT/MST project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-02/29_traversal';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_eval.html">(20) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(23) Nardin notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-GABAN.html">(26) Neural results plot (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-KABA.html">(26) Neural results plot (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/29_combine-fits.html">(29) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">May 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-05.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-05_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_EPE-NELBO.html">Fig: EPE/NELBO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_intro.html">Fig: Intro, etc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_MI.html">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig_z-traversal.html">Load</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Table_pvals.html">Table: pvals (perf + align)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-02/29_traversal.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-02/29_traversal.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(29) Traversal (+Eval)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-model">Load model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-traversal">Latent Traversal</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="traversal-eval">
+<h1>(29) Traversal (+Eval)<a class="headerlink" href="#traversal-eval" title="Permalink to this headline">#</a></h1>
+<p><strong>Motivation</strong>: Load models, evaluate, do latent traversal. <br></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span> <span class="k">as</span> <span class="n">dc</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># GitHub</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;_MTMST&#39;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">model.opticflow</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="load-model">
+<h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;k-32_z-7x[10,20]_cells-2_pre-1x3_post-1x3&#39;</span>
+<span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;Clamp(Sig:5,Mu:25)-BalancerDebugged_ep1000-b512-lr(0.001)_beta(0.25)-anneal(1x0.3)_lambda(0.01)_grad(1000)_bal-equal_(2023_03_27,18:33)&#39;</span>
+<span class="n">tr</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+    <span class="n">fit_name</span><span class="o">=</span><span class="n">fit_name</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:2&#39;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">+-------------+------------+
+| Module Name | Num Params |
++-------------+------------+
+|     VAE     |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17.0</span> Mil  |
+|     ---     |    ---     |
+|     stem    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.1</span> K    |
+|     pre     |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">96.0</span> K   |
+|  enc_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9.4</span> Mil   |
+| enc_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+| dec_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+|    expand   |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">70.8</span> K   |
+|  dec_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.5</span> Mil   |
+|     post    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.0</span> K   |
+|     out     |    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">578</span>     |
+|  cos_recon  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|   l2_recon  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|   l1_recon  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|  l1_weight  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
++-------------+------------+ 
+
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+# params: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17.0</span> M
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 42.9 s, sys: 3.81 s, total: 46.7 s
+Wall time: 9.58 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">val</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">use_ema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">val_ema</span><span class="p">,</span> <span class="n">loss_ema</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">use_ema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 1s, sys: 1.41 s, total: 4min 3s
+Wall time: 3min 54s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">k</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;vae&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;ema&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">loss_ema</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">}</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">loss</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loss_summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008000; text-decoration-color: #008000">'kl'</span>: <span style="font-weight: bold">{</span><span style="color: #008000; text-decoration-color: #008000">'vae'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38.24</span>, <span style="color: #008000; text-decoration-color: #008000">'ema'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38.24</span><span style="font-weight: bold">}</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'epe'</span>: <span style="font-weight: bold">{</span><span style="color: #008000; text-decoration-color: #008000">'vae'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.45</span>, <span style="color: #008000; text-decoration-color: #008000">'ema'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.45</span><span style="font-weight: bold">}</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'cos'</span>: <span style="font-weight: bold">{</span><span style="color: #008000; text-decoration-color: #008000">'vae'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.76</span>, <span style="color: #008000; text-decoration-color: #008000">'ema'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.75</span><span style="font-weight: bold">}</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'l1'</span>: <span style="font-weight: bold">{</span><span style="color: #008000; text-decoration-color: #008000">'vae'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.69</span>, <span style="color: #008000; text-decoration-color: #008000">'ema'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.68</span><span style="font-weight: bold">}</span>,
+    <span style="color: #008000; text-decoration-color: #008000">'l2'</span>: <span style="font-weight: bold">{</span><span style="color: #008000; text-decoration-color: #008000">'vae'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.33</span>, <span style="color: #008000; text-decoration-color: #008000">'ema'</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.33</span><span style="font-weight: bold">}</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s1">&#39;fig&#39;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> (VAE)&quot;</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> (EMA)&quot;</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
+</pre>
+</div><img alt="../../_images/a71ca3f03da0326375e3f102e2ccd9d19bf351066ec9dab0488ae3e5bafde2bb.png" src="../../_images/a71ca3f03da0326375e3f102e2ccd9d19bf351066ec9dab0488ae3e5bafde2bb.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/sample <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
+</pre>
+</div><img alt="../../_images/e5d8052a46e8d8dd0a66cb2a3e52225628cebdd1d4ff8f96c961a1fb3dc0af2c.png" src="../../_images/e5d8052a46e8d8dd0a66cb2a3e52225628cebdd1d4ff8f96c961a1fb3dc0af2c.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
+</pre>
+</div><img alt="../../_images/134ead97891e73f9ffac7dac61d3f4006d73b70313617b23a0af93f8c115663b.png" src="../../_images/134ead97891e73f9ffac7dac61d3f4006d73b70313617b23a0af93f8c115663b.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/regression <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
+</pre>
+</div><img alt="../../_images/a8cc350a611df6fc9aaac16cee2e214ad23f024aeff352f4f63df8efa1fd105e.png" src="../../_images/a8cc350a611df6fc9aaac16cee2e214ad23f024aeff352f4f63df8efa1fd105e.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>VAE<span style="font-weight: bold">)</span>
+</pre>
+</div><img alt="../../_images/64fe4b215f329f0dd45e544fed0cdd47df04313de7312abf7de0aa5b775987b0.png" src="../../_images/64fe4b215f329f0dd45e544fed0cdd47df04313de7312abf7de0aa5b775987b0.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">fig/mutual_info <span style="font-weight: bold">(</span>EMA<span style="font-weight: bold">)</span>
+</pre>
+</div><img alt="../../_images/a48ab353981562dbc647532e8cc233f5859e1b9ea131a58858ba85e5d52cea2c.png" src="../../_images/a48ab353981562dbc647532e8cc233f5859e1b9ea131a58858ba85e5d52cea2c.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">----------------------------------------------------------------------
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;regr/mi&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mi_ema</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;regr/mi&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mi</span><span class="p">,</span> <span class="n">mi_ema</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.3756599381333692, 0.3791011933177657)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">log_weight_norm</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.0199, 1.0658, 1.0958, 1.0570, 1.0660, 1.0768, 1.0041, 1.1065, 1.0927,
+        0.8894, 1.1248, 1.2083, 1.0933, 1.0982, 1.2267, 1.0946, 1.0049, 1.2088,
+        1.3661, 1.1751, 1.0902, 1.0547, 1.1669, 1.0835, 1.0756, 0.9893, 0.9851,
+        1.0716, 1.1086, 1.1291, 1.1967, 0.9556], device=&#39;cuda:2&#39;,
+       grad_fn=&lt;ExpBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">model_ema</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">log_weight_norm</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.0199, 1.0658, 1.0958, 1.0570, 1.0660, 1.0769, 1.0042, 1.1065, 1.0927,
+        0.8894, 1.1248, 1.2083, 1.0933, 1.0983, 1.2268, 1.0947, 1.0049, 1.2088,
+        1.3661, 1.1752, 1.0903, 1.0547, 1.1669, 1.0835, 1.0756, 0.9893, 0.9851,
+        1.0716, 1.1086, 1.1291, 1.1968, 0.9556], device=&#39;cuda:2&#39;,
+       grad_fn=&lt;ExpBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(32, 2, 4, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">show_opticflow</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tick_spacing</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/aaaa82727528951d0a1e98c6b081cc44117665e3bd66a427787a10b512c24662.png" src="../../_images/aaaa82727528951d0a1e98c6b081cc44117665e3bd66a427787a10b512c24662.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scales</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">latent_scales</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_latents_hist</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6ac3a616fbb88b831cdbdb64d076595e0db9e68ef323e1cc1b3ff368f0e8509e.png" src="../../_images/6ac3a616fbb88b831cdbdb64d076595e0db9e68ef323e1cc1b3ff368f0e8509e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_latents_hist</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6de74a50c21300b634292c87f9fe7d4c19f2e1fd2523ffbe85ef973b3efbebe7.png" src="../../_images/6de74a50c21300b634292c87f9fe7d4c19f2e1fd2523ffbe85ef973b3efbebe7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_latents_hist_full</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/86de8d8894aac5ff1b6f51fedcbf34720c97207f4cc3a336fe81e12ce36beb4c.png" src="../../_images/86de8d8894aac5ff1b6f51fedcbf34720c97207f4cc3a336fe81e12ce36beb4c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_latents_hist_full</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a1e928578484760443285f69059dccb12cb8756e6b82713a1525d91618106ed4.png" src="../../_images/a1e928578484760443285f69059dccb12cb8756e6b82713a1525d91618106ed4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]),</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">zz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(232, 16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/17809804b2378531766cb542eb4eaba435a537bb05a0dacfbd62fc666b07a598.png" src="../../_images/17809804b2378531766cb542eb4eaba435a537bb05a0dacfbd62fc666b07a598.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;x_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b59026d4a1d22e78c708be62c12bde0736ec40d104b93bcf9c579f890d78a5a8.png" src="../../_images/b59026d4a1d22e78c708be62c12bde0736ec40d104b93bcf9c579f890d78a5a8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]),</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">zz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(75, 18)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/218622959caa8177e01ad1c7c8ea33e6ae5db55c6c9b2391fd043ec959e21d53.png" src="../../_images/218622959caa8177e01ad1c7c8ea33e6ae5db55c6c9b2391fd043ec959e21d53.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;x_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/273f63a99adf396f47aeb5be5c6e55a97fbe0c3f9b247ca185b863d7b48e6244.png" src="../../_images/273f63a99adf396f47aeb5be5c6e55a97fbe0c3f9b247ca185b863d7b48e6244.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]),</span> <span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">zz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(232, 16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/17809804b2378531766cb542eb4eaba435a537bb05a0dacfbd62fc666b07a598.png" src="../../_images/17809804b2378531766cb542eb4eaba435a537bb05a0dacfbd62fc666b07a598.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;x_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/12ff92c134f70b66e34274423b4917ebcef8af6e0c147dfe2af7702d89e94da4.png" src="../../_images/12ff92c134f70b66e34274423b4917ebcef8af6e0c147dfe2af7702d89e94da4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]),</span> <span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">zz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(75, 18)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;z_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5e5e125d92462c62557b1737f8e3acc3418079021e1e4d88bc06b3012f1343f5.png" src="../../_images/5e5e125d92462c62557b1737f8e3acc3418079021e1e4d88bc06b3012f1343f5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;x_sample&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e8980809dcb5271e3a484da733e31aba4865e09a2cb70956d32454c17f8a7934.png" src="../../_images/e8980809dcb5271e3a484da733e31aba4865e09a2cb70956d32454c17f8a7934.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(592.0896, device=&#39;cuda:2&#39;, grad_fn=&lt;SumBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/241abdb3669c15d8f37fa8fde815612ab224d39e636baeae4e767ad5b45f77ed.png" src="../../_images/241abdb3669c15d8f37fa8fde815612ab224d39e636baeae4e767ad5b45f77ed.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_norms</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">all_log_norm</span><span class="p">)</span><span class="o">.</span><span class="n">exp</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">all_norms</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">51</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e6bbe0552a556478d8d73ae8d5ec175cae72bd0894f112762577ff513ff1b5e5.png" src="../../_images/e6bbe0552a556478d8d73ae8d5ec175cae72bd0894f112762577ff513ff1b5e5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">all_norms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>365.48495
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">all_norms</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_norms</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> % of them are greated than 5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.9</span> % of them are greated than <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w2p</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">norms_expand</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">expand</span><span class="p">):</span>
+    <span class="n">w2p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+    <span class="n">_norm</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">vector_norm</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+    <span class="n">norms_expand</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_norm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">norms_expand</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.366</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.405</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.375</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.365</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.37</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.378</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.364</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.408</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.406</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.396</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.407</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.379</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.378</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.392</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.65</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.317</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.479</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.372</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.299</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.422</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.362</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.459</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.599</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.593</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.548</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.55</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.676</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.562</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.901</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.866</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.791</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.813</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.898</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.821</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.796</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.749</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.745</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.855</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.66</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.771</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.769</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.708</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.792</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.739</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.765</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.73</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.713</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.894</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.811</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.829</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.769</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.737</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.828</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.938</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.704</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.716</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.777</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.803</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.754</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.925</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.868</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.785</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.711</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.713</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.802</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.776</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.865</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.98</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.871</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.758</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.154</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.155</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.154</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.155</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.088</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.14</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.27</span> <span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.538</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.589</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.555</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.622</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.585</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.591</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.741</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.648</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.562</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.612</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.654</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.544</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.711</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.613</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">13</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.962</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.027</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.948</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.931</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.222</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.947</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.095</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.884</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.958</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.938</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.718</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.215</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.817</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.775</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">15</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.706</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.715</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.705</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.722</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.705</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.673</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.813</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.958</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.165</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.314</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.17</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.208</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.983</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.105</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.077</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.119</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.002</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.137</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.114</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.102</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.07</span> <span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">18</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.82</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.821</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.993</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.983</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.971</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.669</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.911</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">19</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.094</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.82</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.08</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.946</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.747</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.809</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.056</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.87</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.153</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.008</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.942</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.018</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.956</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.842</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.976</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.99</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.155</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.984</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.619</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.179</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.039</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">22</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.342</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.366</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.269</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.114</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.137</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.286</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.143</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">23</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.113</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.027</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.99</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.929</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.935</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.164</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.994</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.084</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.932</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.027</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.828</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.903</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.904</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.897</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.964</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.772</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.011</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.041</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.909</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.077</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.769</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">26</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.832</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.546</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.648</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.248</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.554</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.814</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.817</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">27</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.283</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.304</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.426</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.379</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.23</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.358</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.381</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">28</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.429</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.244</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.853</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.684</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.445</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.331</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.252</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.022</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.081</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.14</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.953</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.966</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.115</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.038</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">norms_expand</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.375</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.395</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.415</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.569</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.841</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.751</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.778</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.789</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.803</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.824</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.16</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.603</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.621</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">13</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.019</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.901</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">15</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.72</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.129</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.089</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">18</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.881</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">19</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.936</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.97</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.992</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">22</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.237</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">23</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.022</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.939</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.935</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">26</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.78</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">27</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.337</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">28</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.463</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.045</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w2p</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">norms_expand</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">model_ema</span><span class="o">.</span><span class="n">expand</span><span class="p">):</span>
+    <span class="n">w2p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+    <span class="n">_norm</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">vector_norm</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+    <span class="n">norms_expand</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_norm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">norms_expand</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">{</span>
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.366</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.405</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.375</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.365</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.37</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.378</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.364</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.408</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.406</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.396</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.407</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.379</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.378</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.392</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.65</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.317</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.479</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.372</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.299</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.422</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.362</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.459</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.599</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.593</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.547</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.55</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.675</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.562</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.901</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.866</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.791</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.813</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.898</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.821</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.796</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.749</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.745</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.855</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.66</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.771</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.769</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.708</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.792</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.739</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.765</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.73</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.713</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.894</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.811</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.829</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.77</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.738</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.828</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.938</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.704</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.716</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.777</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.803</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.754</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.925</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.868</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.785</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.711</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.713</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.802</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.776</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.865</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.98</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.871</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.758</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.155</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.156</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.154</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.155</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.088</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.14</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.27</span> <span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.538</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.589</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.555</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.623</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.585</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.591</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.741</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.649</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.562</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.613</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.655</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.544</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.712</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.614</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">13</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.962</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.027</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.947</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.931</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.222</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.947</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.095</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.884</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.958</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.938</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.718</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.215</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.817</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.775</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">15</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.706</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.715</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.705</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.722</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.705</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.673</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.813</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.958</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.165</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.313</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.17</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.207</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.982</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.105</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.077</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.119</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.002</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.137</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.114</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.102</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.07</span> <span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">18</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.82</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.821</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.993</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.983</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.971</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.669</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.911</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">19</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.094</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.82</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.08</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.945</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.747</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.809</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.056</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.87</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.153</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.009</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.943</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.018</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.957</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.842</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.977</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.991</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.155</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.985</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.619</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.179</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.039</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">22</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.342</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.366</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.269</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.114</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.137</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.286</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.143</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">23</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.113</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.027</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.99</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.929</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.935</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.164</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.993</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.085</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.932</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.027</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.828</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.903</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.904</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.897</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.965</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.772</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.011</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.042</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.909</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.077</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.77</span> <span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">26</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.833</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.547</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.649</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.249</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.554</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.814</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.818</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">27</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.283</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.304</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.426</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.379</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.23</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.358</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.38</span> <span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">28</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.429</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.244</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.853</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.684</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.445</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.33</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.252</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>,
+    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">array</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.022</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.081</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.14</span> , <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.953</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.966</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.115</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.038</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">dtype</span>=<span style="color: #800080; text-decoration-color: #800080">float32</span><span style="font-weight: bold">)</span>
+<span style="font-weight: bold">}</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">+-------------+------------+
+| Module Name | Num Params |
++-------------+------------+
+|     VAE     |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17.0</span> Mil  |
+|     ---     |    ---     |
+|     stem    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.1</span> K    |
+|     pre     |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">96.0</span> K   |
+|  enc_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9.4</span> Mil   |
+| enc_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+| dec_sampler |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.4</span> Mil   |
+|    expand   |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">70.8</span> K   |
+|  dec_tower  |  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4.5</span> Mil   |
+|     post    |   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40.0</span> K   |
+|     out     |    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">578</span>     |
+|  cos_recon  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|   l2_recon  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|   l1_recon  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
+|  l1_weight  |     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>      |
++-------------+------------+ 
+
+
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scales</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">latent_scales</span><span class="p">()</span>
+<span class="n">num</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">n_latent_per_group</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_w</span> <span class="ow">in</span> <span class="n">w2p</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">z</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">_w</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="n">k</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;z = </span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Expand_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> (scale = </span><span class="si">{</span><span class="n">scales</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5597df2cb031da7c8d5632f568cadb3460aaaf8c5a7e1e67f56f1dc3c73a2801.png" src="../../_images/5597df2cb031da7c8d5632f568cadb3460aaaf8c5a7e1e67f56f1dc3c73a2801.png" />
+<img alt="../../_images/2927e1a5805e9f04c4a926d4211aa36f26e40e116dd2e8e5cd7bbfba09e576cb.png" src="../../_images/2927e1a5805e9f04c4a926d4211aa36f26e40e116dd2e8e5cd7bbfba09e576cb.png" />
+<img alt="../../_images/c19a4bc8dc1b5c8992e7813db5ba97f5e46b087955c23eda438ebb08d8db0709.png" src="../../_images/c19a4bc8dc1b5c8992e7813db5ba97f5e46b087955c23eda438ebb08d8db0709.png" />
+<img alt="../../_images/2bb6031491d04c41988b59b269e311613871f30a93be4d4f7fa75a5f2fb82247.png" src="../../_images/2bb6031491d04c41988b59b269e311613871f30a93be4d4f7fa75a5f2fb82247.png" />
+<img alt="../../_images/009bb3d4e5e779144bc8db956648d5f7aea0c1364c9059fad18c922afd56451e.png" src="../../_images/009bb3d4e5e779144bc8db956648d5f7aea0c1364c9059fad18c922afd56451e.png" />
+<img alt="../../_images/1a0a76702623ee7af072d50b76d8aa1ffe48e8e6c832bf98f2726e09d8994acc.png" src="../../_images/1a0a76702623ee7af072d50b76d8aa1ffe48e8e6c832bf98f2726e09d8994acc.png" />
+<img alt="../../_images/8a5d50f24550dd8f9ed20628ba350713cdb5642eec686462770abaa3e302d9e7.png" src="../../_images/8a5d50f24550dd8f9ed20628ba350713cdb5642eec686462770abaa3e302d9e7.png" />
+<img alt="../../_images/0879a59566a449d6d90e48601e8bf9637ed8da03515129eb8fe93f826619f18f.png" src="../../_images/0879a59566a449d6d90e48601e8bf9637ed8da03515129eb8fe93f826619f18f.png" />
+<img alt="../../_images/09e42e45a47952eff3e0135140d46aa8e16c057223b0101acf1aa19844f1cc4c.png" src="../../_images/09e42e45a47952eff3e0135140d46aa8e16c057223b0101acf1aa19844f1cc4c.png" />
+<img alt="../../_images/96046e5badf6401b761e5a96480a5e6f707e1fd4e9eae41ee3bb10092365d616.png" src="../../_images/96046e5badf6401b761e5a96480a5e6f707e1fd4e9eae41ee3bb10092365d616.png" />
+<img alt="../../_images/c13fa2ed37bef9f659f6482a280cd901c9377a31835191b9a1adb93ad3bf9ec6.png" src="../../_images/c13fa2ed37bef9f659f6482a280cd901c9377a31835191b9a1adb93ad3bf9ec6.png" />
+<img alt="../../_images/6d978e3d6356b9d2cbeca6b84077a22a82e65cc05536ac330cd9ab47324d03e8.png" src="../../_images/6d978e3d6356b9d2cbeca6b84077a22a82e65cc05536ac330cd9ab47324d03e8.png" />
+<img alt="../../_images/86cba7e721265425177dc8c309eb4cdbfdc5f254cffc384166d3d59995bec3e0.png" src="../../_images/86cba7e721265425177dc8c309eb4cdbfdc5f254cffc384166d3d59995bec3e0.png" />
+<img alt="../../_images/9f30c0ab3cdb37407210f4f08767227a0c83b78a95438caa7e544017d65dd25d.png" src="../../_images/9f30c0ab3cdb37407210f4f08767227a0c83b78a95438caa7e544017d65dd25d.png" />
+<img alt="../../_images/8695123faf4f0e6b984e038d76430c8be73fcf436d322f4b5767b0023b6e7b2b.png" src="../../_images/8695123faf4f0e6b984e038d76430c8be73fcf436d322f4b5767b0023b6e7b2b.png" />
+<img alt="../../_images/af6bcb4736e92b011156af554539f6ad081af6738c8df76fe8c01a1ba156574b.png" src="../../_images/af6bcb4736e92b011156af554539f6ad081af6738c8df76fe8c01a1ba156574b.png" />
+<img alt="../../_images/e5dabe458de36265c18400c2f0d9cc8379c1a2fc9d3626a942413bea0968d0db.png" src="../../_images/e5dabe458de36265c18400c2f0d9cc8379c1a2fc9d3626a942413bea0968d0db.png" />
+<img alt="../../_images/7f9b13a0c811c05ab70d01e8023d4d855a80152e7b6e55879699b5231e600bcb.png" src="../../_images/7f9b13a0c811c05ab70d01e8023d4d855a80152e7b6e55879699b5231e600bcb.png" />
+<img alt="../../_images/4559c279568024cdd23286f64c2ccfe6e32c4f64a87af079f5a0ac858ba8ada4.png" src="../../_images/4559c279568024cdd23286f64c2ccfe6e32c4f64a87af079f5a0ac858ba8ada4.png" />
+<img alt="../../_images/e9a0b15eb2b5b7da9e950569e02a64ccbfac2fd00b97aacc582ac76e8e875320.png" src="../../_images/e9a0b15eb2b5b7da9e950569e02a64ccbfac2fd00b97aacc582ac76e8e875320.png" />
+<img alt="../../_images/c8035158a4cffc528ede2ff6fbdbba6c6aa0912eebed765328007f3001e28c0b.png" src="../../_images/c8035158a4cffc528ede2ff6fbdbba6c6aa0912eebed765328007f3001e28c0b.png" />
+<img alt="../../_images/b051ec5ff9ad77e645b2cad5a583af54c2e8447ffce87b9863b102833acd05a6.png" src="../../_images/b051ec5ff9ad77e645b2cad5a583af54c2e8447ffce87b9863b102833acd05a6.png" />
+<img alt="../../_images/e196f0c656f56a56298c3e432d230ad79187db02f76ab4add1e8cb4d067b2b56.png" src="../../_images/e196f0c656f56a56298c3e432d230ad79187db02f76ab4add1e8cb4d067b2b56.png" />
+<img alt="../../_images/9631855d11f77b77602d396b1e161e3a4d1bff23ddf4834f5cf56a6c06e04098.png" src="../../_images/9631855d11f77b77602d396b1e161e3a4d1bff23ddf4834f5cf56a6c06e04098.png" />
+<img alt="../../_images/f9a01ea266a4cac7f0a2d7710f415ee79eda1e61dd9ae806c2941d4a77f8cb92.png" src="../../_images/f9a01ea266a4cac7f0a2d7710f415ee79eda1e61dd9ae806c2941d4a77f8cb92.png" />
+<img alt="../../_images/2f771569498c5139db280be3f85a1ba214a47ea2839d6d3156c29cbb9727cc55.png" src="../../_images/2f771569498c5139db280be3f85a1ba214a47ea2839d6d3156c29cbb9727cc55.png" />
+<img alt="../../_images/2ec0bdcd0fa2b4435c00183b11d61f697cc2c6267f21f4d8272ff73b3d159896.png" src="../../_images/2ec0bdcd0fa2b4435c00183b11d61f697cc2c6267f21f4d8272ff73b3d159896.png" />
+<img alt="../../_images/b9b3336caa6d55b1d844aff4688b44cdf4600626f4f96032203343f606c28dbf.png" src="../../_images/b9b3336caa6d55b1d844aff4688b44cdf4600626f4f96032203343f606c28dbf.png" />
+<img alt="../../_images/d9dcaeca739b4b4d770db7aa0d5613fb0b9a391420938202b6aea1a4d23bd9fe.png" src="../../_images/d9dcaeca739b4b4d770db7aa0d5613fb0b9a391420938202b6aea1a4d23bd9fe.png" />
+<img alt="../../_images/05312e9337da246e51b05206ae1ad88db501d70f50d803ed3e4d53518ce1ce3d.png" src="../../_images/05312e9337da246e51b05206ae1ad88db501d70f50d803ed3e4d53518ce1ce3d.png" />
+</div>
+</div>
+</section>
+<section id="latent-traversal">
+<h2>Latent Traversal<a class="headerlink" href="#latent-traversal" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">model_ema</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">x_sample</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+<span class="c1"># z = torch.cat(z, dim=1).squeeze()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow</span><span class="p">(</span><span class="n">x_sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/aa7aa0f719c48c356665191b8426505f507f3c42e6297251a9393a8a3427f546.png" src="../../_images/aa7aa0f719c48c356665191b8426505f507f3c42e6297251a9393a8a3427f546.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">which_sample</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">x_sample</span><span class="p">[</span><span class="n">which_sample</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eaaf811990bb2415cfbb6e009f442e77aee71cf7aac7b5e18327cb96abcfd142.png" src="../../_images/eaaf811990bb2415cfbb6e009f442e77aee71cf7aac7b5e18327cb96abcfd142.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;fig/mutual_info&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a48ab353981562dbc647532e8cc233f5859e1b9ea131a58858ba85e5d52cea2c.png" src="../../_images/a48ab353981562dbc647532e8cc233f5859e1b9ea131a58858ba85e5d52cea2c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">which_group</span> <span class="o">=</span> <span class="mi">29</span>
+<span class="n">which_latent</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">which_group</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">n_latent_per_group</span> <span class="o">+</span> <span class="n">which_latent</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_ema</span><span class="p">[</span><span class="s1">&#39;regr/mi&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;latent # </span><span class="si">{</span><span class="n">which_idx</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/30c897142c7cb46fb5b3e3c5f04627365185afc3f8cccec22eb2c51d37ff546c.png" src="../../_images/30c897142c7cb46fb5b3e3c5f04627365185afc3f8cccec22eb2c51d37ff546c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">which_group</span><span class="p">][:,</span> <span class="n">which_latent</span><span class="p">])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/807d7eabfa6d67d1850b39ac9e0b3135427c2f9e34c6963c488f30610dc1775a.png" src="../../_images/807d7eabfa6d67d1850b39ac9e0b3135427c2f9e34c6963c488f30610dc1775a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">which_group</span><span class="p">][</span><span class="n">which_sample</span><span class="p">,</span> <span class="n">which_latent</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.3469189405441284
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">low</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">high</span> <span class="o">=</span> <span class="n">value</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># low = value</span>
+<span class="c1"># high = value + delta * n</span>
+
+<span class="n">z_traverse</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">z_traverse</span> <span class="o">=</span> <span class="n">z_traverse</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[[</span><span class="n">which_sample</span><span class="p">]]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span>
+<span class="n">latents</span><span class="p">[</span><span class="n">which_group</span><span class="p">][:,</span> <span class="n">which_latent</span><span class="p">]</span> <span class="o">=</span> <span class="n">z_traverse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_ftr0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">latents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_tower</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">CombinerDec</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_sampler</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">](</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand</span><span class="p">[</span><span class="n">idx</span><span class="p">](</span><span class="n">latents</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+        <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">x_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/898529b7f28eb6371d7ef756193a24df76d9109253b6032746c2eeb469cfb599.png" src="../../_images/898529b7f28eb6371d7ef756193a24df76d9109253b6032746c2eeb469cfb599.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">x_new</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="mi">10</span><span class="p">:]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3b4ffdd594b4c58607726fa6e3ecbe02ca8b4d32099c41be295882703d0d8d2a.png" src="../../_images/3b4ffdd594b4c58607726fa6e3ecbe02ca8b4d32099c41be295882703d0d8d2a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow_full</span><span class="p">(</span><span class="n">x_new</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="mi">10</span><span class="p">:]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d27a2296be2567b0129a2244da12d5e449b51cdc79984eedb6950e763c5dd19a.png" src="../../_images/d27a2296be2567b0129a2244da12d5e449b51cdc79984eedb6950e763c5dd19a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">low</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">high</span> <span class="o">=</span> <span class="n">value</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_traverse</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">z_traverse</span> <span class="o">=</span> <span class="n">z_traverse</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># latents[which_group][:, which_latent] = z_traverse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_ftr0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">latents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_tower</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">CombinerDec</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand</span><span class="p">[</span><span class="n">idx</span><span class="p">](</span><span class="n">latents</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+        <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vanilla</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stem_decoder</span><span class="p">(</span><span class="n">latents</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">x_sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow</span><span class="p">(</span><span class="n">x_sample</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b3520a8ff7f5d545de5f112da3580d7d519d1e2ce1df1958751bcaeb751fb120.png" src="../../_images/b3520a8ff7f5d545de5f112da3580d7d519d1e2ce1df1958751bcaeb751fb120.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">device</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">z_traverse</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">z_traverse</span> <span class="o">=</span> <span class="n">z_traverse</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">model.vae2d</span> <span class="kn">import</span> <span class="n">CombinerDec</span>
+<span class="kn">from</span> <span class="nn">model.distributions</span> <span class="kn">import</span> <span class="n">Normal</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">temp</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">z0_sz</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z0_sz</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">z0_sz</span><span class="p">)</span>
+<span class="n">logsig</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">z0_sz</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">logsig</span> <span class="o">=</span> <span class="n">logsig</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">logsig</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">which_idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">z</span><span class="p">[:,</span> <span class="n">which_latent</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">z_traverse</span>
+<span class="n">p_all</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist</span><span class="p">]</span>
+<span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="p">]</span>
+
+<span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_ftr0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_tower</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">CombinerDec</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># form prior</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_sampler</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">](</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">mu</span><span class="p">,</span> <span class="n">logsig</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">logsig</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+            <span class="n">p_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="n">which_idx</span><span class="p">:</span> 
+                <span class="n">z</span><span class="p">[:,</span> <span class="n">which_latent</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">z_traverse</span>
+            <span class="n">latents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        <span class="c1"># &#39;combiner_dec&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand</span><span class="p">[</span><span class="n">idx</span><span class="p">](</span><span class="n">z</span><span class="p">))</span>
+        <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vanilla</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stem_decoder</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">x_sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">latents</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_opticflow</span><span class="p">(</span><span class="n">x_sample</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/02668604e1bfc513d355def73108a4198573684da62f873021da0e0649823a8d.png" src="../../_images/02668604e1bfc513d355def73108a4198573684da62f873021da0e0649823a8d.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/2023-02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-model">Load model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-traversal">Latent Traversal</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -60,10 +60,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-05/Fig_DCI';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Fig: Intro, etc" href="Fig_intro.html" />
+    <link rel="next" title="Fig: EPE/NELBO" href="Fig_EPE-NELBO.html" />
     <link rel="prev" title="Fig: Alignment scores" href="Fig_align.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -294,10 +296,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_align.html">Fig: Alignment scores</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_EPE-NELBO.html">Fig: EPE/NELBO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_intro.html">Fig: Intro, etc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_MI.html">Fig: MI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_z-traversal.html">Load</a></li>
+
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Table_pvals.html">Table: pvals (perf + align)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
 </ul>
 </li>
@@ -494,6 +505,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load">Load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-plot-untangle">Bar plot (untangle)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-pca-results">Load PCA results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-best-beta-per-model">Find best <span class="math notranslate nohighlight">\(\beta\)</span> per model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-results">Combine results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot">Plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-full">DCI full</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-bar-plots">Other bar plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-wide">DCI wide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table">Table</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#old-code-ignore">Old code (ignore)</a></li>
 </ul>
@@ -542,14 +564,9 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">base.dataset</span> <span class="kn">import</span> <span class="n">ROFLDS</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">figures.dci</span> <span class="kn">import</span> <span class="n">plot_bar_dci</span><span class="p">,</span> <span class="n">plot_bar_untangle</span><span class="p">,</span> <span class="n">plot_scatter</span>
 <span class="kn">from</span> <span class="nn">analysis.linear</span> <span class="kn">import</span> <span class="n">compute_dci</span>
 
-<span class="n">category2latex</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;fixate0&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">fixate</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;fixate1&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">fixate</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj1&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">obj</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="p">,</span>
-<span class="p">}</span>
 <span class="n">kws_fig</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;transparent&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s1">&#39;bbox_inches&#39;</span><span class="p">:</span> <span class="s1">&#39;tight&#39;</span><span class="p">,</span>
@@ -559,43 +576,13 @@ document.write(`
     <span class="s1">&#39;fixate2_nf-420_beta-0.15_(2023_04_27,13:57).npy&#39;</span><span class="p">,</span>
     <span class="s1">&#39;fixate1_nf-420_beta-0.8_(2023_05_07,04:15).npy&#39;</span><span class="p">,</span>
 <span class="p">]</span>
-<span class="n">label2latex</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;fix_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$F_x$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;fix_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$F_y$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;slf_v_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, x}$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;slf_v_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, y}$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;slf_v_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{self, z}$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj0_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$X_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj0_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$Y_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj0_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$Z_</span><span class="si">{obj}</span><span class="s1">$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj0_v_x&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, x}$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj0_v_y&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, y}$&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;obj0_v_z&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$V_{obj, z}$&#39;</span><span class="p">,</span>
-<span class="p">}</span>
 <span class="n">pal_model</span><span class="p">,</span> <span class="n">pal_cat</span> <span class="o">=</span> <span class="n">get_palette</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">):</span>
-    <span class="n">info</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">index</span><span class="p">([</span>
-        <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">info</span>
-        <span class="k">if</span> <span class="s1">&#39;nf-&#39;</span> <span class="ow">in</span> <span class="n">e</span>
-    <span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
-    <span class="n">category</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="n">nf</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">beta</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">beta</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="n">beta</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
-    <span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;VAE&#39;</span> <span class="k">if</span> <span class="s1">&#39;vanilla&#39;</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="s1">&#39;cNVAE&#39;</span>
-    <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="s1">&#39;ae&#39;</span><span class="p">:</span>
-        <span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span>
 </pre></div>
 </div>
 </div>
 </div>
+<section id="load">
+<h2>Load<a class="headerlink" href="#load" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;trainer_analysis&#39;</span><span class="p">)</span>
@@ -613,8 +600,8 @@ document.write(`
         <span class="k">continue</span>
     <span class="k">if</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">skip_fits</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>    
-    <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="mf">20.0</span><span class="p">:</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>    
+    <span class="k">if</span> <span class="n">beta</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">]:</span>
         <span class="k">continue</span>
 
     <span class="c1"># load</span>
@@ -644,26 +631,10 @@ document.write(`
     <span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;kl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kl</span><span class="p">)</span>
     <span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;tot_active&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tot_active</span><span class="p">)</span>
 
-    <span class="c1"># load dataset</span>
-    <span class="n">sim_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/home/hadi/Documents/MTMST/data/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">_dim-17_n-750k&quot;</span>
-    <span class="n">ds_vld</span> <span class="o">=</span> <span class="n">ROFLDS</span><span class="p">(</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;vld&#39;</span><span class="p">)</span>
-    <span class="n">ds_tst</span> <span class="o">=</span> <span class="n">ROFLDS</span><span class="p">(</span><span class="n">sim_path</span><span class="p">,</span> <span class="s1">&#39;tst&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">everything</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span> \
-        <span class="o">==</span> <span class="n">ds_vld</span><span class="o">.</span><span class="n">f</span> <span class="o">+</span> <span class="n">ds_vld</span><span class="o">.</span><span class="n">f_aux</span> \
-        <span class="o">==</span> <span class="n">ds_tst</span><span class="o">.</span><span class="n">f</span> <span class="o">+</span> <span class="n">ds_tst</span><span class="o">.</span><span class="n">f_aux</span>
-    
-    <span class="c1"># select main ground-truth variables</span>
-    <span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span>
-        <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">lbl</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lbl</span> <span class="ow">in</span>
-        <span class="nb">enumerate</span><span class="p">(</span><span class="n">everything</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">lbl</span> <span class="ow">in</span> <span class="n">label2latex</span>
-    <span class="p">])</span>
-    <span class="n">select_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">select_i</span><span class="p">)</span>
-    <span class="n">select_lbl</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">select_lbl</span><span class="p">)</span>
+    <span class="c1"># load g/g_tst</span>
+    <span class="n">g</span><span class="p">,</span> <span class="n">g_tst</span><span class="p">,</span> <span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="n">prep_rofl</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
     
     <span class="c1"># R^2</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ds_vld</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">ds_vld</span><span class="o">.</span><span class="n">g_aux</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">select_i</span><span class="p">]</span>
-    <span class="n">g_tst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ds_tst</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">ds_tst</span><span class="o">.</span><span class="n">g_aux</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">select_i</span><span class="p">]</span>
     <span class="n">lr</span> <span class="o">=</span> <span class="n">sk_linear</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
         <span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">g</span><span class="p">)</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_tst&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
@@ -704,265 +675,35 @@ document.write(`
 
 <span class="n">df_dci</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_dci</span><span class="p">)</span>
 <span class="n">df_i_r2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">merge_dicts</span><span class="p">(</span><span class="n">df_i_r2</span><span class="p">))</span>
-<span class="n">betas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ae&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">sorted</span><span class="p">([</span>
-    <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
-<span class="p">])</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="n">get_betas</span><span class="p">(</span><span class="n">df_dci</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 85/85 [14:05&lt;00:00,  9.94s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 88/88 [21:15&lt;00:00, 14.50s/it]
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="bar-plot-untangle">
+<h2>Bar plot (untangle)<a class="headerlink" href="#bar-plot-untangle" title="Permalink to this headline">#</a></h2>
+<section id="load-pca-results">
+<h3>Load PCA results<a class="headerlink" href="#load-pca-results" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_dci</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca_dci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;pca_results.npy&#39;</span><span class="p">),</span>
+    <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">pal_model</span><span class="p">[</span><span class="s1">&#39;PCA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;#5aa57d&#39;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>model</th>
-      <th>category</th>
-      <th>beta</th>
-      <th>nf</th>
-      <th>epe</th>
-      <th>epepd</th>
-      <th>nelbo</th>
-      <th>kl</th>
-      <th>tot_active</th>
-      <th>i</th>
-      <th>d</th>
-      <th>c</th>
-      <th>dci</th>
-      <th>rho_ent</th>
-      <th>spear_kl_rho</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.1</td>
-      <td>280</td>
-      <td>0.564681</td>
-      <td>0.001954</td>
-      <td>24.474018</td>
-      <td>23.909336</td>
-      <td>14.0</td>
-      <td>0.780826</td>
-      <td>0.324399</td>
-      <td>0.510160</td>
-      <td>0.538462</td>
-      <td>0.545987</td>
-      <td>0.319565</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.5</td>
-      <td>280</td>
-      <td>2.507265</td>
-      <td>0.008676</td>
-      <td>17.201626</td>
-      <td>14.694360</td>
-      <td>11.0</td>
-      <td>0.955640</td>
-      <td>0.381168</td>
-      <td>0.471393</td>
-      <td>0.602734</td>
-      <td>0.619061</td>
-      <td>-0.085091</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>0.8</td>
-      <td>280</td>
-      <td>3.876436</td>
-      <td>0.013413</td>
-      <td>16.414843</td>
-      <td>12.538406</td>
-      <td>14.0</td>
-      <td>0.972474</td>
-      <td>0.400301</td>
-      <td>0.580116</td>
-      <td>0.650964</td>
-      <td>0.459478</td>
-      <td>0.436461</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>1.0</td>
-      <td>280</td>
-      <td>4.865442</td>
-      <td>0.016835</td>
-      <td>16.239119</td>
-      <td>11.373676</td>
-      <td>12.0</td>
-      <td>0.956546</td>
-      <td>0.460299</td>
-      <td>0.570981</td>
-      <td>0.662609</td>
-      <td>0.493624</td>
-      <td>-0.181092</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>cNVAE</td>
-      <td>fixate0</td>
-      <td>10.0</td>
-      <td>280</td>
-      <td>44.057735</td>
-      <td>0.152449</td>
-      <td>44.533688</td>
-      <td>0.475953</td>
-      <td>1.0</td>
-      <td>0.155885</td>
-      <td>0.341932</td>
-      <td>0.404930</td>
-      <td>0.300916</td>
-      <td>0.647181</td>
-      <td>0.438073</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>76</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>1.5</td>
-      <td>420</td>
-      <td>21.943741</td>
-      <td>0.075930</td>
-      <td>30.526846</td>
-      <td>8.583105</td>
-      <td>6.0</td>
-      <td>0.548411</td>
-      <td>0.329943</td>
-      <td>0.138043</td>
-      <td>0.338799</td>
-      <td>0.960167</td>
-      <td>0.330139</td>
-    </tr>
-    <tr>
-      <th>77</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>10.0</td>
-      <td>420</td>
-      <td>54.984619</td>
-      <td>0.190258</td>
-      <td>55.434219</td>
-      <td>0.449600</td>
-      <td>1.0</td>
-      <td>0.354888</td>
-      <td>0.306664</td>
-      <td>0.153363</td>
-      <td>0.271638</td>
-      <td>0.946120</td>
-      <td>0.694643</td>
-    </tr>
-    <tr>
-      <th>78</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>2.0</td>
-      <td>420</td>
-      <td>24.347424</td>
-      <td>0.084247</td>
-      <td>31.593122</td>
-      <td>7.245699</td>
-      <td>6.0</td>
-      <td>0.548009</td>
-      <td>0.339428</td>
-      <td>0.136601</td>
-      <td>0.341346</td>
-      <td>0.966365</td>
-      <td>0.385571</td>
-    </tr>
-    <tr>
-      <th>79</th>
-      <td>VAE</td>
-      <td>fixate1</td>
-      <td>5.0</td>
-      <td>420</td>
-      <td>41.640739</td>
-      <td>0.144086</td>
-      <td>44.016502</td>
-      <td>2.375763</td>
-      <td>3.0</td>
-      <td>0.482426</td>
-      <td>0.292404</td>
-      <td>0.135136</td>
-      <td>0.303322</td>
-      <td>0.967966</td>
-      <td>0.585178</td>
-    </tr>
-    <tr>
-      <th>80</th>
-      <td>AE</td>
-      <td>fixate1</td>
-      <td>ae</td>
-      <td>420</td>
-      <td>0.071882</td>
-      <td>0.000249</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.476988</td>
-      <td>0.306682</td>
-      <td>0.408661</td>
-      <td>0.397444</td>
-      <td>0.693315</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>81 rows × 15 columns</p>
-</div></div></div>
 </div>
+</section>
+<section id="find-best-beta-per-model">
+<h3>Find best <span class="math notranslate nohighlight">\(\beta\)</span> per model<a class="headerlink" href="#find-best-beta-per-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
@@ -1084,7 +825,7 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>76</th>
+      <th>77</th>
       <td>VAE</td>
       <td>fixate1</td>
       <td>1.5</td>
@@ -1105,6 +846,75 @@ document.write(`
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="combine-results">
+<h3>Combine results<a class="headerlink" href="#combine-results" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">df_i_r2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">df_i_r2</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_i_r2</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">best_beta_cnvae</span><span class="p">,</span> <span class="s1">&#39;ae&#39;</span><span class="p">]))</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_i_r2</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;VAE&#39;</span><span class="p">)],</span>
+    <span class="n">df_i_r2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">df_i_r2</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_i_r2</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">best_beta_vae</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_i_r2</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;cNVAE&#39;</span><span class="p">)],</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;PCA&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">pca_dci</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="n">select_lbl</span><span class="p">}),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot">
+<h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span><span class="n">plot_bar_untangle</span><span class="p">(</span><span class="n">df2p</span><span class="p">,</span> <span class="n">pal_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/146adf4e9581fa9622d65c3f8c68ad70352e03d0a3ef7582cf6c263e02786380.png" src="../../_images/146adf4e9581fa9622d65c3f8c68ad70352e03d0a3ef7582cf6c263e02786380.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untangle_full.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untangle_full.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dci-full">
+<h2>DCI full<a class="headerlink" href="#dci-full" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plot_bar_dci</span><span class="p">(</span><span class="n">df_dci</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.07</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a0978a9f66c205e103572cbace063c475170a21b9997fa78beb1a53d9f74bce1.png" src="../../_images/a0978a9f66c205e103572cbace063c475170a21b9997fa78beb1a53d9f74bce1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;dci.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;dci.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-bar-plots">
+<h2>Other bar plots<a class="headerlink" href="#other-bar-plots" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span> <span class="o">=</span> <span class="n">df_i_r2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
@@ -1117,8 +927,8 @@ document.write(`
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span>
     <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
+    <span class="n">hue_order</span><span class="o">=</span><span class="n">get_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">get_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">width</span><span class="o">=</span><span class="mf">0.82</span><span class="p">,</span>
     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
@@ -1134,7 +944,7 @@ document.write(`
     <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">LBL2TEX</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R^2$ [%]&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -1176,8 +986,8 @@ document.write(`
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span>
     <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
+    <span class="n">hue_order</span><span class="o">=</span><span class="n">get_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">get_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">width</span><span class="o">=</span><span class="mf">0.82</span><span class="p">,</span>
     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
@@ -1195,7 +1005,7 @@ document.write(`
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R^2$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">LBL2TEX</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
@@ -1208,116 +1018,9 @@ document.write(`
 <img alt="../../_images/3d4ec5ea476af8a8c887f93fdad438c61916a2be71da0aa92a19b79a3033d822.png" src="../../_images/3d4ec5ea476af8a8c887f93fdad438c61916a2be71da0aa92a19b79a3033d822.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca_dci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;pca_results.npy&#39;</span><span class="p">),</span>
-    <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pal_model</span><span class="p">[</span><span class="s1">&#39;PCA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;#5aa57d&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_to_plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">_df_cnvae</span><span class="p">,</span> <span class="n">_df_vae</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">barplot_add_vals</span><span class="p">(</span>
-        <span class="n">axes</span><span class="p">,</span>
-        <span class="n">frac_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-        <span class="n">frac_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.035</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">decimals</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">ha</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="p">):</span>
-    <span class="n">ymax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">get_ybound</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">_single</span><span class="p">(</span><span class="n">_ax</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">_ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="n">_ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-                <span class="n">x</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">frac_x</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span>
-                <span class="n">y</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span> <span class="o">+</span> <span class="n">h</span> <span class="o">-</span> <span class="n">frac_y</span> <span class="o">*</span> <span class="n">ymax</span><span class="p">,</span>
-                <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">decimals</span><span class="p">),</span>
-                <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span>
-                <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">,</span>
-                <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-                <span class="n">ha</span><span class="o">=</span><span class="n">ha</span><span class="p">,</span>
-            <span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
-            <span class="n">_single</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">_single</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
-    <span class="k">return</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">bp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_to_plot</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;PCA&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">pca_dci</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="n">select_lbl</span><span class="p">})]),</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cNVAE&#39;</span><span class="p">,</span> <span class="s1">&#39;VAE&#39;</span><span class="p">,</span> <span class="s1">&#39;PCA&#39;</span><span class="p">,</span> <span class="s1">&#39;cNAE&#39;</span><span class="p">,</span> <span class="s1">&#39;AE&#39;</span><span class="p">],</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">width</span><span class="o">=</span><span class="mf">0.795</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">barplot_add_vals</span><span class="p">(</span>
-    <span class="n">bp</span><span class="p">,</span>
-    <span class="n">frac_x</span><span class="o">=</span><span class="mf">0.41</span><span class="p">,</span>
-    <span class="n">frac_y</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
-    <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
-    <span class="n">rotation</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span>
-    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
-    <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mf">0.03</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R^2$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">label2latex</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/146adf4e9581fa9622d65c3f8c68ad70352e03d0a3ef7582cf6c263e02786380.png" src="../../_images/146adf4e9581fa9622d65c3f8c68ad70352e03d0a3ef7582cf6c263e02786380.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untangle_full.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untangle_full.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="dci-wide">
+<h2>DCI wide<a class="headerlink" href="#dci-wide" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df1</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
@@ -1491,99 +1194,7 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df1</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">_df2</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">_pal1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pal_model</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="p">}</span>
-<span class="n">_pal2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pal_model</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_df2</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="p">}</span>
-<span class="n">dci</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;Informativeness&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="s1">&#39;Disentanglement&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;Completeness&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">xy_frac</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.588</span><span class="p">,</span> <span class="mf">0.818</span><span class="p">),</span>
-    <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.815</span><span class="p">),</span>
-    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.63</span><span class="p">,</span> <span class="mf">0.815</span><span class="p">),</span>
-<span class="p">}</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mf">3.9</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">),</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dci</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-    <span class="n">bp1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">_df1</span><span class="p">,</span>
-        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-        <span class="n">y</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
-        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-        <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-        <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">width</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-        <span class="n">hue_order</span><span class="o">=</span><span class="n">_pal1</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="n">_pal1</span><span class="p">,</span>
-        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-    <span class="p">)</span>
-    <span class="n">bp2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">_df2</span><span class="p">,</span>
-        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-        <span class="n">y</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
-        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-        <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-        <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">width</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-        <span class="n">hue_order</span><span class="o">=</span><span class="n">_pal2</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="n">_pal2</span><span class="p">,</span>
-        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-    <span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">))</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-        <span class="n">text</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
-        <span class="n">xy</span><span class="o">=</span><span class="n">xy_frac</span><span class="p">[</span><span class="n">metric</span><span class="p">],</span>
-        <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">leg</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">leg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">leg</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
-<span class="n">add_grid</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="c1"># barplot_add_vals(bp, frac_y=-0.003, fontsize=9, decimals=1)</span>
-<span class="c1"># ax.set_ylabel(r&#39;$R^2$ [%]&#39;, fontsize=17)</span>
-
-<span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\beta$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.063</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-<span class="c1"># ax.set_ylabel(&#39;Performance&#39;, fontsize=13)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/c614613d874a2585f47dc08966e5233d7de281a93aa615be36ea76d6cea1aea5.png" src="../../_images/c614613d874a2585f47dc08966e5233d7de281a93aa615be36ea76d6cea1aea5.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;dci.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;dci.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
 <section id="table">
 <h2>Table<a class="headerlink" href="#table" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
@@ -2112,67 +1723,6 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">which_betas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-
-<span class="n">looper</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;cNVAE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;fixate1&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;VAE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;fixate1&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;cNAE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;fixate1&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;AE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;fixate1&#39;</span><span class="p">],</span>
-<span class="p">}</span>
-<span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">cat_list</span> <span class="ow">in</span> <span class="n">looper</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">first_row_added</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cat_list</span><span class="p">:</span>
-        <span class="n">_df</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-            <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span> <span class="o">&amp;</span>
-            <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cat</span><span class="p">)</span>
-        <span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">_df</span><span class="p">):</span>
-            <span class="k">continue</span>
-
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;beta&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        <span class="n">sd</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;beta&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-        <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sd</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">])</span>
-
-        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-            <span class="n">_df</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;perf&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">_df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">141</span>
-
-        <span class="n">mu</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-        <span class="n">se</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_df</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sd</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="s1">&#39;VAE&#39;</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
-            <span class="n">r_str</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">which_betas</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">mu</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
-                    <span class="n">r_str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\mathbf</span><span class="si">{</span><span class="s1">&#39;{&#39;</span><span class="si">}{</span><span class="n">mu</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">pm </span><span class="si">{</span><span class="n">se</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}{</span><span class="s1">&#39;}&#39;</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">r_str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">mu</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">pm </span><span class="si">{</span><span class="n">se</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-            <span class="n">r_str</span> <span class="o">=</span> <span class="s1">&#39; &amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">r_str</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">mu</span><span class="p">[</span><span class="s1">&#39;ae&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
-                <span class="n">r_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$\mathbf</span><span class="si">{</span><span class="s1">&#39;{&#39;</span><span class="si">}{</span><span class="n">mu</span><span class="p">[</span><span class="s1">&#39;ae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">pm </span><span class="si">{</span><span class="n">se</span><span class="p">[</span><span class="s1">&#39;ae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}{</span><span class="s1">&#39;}&#39;</span><span class="si">}</span><span class="s2">$&quot;</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">r_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">mu</span><span class="p">[</span><span class="s1">&#39;ae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">pm </span><span class="si">{</span><span class="n">se</span><span class="p">[</span><span class="s1">&#39;ae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">$&quot;</span>
-
-        <span class="k">if</span> <span class="n">first_row_added</span><span class="p">:</span>
-            <span class="n">table</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&amp; </span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2"> &amp; </span><span class="si">{</span><span class="n">r_str</span><span class="si">}</span><span class="s2"> </span><span class="se">\\\\\n</span><span class="s2">&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">model_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> &quot;</span>
-            <span class="n">table</span> <span class="o">+=</span> <span class="n">model_str</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;&amp; </span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2"> &amp; </span><span class="si">{</span><span class="n">r_str</span><span class="si">}</span><span class="s2"> </span><span class="se">\\\\\n</span><span class="s2">&quot;</span>
-            <span class="n">first_row_added</span> <span class="o">=</span> <span class="kc">True</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_dci</span>
 </pre></div>
 </div>
@@ -2416,309 +1966,6 @@ document.write(`
 </table>
 <p>80 rows × 15 columns</p>
 </div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">_df1</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">_df1</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;epepd&#39;</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ed550a5c1234a99ed0b34456491a9a97e296ac9d4d533112c211a6a15343f89c.png" src="../../_images/ed550a5c1234a99ed0b34456491a9a97e296ac9d4d533112c211a6a15343f89c.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df1</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cNVAE&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=-3.509708888366657, intercept=0.8147292378630605, rvalue=-0.9117112386579744, pvalue=8.855173092613849e-07, stderr=0.42268187758565506, intercept_stderr=0.03220091128663793)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=-0.9265798819499973, intercept=0.49122087378201207, rvalue=-0.4814875089068858, pvalue=0.058978754508755865, stderr=0.45077770944958045, intercept_stderr=0.034341318617423525)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=-0.8609464432217797, intercept=0.6763173533207186, rvalue=-0.6351173159446272, pvalue=0.008205424162820307, stderr=0.2798396510601218, intercept_stderr=0.021318850549594783)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.9117112386579744, 8.855173092613863e-07)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.48148750890688574, 0.05897875450875588)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.6351173159446273, 0.008205424162820303)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;epepd&#39;</span><span class="p">],</span> <span class="n">_df1</span><span class="p">[</span><span class="s1">&#39;dci&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.8957552616847395, 2.7121785044152643e-06)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cNVAE&#39;</span><span class="p">,</span> <span class="s1">&#39;VAE&#39;</span><span class="p">]:</span>
-    <span class="n">_df</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-        <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-        <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span> <span class="o">&amp;</span>
-        <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-    <span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]):</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span>
-            <span class="n">y</span><span class="o">=</span><span class="s1">&#39;epepd&#39;</span><span class="p">,</span>
-            <span class="n">x</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="n">pal_model</span><span class="p">[</span><span class="n">model</span><span class="p">],</span>
-            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mf">0.03</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/71495a84d2c3e94e03a6c7ab7955cabfb448ae349bc32b41295f8ee2c1d72a51.png" src="../../_images/71495a84d2c3e94e03a6c7ab7955cabfb448ae349bc32b41295f8ee2c1d72a51.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">_df1</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">_df1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;spear_kl_rho&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;beta&#39;, ylabel=&#39;spear_kl_rho&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/2076226f32ac0bee506c68315c260e9d8d79245398eb37be482b9c989a2609e7.png" src="../../_images/2076226f32ac0bee506c68315c260e9d8d79245398eb37be482b9c989a2609e7.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span> <span class="o">=</span> <span class="n">df_dci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fixate1&#39;</span><span class="p">]</span>
-<span class="n">_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">_df</span><span class="p">[</span><span class="s1">&#39;dci&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>model</th>
-      <th>category</th>
-      <th>beta</th>
-      <th>nf</th>
-      <th>epe</th>
-      <th>epepd</th>
-      <th>nelbo</th>
-      <th>kl</th>
-      <th>tot_active</th>
-      <th>i</th>
-      <th>d</th>
-      <th>c</th>
-      <th>dci</th>
-      <th>rho_ent</th>
-      <th>spear_kl_rho</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>14</th>
-      <td>cNVAE</td>
-      <td>fixate1</td>
-      <td>0.5</td>
-      <td>420</td>
-      <td>5.370134</td>
-      <td>0.018582</td>
-      <td>29.862501</td>
-      <td>24.492367</td>
-      <td>36.0</td>
-      <td>81.108896</td>
-      <td>0.672083</td>
-      <td>0.651275</td>
-      <td>0.711483</td>
-      <td>0.295805</td>
-      <td>-0.379627</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;nelbo&#39;</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-    <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1"># ax.set(xlim=(26, 34), ylim=(0, 1.5))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/431a9c39560dda6125df200ad1e0e0d8c20267dd3fe7fd460caa587815781db6.png" src="../../_images/431a9c39560dda6125df200ad1e0e0d8c20267dd3fe7fd460caa587815781db6.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;epe&#39;</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-    <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/e40e52e90d53e32cd7205af9c8de0362e16c02cec4bb32a4428ba7af60a96d78.png" src="../../_images/e40e52e90d53e32cd7205af9c8de0362e16c02cec4bb32a4428ba7af60a96d78.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;epepd&#39;</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span>
-    <span class="n">hue_order</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="n">pal_model</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span>
-    <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/66295878e4432f70a7bf849db3dda14db6d455af663ca97658bdaa43656fae00.png" src="../../_images/66295878e4432f70a7bf849db3dda14db6d455af663ca97658bdaa43656fae00.png" />
-</div>
 </div>
 </section>
 <section id="old-code-ignore">
@@ -3133,94 +2380,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">everything</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[4], line 1
-----&gt; 1 list(everything)
-
-NameError: name &#39;everything&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_tst&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;x&#39;: [],
- &#39;y&#39;: [],
- &#39;z&#39;: array([[-0.00924373, -0.00668725, -0.00218269, ..., -0.1080126 ,
-          0.02699516, -0.05209924],
-        [-0.00933603, -0.00662458, -0.00210156, ..., -0.21367927,
-          0.0869858 , -0.14760306],
-        [-0.00917179, -0.00669082, -0.00227596, ...,  0.29358372,
-         -0.3044515 ,  0.10462018],
-        ...,
-        [-0.00911674, -0.00647449, -0.00243915, ...,  0.12978122,
-          0.05793152, -0.01021165],
-        [-0.00919618, -0.00654394, -0.00228771, ..., -0.2134269 ,
-          0.08058421, -0.17979455],
-        [-0.00907419, -0.00659908, -0.00244587, ...,  0.05912931,
-         -0.00423615,  0.00466096]], dtype=float32)}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;x&#39;: [],
- &#39;y&#39;: [],
- &#39;z&#39;: array([[-0.00936357, -0.00655375, -0.00210097, ..., -0.23126903,
-         -0.47400546,  0.05585103],
-        [-0.00927482, -0.00662192, -0.00220085, ...,  0.15709946,
-         -0.46287477,  0.24429414],
-        [-0.00905203, -0.00668927, -0.00244803, ..., -0.08507252,
-         -0.28464168, -0.05053638],
-        ...,
-        [-0.00924551, -0.00653933, -0.00222625, ...,  0.24655789,
-         -0.35837793,  0.14422555],
-        [-0.00912849, -0.00662036, -0.00236502, ...,  0.15217587,
-          0.18675563,  0.05085435],
-        [-0.00917892, -0.00665259, -0.00225591, ...,  0.00721657,
-          0.14724572, -0.17497481]], dtype=float32)}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">everything</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;fix_x&#39;,
- &#39;fix_y&#39;,
- &#39;slf_v_norm&#39;,
- &#39;slf_v_theta&#39;,
- &#39;slf_v_phi&#39;,
- &#39;slf_v_x&#39;,
- &#39;slf_v_y&#39;,
- &#39;slf_v_z&#39;]
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 
@@ -3265,11 +2424,11 @@ NameError: name &#39;everything&#39; is not defined
       </div>
     </a>
     <a class="right-next"
-       href="Fig_intro.html"
+       href="Fig_EPE-NELBO.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fig: Intro, etc</p>
+        <p class="prev-next-title">Fig: EPE/NELBO</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3291,6 +2450,17 @@ NameError: name &#39;everything&#39; is not defined
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load">Load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-plot-untangle">Bar plot (untangle)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-pca-results">Load PCA results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-best-beta-per-model">Find best <span class="math notranslate nohighlight">\(\beta\)</span> per model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-results">Combine results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot">Plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-full">DCI full</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-bar-plots">Other bar plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-wide">DCI wide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table">Table</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#old-code-ignore">Old code (ignore)</a></li>
 </ul>
