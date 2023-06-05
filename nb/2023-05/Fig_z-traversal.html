@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Load &#8212; MT/MST project</title>
+    <title>Fig: Z traversal &#8212; MT/MST project</title>
   
   
   
@@ -298,13 +298,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="Fig_intro.html">Fig: Intro, etc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_MI.html">Fig: MI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fig_psth.html">Fig: PSTH + STA</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Load</a></li>
-
-
-
-
-
-
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fig: Z traversal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Table_Neural.html">Table: Neural</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Table_pvals.html">Table: pvals (perf + align)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
@@ -493,7 +487,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Load</h1>
+    <h1>Fig: Z traversal</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -503,18 +497,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Load</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample">Sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load">Load</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample">Sample</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mi-identify-latent">Load mi, identify latent</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#traversal">Traversal</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-y">Obj_y</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-x">Obj_x</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#self-norm">Self norm</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-generate">Final, generate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mi-identify-latent">Load mi, identify latent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traversal">Traversal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-y">Obj_y</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-x">Obj_x</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-norm">Self norm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-generate">Final, generate</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -525,7 +518,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="fig-z-traversal">
+<h1>Fig: Z traversal<a class="headerlink" href="#fig-z-traversal" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
@@ -574,7 +569,7 @@ document.write(`
 </div>
 </div>
 <section id="load">
-<h1>Load<a class="headerlink" href="#load" title="Permalink to this headline">#</a></h1>
+<h2>Load<a class="headerlink" href="#load" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">fits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -585,7 +580,7 @@ document.write(`
 </div>
 </div>
 <section id="sample">
-<h2>Sample<a class="headerlink" href="#sample" title="Permalink to this headline">#</a></h2>
+<h3>Sample<a class="headerlink" href="#sample" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
@@ -607,7 +602,7 @@ document.write(`
 </section>
 </section>
 <section id="load-mi-identify-latent">
-<h1>Load mi, identify latent<a class="headerlink" href="#load-mi-identify-latent" title="Permalink to this headline">#</a></h1>
+<h2>Load mi, identify latent<a class="headerlink" href="#load-mi-identify-latent" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">,</span> <span class="n">g_tst</span><span class="p">,</span> <span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="n">prep_rofl</span><span class="p">(</span>
@@ -1013,7 +1008,7 @@ Wall time: 10min 21s
 </div>
 </section>
 <section id="traversal">
-<h1>Traversal<a class="headerlink" href="#traversal" title="Permalink to this headline">#</a></h1>
+<h2>Traversal<a class="headerlink" href="#traversal" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">dl_trn</span><span class="p">))</span>
@@ -1076,7 +1071,7 @@ Wall time: 10min 21s
 </div>
 </section>
 <section id="obj-y">
-<h1>Obj_y<a class="headerlink" href="#obj-y" title="Permalink to this headline">#</a></h1>
+<h2>Obj_y<a class="headerlink" href="#obj-y" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
@@ -1239,7 +1234,7 @@ Wall time: 10min 21s
 </div>
 </section>
 <section id="obj-x">
-<h1>Obj_x<a class="headerlink" href="#obj-x" title="Permalink to this headline">#</a></h1>
+<h2>Obj_x<a class="headerlink" href="#obj-x" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
@@ -1402,7 +1397,7 @@ Wall time: 10min 21s
 </div>
 </section>
 <section id="self-norm">
-<h1>Self norm<a class="headerlink" href="#self-norm" title="Permalink to this headline">#</a></h1>
+<h2>Self norm<a class="headerlink" href="#self-norm" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
@@ -1541,7 +1536,7 @@ Wall time: 10min 21s
 </div>
 </section>
 <section id="final-generate">
-<h1>Final, generate<a class="headerlink" href="#final-generate" title="Permalink to this headline">#</a></h1>
+<h2>Final, generate<a class="headerlink" href="#final-generate" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
@@ -1746,6 +1741,7 @@ Wall time: 10min 21s
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1814,18 +1810,17 @@ Wall time: 10min 21s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Load</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample">Sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load">Load</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample">Sample</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mi-identify-latent">Load mi, identify latent</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#traversal">Traversal</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-y">Obj_y</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-x">Obj_x</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#self-norm">Self norm</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-generate">Final, generate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mi-identify-latent">Load mi, identify latent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traversal">Traversal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-y">Obj_y</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obj-x">Obj_x</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-norm">Self norm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-generate">Final, generate</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
