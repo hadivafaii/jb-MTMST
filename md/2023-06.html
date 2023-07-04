@@ -236,7 +236,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/04_dan.html">(04) Dan notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
@@ -313,8 +312,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/01_new-fits-KABA.html">(01) Neural results (<span class="math notranslate nohighlight">\( skip + 0.1 * x \dots\)</span> <code class="docutils literal notranslate"><span class="pre">KABA</span></code>)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/02_z-traversal.html">(02) Z traversal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/03_fisher-lin.html">(03) Fisher: Lin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/04_rofl-explore.html">(04) ROFL: pathological examples?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/04_g-explore.html">(04) Vary single ground truth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/04_rofl-explore.html">(04) ROFL: pathological examples?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/05_dim33-accept-filter.html">(05) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=33</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/09_dim17-bound1.html">(09) Sim – slight changes <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/Fig_Talk.html">Fig: Talk (Redwood-16th)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-06/tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">July 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2023-07.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="2023-07_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-07/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nb/2023-07/04_revert-deg.html">(04) Revert degree</a></li>
 </ul>
 </li>
 </ul>
@@ -516,10 +528,10 @@ document.write(`
 <h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
 <p>Summary of progress in June 2023</p>
 <ul class="simple">
-<li><p>Item 1</p></li>
-<li><p>Item 2</p></li>
-<li><p>Item 3</p></li>
-<li><p>…</p></li>
+<li><p>x + 0.1 * f(x) seems to work well</p></li>
+<li><p>Large batch size is absolutely crucial to learn the world strucutre</p></li>
+<li><p>I tried AMP, but the loss always diverges (either inf, nan, or both)</p></li>
+<li><p>Fisher info idea requries nonlinear fits to the latent space</p></li>
 </ul>
 </section>
 

@@ -238,7 +238,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_dan.html">(04) Dan notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
@@ -315,9 +314,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">(01) Neural results (<span class="math notranslate nohighlight">\( skip + 0.1 * x \dots\)</span> <code class="docutils literal notranslate"><span class="pre">KABA</span></code>)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_z-traversal.html">(02) Z traversal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_fisher-lin.html">(03) Fisher: Lin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_rofl-explore.html">(04) ROFL: pathological examples?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_g-explore.html">(04) Vary single ground truth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_rofl-explore.html">(04) ROFL: pathological examples?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_dim33-accept-filter.html">(05) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=33</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_dim17-bound1.html">(09) Sim – slight changes <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fig_Talk.html">Fig: Talk (Redwood-16th)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">July 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-07.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-07_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-07/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-07/04_revert-deg.html">(04) Revert degree</a></li>
 </ul>
 </li>
 </ul>
@@ -513,12 +524,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-05"><span class="math notranslate nohighlight">\(\beta = 0.05\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-1"><span class="math notranslate nohighlight">\(\beta = 0.1\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-2"><span class="math notranslate nohighlight">\(\beta = 0.2\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-25"><span class="math notranslate nohighlight">\(\beta = 0.25\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-3"><span class="math notranslate nohighlight">\(\beta = 0.3\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-5"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current">Current</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-enc-dec-results"><code class="docutils literal notranslate"><span class="pre">which='enc'/'dec'</span></code> results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-z-results"><code class="docutils literal notranslate"><span class="pre">which='z'</span></code> results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-norm-vs-weight-reg-results">Weight norm vs. weight reg results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etc-results">Etc results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dim-33-results"><code class="docutils literal notranslate"><span class="pre">dim=33</span></code> results</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -573,11 +586,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;fixate1_k-32_z-14x[5,10,20]_enc(2x2)-dec(2x1)-pre(1x3)-post(1x3)/skip+0.1x_ep160-b600-lr(0.002)_beta(0.05:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_06_02,23:52)&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;fixate1_k-32_z-14x[5,10,20]_enc(2x2)-dec(2x1)-pre(1x3)-post(1x3)/skip+0.1x_ep160-b600-lr(0.002)_beta(0.25:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_06_02,23:52)&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;fixate1_k-32_z-14x[5,10,20]_enc(2x2)-dec(2x1)-pre(1x3)-post(1x3)/skip+0.1x_ep160-b600-lr(0.002)_beta(0.3:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_06_02,23:52)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_z-14x[5,10,20]_k-32_d-17_enc(2x2)-dec(2x1)-pre(1x3)-post(1x3)_wn/wnfix_ep500-b1200-lr(0.002)_beta(0.1:0x0.3)_gr(250.0)_(2023_06_19,22:17)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_z-14x[5,10,20]_k-32_d-17_enc(2x2)-dec(2x1)-pre(1x3)-post(1x3)_wn/wnfix_ep500-b1200-lr(0.002)_beta(0.1:0x0.3)_gr(250.0)_(2023_06_19,22:17)&#39;</span><span class="p">,</span>
 <span class="p">]</span>
-<span class="n">save_script_neural</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="s1">&#39;cuda:1&#39;</span><span class="p">)</span>
+<span class="n">save_script_neural</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="s1">&#39;cuda:1&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--which enc --reservoir&#39;</span><span class="p">,</span> <span class="s1">&#39;--which dec --reservoir&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -587,11 +599,11 @@ document.write(`
 </pre>
 </div></div>
 </div>
-<section id="beta-0-05">
-<h2><span class="math notranslate nohighlight">\(\beta = 0.05\)</span><a class="headerlink" href="#beta-0-05" title="Permalink to this headline">#</a></h2>
+<section id="current">
+<h2>Current<a class="headerlink" href="#current" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-490_beta-0.05_(2023_06_04,20:19)&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;reservoir_nf-7360_beta-0.1_(2023_07_03,10:13)&#39;</span>
 <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -600,8 +612,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/de8fb1cf22138d36e651d338cc3aa9123950d54af9fa4e559b5a6eb043cb247d.png" src="../../_images/de8fb1cf22138d36e651d338cc3aa9123950d54af9fa4e559b5a6eb043cb247d.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86
+<img alt="../../_images/f8b08416dc356531468cff08ba15286bc47755ce63508010036a1767987753c2.png" src="../../_images/f8b08416dc356531468cff08ba15286bc47755ce63508010036a1767987753c2.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79
 </pre></div>
 </div>
 </div>
@@ -642,487 +654,91 @@ document.write(`
       <th>max_perf</th>
       <th>log_alpha</th>
       <th>best_lag</th>
+      <th>pix_rank</th>
+      <th>pix_count</th>
+      <th>top_lag</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th>28</th>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
+      <td>YUWEI</td>
+      <td>clu116</td>
+      <td>0</td>
+      <td>0.914094</td>
+      <td>0.835483</td>
+      <td>-6.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>9</td>
+      <td>4</td>
+    </tr>
+    <tr>
       <th>42</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
       <td>YUWEI</td>
       <td>clu209</td>
       <td>1</td>
-      <td>0.882590</td>
+      <td>0.898913</td>
       <td>0.923722</td>
-      <td>-1.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu120</td>
-      <td>0</td>
-      <td>0.879200</td>
-      <td>0.967720</td>
-      <td>5.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>4</td>
-      <td>0.868741</td>
-      <td>0.979806</td>
-      <td>-8.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>7</td>
-      <td>0.840600</td>
-      <td>0.955361</td>
-      <td>5.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu221</td>
-      <td>3</td>
-      <td>0.828705</td>
-      <td>0.900849</td>
-      <td>6.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu061</td>
-      <td>0</td>
-      <td>0.176874</td>
-      <td>NaN</td>
-      <td>4.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu145</td>
-      <td>0</td>
-      <td>0.169677</td>
-      <td>0.593791</td>
       <td>0.0</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu036</td>
+      <td>4</td>
+      <td>1</td>
       <td>0</td>
-      <td>0.137646</td>
-      <td>NaN</td>
-      <td>5.0</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>38</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu180</td>
-      <td>0</td>
-      <td>0.136071</td>
-      <td>NaN</td>
-      <td>4.0</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.05</td>
-      <td>YUWEI</td>
-      <td>clu069</td>
-      <td>0</td>
-      <td>0.078448</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-<p>86 rows × 10 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="beta-0-1">
-<h2><span class="math notranslate nohighlight">\(\beta = 0.1\)</span><a class="headerlink" href="#beta-0-1" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-490_beta-0.1_(2023_06_02,18:23)&#39;</span>
-<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/f3a44019360c0bcedd89adda002f42b0e06637319ca05cf2dd875dc4119a6698.png" src="../../_images/f3a44019360c0bcedd89adda002f42b0e06637319ca05cf2dd875dc4119a6698.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>nf</th>
-      <th>beta</th>
-      <th>root</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>perf</th>
-      <th>max_perf</th>
-      <th>log_alpha</th>
-      <th>best_lag</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>124</th>
-      <td>fixate1</td>
-      <td>490</td>
+      <th>69</th>
+      <td>reservoir</td>
+      <td>7360</td>
       <td>0.1</td>
       <td>YUWEI</td>
-      <td>ytu029</td>
+      <td>clu267</td>
       <td>4</td>
-      <td>0.898235</td>
-      <td>0.935583</td>
-      <td>5.0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu120</td>
+      <td>0.859483</td>
+      <td>0.979806</td>
+      <td>-10.0</td>
+      <td>5</td>
+      <td>1</td>
       <td>0</td>
-      <td>0.897975</td>
-      <td>0.967720</td>
-      <td>4.0</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>42</th>
-      <td>fixate1</td>
-      <td>490</td>
+      <th>44</th>
+      <td>reservoir</td>
+      <td>7360</td>
       <td>0.1</td>
       <td>YUWEI</td>
       <td>clu209</td>
-      <td>1</td>
-      <td>0.881124</td>
-      <td>0.923722</td>
-      <td>6.0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>4</td>
-      <td>0.865064</td>
-      <td>0.979806</td>
-      <td>-1.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu090</td>
-      <td>0</td>
-      <td>0.835092</td>
-      <td>0.990020</td>
-      <td>5.0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>2</td>
-      <td>0.126352</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>103</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>10</td>
-      <td>0.123639</td>
-      <td>NaN</td>
-      <td>5.0</td>
       <td>12</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>3</td>
-      <td>0.088871</td>
-      <td>NaN</td>
-      <td>6.0</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu069</td>
-      <td>0</td>
-      <td>0.081487</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>102</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>9</td>
-      <td>0.066017</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-<p>141 rows × 10 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="beta-0-2">
-<h2><span class="math notranslate nohighlight">\(\beta = 0.2\)</span><a class="headerlink" href="#beta-0-2" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-490_beta-0.2_(2023_06_02,20:02)&#39;</span>
-<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/d4058f4b3dfc2c2e8d5b6c103ca9ab362327f193e785d48a0b155eafc55ffb10.png" src="../../_images/d4058f4b3dfc2c2e8d5b6c103ca9ab362327f193e785d48a0b155eafc55ffb10.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>nf</th>
-      <th>beta</th>
-      <th>root</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>perf</th>
-      <th>max_perf</th>
-      <th>log_alpha</th>
-      <th>best_lag</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>69</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>4</td>
-      <td>0.855201</td>
-      <td>0.979806</td>
-      <td>-4.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu116</td>
-      <td>0</td>
-      <td>0.842589</td>
-      <td>0.835483</td>
+      <td>0.846052</td>
+      <td>0.946263</td>
       <td>-2.0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>0</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>42</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
+      <th>43</th>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
       <td>YUWEI</td>
       <td>clu209</td>
-      <td>1</td>
-      <td>0.825169</td>
-      <td>0.923722</td>
-      <td>2.0</td>
       <td>4</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>7</td>
-      <td>0.820357</td>
-      <td>0.955361</td>
-      <td>-8.0</td>
+      <td>0.845735</td>
+      <td>0.933615</td>
+      <td>-6.0</td>
       <td>3</td>
-    </tr>
-    <tr>
-      <th>108</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu295</td>
-      <td>3</td>
-      <td>0.788812</td>
-      <td>0.949908</td>
-      <td>4.0</td>
-      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1136,328 +752,202 @@ document.write(`
       <td>...</td>
       <td>...</td>
       <td>...</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu180</td>
-      <td>0</td>
-      <td>0.128211</td>
-      <td>NaN</td>
-      <td>4.0</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>2</td>
-      <td>0.118305</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>3</td>
-      <td>0.091631</td>
-      <td>NaN</td>
-      <td>6.0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu069</td>
-      <td>0</td>
-      <td>0.073156</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>102</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.2</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>9</td>
-      <td>0.071931</td>
-      <td>NaN</td>
-      <td>6.0</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-<p>141 rows × 10 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="beta-0-25">
-<h2><span class="math notranslate nohighlight">\(\beta = 0.25\)</span><a class="headerlink" href="#beta-0-25" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="beta-0-3">
-<h2><span class="math notranslate nohighlight">\(\beta = 0.3\)</span><a class="headerlink" href="#beta-0-3" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="beta-0-5">
-<h2><span class="math notranslate nohighlight">\(\beta = 0.5\)</span><a class="headerlink" href="#beta-0-5" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-490_beta-0.5_(2023_06_02,21:40)&#39;</span>
-<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/68f251017c024261523c657b64d44ea0b12edc705b70c9c549950e368d5b3415.png" src="../../_images/68f251017c024261523c657b64d44ea0b12edc705b70c9c549950e368d5b3415.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>nf</th>
-      <th>beta</th>
-      <th>root</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>perf</th>
-      <th>max_perf</th>
-      <th>log_alpha</th>
-      <th>best_lag</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>42</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>1</td>
-      <td>0.856611</td>
-      <td>0.923722</td>
-      <td>3.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>4</td>
-      <td>0.834262</td>
-      <td>0.979806</td>
-      <td>4.0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
-      <td>YUWEI</td>
-      <td>clu222</td>
-      <td>0</td>
-      <td>0.785293</td>
-      <td>0.969344</td>
-      <td>3.0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>124</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
-      <td>YUWEI</td>
-      <td>ytu029</td>
-      <td>4</td>
-      <td>0.785117</td>
-      <td>0.935583</td>
-      <td>4.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
-      <td>YUWEI</td>
-      <td>clu116</td>
-      <td>0</td>
-      <td>0.784928</td>
-      <td>0.835483</td>
-      <td>3.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>...</th>
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
-      <td>YUWEI</td>
-      <td>clu294</td>
-      <td>2</td>
-      <td>0.123708</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>7</td>
     </tr>
     <tr>
       <th>0</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
       <td>YUWEI</td>
       <td>clu036</td>
       <td>0</td>
-      <td>0.120935</td>
+      <td>0.121077</td>
       <td>NaN</td>
-      <td>3.0</td>
-      <td>3</td>
+      <td>-6.0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>13</td>
+      <td>6</td>
     </tr>
     <tr>
-      <th>97</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
+      <th>38</th>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
       <td>YUWEI</td>
-      <td>clu294</td>
-      <td>3</td>
-      <td>0.093587</td>
+      <td>clu180</td>
+      <td>0</td>
+      <td>0.113681</td>
       <td>NaN</td>
-      <td>6.0</td>
-      <td>4</td>
+      <td>-2.0</td>
+      <td>12</td>
+      <td>1</td>
+      <td>0</td>
+      <td>12</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
       <td>YUWEI</td>
       <td>clu069</td>
       <td>0</td>
-      <td>0.071931</td>
+      <td>0.073251</td>
       <td>NaN</td>
-      <td>6.0</td>
+      <td>-6.0</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>102</th>
-      <td>fixate1</td>
-      <td>490</td>
-      <td>0.5</td>
+      <th>31</th>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
       <td>YUWEI</td>
-      <td>clu294</td>
-      <td>9</td>
-      <td>0.071236</td>
-      <td>NaN</td>
-      <td>4.0</td>
-      <td>10</td>
+      <td>clu131</td>
+      <td>0</td>
+      <td>0.035402</td>
+      <td>0.843686</td>
+      <td>-6.0</td>
+      <td>7</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>reservoir</td>
+      <td>7360</td>
+      <td>0.1</td>
+      <td>YUWEI</td>
+      <td>clu229</td>
+      <td>11</td>
+      <td>0.025702</td>
+      <td>0.716168</td>
+      <td>6.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
     </tr>
   </tbody>
 </table>
-<p>141 rows × 10 columns</p>
+<p>79 rows × 13 columns</p>
 </div></div></div>
 </div>
+</section>
+<section id="which-enc-dec-results">
+<h2><code class="docutils literal notranslate"><span class="pre">which='enc'/'dec'</span></code> results<a class="headerlink" href="#which-enc-dec-results" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;enc&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-8128_beta-0.1_(2023_06_25,11:23)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;enc (res)&#39;</span><span class="p">:</span> <span class="s1">&#39;reservoir_nf-8128_beta-0.1_(2023_06_30,13:29)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dec&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-7360_beta-0.1_(2023_06_28,08:16)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dec (res)&#39;</span><span class="p">:</span> <span class="s1">&#39;reservoir_nf-7360_beta-0.1_(2023_07_03,10:13)&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">fit_name</span> <span class="ow">in</span> <span class="n">fits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;comment: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">,  perf: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">name: </span><span class="si">{</span><span class="n">fit_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.12</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/46a4ae5f1c54d329cfd17c0ec7adb0c288e4fbd1e66b5ca626ce5f13f108d624.png" src="../../_images/46a4ae5f1c54d329cfd17c0ec7adb0c288e4fbd1e66b5ca626ce5f13f108d624.png" />
+<img alt="../../_images/9640219a9a5799777ca84d387fa1018eb59ed5608da95c34ea4fbd36c260c1c5.png" src="../../_images/9640219a9a5799777ca84d387fa1018eb59ed5608da95c34ea4fbd36c260c1c5.png" />
+<img alt="../../_images/2261e7bedb35130d0dbc8099e047686b6b0be205fa73dadcca607722f5cc4c50.png" src="../../_images/2261e7bedb35130d0dbc8099e047686b6b0be205fa73dadcca607722f5cc4c50.png" />
+<img alt="../../_images/8de4249a36f7472467324c02e05a828f126f7d2b3ec84c3efb4401b1ea4a2659.png" src="../../_images/8de4249a36f7472467324c02e05a828f126f7d2b3ec84c3efb4401b1ea4a2659.png" />
+</div>
+</div>
+</section>
+<section id="which-z-results">
+<h2><code class="docutils literal notranslate"><span class="pre">which='z'</span></code> results<a class="headerlink" href="#which-z-results" title="Permalink to this headline">#</a></h2>
+<section id="weight-norm-vs-weight-reg-results">
+<h3>Weight norm vs. weight reg results<a class="headerlink" href="#weight-norm-vs-weight-reg-results" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;wn&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-490_beta-0.1_(2023_06_24,22:34)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lamb = 10&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-490_beta-0.1_(2023_06_25,00:12)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lamb = 1&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-490_beta-0.1_(2023_06_25,01:49)&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">fit_name</span> <span class="ow">in</span> <span class="n">fits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;comment: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">,  perf: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">name: </span><span class="si">{</span><span class="n">fit_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.12</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f6885d3d8766a6723bc51bcbc9b3d9288df94530b6efdab2f980e2a8555d1d5e.png" src="../../_images/f6885d3d8766a6723bc51bcbc9b3d9288df94530b6efdab2f980e2a8555d1d5e.png" />
+<img alt="../../_images/38cfd52411b1fbe5d428570a33e5dc6393844c5695d88e575369ecde741c832b.png" src="../../_images/38cfd52411b1fbe5d428570a33e5dc6393844c5695d88e575369ecde741c832b.png" />
+<img alt="../../_images/3ba48bdbffe3d734f6b7997b03aab945747762bc6c32d2f7fd15b1426a6b3212.png" src="../../_images/3ba48bdbffe3d734f6b7997b03aab945747762bc6c32d2f7fd15b1426a6b3212.png" />
+</div>
+</div>
+</section>
+<section id="etc-results">
+<h3>Etc results<a class="headerlink" href="#etc-results" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate1_nf-490_beta-0.05_(2023_06_04,20:19)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-490_beta-0.1_(2023_06_02,18:23)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-490_beta-0.2_(2023_06_02,20:02)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-490_beta-0.25_(2023_06_04,21:57)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-490_beta-0.3_(2023_06_04,23:35)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixate1_nf-490_beta-0.5_(2023_06_02,21:40)&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">fit_name</span> <span class="ow">in</span> <span class="n">fits</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">fit_name</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.07</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/438881bc636de7e436c4dbc108969b068ebe9a5e82f20995f9ea40c2f9b9ba24.png" src="../../_images/438881bc636de7e436c4dbc108969b068ebe9a5e82f20995f9ea40c2f9b9ba24.png" />
+<img alt="../../_images/691391518d4ed51e4d20e643df7d358b4f4fa8c91c5e8d6b07ebfb8f69128699.png" src="../../_images/691391518d4ed51e4d20e643df7d358b4f4fa8c91c5e8d6b07ebfb8f69128699.png" />
+<img alt="../../_images/53233668b48fb5fdf797716243d72e30a2f37922c395579b582376f92246fb01.png" src="../../_images/53233668b48fb5fdf797716243d72e30a2f37922c395579b582376f92246fb01.png" />
+<img alt="../../_images/ec26b7add78d738879341ce2489987a4a427ffee50e626b2460b7d23b22062c9.png" src="../../_images/ec26b7add78d738879341ce2489987a4a427ffee50e626b2460b7d23b22062c9.png" />
+<img alt="../../_images/c7c44f30483df3da465009e7c97d3746cd933687886b81791b83342d33fbb027.png" src="../../_images/c7c44f30483df3da465009e7c97d3746cd933687886b81791b83342d33fbb027.png" />
+<img alt="../../_images/79171df5ed2245e3fe54a828f7fdd324ecec1b91ea8106bf423f1a4b1d0ee50c.png" src="../../_images/79171df5ed2245e3fe54a828f7fdd324ecec1b91ea8106bf423f1a4b1d0ee50c.png" />
+</div>
+</div>
+</section>
+<section id="dim-33-results">
+<h3><code class="docutils literal notranslate"><span class="pre">dim=33</span></code> results<a class="headerlink" href="#dim-33-results" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">0.002</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-490_beta-0.15_(2023_06_08,09:23)&#39;</span><span class="p">,</span>
+    <span class="mf">0.001</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-490_beta-0.15_(2023_06_08,12:19)&#39;</span><span class="p">,</span>
+    <span class="mf">0.0005</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-490_beta-0.15_(2023_06_08,15:16)&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">lr</span><span class="p">,</span> <span class="n">fit_name</span> <span class="ow">in</span> <span class="n">fits_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;lr = </span><span class="si">{</span><span class="n">lr</span><span class="si">}</span><span class="s2"> [fit: </span><span class="si">{</span><span class="n">fit_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.07</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a1b24e243f68f298ff738b186767ddeb6e86397b220d0086a7aa30f80161e4fa.png" src="../../_images/a1b24e243f68f298ff738b186767ddeb6e86397b220d0086a7aa30f80161e4fa.png" />
+<img alt="../../_images/67595537cabfdf8d0bae4684148cb7a99e0b21c74d30f5f1218632d76767a6ed.png" src="../../_images/67595537cabfdf8d0bae4684148cb7a99e0b21c74d30f5f1218632d76767a6ed.png" />
+<img alt="../../_images/d516038811769555b8fbb622fd4ea05eb52e806c8619d88817621b4c1a7c5164.png" src="../../_images/d516038811769555b8fbb622fd4ea05eb52e806c8619d88817621b4c1a7c5164.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1528,12 +1018,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-05"><span class="math notranslate nohighlight">\(\beta = 0.05\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-1"><span class="math notranslate nohighlight">\(\beta = 0.1\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-2"><span class="math notranslate nohighlight">\(\beta = 0.2\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-25"><span class="math notranslate nohighlight">\(\beta = 0.25\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-3"><span class="math notranslate nohighlight">\(\beta = 0.3\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-0-5"><span class="math notranslate nohighlight">\(\beta = 0.5\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current">Current</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-enc-dec-results"><code class="docutils literal notranslate"><span class="pre">which='enc'/'dec'</span></code> results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-z-results"><code class="docutils literal notranslate"><span class="pre">which='z'</span></code> results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-norm-vs-weight-reg-results">Weight norm vs. weight reg results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etc-results">Etc results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dim-33-results"><code class="docutils literal notranslate"><span class="pre">dim=33</span></code> results</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
