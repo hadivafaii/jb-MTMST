@@ -329,6 +329,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-07_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2023-07/04_dan.html">(04) Dan notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-07/04_revert-deg.html">(04) Revert degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-07/12_hf-play.html">Yuwei</a></li>
+
 </ul>
 </li>
 </ul>
@@ -603,17 +605,11 @@ document.write(`
 <h2>Current<a class="headerlink" href="#current" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;reservoir_nf-7360_beta-0.1_(2023_07_03,10:13)&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/f8b08416dc356531468cff08ba15286bc47755ce63508010036a1767987753c2.png" src="../../_images/f8b08416dc356531468cff08ba15286bc47755ce63508010036a1767987753c2.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79
 </pre></div>
 </div>
 </div>
@@ -625,221 +621,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>nf</th>
-      <th>beta</th>
-      <th>root</th>
-      <th>expt</th>
-      <th>cell</th>
-      <th>perf</th>
-      <th>max_perf</th>
-      <th>log_alpha</th>
-      <th>best_lag</th>
-      <th>pix_rank</th>
-      <th>pix_count</th>
-      <th>top_lag</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>28</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu116</td>
-      <td>0</td>
-      <td>0.914094</td>
-      <td>0.835483</td>
-      <td>-6.0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>9</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>1</td>
-      <td>0.898913</td>
-      <td>0.923722</td>
-      <td>0.0</td>
-      <td>4</td>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu267</td>
-      <td>4</td>
-      <td>0.859483</td>
-      <td>0.979806</td>
-      <td>-10.0</td>
-      <td>5</td>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>12</td>
-      <td>0.846052</td>
-      <td>0.946263</td>
-      <td>-2.0</td>
-      <td>4</td>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu209</td>
-      <td>4</td>
-      <td>0.845735</td>
-      <td>0.933615</td>
-      <td>-6.0</td>
-      <td>3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu036</td>
-      <td>0</td>
-      <td>0.121077</td>
-      <td>NaN</td>
-      <td>-6.0</td>
-      <td>4</td>
-      <td>0</td>
-      <td>13</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu180</td>
-      <td>0</td>
-      <td>0.113681</td>
-      <td>NaN</td>
-      <td>-2.0</td>
-      <td>12</td>
-      <td>1</td>
-      <td>0</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu069</td>
-      <td>0</td>
-      <td>0.073251</td>
-      <td>NaN</td>
-      <td>-6.0</td>
-      <td>5</td>
-      <td>2</td>
-      <td>0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu131</td>
-      <td>0</td>
-      <td>0.035402</td>
-      <td>0.843686</td>
-      <td>-6.0</td>
-      <td>7</td>
-      <td>2</td>
-      <td>0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>reservoir</td>
-      <td>7360</td>
-      <td>0.1</td>
-      <td>YUWEI</td>
-      <td>clu229</td>
-      <td>11</td>
-      <td>0.025702</td>
-      <td>0.716168</td>
-      <td>6.0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-<p>79 rows × 13 columns</p>
-</div></div></div>
 </div>
 </section>
 <section id="which-enc-dec-results">
