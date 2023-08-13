@@ -1,0 +1,1962 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>(09) Ablation – neural &#8212; MT/MST project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb/2023-08/09_ablation-neural';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="(10) More neurons – counter examples, etc." href="10_more-neurons-sta.html" />
+    <link rel="prev" title="(09) Ablation – neural, plot" href="09_ablation-neural-plot.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../md/intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../md/intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-01/jan-23-2022.html">Jan 23rd, 2022 (jb tutorial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2022</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2022-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2022-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-01-2022.html">Oct 1st, 2022 (Load Wild Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-06-2022.html">Oct 6th, 2022 (Python processed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-07-2022.html">Oct 7th, 2022 (Linear: STA – draft)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-08-2022.html">Oct 8th, 2022 (Linear: STA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-09-2022.html">Oct 9th, 2022 (Opticflow stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-11-2022.html">Oct 11th, 2022 (Rot Conv verify)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022-10/oct-16-2022.html">Oct 16th, 2022 (Linear: GLM – spatial)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">January 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-01.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-01_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/08_wild.html">(08) Wild play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/10_nardin.html">(10) Nardin play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/15_sim-draft.html">(15) Simulation – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/16_sim-wrong.html">(16) Simulation – wrong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/21_sim-explore.html">(21) Simulation – explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/23_sim-self-draft.html">(23) Simulation – self-motion aspect [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/24_sim-self-draft.html">(24) Simulation – self [still draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/28_sim-self.html">(28) Simulation – self [velocity: new way]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/29_sim-full-draft.html">(29) Simulation – full [draft]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-01/30_sim-full-final.html">(30) Simulation – full [final]</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">February 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-02.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-02_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/01_play-nvae.html">(01) NVAE – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/02_play-vae2d.html">(02) VAE2D – play</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/09_rot-conv.html">(09) RotConv2d – verified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/23_sim-gen.html">(23) Simulation – generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-decoupled.html">(24) Simulation – generate (fix &amp; obj uncoupled)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/24_sim-gen-save.html">(24) Simulation – generate (save)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda.html">(25) Fit – cuda (gaban)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda0.html">(25) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda1.html">(25) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/25_fit-cuda2.html">(25) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-02/30_kl-balancer-debug.html">(30) KL Balancer</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">March 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-03.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-03_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/17_sim-new-draft.html">(17) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/22_sim-new-draft.html">(22) Sim New – draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/23_sim-new.html">(23) Sim New – visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda.html">(30) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda0.html">(30) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda1.html">(30) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_fit-cuda2.html">(30) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/30_sim-final.html">(30) Sim – added <code class="docutils literal notranslate"><span class="pre">terrain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-03/31_sim-factors.html">(31) Sim – true generative factors</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">April 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-04.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-04_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/02_fit-lin.html">(02) Fit neurons – Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_fit-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-glm.html">(03) Fit neurons – GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/03_loop-ridge.html">(03) Fit neurons – Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/04_profiler.html">(04) PyTorch profiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/06_sim-kNN.html">(06) Sim – kNN analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-3d.html">(07) Readout: 3D conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/07_readout-sep.html">(07) Readout: Separable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu090.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_GLM-clu096.html">(08) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-accept-filter.html">(08) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/08_sim-dim65-manyseeds.html">(08) Sim – many seeds <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/09_sim-final-save.html">(09) Sim – generate &amp; save <code class="docutils literal notranslate"><span class="pre">dim=65</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/10_GLM-clu090.html">(10) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/12_GLM-pix.html">(12) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-accept-filter.html">(13) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_dim17-dists.html">(13) Sim – dists for <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda.html">(13) Fit – cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda0.html">(13) Fit – cuda0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda1.html">(13) Fit – cuda1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/13_fit-cuda2.html">(13) Fit – cuda2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/14_GLM-loop.html">(14) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/15_GLM-loop.html">(15) Reservoir + GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/16_GLM-save.html">(16) Reservoir + GLM + Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-GABAN.html">(18) Fixate1 + GLM (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/18_fixate1-glm-KABA.html">(18) Fixate1 + GLM (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/20_eval.html">(20) Eval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/23_nardin.html">(23) Nardin notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/24_meeting-plots.html">(24) Make some figs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/25_diameters.html">(25) Diameters: dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-GABAN.html">(26) Neural results plot (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/26_neural-fits-KABA.html">(26) Neural results plot (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/29_combine-fits.html">(29) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/%3F%3F_logging.html">(??) Regression – DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-04/tmp.html">(??) Tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">May 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-05.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-05_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-GABAN.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/01_beta-fits-KABA.html">(01) Neural <span class="math notranslate nohighlight">\(\beta\)</span> results (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/02_combine-beta-fits.html">(02) Combine <span class="math notranslate nohighlight">\(\beta\)</span> fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_combine-fits-subset.html">(03) Combine neural fits (subset)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/03_dci-beta.html">(03) DCI vs. <span class="math notranslate nohighlight">\(\beta\)</span> (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_debug-obj.html">(04) Debug – obj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/04_rev-corr.html">(04) Visualize Receptive Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_neural-align.html">(05) Neural <span class="math notranslate nohighlight">\(\beta\)</span> alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-GABAN.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/05_tr-analysis-KABA.html">(05) Trainers (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-GABAN.html">(07) Neural analysis (GABAN; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/07_neural-analysis-tmp-KABA.html">(07) Neural analysis (KABA; tmp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-GABAN.html">(09) Neural analysis (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/09_neural-analysis-KABA.html">(09) Neural analysis (KABA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/10_combine-fits-updated.html">(10) Combine neural fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/12_resume-fit-GABAN.html">(12) Resume fit (GABAN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/15_PCA-NMF-Raw.html">(15) PCA, NMF, Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig1_intro.html">Fig: Intro, etc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig3_MI.html">Fig: MI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig4-5_DCI.html">Fig: DCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig7_psth.html">Fig: PSTH + STA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Fig8_align.html">Fig: Alignment scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/FigSupp_EPE-NELBO.html">Fig: EPE/NELBO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/FigSupp_z-traversal.html">Fig: Z traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Table_Neural.html">Table: Neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/Table_pvals.html">Table: pvals (perf + align)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-05/tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">June 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-06.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-06_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/01_new-fits-GABAN.html">(01) Neural results (<span class="math notranslate nohighlight">\( skip + 0.1 * x \dots\)</span> <code class="docutils literal notranslate"><span class="pre">GABAN</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/01_new-fits-KABA.html">(01) Neural results (<span class="math notranslate nohighlight">\( skip + 0.1 * x \dots\)</span> <code class="docutils literal notranslate"><span class="pre">KABA</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/02_z-traversal.html">(02) Z traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/03_fisher-lin.html">(03) Fisher: Lin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/04_g-explore.html">(04) Vary single ground truth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/04_rofl-explore.html">(04) ROFL: pathological examples?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/05_dim33-accept-filter.html">(05) Sim – behavior of <code class="docutils literal notranslate"><span class="pre">filter()</span></code> when <code class="docutils literal notranslate"><span class="pre">dim=33</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/09_dim17-bound1.html">(09) Sim – slight changes <code class="docutils literal notranslate"><span class="pre">dim=17</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/Fig_Talk.html">Fig: Talk (Redwood-16th)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-06/tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">July 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-07.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-07_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-07/04_dan.html">(04) Dan notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-07/04_revert-deg.html">(04) Revert degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-07/12_hf-save-sta.html">(12) Save hf params + STA</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">August 2023</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-08.html">Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../md/2023-08_updates.html">Updates</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="04_within-across-lasso.html">(04) Align (within &amp; across) – lasso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_within-across-perm.html">(04) Align (within &amp; across) – perm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_ellipsoid.html">(05) Ellipsoid – geom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_within-across-perm-active-only.html">(05) Align (within &amp; across) – perm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_ablation-ground-truth.html">(06) Ablation – ground truth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_across-save-lasso.html">(06) Align (across) – lasso save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_across-save-perm.html">(06) Align (across) – perm save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_across-plot.html">(07) Align (across) – results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_within-save-GABAN.html">(07) Align (within) – lasso save (<code class="docutils literal notranslate"><span class="pre">GABAN</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_within-plot.html">(08) Align (within) – results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ablation-neural-perm.html">(09) Ablation – neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ablation-neural-plot.html">(09) Ablation – neural, plot</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">(09) Ablation – neural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_more-neurons-sta.html">(10) More neurons – counter examples, etc.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmp.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hadivafaii/jb-MTMST/issues/new?title=Issue%20on%20page%20%2Fnb/2023-08/09_ablation-neural.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nb/2023-08/09_ablation-neural.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(09) Ablation – neural</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-bash-scripts">Save bash scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current">Current</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lesion-results">Lesion results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-perm-scores">Fit perm scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">Delete</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ablation-neural">
+<h1>(09) Ablation – neural<a class="headerlink" href="#ablation-neural" title="Permalink to this headline">#</a></h1>
+<p><strong>Motivation</strong>: Lesion bottom-up and top-down pathways, test how much performance drops. <br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># tmp &amp; extras dir</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git&#39;</span><span class="p">)</span>
+<span class="n">extras_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/_extras&#39;</span><span class="p">)</span>
+<span class="n">fig_base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/figs&#39;</span><span class="p">)</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;jb-MTMST/tmp&#39;</span><span class="p">)</span>
+
+<span class="c1"># Code path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;/home/hadi/Documents/MTMST/code&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">vae.train_vae</span> <span class="kn">import</span> <span class="n">TrainerVAE</span><span class="p">,</span> <span class="n">ConfigTrainVAE</span>
+<span class="kn">from</span> <span class="nn">vae.vae2d</span> <span class="kn">import</span> <span class="n">VAE</span><span class="p">,</span> <span class="n">ConfigVAE</span>
+<span class="kn">from</span> <span class="nn">figures.fighelper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">analysis.glm</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="c1"># warnings, tqdm, &amp; style</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">rich.jupyter</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">set_style</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="save-bash-scripts">
+<h2>Save bash scripts<a class="headerlink" href="#save-bash-scripts" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">&#39;--lesion_enc </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">args</span> <span class="o">+=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">&#39;--lesion_dec </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+<span class="n">args</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;--lesion_enc 2&#39;,
+ &#39;--lesion_enc 4&#39;,
+ &#39;--lesion_enc 8&#39;,
+ &#39;--lesion_dec 2&#39;,
+ &#39;--lesion_dec 4&#39;,
+ &#39;--lesion_dec 8&#39;,
+ None]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate1_k-32_z-20x[3,6,12]_enc(1x3)-dec(1x2)-pre(1x3)-post(1x3)/ep160-b600-lr(0.002)_beta(0.15:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_04_24,18:00)&#39;</span><span class="p">,</span>
+<span class="p">]</span> <span class="o">*</span> <span class="mi">7</span>
+
+<span class="n">save_script_neural</span><span class="p">(</span>
+    <span class="n">fits</span><span class="o">=</span><span class="n">fits</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'run_neuron_gaban.txt'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/code/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">scripts</span>
+</pre>
+</div></div>
+</div>
+</section>
+<section id="current">
+<h2>Current<a class="headerlink" href="#current" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_name</span> <span class="o">=</span> <span class="s1">&#39;fixate1_nf-420_beta-0.5_lesion-enc-2_(2023_08_08,08:07)&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a6b93551957738f77c6e31e25e0f00125c6e63a6d18543803002bf28ce3fde90.png" src="../../_images/a6b93551957738f77c6e31e25e0f00125c6e63a6d18543803002bf28ce3fde90.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>nf</th>
+      <th>beta</th>
+      <th>lesion</th>
+      <th>lesion_scale</th>
+      <th>root</th>
+      <th>expt</th>
+      <th>cell</th>
+      <th>perf</th>
+      <th>max_perf</th>
+      <th>log_alpha</th>
+      <th>best_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>118</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>ytu028</td>
+      <td>8</td>
+      <td>1.119207</td>
+      <td>0.328052</td>
+      <td>-1.0</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>ytu029</td>
+      <td>4</td>
+      <td>0.918387</td>
+      <td>0.935583</td>
+      <td>-4.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu267</td>
+      <td>4</td>
+      <td>0.891229</td>
+      <td>0.979806</td>
+      <td>-1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu209</td>
+      <td>1</td>
+      <td>0.888157</td>
+      <td>0.923722</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu120</td>
+      <td>0</td>
+      <td>0.858052</td>
+      <td>0.967720</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu180</td>
+      <td>0</td>
+      <td>0.124579</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu294</td>
+      <td>2</td>
+      <td>0.119755</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu294</td>
+      <td>3</td>
+      <td>0.098077</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu069</td>
+      <td>0</td>
+      <td>0.081697</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>fixate1</td>
+      <td>420</td>
+      <td>0.5</td>
+      <td>enc</td>
+      <td>2</td>
+      <td>ROOT</td>
+      <td>clu294</td>
+      <td>9</td>
+      <td>0.064633</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>141 rows × 12 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expt</span> <span class="o">=</span> <span class="s1">&#39;clu116&#39;</span>
+<span class="n">ro</span> <span class="o">=</span> <span class="n">ro_all</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;ROOT_</span><span class="si">{</span><span class="n">expt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">load_neurons</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cell</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y_tst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">spks_r</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="n">cell</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f45aa8b0d90&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/0e4ef03f7880e8add311df90d821e592694f312dd87dbfd65a21b4ad220353b6.png" src="../../_images/0e4ef03f7880e8add311df90d821e592694f312dd87dbfd65a21b4ad220353b6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span> <span class="s1">&#39;xtract&#39;</span><span class="p">):</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">kws_push</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span>
+        <span class="n">ro</span><span class="o">.</span><span class="n">kws_push</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;xtract&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span>
+    <span class="p">}</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">kws_xtract</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">kws_push</span><span class="p">[</span><span class="s1">&#39;kws_xtract&#39;</span><span class="p">]</span>
+    <span class="n">ro</span><span class="o">.</span><span class="n">kws_push</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span>
+        <span class="n">ro</span><span class="o">.</span><span class="n">kws_push</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;xtract&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;x&#39;, &#39;y&#39;, &#39;x_tst&#39;, &#39;y_tst&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_tst</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">mod</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pred_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp_stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">pred_tst</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sk_metric</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">pred_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">fit_neuron</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst     r2_tst
+alpha                                      
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.417322</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-27.882612</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.421112</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-28.324601</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.428563</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-28.359785</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.432881</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-27.262060</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.438985</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-22.021505</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.446164</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-13.411900</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.450583</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-8.531271</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.449181</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-6.886818</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.432293</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-17.276228</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.410618</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-33.967911</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.398245</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-38.023978</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.376929</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-4.252775</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.361780</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12.126974</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.416489</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-26.934597</span>
+</pre>
+</div><img alt="../../_images/b6a96b4ef7caf7c1e1dfaef0159609ec9a19cb0774caf0410aabc1901d3ef047.png" src="../../_images/b6a96b4ef7caf7c1e1dfaef0159609ec9a19cb0774caf0410aabc1901d3ef047.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst     r2_tst
+alpha                                      
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.549276</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-29.926471</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.550447</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-31.638216</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.549213</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-34.224869</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.546223</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-34.755949</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.546602</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-30.019688</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.545144</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-21.339488</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.541216</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-16.376319</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.525695</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-13.958801</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.497876</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-23.504773</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.476885</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-38.907561</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.456681</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-40.037831</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.422709</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-2.914736</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.401669</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">15.239920</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.548907</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-29.564777</span>
+</pre>
+</div><img alt="../../_images/21316a33e65b96092c9fb1f0b8b33b14b2ee063fd32f35e34a349d8d30656fb2.png" src="../../_images/21316a33e65b96092c9fb1f0b8b33b14b2ee063fd32f35e34a349d8d30656fb2.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst     r2_tst
+alpha                                      
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.602436</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-50.673421</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.602247</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-53.603113</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.598698</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-57.218785</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.595237</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-58.260462</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.593156</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-55.735138</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.587956</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-47.615519</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.581050</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-39.852920</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.562548</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-30.079419</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.534756</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-30.739252</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.508987</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-44.325199</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.483353</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-44.623700</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.443191</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-4.476503</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.418900</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16.759456</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.602561</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-49.115950</span>
+</pre>
+</div><img alt="../../_images/76dab98ecdfeec6c627c9938932b8bfdd29699af45a9f7c70c326af7e9357dbd.png" src="../../_images/76dab98ecdfeec6c627c9938932b8bfdd29699af45a9f7c70c326af7e9357dbd.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst     r2_tst
+alpha                                      
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.621362</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-71.839346</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.621076</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-74.921367</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.616285</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-78.695151</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.611351</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-79.038511</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.607627</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-76.262569</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.601967</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-68.061303</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.595361</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-57.606145</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.578226</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-44.782155</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.551610</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-40.057065</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.523256</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-51.384110</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.489968</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-49.455677</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.445062</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-7.205456</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.417185</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16.689544</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.621888</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-69.080350</span>
+</pre>
+</div><img alt="../../_images/0cff77716af3bb2760e1537ff27fa863cacbb0630a295fc67916b0326b94ba83.png" src="../../_images/0cff77716af3bb2760e1537ff27fa863cacbb0630a295fc67916b0326b94ba83.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.569888</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-93.771769</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.568629</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-96.933343</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.561567</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-100.667126</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.555008</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-99.867460</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.550622</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-95.050843</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.544503</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-85.484391</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.540677</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-72.722581</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.536622</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-55.265183</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.524657</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-44.594409</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.497529</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-55.270615</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.463009</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-55.106498</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.421123</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-12.150066</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.393926</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14.714858</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.571070</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-91.917284</span>
+</pre>
+</div><img alt="../../_images/366988fde34b5286a17501fda2a61e2af1d77e89a828c3e9843f11f562cc9dee.png" src="../../_images/366988fde34b5286a17501fda2a61e2af1d77e89a828c3e9843f11f562cc9dee.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.467118</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-123.805354</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.468231</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-124.683358</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.463910</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-126.033260</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.457774</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-125.456950</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.454751</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-122.723694</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.451253</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-115.253362</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.450492</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-101.344016</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.455082</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-79.325620</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.456631</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-59.524797</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.438515</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-67.921060</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.409495</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-66.137009</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.376298</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-19.679038</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.352314</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11.178726</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.470039</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-124.175431</span>
+</pre>
+</div><img alt="../../_images/a48e673b46bebc251d5ee8830e4819e3df172dcee771b06f86eff9fa8a5e1d18.png" src="../../_images/a48e673b46bebc251d5ee8830e4819e3df172dcee771b06f86eff9fa8a5e1d18.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.360474</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-147.246867</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.359969</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-148.035621</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.353993</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-147.704249</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.346887</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-144.442113</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.342365</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-140.052639</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.337661</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-131.654194</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.340615</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-116.871771</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.359083</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-93.960508</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.375368</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-70.540283</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.364977</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-75.921549</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.343890</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-73.654583</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.318090</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-26.463696</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.294686</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6.664267</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.362313</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-147.399108</span>
+</pre>
+</div><img alt="../../_images/38b091c45d3dbc9741dcabbc6f8bf30a5ffec44dc6ccb7b9c4257d5a7d345e2c.png" src="../../_images/38b091c45d3dbc9741dcabbc6f8bf30a5ffec44dc6ccb7b9c4257d5a7d345e2c.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.238769</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-164.907737</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.237524</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-164.971658</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.230718</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-163.192875</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.224425</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-158.155015</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.219783</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-152.849388</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.214743</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-145.635418</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.217854</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-133.911693</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.240632</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-112.676876</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.267121</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-88.219939</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.268624</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-89.916170</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.260634</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-82.824939</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.247361</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-33.151458</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.228313</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.105363</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.242120</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-166.545039</span>
+</pre>
+</div><img alt="../../_images/7a3557ec37c254066fda265c52cf35ac9a2c8521ef297ce02675dd80970aa1af.png" src="../../_images/7a3557ec37c254066fda265c52cf35ac9a2c8521ef297ce02675dd80970aa1af.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.163085</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-146.189035</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.161410</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-146.745780</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.155292</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-145.461898</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.149264</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-140.989119</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.145080</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-136.921199</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.140977</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-131.386225</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.143491</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-121.322208</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.158206</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-105.947305</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.173588</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-89.996498</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.179492</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-90.232064</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.180218</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-82.287520</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.177695</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-35.087216</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.163896</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.220172</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.163755</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-148.910587</span>
+</pre>
+</div><img alt="../../_images/a44cc6e638a86b5928f97798131528f08a4351404c57782021e4e68a176db3fe.png" src="../../_images/a44cc6e638a86b5928f97798131528f08a4351404c57782021e4e68a176db3fe.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.071669</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-138.558351</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.071492</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-137.987069</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.069389</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-135.557487</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.067910</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-131.478609</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.067966</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-130.430009</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.067556</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-128.144718</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.068459</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-120.139690</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.078916</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-107.585302</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.089911</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-95.006023</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.095439</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-93.302840</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.096486</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-82.874388</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.102353</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-36.450004</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.096354</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-3.846507</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.070588</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-140.567120</span>
+</pre>
+</div><img alt="../../_images/76030a68ed05c358ee922311eab36b2b0124d30ba48b8145e020e6434652edce.png" src="../../_images/76030a68ed05c358ee922311eab36b2b0124d30ba48b8145e020e6434652edce.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.012667</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-135.458777</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.013725</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-134.780099</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.016823</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-132.009000</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.018783</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-128.216892</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.018347</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-127.147727</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.018381</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-124.988390</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.017626</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-118.368558</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.009366</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-111.533681</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.000870</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-103.159129</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007341</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-96.052316</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.016791</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-81.011489</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.031154</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-35.723457</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.033278</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-5.267033</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.012979</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-137.475450</span>
+</pre>
+</div><img alt="../../_images/86e789b501f5317ff9947541001d89060b9121f0aac33a6aaa605164049d3d55.png" src="../../_images/86e789b501f5317ff9947541001d89060b9121f0aac33a6aaa605164049d3d55.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">--------------------------------------------------------------------------------
+clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>; inds: <span style="font-weight: bold">(</span>lag, <span style="font-weight: bold">[</span>i, j<span style="font-weight: bold">])</span> = <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="font-weight: bold">)</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">               r  nnll     r_tst      r2_tst
+alpha                                       
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-04</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.071590</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-106.679075</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-03</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.072086</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-106.578184</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-02</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.074856</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-106.177053</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e-01</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.075718</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-105.244936</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+00</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.073602</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-105.703350</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+01</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.073431</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-104.866931</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+02</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.073723</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-100.629963</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+03</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.072258</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-99.124754</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+04</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.070962</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-97.003624</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+05</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.058687</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-91.288841</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+06</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.042936</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-74.548006</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+07</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.025371</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-32.165936</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.000000e+08</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.019930</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-5.454773</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000000e+00</span> NaN   NaN <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.073113</span> <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-106.863267</span>
+</pre>
+</div><img alt="../../_images/79e78a448a2cd0eb56e3459f9cf6e40adf7e68c9092fe531b59ec05b8b22c44f.png" src="../../_images/79e78a448a2cd0eb56e3459f9cf6e40adf7e68c9092fe531b59ec05b8b22c44f.png" />
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">clu116, neuron # <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>;  best alpha = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, best_r = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.622</span>
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ro</span><span class="o">.</span><span class="n">has_repeats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perm</span> <span class="o">=</span> <span class="n">sk_inspect</span><span class="o">.</span><span class="n">permutation_importance</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">ro</span><span class="o">.</span><span class="n">mod</span><span class="p">[</span><span class="n">cell</span><span class="p">],</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span> <span class="k">if</span> <span class="n">ro</span><span class="o">.</span><span class="n">has_repeats</span> <span class="k">else</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span> <span class="k">if</span> <span class="n">ro</span><span class="o">.</span><span class="n">has_repeats</span> <span class="k">else</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">perm_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">perm</span><span class="p">[</span><span class="s1">&#39;importances_mean&#39;</span><span class="p">])</span>
+
+<span class="n">p_z_given_neuron</span> <span class="o">=</span> <span class="n">perm_mu</span> <span class="o">/</span> <span class="n">perm_mu</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">entropy_normalized</span><span class="p">(</span><span class="n">p_z_given_neuron</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.30168704061235696
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perm_</span> <span class="o">=</span> <span class="n">sk_inspect</span><span class="o">.</span><span class="n">permutation_importance</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">ro</span><span class="o">.</span><span class="n">mod</span><span class="p">[</span><span class="n">cell</span><span class="p">],</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">perm_mu_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">perm_</span><span class="p">[</span><span class="s1">&#39;importances_mean&#39;</span><span class="p">])</span>
+
+<span class="n">new_version</span> <span class="o">=</span> <span class="n">perm_mu_</span> <span class="o">/</span> <span class="n">perm_mu_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">entropy_normalized</span><span class="p">(</span><span class="n">new_version</span><span class="p">)</span>
+<span class="n">a2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.43044537891571666
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">mod</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_z_given_neuron</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_version</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa5b45e7d60&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/4b0df7748bfcc8808c581e21b0774f3f30fbaa7d74a6689ad0e0535cda093aca.png" src="../../_images/4b0df7748bfcc8808c581e21b0774f3f30fbaa7d74a6689ad0e0535cda093aca.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lasso</span> <span class="o">=</span> <span class="n">sk_linear</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">normalize_global</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">pred_tst</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">normalize_global</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pred_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa5f14dc280&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/871ee10a695501c3f1b1d6d294c91662651f58a4a1393273d11252cfa283d05e.png" src="../../_images/871ee10a695501c3f1b1d6d294c91662651f58a4a1393273d11252cfa283d05e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sk_metric</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">pred_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-9.760121096569208e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">/=</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_212458/854826648.py:2: RuntimeWarning: invalid value encountered in true_divide
+  w /= w.sum()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">mod</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_z_given_neuron</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_version</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa59205ca60&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/16193c8645681cf536b37098b72b73582902ddd6fadeaecbcae8c3187fd5a7f3.png" src="../../_images/16193c8645681cf536b37098b72b73582902ddd6fadeaecbcae8c3187fd5a7f3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">entropy_normalized</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nonzero</span> <span class="o">=</span> <span class="n">w</span> <span class="o">&gt;</span> <span class="mf">1e-2</span>
+<span class="n">nonzero</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">sk_linear</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">normalize_global</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span><span class="p">)[:,</span> <span class="n">nonzero</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">pred_tst</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">normalize_global</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span><span class="p">)[:,</span> <span class="n">nonzero</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">60</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">lr</span> <span class="o">=</span> <span class="n">sk_linear</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">normalize_global</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span><span class="p">)[:,</span> <span class="n">nonzero</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">pred_tst</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">normalize_global</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sd</span><span class="p">)[:,</span> <span class="n">nonzero</span><span class="p">])</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/base.py:1151,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1144</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1146</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1147</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1148</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1149</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1151</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/linear_model/_base.py:678,</span> in <span class="ni">LinearRegression.fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span> <span class="n">n_jobs_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span> <span class="n">accept_sparse</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;csr&quot;</span><span class="p">,</span> <span class="s2">&quot;csc&quot;</span><span class="p">,</span> <span class="s2">&quot;coo&quot;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">678</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="n">accept_sparse</span><span class="p">,</span> <span class="n">y_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multi_output</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">682</span> <span class="n">has_sw</span> <span class="o">=</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">683</span> <span class="k">if</span> <span class="n">has_sw</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/base.py:621,</span> in <span class="ni">BaseEstimator._validate_data</span><span class="nt">(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>         <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">check_y_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">620</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">621</span>         <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">check_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="n">check_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ensure_2d&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:1147,</span> in <span class="ni">check_X_y</span><span class="nt">(X, y, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, multi_output, ensure_min_samples, ensure_min_features, y_numeric, estimator)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1142</span>         <span class="n">estimator_name</span> <span class="o">=</span> <span class="n">_check_estimator_name</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1143</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1144</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">estimator_name</span><span class="si">}</span><span class="s2"> requires y to be passed, but the target y is None&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1145</span>     <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1147</span> <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1148</span>     <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1149</span>     <span class="n">accept_sparse</span><span class="o">=</span><span class="n">accept_sparse</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span>     <span class="n">accept_large_sparse</span><span class="o">=</span><span class="n">accept_large_sparse</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1152</span>     <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1153</span>     <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1154</span>     <span class="n">force_all_finite</span><span class="o">=</span><span class="n">force_all_finite</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1155</span>     <span class="n">ensure_2d</span><span class="o">=</span><span class="n">ensure_2d</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1156</span>     <span class="n">allow_nd</span><span class="o">=</span><span class="n">allow_nd</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1157</span>     <span class="n">ensure_min_samples</span><span class="o">=</span><span class="n">ensure_min_samples</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1158</span>     <span class="n">ensure_min_features</span><span class="o">=</span><span class="n">ensure_min_features</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1159</span>     <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1160</span>     <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1163</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_check_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">multi_output</span><span class="o">=</span><span class="n">multi_output</span><span class="p">,</span> <span class="n">y_numeric</span><span class="o">=</span><span class="n">y_numeric</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span> <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.8/site-packages/sklearn/utils/validation.py:978,</span> in <span class="ni">check_array</span><span class="nt">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span>     <span class="n">n_features</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">977</span>     <span class="k">if</span> <span class="n">n_features</span> <span class="o">&lt;</span> <span class="n">ensure_min_features</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">978</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span>             <span class="s2">&quot;Found array with </span><span class="si">%d</span><span class="s2"> feature(s) (shape=</span><span class="si">%s</span><span class="s2">) while&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">980</span>             <span class="s2">&quot; a minimum of </span><span class="si">%d</span><span class="s2"> is required</span><span class="si">%s</span><span class="s2">.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">981</span>             <span class="o">%</span> <span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ensure_min_features</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">984</span> <span class="k">if</span> <span class="n">copy</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">985</span>     <span class="k">if</span> <span class="n">_is_numpy_namespace</span><span class="p">(</span><span class="n">xp</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">986</span>         <span class="c1"># only make a copy if `array` and `array_orig` may share memory`</span>
+
+<span class="ne">ValueError</span>: Found array with 0 feature(s) (shape=(55536, 0)) while a minimum of 1 is required by LinearRegression.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pred_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sk_metric</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">pred_tst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5057265083844164
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">420</span><span class="p">)</span>
+<span class="n">w</span><span class="p">[</span><span class="n">nonzero</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">/=</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">entropy_normalized</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6182599560587859
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa560469460&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/8ad19a20e88a772e306152d796fbcd9a2bf08efe05ff08f9df8cf06273d7d77c.png" src="../../_images/8ad19a20e88a772e306152d796fbcd9a2bf08efe05ff08f9df8cf06273d7d77c.png" />
+</div>
+</div>
+</section>
+<section id="lesion-results">
+<h2>Lesion results<a class="headerlink" href="#lesion-results" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;true&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_(2023_08_08,03:01)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;enc-2&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_lesion-enc-2_(2023_08_07,22:05)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;enc-4&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_lesion-enc-4_(2023_08_07,23:00)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;enc-8&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_lesion-enc-8_(2023_08_07,23:48)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dec-2&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_lesion-dec-2_(2023_08_08,00:38)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dec-4&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_lesion-dec-4_(2023_08_08,01:26)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dec-8&#39;</span><span class="p">:</span> <span class="s1">&#39;fixate1_nf-420_beta-0.15_lesion-dec-8_(2023_08_08,02:13)&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">fit_name</span> <span class="ow">in</span> <span class="n">fits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">show_neural_results</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;comment: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">,  ** perf: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;perf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> **</span><span class="se">\n</span><span class="s2">name: </span><span class="si">{</span><span class="n">fit_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.12</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f9df22d3f68fa096b998168cc2a64a5f2b0d52a4adf8fdd907283ef69062f08e.png" src="../../_images/f9df22d3f68fa096b998168cc2a64a5f2b0d52a4adf8fdd907283ef69062f08e.png" />
+<img alt="../../_images/e0b0eb57067f36a5b73251f03de71ec07952b2baa5aef613f57527c05b1f81ca.png" src="../../_images/e0b0eb57067f36a5b73251f03de71ec07952b2baa5aef613f57527c05b1f81ca.png" />
+<img alt="../../_images/dbbb6cb8d255c9f83ebdc070a4ab0af5717cdda95fcdd7006d115a22602d727c.png" src="../../_images/dbbb6cb8d255c9f83ebdc070a4ab0af5717cdda95fcdd7006d115a22602d727c.png" />
+<img alt="../../_images/87395444a0a9929b477d2b6faab40cb4b4de2d75c1e82765aceff6c7b213865d.png" src="../../_images/87395444a0a9929b477d2b6faab40cb4b4de2d75c1e82765aceff6c7b213865d.png" />
+<img alt="../../_images/8c1425aaf763489fb7e74dc1f7e471428244b99ca4baf410208c5ef8c6792251.png" src="../../_images/8c1425aaf763489fb7e74dc1f7e471428244b99ca4baf410208c5ef8c6792251.png" />
+<img alt="../../_images/6d3b8b1cd2305e7eb4de774770c7da54665e8b8dcfd2eba5504c5fe19c8b00d5.png" src="../../_images/6d3b8b1cd2305e7eb4de774770c7da54665e8b8dcfd2eba5504c5fe19c8b00d5.png" />
+<img alt="../../_images/201a0025644cdf83ff31ee11d62d8633a72bca9fa4e3af8430b705039899a63c.png" src="../../_images/201a0025644cdf83ff31ee11d62d8633a72bca9fa4e3af8430b705039899a63c.png" />
+</div>
+</div>
+</section>
+<section id="fit-perm-scores">
+<h2>Fit perm scores<a class="headerlink" href="#fit-perm-scores" title="Permalink to this headline">#</a></h2>
+<p>Code adapted from <code class="docutils literal notranslate"><span class="pre">09_neural-analysis-KABA</span></code> notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">results_dir</span><span class="p">()</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<span class="n">trainer_paths</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;**/*fixate1*/**/Trainer&#39;</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="n">pat</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="n">trainer_paths</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+<span class="n">trainer_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">trainer_paths</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">trainer_paths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trainer_paths</span> <span class="k">if</span>
+    <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">8</span>
+<span class="p">]</span>
+<span class="n">selected_fits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_(2023_08_08,03:01)/Trainer&#39;,
+ &#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_lesion-dec-2_(2023_08_08,00:38)/Trainer&#39;,
+ &#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_lesion-dec-4_(2023_08_08,01:26)/Trainer&#39;,
+ &#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_lesion-dec-8_(2023_08_08,02:13)/Trainer&#39;,
+ &#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_lesion-enc-2_(2023_08_07,22:05)/Trainer&#39;,
+ &#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_lesion-enc-4_(2023_08_07,23:00)/Trainer&#39;,
+ &#39;/home/hadi/Documents/MTMST/results/Ridge/fixate1_nf-420_beta-0.15_lesion-enc-8_(2023_08_07,23:48)/Trainer&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">selected_fits</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fit_path</span> <span class="ow">in</span> <span class="n">pbar</span><span class="p">:</span>
+    <span class="n">fit_name</span> <span class="o">=</span> <span class="n">fit_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;neural_analysis&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fit_name</span><span class="si">}</span><span class="s2">.npy&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">continue</span>
+    <span class="n">pbar</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="n">fit_name</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">,</span> <span class="n">df_all</span><span class="p">,</span> <span class="n">ro_all</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">summarize_neural_fits</span><span class="p">(</span>
+        <span class="n">fit_name</span><span class="o">=</span><span class="n">fit_name</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+    <span class="c1"># extract neural results</span>
+    <span class="n">neural_results</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">ro</span> <span class="ow">in</span> <span class="n">ro_all</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ro</span><span class="o">.</span><span class="n">mod</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">ro</span><span class="o">.</span><span class="n">has_repeats</span><span class="p">:</span>
+                <span class="n">pred_tst</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pred_tst</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># perm importance</span>
+            <span class="n">perm</span> <span class="o">=</span> <span class="n">sk_inspect</span><span class="o">.</span><span class="n">permutation_importance</span><span class="p">(</span>
+                <span class="n">estimator</span><span class="o">=</span><span class="n">m</span><span class="p">,</span>
+                <span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x_tst&#39;</span> <span class="k">if</span> <span class="n">ro</span><span class="o">.</span><span class="n">has_repeats</span> <span class="k">else</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_tst&#39;</span> <span class="k">if</span> <span class="n">ro</span><span class="o">.</span><span class="n">has_repeats</span> <span class="k">else</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">perm_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">perm</span><span class="p">[</span><span class="s1">&#39;importances_mean&#39;</span><span class="p">])</span>
+            <span class="n">perm_sd</span> <span class="o">=</span> <span class="n">perm</span><span class="p">[</span><span class="s1">&#39;importances_std&#39;</span><span class="p">]</span>
+
+            <span class="c1"># Probs</span>
+            <span class="n">p_z_given_neuron</span> <span class="o">=</span> <span class="n">perm_mu</span> <span class="o">/</span> <span class="n">perm_mu</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">entropy_normalized</span><span class="p">(</span><span class="n">p_z_given_neuron</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            
+            <span class="n">k</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">cell</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">neural_results</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="n">neural_results</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>
+            <span class="n">neural_results</span><span class="p">[</span><span class="s1">&#39;pred_tst&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_tst</span>
+            <span class="n">neural_results</span><span class="p">[</span><span class="s1">&#39;perm_mu&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">perm_mu</span>
+            <span class="n">neural_results</span><span class="p">[</span><span class="s1">&#39;perm_sd&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">perm_sd</span>
+            <span class="n">neural_results</span><span class="p">[</span><span class="s1">&#39;alignment_score&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+
+    <span class="c1"># save</span>
+    <span class="n">save_obj</span><span class="p">(</span>
+        <span class="n">obj</span><span class="o">=</span><span class="n">neural_results</span><span class="p">,</span>
+        <span class="n">file_name</span><span class="o">=</span><span class="n">fit_name</span><span class="p">,</span>
+        <span class="n">save_dir</span><span class="o">=</span><span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;neural_analysis&#39;</span><span class="p">),</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;npy&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fixate1_nf-420_beta-0.15_(2023_08_08,03:01):   0%|        | 0/7 [00:00&lt;?, ?it/s]/home/hadi/Documents/MTMST/code/analysis/helper.py:130: RuntimeWarning: invalid value encountered in true_divide
+  return signal_power / response_power
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.15_(2023_08_08,03:01).npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/jb-MTMST/tmp/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">neural_analysis</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fixate1_nf-420_beta-0.15_lesion-dec-2_(2023_08_08,00:38):  14%|▏| 1/7 [42:06&lt;4:1/home/hadi/Documents/MTMST/code/analysis/helper.py:130: RuntimeWarning: invalid value encountered in true_divide
+  return signal_power / response_power
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.15_lesion-dec-2_(2023_08_08,00:38).npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/jb-MTMST/tmp/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">neural_analysis</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fixate1_nf-420_beta-0.15_lesion-dec-4_(2023_08_08,01:26):  29%|▎| 2/7 [1:28:05&lt;3/home/hadi/Documents/MTMST/code/analysis/helper.py:130: RuntimeWarning: invalid value encountered in true_divide
+  return signal_power / response_power
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.15_lesion-dec-4_(2023_08_08,01:26).npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/jb-MTMST/tmp/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">neural_analysis</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fixate1_nf-420_beta-0.15_lesion-dec-8_(2023_08_08,02:13):  43%|▍| 3/7 [2:17:02&lt;3/home/hadi/Documents/MTMST/code/analysis/helper.py:130: RuntimeWarning: invalid value encountered in true_divide
+  return signal_power / response_power
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'fixate1_nf-420_beta-0.15_lesion-dec-8_(2023_08_08,02:13).npy'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/jb-MTMST/tmp/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">neural_analysis</span>
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fixate1_nf-420_beta-0.15_lesion-enc-2_(2023_08_07,22:05):  57%|▌| 4/7 [2:54:38&lt;2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="delete">
+<h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">&#39;--lesion_enc </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1"> --dry_run&#39;</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">args</span> <span class="o">+=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">&#39;--lesion_dec </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1"> --dry_run&#39;</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--dry_run&#39;</span><span class="p">]</span>
+<span class="n">args</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;--lesion_enc 2 --dry_run&#39;,
+ &#39;--lesion_enc 4 --dry_run&#39;,
+ &#39;--lesion_enc 8 --dry_run&#39;,
+ &#39;--lesion_dec 2 --dry_run&#39;,
+ &#39;--lesion_dec 4 --dry_run&#39;,
+ &#39;--lesion_dec 8 --dry_run&#39;,
+ &#39;--dry_run&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate1_k-32_z-20x[3,6,12]_enc(1x3)-dec(1x2)-pre(1x3)-post(1x3)/ep160-b600-lr(0.002)_beta(0.15:0x0.5)_lamb(0.0001)_gr(250.0)_(2023_04_24,18:00)&#39;</span><span class="p">,</span>
+<span class="p">]</span> <span class="o">*</span> <span class="mi">7</span>
+
+<span class="n">save_script_neural</span><span class="p">(</span>
+    <span class="n">fits</span><span class="o">=</span><span class="n">fits</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'run_neuron_gaban.txt'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Documents/MTMST/code/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">scripts</span>
+</pre>
+</div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/2023-08"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_ablation-neural-plot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">(09) Ablation – neural, plot</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_more-neurons-sta.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">(10) More neurons – counter examples, etc.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-bash-scripts">Save bash scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current">Current</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lesion-results">Lesion results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-perm-scores">Fit perm scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">Delete</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hadi Vafaii
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
