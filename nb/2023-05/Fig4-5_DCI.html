@@ -351,7 +351,25 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../2023-08/09_ablation-neural-plot.html">(09) Ablation – neural, plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-08/09_ablation-neural.html">(09) Ablation – neural</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023-08/10_more-neurons-sta.html">(10) More neurons – counter examples, etc.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2023-08/tmp.html">tmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-08/tmp-aug23.html">tmp</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">September 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-09.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-09_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-09/24_untange-nvae.html">(24) Untangle – NVAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-09/24_untange-raw.html">(24) Untangle – Raw data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023-09/Fig4_untangle%2B%2B.html">Fig: Untangle++</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">October 2023</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../md/2023-10.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../md/2023-10_updates.html">Updates</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023-10/13_samples.html">(13) Samples – fixate-1/cNVAE/VAE</a></li>
 </ul>
 </li>
 </ul>
@@ -556,6 +574,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-full">DCI full</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-latents">Individual latents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-bar-plots">Other bar plots</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-wide">DCI wide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table">Table</a></li>
@@ -640,7 +659,7 @@ document.write(`
 <span class="k">for</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">))):</span>
     <span class="k">if</span> <span class="s1">&#39;reservoir&#39;</span> <span class="ow">in</span> <span class="n">fit</span> <span class="ow">or</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">skip_fits</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="k">if</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">skip_fits</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">skip_fits</span> <span class="ow">or</span> <span class="s1">&#39;fixate1&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fit</span><span class="p">:</span>
         <span class="k">continue</span>
     <span class="n">category</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>    
     <span class="k">if</span> <span class="n">beta</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">]:</span>
@@ -674,14 +693,15 @@ document.write(`
     <span class="n">df_dci</span><span class="p">[</span><span class="s1">&#39;tot_active&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tot_active</span><span class="p">)</span>
 
     <span class="c1"># load g/g_tst</span>
-    <span class="n">g</span><span class="p">,</span> <span class="n">g_tst</span><span class="p">,</span> <span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="n">prep_rofl</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
-    
+    <span class="n">g</span><span class="p">,</span> <span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="n">prep_rofl</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+    <span class="c1"># g, g_tst, select_i, select_lbl = prep_rofl(category)</span>
+
     <span class="c1"># R^2</span>
     <span class="n">lr</span> <span class="o">=</span> <span class="n">sk_linear</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-        <span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">g</span><span class="p">)</span>
+        <span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">])</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">everything</span><span class="p">[</span><span class="s1">&#39;data_tst&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
     <span class="n">r2</span> <span class="o">=</span> <span class="n">sk_metric</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span>
-        <span class="n">y_true</span><span class="o">=</span><span class="n">g_tst</span><span class="p">,</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;tst&#39;</span><span class="p">],</span>
         <span class="n">y_pred</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span>
         <span class="n">multioutput</span><span class="o">=</span><span class="s1">&#39;raw_values&#39;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -722,7 +742,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 88/88 [21:15&lt;00:00, 14.50s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 88/88 [11:12&lt;00:00,  7.64s/it]
 </pre></div>
 </div>
 </div>
@@ -796,7 +816,7 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>10</th>
+      <th>1</th>
       <td>cNVAE</td>
       <td>fixate1</td>
       <td>0.15</td>
@@ -806,10 +826,10 @@ document.write(`
       <td>38.868622</td>
       <td>37.097996</td>
       <td>44.0</td>
-      <td>0.89788</td>
+      <td>0.897878</td>
       <td>0.461951</td>
       <td>0.699985</td>
-      <td>0.686606</td>
+      <td>0.686605</td>
       <td>0.308088</td>
       <td>-0.236125</td>
     </tr>
@@ -867,7 +887,7 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>77</th>
+      <th>29</th>
       <td>VAE</td>
       <td>fixate1</td>
       <td>1.5</td>
@@ -877,10 +897,10 @@ document.write(`
       <td>30.526846</td>
       <td>8.583105</td>
       <td>6.0</td>
-      <td>0.548411</td>
+      <td>0.548413</td>
       <td>0.329943</td>
       <td>0.138043</td>
-      <td>0.338799</td>
+      <td>0.3388</td>
       <td>0.960167</td>
       <td>0.330139</td>
     </tr>
@@ -911,23 +931,39 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_obj</span><span class="p">(</span>
+    <span class="n">obj</span><span class="o">=</span><span class="n">df2p</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;df2p&#39;</span><span class="p">,</span>
+    <span class="n">save_dir</span><span class="o">=</span><span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;fig4_untangle_material&#39;</span><span class="p">),</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;df&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>PROGRESS<span style="font-weight: bold">]</span> <span style="color: #008000; text-decoration-color: #008000">'df2p.df'</span> saved at
+<span style="color: #800080; text-decoration-color: #800080">/home/hadi/Dropbox/git/jb-MTMST/tmp/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">fig4_untangle_material</span>
+</pre>
+</div></div>
+</div>
 </section>
 <section id="plot">
 <h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span><span class="n">plot_bar_untangle</span><span class="p">(</span><span class="n">df2p</span><span class="p">,</span> <span class="n">pal_model</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plot_bar_untangle</span><span class="p">(</span><span class="n">df2p</span><span class="p">,</span> <span class="n">pal_model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/146adf4e9581fa9622d65c3f8c68ad70352e03d0a3ef7582cf6c263e02786380.png" src="../../_images/146adf4e9581fa9622d65c3f8c68ad70352e03d0a3ef7582cf6c263e02786380.png" />
+<img alt="../../_images/93c887c94f166f5c75e7fe2ed05bbb2b2db3a693f71012f34ddc0fcd2fc065f3.png" src="../../_images/93c887c94f166f5c75e7fe2ed05bbb2b2db3a693f71012f34ddc0fcd2fc065f3.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untangle_full.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untangle_full.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -943,13 +979,148 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a0978a9f66c205e103572cbace063c475170a21b9997fa78beb1a53d9f74bce1.png" src="../../_images/a0978a9f66c205e103572cbace063c475170a21b9997fa78beb1a53d9f74bce1.png" />
+<img alt="../../_images/9ceb100d8df48307f85e0feabd46d4e3d20e5e0c3f08041bdc208238d01c6ae3.png" src="../../_images/9ceb100d8df48307f85e0feabd46d4e3d20e5e0c3f08041bdc208238d01c6ae3.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;dci.pdf&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;dci.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="individual-latents">
+<h2>Individual latents<a class="headerlink" href="#individual-latents" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">figures.dci</span> <span class="kn">import</span> <span class="n">plot_scatter</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;trainer_analysis&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="p">,</span> <span class="n">select_i</span><span class="p">,</span> <span class="n">select_lbl</span> <span class="o">=</span> <span class="n">prep_rofl</span><span class="p">(</span><span class="s1">&#39;fixate1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;fixate1_nf-420_beta-0.15_(2023_04_27,20:20).npy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vanilla_fixate1_nf-420_beta-1.5_(2023_05_14,14:16).npy&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">everything</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">fit</span> <span class="ow">in</span> <span class="n">fits</span><span class="p">:</span>
+    <span class="n">everything</span><span class="p">[</span><span class="n">fit</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+        <span class="n">pjoin</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fit</span><span class="p">),</span>
+        <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plot_scatter</span><span class="p">(</span><span class="n">everything</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fc968aa89a5829c98197992db10157b976a878537c2fd6133d7b8df72656e12c.png" src="../../_images/fc968aa89a5829c98197992db10157b976a878537c2fd6133d7b8df72656e12c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kws_fig</span><span class="p">[</span><span class="s1">&#39;dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">fig_base_dir</span><span class="p">,</span> <span class="s1">&#39;untang_indiv.png&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kws_fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">everything</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">fit</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;data_vld&#39;</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">sp_dist</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span>
+        <span class="n">XA</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">XB</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;vld&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">indices</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">inds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cNVAE&#39;: array([296, 248, 393, 284, 368,  92, 206, 105, 338,  60,  63]),
+ &#39;VAE&#39;: array([138,  88,  21,  70,  12, 138,  88, 411, 166, 142,  27])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">scales</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">scales</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span> <span class="nb">range</span><span class="p">(</span>
+        <span class="nb">sum</span><span class="p">(</span><span class="n">scales</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nb">sum</span><span class="p">(</span><span class="n">scales</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">scales</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{3: range(0, 60), 6: range(60, 180), 12: range(180, 420)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_spatial_scale</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="s1">&#39;cNVAE&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">scales</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">index_spatial_scale</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">index_spatial_scale</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12, 12, 12, 12, 12, 6, 12, 6, 12, 6, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span><span class="p">[</span><span class="s1">&#39;cNVAE&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">21</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([14, 11, 18, 13, 17,  4,  9,  5, 16,  2,  3])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span><span class="p">[</span><span class="s1">&#39;cNVAE&#39;</span><span class="p">]</span> <span class="o">%</span> <span class="mi">21</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2, 17, 15, 11, 11,  8, 17,  0,  2, 18,  0])
 </pre></div>
 </div>
 </div>
@@ -2501,6 +2672,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-full">DCI full</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-latents">Individual latents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-bar-plots">Other bar plots</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dci-wide">DCI wide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table">Table</a></li>
